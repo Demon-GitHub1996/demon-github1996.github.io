@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Demon的博客</title>
+    <link>https://demon-github1996.github.io/</link>
+    <description>Recent content on Demon的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Fri, 21 Aug 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://demon-github1996.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Day2 运算符与逻辑语句</title>
+      <link>https://demon-github1996.github.io/posts/day02/</link>
+      <pubDate>Fri, 21 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day02/</guid>
+      <description>Day2 运算符与逻辑语句 昨日回顾： ​	java的介绍 ​	java是一门语言 ​	java的火 ​	jdk ​	jdk的下载和安装 ​	HelloWorld程序 ​	dos窗口 ​	环境变量 ​	HelloWorld编写编译和运行 ​	HelloWorld的详细的解释 ​	书写习惯 ​	notepad++ ​	java的基本语法 ​	程序的基本组成单位：
+//dfsakdjfhad ​	class HelloWorld { ​	public static void main(String[] args){ ​	int a = 10; ​	System.out.println(a); ​	{ ​	int b =10; ​	System.out.println(b); ​	} ​	} ​	} ​	注释 ​	关键字 ​	标识符 ​	数据 ​	常量 10 ​	变量</description>
+    </item>
+    
+    <item>
+      <title>Day01 介绍java</title>
+      <link>https://demon-github1996.github.io/posts/day01/</link>
+      <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day01/</guid>
+      <description>介绍java： ​	java 是一门语言， 汉语也是一门语言，是人和人交流的语言， java是人和计算机交流的语言， c c# c++ Python php&amp;hellip;. ​	1995年 高司令 创造的。
+java的三个方向： JavaSE ： 方向就是做 桌面应用的 PC端软件 QQ LOL WOW DNF CF &amp;hellip;
+​	但是java做这种软件 效果非常的差 界面非常的丑。 所以java也就放弃了这个方向。 ​	但是 JavaSE 是学习其他 任何方向的基础 Android javaEE(服务器) 大数据
+JavaME ： 嵌入式驱动开发 遥控器驱动 &amp;hellip;.
+​	Android 方向了。
+JavaEE ： 做服务器的。 大型web服务器
+​	淘宝 ​	京东 ​	&amp;hellip;.
+java的火： ​	面向对象语言 ​	开源 ​	跨平台： ​	java的跨平台 是依赖 java虚拟机来跨平台的。 ​	跨平台的好处： 为开发人员 提高了开发效率 （本来开发3个qq，现在 开发一个qq就可以了。）</description>
+    </item>
+    
+    <item>
+      <title>About Hugo</title>
+      <link>https://demon-github1996.github.io/about-hugo/</link>
+      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/about-hugo/</guid>
+      <description>Hugo is the world’s fastest framework for building websites. It is written in Go.
+It makes use of a variety of open source projects including:
+ https://github.com/russross/blackfriday https://github.com/alecthomas/chroma https://github.com/muesli/smartcrop https://github.com/spf13/cobra https://github.com/spf13/viper  Learn more and contribute on GitHub.</description>
+    </item>
+    
+  </channel>
+</rss>

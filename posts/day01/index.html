@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Day01 介绍java">
+<meta itemprop="description" content="介绍java： ​	java 是一门语言， 汉语也是一门语言，是人和人交流的语言， java是人和计算机交流的语言， c c# c&#43;&#43; Python php&hellip;. ​	1995年 高司令 创造的。
+java的三个方向： JavaSE ： 方向就是做 桌面应用的 PC端软件 QQ LOL WOW DNF CF &hellip;
+​	但是java做这种软件 效果非常的差 界面非常的丑。 所以java也就放弃了这个方向。 ​	但是 JavaSE 是学习其他 任何方向的基础 Android javaEE(服务器) 大数据
+JavaME ： 嵌入式驱动开发 遥控器驱动 &hellip;.
+​	Android 方向了。
+JavaEE ： 做服务器的。 大型web服务器
+​	淘宝 ​	京东 ​	&hellip;.
+java的火： ​	面向对象语言 ​	开源 ​	跨平台： ​	java的跨平台 是依赖 java虚拟机来跨平台的。 ​	跨平台的好处： 为开发人员 提高了开发效率 （本来开发3个qq，现在 开发一个qq就可以了。）">
+<meta itemprop="datePublished" content="2020-08-20T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-08-20T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1060">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta property="og:title" content="Day01 介绍java" />
+<meta property="og:description" content="介绍java： ​	java 是一门语言， 汉语也是一门语言，是人和人交流的语言， java是人和计算机交流的语言， c c# c&#43;&#43; Python php&hellip;. ​	1995年 高司令 创造的。
+java的三个方向： JavaSE ： 方向就是做 桌面应用的 PC端软件 QQ LOL WOW DNF CF &hellip;
+​	但是java做这种软件 效果非常的差 界面非常的丑。 所以java也就放弃了这个方向。 ​	但是 JavaSE 是学习其他 任何方向的基础 Android javaEE(服务器) 大数据
+JavaME ： 嵌入式驱动开发 遥控器驱动 &hellip;.
+​	Android 方向了。
+JavaEE ： 做服务器的。 大型web服务器
+​	淘宝 ​	京东 ​	&hellip;.
+java的火： ​	面向对象语言 ​	开源 ​	跨平台： ​	java的跨平台 是依赖 java虚拟机来跨平台的。 ​	跨平台的好处： 为开发人员 提高了开发效率 （本来开发3个qq，现在 开发一个qq就可以了。）" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://demon-github1996.github.io/posts/day01/" />
+<meta property="article:published_time" content="2020-08-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-20T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Day01 介绍java"/>
+<meta name="twitter:description" content="介绍java： ​	java 是一门语言， 汉语也是一门语言，是人和人交流的语言， java是人和计算机交流的语言， c c# c&#43;&#43; Python php&hellip;. ​	1995年 高司令 创造的。
+java的三个方向： JavaSE ： 方向就是做 桌面应用的 PC端软件 QQ LOL WOW DNF CF &hellip;
+​	但是java做这种软件 效果非常的差 界面非常的丑。 所以java也就放弃了这个方向。 ​	但是 JavaSE 是学习其他 任何方向的基础 Android javaEE(服务器) 大数据
+JavaME ： 嵌入式驱动开发 遥控器驱动 &hellip;.
+​	Android 方向了。
+JavaEE ： 做服务器的。 大型web服务器
+​	淘宝 ​	京东 ​	&hellip;.
+java的火： ​	面向对象语言 ​	开源 ​	跨平台： ​	java的跨平台 是依赖 java虚拟机来跨平台的。 ​	跨平台的好处： 为开发人员 提高了开发效率 （本来开发3个qq，现在 开发一个qq就可以了。）"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Day01 介绍java</title>
+	<link rel="stylesheet" href="https://demon-github1996.github.io/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://demon-github1996.github.io">Demon的博客</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://demon-github1996.github.io/posts/">文章</a>
+				<a href="https://demon-github1996.github.io/about-hugo/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://instagram.com/" target="_blank" rel="noopener me" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://github.com/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://demon-github1996.github.io/posts/">文章</a></li>
+			<li><a href="https://demon-github1996.github.io/about-hugo/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 20, 2020</span></div>
+				<h1>Day01 介绍java</h1>
+			</header>
+			<div class="content">
+				<h1 id="介绍java">介绍java：<a href="#介绍java" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>​		java 是一门语言， 汉语也是一门语言，是人和人交流的语言， java是人和计算机交流的语言，  c c# c++ Python php&hellip;.
+​			1995年 高司令 创造的。</p>
+<h2 id="java的三个方向">java的三个方向：<a href="#java的三个方向" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h5 id="javase">JavaSE<a href="#javase" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h5>
+<p>： 方向就是做 桌面应用的 PC端软件 QQ LOL WOW DNF CF &hellip;</p>
+<p>​				但是java做这种软件 效果非常的差  界面非常的丑。  所以java也就放弃了这个方向。
+​				但是 JavaSE 是学习其他 任何方向的基础 Android javaEE(服务器) 大数据</p>
+<h5 id="javame-">JavaME ：<a href="#javame-" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h5>
+<p>嵌入式驱动开发  遥控器驱动 &hellip;.</p>
+<p>​			Android 方向了。</p>
+<h5 id="javaee-">JavaEE ：<a href="#javaee-" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h5>
+<p>做服务器的。 大型web服务器</p>
+<p>​				淘宝
+​				京东
+​				&hellip;.</p>
+<h5 id="java的火">java的火：<a href="#java的火" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h5>
+<p>​			面向对象语言
+​			开源
+​			跨平台：
+​				java的跨平台 是依赖 java虚拟机来跨平台的。
+​			跨平台的好处： 为开发人员 提高了开发效率 （本来开发3个qq，现在 开发一个qq就可以了。）</p>
+<h5 id="jdk-jre-jvm-">jdk jre jvm ：<a href="#jdk-jre-jvm-" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h5>
+<p>​			
+​			Oracle 公司 并没有 jvm的安装包。 但是他却提供了 jdk的安装包。  jre的安装包。</p>
+<h6 id="jdk">jdk：<a href="#jdk" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h6>
+<p>​				开发工具： 编译工具 javac.exe   jar.exe  javawar.exe  javadoc.exe</p>
+<h6 id="jre">jre：<a href="#jre" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h6>
+<p>​					核心类库 : 提供大量的类  String  System
+​					jvm：解析程序中的一些语法格式和逻辑。
+​					
+​					一个再简单的程序 执行 必须依赖两个东西 核心类库 和jvm   这两个也就是组成了jre</p>
+<h6 id="jdk的安装和下载">jdk的安装和下载：<a href="#jdk的安装和下载" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h6>
+<p>​		1：有的同学已经安装了jdk了， 但是安装的 jdk11版本  jdk8版本， 都可以。 不需要卸载。 就使用已经安装的版本就可以了。
+​		2：一个电脑上可以安装多个 jdk ，同样你也不需要卸载 ， 
+​			那以后我到底用的哪个jdk啊？  等会儿配置环境变量 你就知道了，   你环境变量里面配置的哪一个 就是用的哪一个。
+​		3：以后只要是安装 开发类的软件， 安装路径 都尽量别有中文和空格。</p>
+<h2 id="helloworld">HelloWorld<a href="#helloworld" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="dos命令">dos命令：<a href="#dos命令" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>​		d: 切换盘
+​		cd : 进入目录。  c change切换   d  directory目录
+​		dir : 展示目录下的所有文件和目录     dir   directory目录
+​			每一个目录(除了盘符的) 都有两个隐含的目录 (.   .. )
+​			.代表的是当前目录，  所以 cd.  进入当前目录
+​			.. 代表的是 上一级目录
+​				所以cd.. 是回退到上一级目录</p>
+<p>​			在linux操作系统中，  所有目录的根目录 都是 / 目录   / 这是一个目录  是所有目录的跟目录。</p>
+<p>​			所以 cd / 就是进入根目录
+​		
+​		cls 是清屏的意思
+​		exit 退出cmd</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">书写</span><span class="err">：</span>
+<span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;shfashdfjadh&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p><strong><!-- raw HTML omitted -->此处有错题笔记详见Note1<!-- raw HTML omitted --></strong></p>
+<h1 id="java的重要内容">JAVA的重要内容：<a href="#java的重要内容" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h2 id="编写编译运行">编写编译运行(☆☆☆☆☆)：<a href="#编写编译运行" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="1编写">1.	编写：<a href="#1编写" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>​				新建一个txt文件， 然后后缀改为.java ，此处注意 操作系统尽量不要隐藏文件拓展名，否则无法更改拓展名。
+​</p>
+<p>​</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>  <span class="c1">// args   arguments
+</span><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;helloworld&#34;</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;helloworld1&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>​			注意：文件名字 和  class 后的名字 要一致。
+​</p>
+<h3 id="2编译-javac-demojava">2	编译： javac Demo.java<a href="#2编译-javac-demojava" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>​			编译成功的标志是  生成一个class文件。
+​			注意： 你需要先用cmd进入到 Demo.java的目录 才可以编译，否则找不到Demo.java
+​</p>
+<h3 id="3运行-java-demo">3	运行： java Demo<a href="#3运行-java-demo" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>​			注意：运行的是class文件，但是不需要 加.class 
+​	
+​	HelloWorld程序的详细解释：
+​</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// public  起到一个限定的做。 类名 必须和文件名要相同， 不同就会报错。
+</span><span class="c1"></span><span class="err">​</span>		<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>   <span class="c1">// 今后我们所有的代码 必须要写在类中的， 所以要写其他的代码必须要先写一个类的。
+</span><span class="c1"></span>    <span class="err">​</span>			
+        <span class="err">​</span>			<span class="c1">// main方法。程序的入口
+</span><span class="c1"></span>        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">sdafsdfasdfasdfasdfasdfasdfadfasdfadafasdf</span><span class="o">){</span>  <span class="c1">// args   arguments
+</span><span class="c1"></span>        <span class="err">​</span>				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;helloworld&#34;</span><span class="o">);</span>
+        <span class="err">​</span>				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;helloworld1&#34;</span><span class="o">);</span>
+        <span class="err">​</span>			<span class="o">}</span>
+
+    <span class="err">​</span>		<span class="o">}</span>
+</code></pre></div><h2 id="代码的书写习惯">代码的书写习惯：<a href="#代码的书写习惯" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>(不是语法，是程序员们的习惯，你可以不遵守，不会报错，但是其他的程序员看到你这么写了 就会给你一个大大的中指)
+当你遇到一个{ 的时候 换行。 并且和上一行搓一个tab键。
+遇到; 换行，和上一行对齐就可以了， 不需要搓tab
+}必须和 对应的{ 的那一行的行首对齐。</p>
+<pre><code>    这么做的好处：
+        1：不用把所有的错误都发生在一行。
+        2：能够清晰的看到代码的 包含关系。
+</code></pre>
+<h2 id="乱码问题">乱码问题：<a href="#乱码问题" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>​		新建一个txt文件，   如果你是win10操作系统， txt软件编写文字的默认编码是 utf-8编码。
+​		但是 打开的cmd ，黑窗口的默认编码 是 GBK(ANSI) 本地编码。
+​		
+​		两个编码不一致 中文就会乱码，
+​		所以 如果我们使用记事本新建一个文件 需要另存为 <strong>ANSI</strong>的
+​		如果我们使用 notepad++来新建一个文件  则需要设置 notepad++ 的新建选项。</p>
+<h2 id="java的基本语法">java的基本语法(☆☆☆☆☆)：<a href="#java的基本语法" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="java程序的组成">java程序的组成：<a href="#java程序的组成" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>（无论程序多么复杂都是有如下几部分组成的）
+注释(非必须)：
+关键字：
+标识符：
+数据：
+常量
+变量
+符号：
+基本的符号：
+空格：  把单词间隔开的符号。
+运算符：</p>
+<h3 id="注释">注释(☆☆☆)：<a href="#注释" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">                            <span class="n">单行注释</span>
+                                <span class="err">​</span>				<span class="c1">// sdfsdfsdfs
+</span><span class="c1"></span>                                <span class="err">​</span>			<span class="n">多行注释</span><span class="err">：</span>
+                                <span class="err">​</span>				<span class="cm">/*
+</span><span class="cm">                                                ​					fsdfsdfadsfasdfasdf
+</span><span class="cm">                                                ​					adfasdfsadfasdfas
+</span><span class="cm">                                                ​				*/</span>
+
+                                <span class="err">​</span>			<span class="cm">/*sdfsdafasdfasdfasdf*/</span>
+                                <span class="err">​</span>		
+                                <span class="err">​</span>		<span class="n">文档注释</span><span class="err">：</span>
+                                <span class="err">​</span>			<span class="cm">/**
+</span><span class="cm">
+</span><span class="cm">                                                ​			*/</span>
+</code></pre></div><h3 id="关键字">关键字(☆☆☆☆☆)：<a href="#关键字" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>java这门语言 规定的 给了一些单词特有的含义，这些单词就是关键字。
+<strong>public</strong> : 公共的，  特殊含义， 被public修饰的类 类名字 必须和java文件的名字相同。
+<strong>class</strong> 类
+<strong>static</strong> 静态的
+<strong>void</strong> 方法没有返回值的</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">		<span class="c1">// 注释
+</span><span class="c1"></span>		<span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+			<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;sdfsdfs&#34;</span><span class="o">);</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+</code></pre></div><h3 id="常量数据">常量数据(☆☆☆☆☆)：<a href="#常量数据" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>​</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">		<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>   
+<span class="err">​</span>				<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span> 
+<span class="err">​</span>					<span class="c1">//字符串常量
+</span><span class="c1"></span><span class="err">​</span>					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">);</span> <span class="c1">// 没有内容
+</span><span class="c1"></span><span class="err">​</span>					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;adfkasd黑马jfkasdjlk&#34;</span><span class="o">);</span>  
+<span class="err">​</span>					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">);</span> 
+<span class="err">​</span>					
+
+<span class="err">​</span>				<span class="c1">//字符常量
+</span><span class="c1"></span><span class="err">​</span>				<span class="c1">//System.out.println(&#39;&#39;); //报错。
+</span><span class="c1"></span><span class="err">​</span>				<span class="c1">//System.out.println(&#39;ab&#39;);  //报错。
+</span><span class="c1"></span><span class="err">​</span>				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="sc">&#39;中&#39;</span><span class="o">);</span>
+<span class="err">​</span>				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="sc">&#39;*&#39;</span><span class="o">);</span>
+
+<span class="err">​</span>				<span class="c1">//整数常量
+</span><span class="c1"></span><span class="err">​</span>				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">10</span><span class="o">);</span>
+
+<span class="err">​</span>				<span class="c1">//小数常量
+</span><span class="c1"></span><span class="err">​</span>				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">10</span><span class="o">.</span><span class="na">14</span><span class="o">);</span>
+
+<span class="err">​</span>				<span class="c1">//布尔常量
+</span><span class="c1"></span><span class="err">​</span>				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+<span class="err">​</span>				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+
+<span class="err">​</span>				<span class="c1">//空常量  用来占位。
+</span><span class="c1"></span><span class="err">​</span>				<span class="c1">//System.out.println(null);  // 报错 				
+</span><span class="c1"></span><span class="err">​</span>			<span class="o">}</span>
+<span class="err">​</span>		<span class="o">}</span>
+<span class="err">​</span>		<span class="c1">//我给你10块钱 你去给我买一根冰糕。    // 10是一个 整数常量
+</span><span class="c1"></span><span class="err">​</span>		<span class="c1">//我给你钱包 你去给我买一根冰糕。  //钱包是一个变量
+</span></code></pre></div><h3 id="变量数据">变量数据(☆☆☆☆☆)：<a href="#变量数据" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>​			<strong>定义格式： 数据类型 变量名 =  数据值;</strong>
+​</p>
+<h4 id="数据类型">数据类型：<a href="#数据类型" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>​			bit 和 byte 
+​				计算机中就是一个大的电路板，里面集成了很多晶体管，电阻 电容， 直流电 流经电阻，两端会有电势差(电压)  流经电容，直接阻断(低电压)
+​				高电压，表示1   低电压 0.<br>
+​				我们也把这种一个 信号  叫做 bit 位。
+​				但是 你发现了吗 这一个信号 只能要么表示0 要么表示1 那也表示不过来 现实生活中这些庞大的数据啊。
+​				8个bit位 为一组， 来表示数据， 我们就把这8个为一组 叫做 byte 字节 计算机最小的存储单元。
+​					-128  127
+​								
+​		<strong>分类</strong>：**
+​				**基本数据类型**
+​					**整型**
+​						**byte    1	-128 127**
+​						**short	2   -32768 32767**
+​						**int		4   正负21亿左右**
+​						**long	8**
+​					**浮点型**
+​						**float	4**
+​						**double	8**
+​					**字符型**
+​						**char	2**
+​					**布尔型**
+​						boolean	1 (java的官方声明  boolean 类型没有明确的大小 )**
+​				引用数据类型(综合类型)
+​					数组
+​					类
+​					接口
+​			
+​			表示数据范围的大小顺序：
+​				byte &lt; short = char &lt; int &lt; long  &lt;float &lt; double 
+​							
+​</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">	<span class="n">代码</span><span class="err">：</span>
+<span class="err">​</span>			<span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+<span class="err">​</span>				<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="err">​</span>					<span class="c1">//数据类型 变量名 =  数据值;
+</span><span class="c1"></span><span class="err">​</span>					<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span><span class="n">10</span><span class="o">;</span>
+<span class="err">​</span>					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">//10
+</span><span class="c1"></span>
+<span class="err">​</span>					<span class="kt">byte</span> <span class="n">b</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="err">​</span>					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">);</span> <span class="c1">//10
+</span><span class="c1"></span><span class="err">​</span>					
+<span class="err">​</span>					<span class="kt">double</span> <span class="n">d</span>  <span class="o">=</span> <span class="n">3</span><span class="o">.</span><span class="na">14</span><span class="o">;</span>
+<span class="err">​</span>					<span class="c1">// int c = 3.14;  // 报错。
+</span><span class="c1"></span><span class="err">​</span>					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">d</span><span class="o">);</span> <span class="c1">// 3.14
+</span><span class="c1"></span>
+<span class="err">​</span>					<span class="c1">//int e = true;  //报错。
+</span><span class="c1"></span><span class="err">​</span>					<span class="kt">boolean</span> <span class="n">e</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span> 
+<span class="err">​</span>					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">);</span> <span class="c1">// true
+</span><span class="c1"></span>
+<span class="err">​</span>					<span class="kt">char</span> <span class="n">f</span> <span class="o">=</span> <span class="sc">&#39;a&#39;</span><span class="o">;</span>
+<span class="err">​</span>					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">f</span><span class="o">);</span> <span class="c1">//a
+</span><span class="c1"></span> 						
+<span class="err">​</span>				<span class="o">}</span>
+<span class="err">​</span>			<span class="o">}</span>
+</code></pre></div><p>​		注意事项：
+​</p>
+<p><!-- raw HTML omitted -->1：变量的定义格式 可以分开，一个是定义 一个是赋值<!-- raw HTML omitted --></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">	<span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+					<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+						<span class="c1">//int  a = 10;
+</span><span class="c1"></span>						<span class="kt">int</span> <span class="n">a</span><span class="o">;</span>
+						<span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span> <span class="c1">// 可以的
+</span><span class="c1"></span>						<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">//10
+</span><span class="c1"></span>					<span class="o">}</span>
+				<span class="o">}</span>
+</code></pre></div><p>​	<!-- raw HTML omitted -->2：同一个范围内(作用域范围，作用域下面讲了) 变量不能重复定义。<!-- raw HTML omitted -->
+​</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">	<span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+					<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+						<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+						<span class="c1">//int a = 20;   //报错
+</span><span class="c1"></span>						<span class="n">a</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span> <span class="c1">//正确
+</span><span class="c1"></span>						<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">//10
+</span><span class="c1"></span>					<span class="o">}</span>
+				<span class="o">}</span>
+</code></pre></div><p><!-- raw HTML omitted -->3:变量可以一次定义多个<!-- raw HTML omitted --></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">	<span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+<span class="err">​</span>					<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="err">​</span>						<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="err">​</span>						<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+<span class="err">​</span>						<span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">30</span><span class="o">;</span>
+
+<span class="err">​</span>						<span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">40</span><span class="o">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">50</span><span class="o">,</span> <span class="n">f</span><span class="o">=</span><span class="n">60</span><span class="o">;</span>
+
+<span class="err">​</span>						<span class="kt">int</span> <span class="n">g</span><span class="o">,</span><span class="n">h</span><span class="o">,</span><span class="n">k</span><span class="o">;</span>
+<span class="err">​</span>						<span class="n">g</span> <span class="o">=</span> <span class="n">70</span><span class="o">;</span>
+<span class="err">​</span>						<span class="n">h</span> <span class="o">=</span> <span class="n">80</span><span class="o">;</span>
+<span class="err">​</span>						<span class="n">k</span> <span class="o">=</span> <span class="n">90</span><span class="o">;</span>
+<span class="err">​</span>					<span class="o">}</span>
+<span class="err">​</span>				<span class="o">}</span>
+<span class="err">​</span>			
+</code></pre></div><p><!-- raw HTML omitted -->4:局部变量 使用之前必须先赋值，不赋值不能使用。<!-- raw HTML omitted --></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+					<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+						<span class="kt">int</span> <span class="n">a</span> <span class="o">;</span>
+						<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">// 报错  
+</span><span class="c1"></span>					<span class="o">}</span>
+				<span class="o">}</span>
+			
+</code></pre></div><p><!-- raw HTML omitted -->5：变量的作用域，只在 从他定义开始一直到当前大括号结束 这一段有效。<!-- raw HTML omitted --></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">				<span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+					<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+						<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+						<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">// 10
+</span><span class="c1"></span>						<span class="o">{</span>
+							<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">//10
+</span><span class="c1"></span>							<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+							<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">);</span> <span class="c1">//20
+</span><span class="c1"></span>						<span class="o">}</span>
+						<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">);</span> <span class="c1">//报错
+</span><span class="c1"></span>					<span class="o">}</span>
+				<span class="o">}</span>
+</code></pre></div><p>​</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">	<span class="kd">class</span> <span class="nc">Demo1</span> <span class="o">{</span>
+					<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+						<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+						<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">// 10
+</span><span class="c1"></span>						<span class="o">{</span>
+							<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">//10
+</span><span class="c1"></span>							<span class="c1">//int a  = 20;  //报错  因为上面的a 的作用域 包括这里
+</span><span class="c1"></span>							<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+						<span class="o">}</span>
+						<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">30</span><span class="o">;</span><span class="c1">// 
+</span><span class="c1"></span>						<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">);</span> <span class="c1">//30
+</span><span class="c1"></span>						
+					<span class="o">}</span>
+				<span class="o">}</span>
+			
+</code></pre></div><p><!-- raw HTML omitted -->6：float类型的数据后面要加F  long类型的数据后面要加 L<!-- raw HTML omitted --></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">			<span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+					<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+						<span class="kt">float</span> <span class="n">f</span> <span class="o">=</span> <span class="n">3</span><span class="o">.</span><span class="na">14F</span><span class="o">;</span>
+						<span class="kt">long</span> <span class="n">lo</span> <span class="o">=</span> <span class="n">100L</span><span class="o">;</span>
+					<span class="o">}</span>
+				<span class="o">}</span>
+</code></pre></div><hr>
+<p>​	<strong>重温变量和常量的定义概念：</strong>
+​		<strong>常量：运行过程中其值不不能改变的量。</strong>
+​		变量：运行过程中其值可以发生改变的量。**</p>
+<p>​</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Demo1</span> <span class="o">{</span>
+			<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">20</span><span class="o">);</span>
+
+<span class="err">​</span>				<span class="n">20</span> <span class="o">=</span> <span class="n">30</span><span class="o">;</span>
+<span class="err">​</span>			<span class="o">}</span>
+<span class="err">​</span>		<span class="o">}</span>
+</code></pre></div><p>​</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">	<span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+<span class="err">​</span>			<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="err">​</span>				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">20</span><span class="o">);</span>
+
+<span class="err">​</span>				<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+<span class="err">​</span>				<span class="n">a</span> <span class="o">=</span> <span class="n">30</span><span class="o">;</span>
+<span class="err">​</span>			<span class="o">}</span>
+<span class="err">​</span>		<span class="o">}</span>
+<span class="err">​</span>	
+</code></pre></div><h4 id="scanner-">Scanner(☆☆☆☆) :<a href="#scanner-" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">		<span class="c1">//第一步： 导包
+</span><span class="c1"></span><span class="err">​</span>		<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="err">​</span>		<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo3</span> <span class="o">{</span>
+<span class="err">​</span>			<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="err">​</span>				<span class="c1">// 第二步： 创建键盘录入对象
+</span><span class="c1"></span><span class="err">​</span>				<span class="n">Scanner</span> <span class="n">hh</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span> <span class="c1">// 只有sc可以变。
+</span><span class="c1"></span>
+<span class="err">​</span>				<span class="c1">// 第三步： 接收键盘录入的数据
+</span><span class="c1"></span><span class="err">​</span>				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;请您输入 数字&#34;</span><span class="o">);</span>
+<span class="err">​</span>				<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">hh</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+<span class="err">​</span>				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;您输入的数字 如下，您看对不对呢&#34;</span><span class="o">);</span>
+<span class="err">​</span>				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
+
+<span class="err">​</span>				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;请您再输入 数字&#34;</span><span class="o">);</span>
+<span class="err">​</span>				<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">hh</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+<span class="err">​</span>				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;您第二次输入的数字 如下，您看对不对呢&#34;</span><span class="o">);</span>
+<span class="err">​</span>				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">);</span>
+<span class="err">​</span>			<span class="o">}</span>
+<span class="err">​</span>		<span class="o">}</span>
+</code></pre></div><h2 id="标识符">标识符(☆☆☆☆☆)：<a href="#标识符" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>起名字</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Demo3</span> <span class="o">{</span>
+				<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+					<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+					<span class="c1">//int 100 = 10;
+</span><span class="c1"></span>				<span class="o">}</span>
+			<span class="o">}</span>
+</code></pre></div><p>​			语法规定：
+​				1：a到zA到Z0到9 $_
+​				2：不能是关键字。
+​				3：不能以数字开头</p>
+<p>​		约定俗成的习惯：
+​			大驼峰 ： 类
+​			小驼峰 ： 变量 方法
+​			峡谷先锋 ：常量名
+​				所有字母都大写，如果多个单词 中间用下划线隔开。  JAVA_HOME</p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>Demon</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1060 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-08-20 08:00 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://demon-github1996.github.io/posts/day02/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Day2 运算符与逻辑语句</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://demon-github1996.github.io">郭  栋</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://demon-github1996.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://demon-github1996.github.io/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

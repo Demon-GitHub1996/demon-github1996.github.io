@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Day2 运算符与逻辑语句">
+<meta itemprop="description" content="Day2 运算符与逻辑语句 昨日回顾： ​	java的介绍 ​	java是一门语言 ​	java的火 ​	jdk ​	jdk的下载和安装 ​	HelloWorld程序 ​	dos窗口 ​	环境变量 ​	HelloWorld编写编译和运行 ​	HelloWorld的详细的解释 ​	书写习惯 ​	notepad&#43;&#43; ​	java的基本语法 ​	程序的基本组成单位：
+//dfsakdjfhad ​	class HelloWorld { ​	public static void main(String[] args){ ​	int a = 10; ​	System.out.println(a); ​	{ ​	int b =10; ​	System.out.println(b); ​	} ​	} ​	} ​	注释 ​	关键字 ​	标识符 ​	数据 ​	常量 10 ​	变量">
+<meta itemprop="datePublished" content="2020-08-21T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-08-21T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1791">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta property="og:title" content="Day2 运算符与逻辑语句" />
+<meta property="og:description" content="Day2 运算符与逻辑语句 昨日回顾： ​	java的介绍 ​	java是一门语言 ​	java的火 ​	jdk ​	jdk的下载和安装 ​	HelloWorld程序 ​	dos窗口 ​	环境变量 ​	HelloWorld编写编译和运行 ​	HelloWorld的详细的解释 ​	书写习惯 ​	notepad&#43;&#43; ​	java的基本语法 ​	程序的基本组成单位：
+//dfsakdjfhad ​	class HelloWorld { ​	public static void main(String[] args){ ​	int a = 10; ​	System.out.println(a); ​	{ ​	int b =10; ​	System.out.println(b); ​	} ​	} ​	} ​	注释 ​	关键字 ​	标识符 ​	数据 ​	常量 10 ​	变量" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://demon-github1996.github.io/posts/day02/" />
+<meta property="article:published_time" content="2020-08-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-21T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Day2 运算符与逻辑语句"/>
+<meta name="twitter:description" content="Day2 运算符与逻辑语句 昨日回顾： ​	java的介绍 ​	java是一门语言 ​	java的火 ​	jdk ​	jdk的下载和安装 ​	HelloWorld程序 ​	dos窗口 ​	环境变量 ​	HelloWorld编写编译和运行 ​	HelloWorld的详细的解释 ​	书写习惯 ​	notepad&#43;&#43; ​	java的基本语法 ​	程序的基本组成单位：
+//dfsakdjfhad ​	class HelloWorld { ​	public static void main(String[] args){ ​	int a = 10; ​	System.out.println(a); ​	{ ​	int b =10; ​	System.out.println(b); ​	} ​	} ​	} ​	注释 ​	关键字 ​	标识符 ​	数据 ​	常量 10 ​	变量"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Day2 运算符与逻辑语句</title>
+	<link rel="stylesheet" href="https://demon-github1996.github.io/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://demon-github1996.github.io">Demon的博客</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://demon-github1996.github.io/posts/">文章</a>
+				<a href="https://demon-github1996.github.io/about-hugo/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://instagram.com/" target="_blank" rel="noopener me" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://github.com/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://demon-github1996.github.io/posts/">文章</a></li>
+			<li><a href="https://demon-github1996.github.io/about-hugo/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 21, 2020</span></div>
+				<h1>Day2 运算符与逻辑语句</h1>
+			</header>
+			<div class="content">
+				<h1 id="day2-运算符与逻辑语句">Day2 运算符与逻辑语句<a href="#day2-运算符与逻辑语句" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h2 id="昨日回顾">昨日回顾：<a href="#昨日回顾" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>​	java的介绍
+​		java是一门语言
+​		java的火
+​		jdk
+​		jdk的下载和安装
+​	HelloWorld程序
+​		dos窗口
+​		环境变量
+​		HelloWorld编写编译和运行
+​		HelloWorld的详细的解释
+​		书写习惯
+​		notepad++
+​	java的基本语法
+​		程序的基本组成单位：</p>
+<div class="highlight"><pre class="chroma"><code class="language-JAVA" data-lang="JAVA">			<span class="c1">//dfsakdjfhad
+</span><span class="c1"></span><span class="err">​</span>			<span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+<span class="err">​</span>				<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="err">​</span>					<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="err">​</span>					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
+
+<span class="err">​</span>				<span class="o">{</span>
+<span class="err">​</span>					<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span><span class="n">10</span><span class="o">;</span>
+<span class="err">​</span>					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">);</span>
+<span class="err">​</span>				<span class="o">}</span>
+<span class="err">​</span>			<span class="o">}</span>
+<span class="err">​</span>		<span class="o">}</span>
+</code></pre></div><p>​		注释
+​		关键字 
+​		标识符 
+​		数据
+​			常量 10
+​			变量</p>
+<p>​		注释
+​		关键字 
+​		标识符 
+​		数据
+​			常量 10
+​			变量</p>
+<p>​		符号：
+​			基本符号：
+​				空格 ： 所有的关键字 标识符 中间都需要用空格隔开。
+​				{}  : 用来盛多条语句的  表示一个范围。
+​				;  一个分号是一条语句
+​				() :  强制转换
+​					  运算 
+​					  方法
+​					  逻辑语句
+​				[] ： 数组
+​				&quot;&rdquo; 字符串
+​				'&rsquo; 字符
+​				.  表示调用的过程
+​				
+​			运算符：</p>
+<h2 id="类型转换">类型转换(☆☆☆☆☆)<a href="#类型转换" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="隐式类型转换">隐式类型转换：<a href="#隐式类型转换" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>​			<!-- raw HTML omitted --><strong>规则： 是从小范围的数据类型 直接转到 大范围的数据类型</strong><!-- raw HTML omitted -->
+​			范围的排序：
+​				byte &lt; short = char &lt; int &lt; long &lt; float &lt; double 
+​				举例：
+​			int a =10;
+​			long b = a; 
+​		
+​		用途： 比如两个软件进行交互， 对方发给你一个整数， 我就需要用long类型去接收。因为你不确定他给传的是一个多大的证书，
+​			所以你应该  不管他发给你多大的证书， 你都应该接收， 你就可以用 最大的整数类型 long去接收。
+​		
+​		运行中的隐式类型转换： （运算的原理： 不同的数据类型进行运算，必须先统一为同一种类型才可以运算，否则不能运算。）
+​			<strong>1：比int大(或者等于)的类型， 在进行运算的时候， 小类型会自动提升为大类型进行运算：</strong>
+​</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+					<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+						<span class="kt">long</span> <span class="n">lo</span> <span class="o">=</span> <span class="n">10L</span><span class="o">;</span>
+						<span class="kt">double</span> <span class="n">d</span> <span class="o">=</span> <span class="n">3</span><span class="o">.</span><span class="na">14</span><span class="o">;</span>
+						<span class="c1">//long lon = lo + d; // 编译报错。   lo会先提升为 double类型。然后再和 double类型的d进行运算 最后的结果是double类型。
+</span><span class="c1"></span>						<span class="c1">//long lon = (long) lo + d; // 编译报错 
+</span><span class="c1"></span>						<span class="kt">long</span> <span class="n">lon</span> <span class="o">=</span> <span class="o">(</span><span class="kt">long</span><span class="o">)(</span><span class="n">lo</span> <span class="o">+</span><span class="n">d</span><span class="o">)</span> <span class="o">;</span> <span class="c1">// 正确
+</span><span class="c1"></span>
+<span class="err">​</span>						<span class="kt">double</span> <span class="n">d1</span> <span class="o">=</span> <span class="n">lo</span> <span class="o">+</span> <span class="n">d</span><span class="o">;</span> <span class="c1">// 正确。
+</span><span class="c1"></span><span class="err">​</span>					<span class="o">}</span>
+<span class="err">​</span>				<span class="o">}</span>
+</code></pre></div><p>​			<strong>2：比int小的数据类型， 在进行运算的时候，所有的都要提升为 int类型 再去运算。</strong>
+​</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">	<span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+<span class="err">​</span>					<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="err">​</span>						<span class="kt">byte</span> <span class="n">b</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="err">​</span>						<span class="kt">short</span> <span class="n">s</span><span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+<span class="err">​</span>						<span class="c1">//short sh = b +s; // 编译报错  b 和s 都会提升为int类型  所以最后的结果也是int类型。
+</span><span class="c1"></span><span class="err">​</span>						<span class="c1">//short sh = (short) b + s ; // 编译报错
+</span><span class="c1"></span><span class="err">​</span>						<span class="kt">short</span> <span class="n">sh</span> <span class="o">=</span> <span class="o">(</span><span class="kt">short</span><span class="o">)(</span><span class="n">b</span><span class="o">+</span><span class="n">s</span><span class="o">);</span> <span class="c1">// 正确的
+</span><span class="c1"></span>
+<span class="err">​</span>						<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span><span class="n">s</span><span class="o">;</span> <span class="c1">// 正确的。
+</span><span class="c1"></span><span class="err">​</span>					<span class="o">}</span>
+<span class="err">​</span>				<span class="o">}</span>
+
+<span class="err">​</span>	
+</code></pre></div><h3 id="强制类型转换">强制类型转换：<a href="#强制类型转换" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>​		<strong>规则： 是从大范围的数据类型 强制转到 小范围的数据类型</strong>
+​			<strong>1：明确能转过去，数据是正确的， 这时候可以强制类型转换。</strong>
+​</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">	<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+	<span class="kt">byte</span> <span class="n">b</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span><span class="n">a</span><span class="o">;</span> 
+</code></pre></div><p>​			<strong>2：不推荐你使用的，  明知道转过去 撑不了这么大的数据， 还要继续转</strong>
+​</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">		<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">200</span><span class="o">;</span>
+		<span class="kt">byte</span> <span class="n">b</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span><span class="n">a</span><span class="o">;</span>  <span class="c1">// a 已经不是200了，    不确定的数字
+</span></code></pre></div><p>​			<strong>3：强化去除小数点后面的数据</strong>
+​</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">			<span class="kt">double</span> <span class="n">d</span> <span class="o">=</span> <span class="n">3</span><span class="o">.</span><span class="na">14</span><span class="o">;</span>
+			<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">d</span><span class="o">;</span> <span class="c1">// a 就是3了。
+</span></code></pre></div><p>​</p>
+<h3 id="类型转换的注意事项">类型转换的注意事项：<a href="#类型转换的注意事项" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>​		<strong>1：boolean类型 不参与任何的类型转换</strong>
+​</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">		<span class="kt">boolean</span> <span class="n">b</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+		<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span> <span class="c1">// 编译报错。
+</span><span class="c1"></span>		<span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">b</span><span class="o">;</span>
+		
+</code></pre></div><pre><code>**2 :常量优化机制**
+</code></pre>
+<p>​		1：	写一个整数常量的时候， 整数常量也是有数据类型的，默认是 int类型，</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">	<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">10</span><span class="o">);</span> <span class="c1">// 10 是常量 同时也是int类型的数据
+</span></code></pre></div><p>​		2：	比int小的类型 才有常量优化机制：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">				<span class="kt">byte</span> <span class="n">a</span> <span class="o">=</span> <span class="n">100</span><span class="o">;</span> <span class="c1">// 正确的。 100虽然是int类不假，依然可以赋值， 这就叫做常量优化机制。
+</span><span class="c1"></span>				<span class="c1">// 底层 byte a = (byte)100;
+</span><span class="c1"></span>
+<span class="err">​</span>				<span class="c1">// 只能是常量有 优化机制
+</span><span class="c1"></span><span class="err">​</span>				<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">100</span><span class="o">;</span>
+<span class="err">​</span>				<span class="c1">//byte c = b; // 编译错误  b 是变量 不是常量。
+</span><span class="c1"></span>
+<span class="err">​</span>				<span class="kt">byte</span> <span class="n">d</span> <span class="o">=</span> <span class="n">100</span><span class="o">+</span><span class="n">20</span><span class="o">;</span> <span class="c1">// 正确的  常量的运算， 在编译成class期间， 就已经把 100+20  变成了120 
+</span><span class="c1"></span><span class="err">​</span>					<span class="c1">// 也就是说 等这句话翻译到了class文件里面 就变成了 byte d = 120; // 就又符合常量优化机制了。
+</span><span class="c1"></span>
+<span class="err">​</span>				<span class="kt">byte</span> <span class="n">e</span> <span class="o">=</span> <span class="n">100</span><span class="o">;</span>
+<span class="err">​</span>				<span class="kt">byte</span> <span class="n">f</span> <span class="o">=</span> <span class="n">e</span><span class="o">+</span><span class="n">20</span> <span class="o">;</span> <span class="c1">// 编译报错。  e是变量
+</span></code></pre></div><p>​		3：	写一个小数常量的时候，小数常量也是有数据类型的， double类型。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">	<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">31</span><span class="o">.</span><span class="na">4</span><span class="o">);</span> <span class="c1">// 31.4 是常量  同时也是 double数据类型的。
+</span><span class="c1"></span>
+<span class="err">​</span>				<span class="kt">double</span> <span class="n">d</span> <span class="o">=</span> <span class="n">31</span><span class="o">.</span><span class="na">4</span><span class="o">;</span>
+<span class="err">​</span>			<span class="c1">//float f = 31.4 ; // 编译报错。 比int大的类型 没有常量优化机制。  所以double类型不能直接赋值给 float类型。
+</span><span class="c1"></span><span class="err">​</span>				<span class="kt">float</span> <span class="n">f</span> <span class="o">=</span> <span class="o">(</span><span class="kt">float</span><span class="o">)</span><span class="n">31</span><span class="o">.</span><span class="na">4</span><span class="o">;</span>
+<span class="err">​</span>				
+<span class="err">​</span>				<span class="kt">float</span> <span class="n">fl</span> <span class="o">=</span> <span class="n">31</span><span class="o">.</span><span class="na">4F</span><span class="o">;</span> <span class="c1">// 你31.4 默认是double类型， 能不能我们写一个小数的时候 让他默认是 float类型呢， 当然可以了， 你只要在小数后面加一个F 那么这个小数 就会被当做float类型啦。
+</span></code></pre></div><p>​		4： long类型的数据后面 为什么要加L</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+				<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+					<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">100</span><span class="o">;</span>
+					<span class="kt">long</span> <span class="n">lo</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span> <span class="c1">// 正确 隐式类型转换
+</span><span class="c1"></span>
+<span class="err">​</span>					<span class="kt">long</span> <span class="n">lon</span> <span class="o">=</span> <span class="n">100</span><span class="o">;</span> <span class="c1">// 正确。  既然是正确的 那么为什么老师一直说 让我在long类型的数据后面 加一个L呢 实在不懂。
+</span><span class="c1"></span>
+<span class="err">​</span>					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">100</span><span class="o">);</span> <span class="c1">// 100 是int类型
+</span><span class="c1"></span>
+<span class="err">​</span>					<span class="c1">//System.out.println(10000000000); //100亿   int类型  （int类型的数据 最大到21亿左右）
+</span><span class="c1"></span><span class="err">​</span>					<span class="c1">// 此时 报错了，  100亿已经超过了int数据类型
+</span><span class="c1"></span><span class="err">​</span>					<span class="c1">// 但是 直接写一个 整数常量 确实就是int类型的啊， 所以肯定报错。
+</span><span class="c1"></span><span class="err">​</span>					<span class="c1">// 所以 我们就想 我们能不能写一个整数的时候 让jvm把他当做是一个long类型的数据呢，而不是int呢， 可以啊 你只需要在数据后面加一个 L就可以了。
+</span><span class="c1"></span>
+<span class="err">​</span>					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">10000000000L</span><span class="o">);</span>
+
+<span class="err">​</span>					<span class="kt">long</span> <span class="n">lo</span> <span class="o">=</span> <span class="n">100</span><span class="o">;</span>
+<span class="err">​</span>				<span class="o">}</span>	
+<span class="err">​</span>			<span class="o">}</span>
+</code></pre></div><h2 id="运算符">运算符(☆☆☆☆☆)<a href="#运算符" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="算术运算符">算术运算符<a href="#算术运算符" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h4 id="基本算术运算符-">基本算术运算符：+-*/%<a href="#基本算术运算符-" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<pre><code>   + ​				
+ 				 System.out.println(10+10); //20
+     ​			
+   		 		 System.out.println(+10); // 10  正10
+     ​			
+
+​			-
+​				System.out.println(10-5); //5
+​				System.out.println(-5); // -5  负5
+​			
+​			/ :
+​				System.out.println(10/4); //2
+​				System.out.println(10/4.0); //2.5
+​				System.out.println(10.0/4); //2.5
+​				System.out.println(10.0/4.0); //2.5
+
+​				// 结论： 整数相除得到的是整数，要想得到小数 就必须让小数参与运算。
+
+​				// 为什么？？ 两种不同的数据类型 是没有办法运算的，所以必须先统一为同一种类型再进行运算
+​					System.out.println(10/4); //2  10是int类型 4也是int类型 最终结果就应该是int类型
+​					System.out.println(10/4.0);  //2.5  10 先转换为 double的10.0 
+​			
+​			% ： 
+​				System.out.println(10%3); //1
+​				System.out.println(10%-3);//1
+​				System.out.println(-10%3);// -1
+​				System.out.println(-10%-3); // -1
+
+​				// 结论： 取的这个余数， 符号和 %左侧的数的符号 是一至的。
+
+​				// 为什么？
+​					System.out.println(10%3);   // 10/3 = 3      10 - (3*3) = 1;
+​					System.out.println(10%-3);  // 10/-3 =-3     10 - (-3*-3) = 1;
+</code></pre><h3 id="字符--码表">字符&ndash;码表：<a href="#字符--码表" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">		<span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="sc">&#39;a&#39;</span><span class="o">;</span>
+				<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span> 
+				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">//97			
+</span></code></pre></div><p>​			ASCII编码：
+​				&lsquo;a&rsquo; &ndash;97
+​				&lsquo;A&rsquo; &ndash;65
+​				&lsquo;0&rsquo; &ndash;48</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="sc">&#39;a&#39;</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c</span><span class="o">+</span><span class="n">1</span><span class="o">);</span>   <span class="c1">// 98
+</span><span class="c1">// 报错  // 当时你说报错 是因为 字符和数字就加不了，  现在告诉你了 可以加
+</span><span class="c1">// a1   //  c 是char类型， 1是int类型， 两个进行运算 必须统一为同一种类型， char会自动提升为int类型。 
+</span><span class="c1">// b   // 结构是98  并没有转换回 char类型。
+</span><span class="c1"></span><span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="sc">&#39;a&#39;</span><span class="o">;</span>
+<span class="kt">char</span> <span class="n">d</span> <span class="o">=</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="sc">&#39;a&#39;</span><span class="o">+</span><span class="n">1</span><span class="o">);</span> <span class="c1">//b
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">d</span><span class="o">);</span> <span class="c1">//b
+</span><span class="c1">// 96  // 你记成了 a是95了。
+</span></code></pre></div><p>​</p>
+<h4 id="字符串操作">字符串+操作：<a href="#字符串操作" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>​</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;a&#34;</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span> <span class="c1">//  同样的道理 两个数据进行运算 必须统一为同一种类型
+</span><span class="c1"></span><span class="err">​</span>										<span class="c1">// 无论什么类型 和字符串进行+运算 所有类型都必须转换为 字符串类型。 在和字符串进行运算(拼接)
+</span><span class="c1"></span>    <span class="err">​</span>										<span class="c1">// a1
+</span><span class="c1"></span>
+    <span class="err">​</span>			<span class="n">题目</span><span class="err">：</span><span class="n">请猜测他的输出结果</span>
+    <span class="err">​</span>				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">10</span><span class="o">+</span><span class="n">10</span><span class="o">+</span><span class="n">20</span><span class="o">+</span><span class="s">&#34;java&#34;</span><span class="o">+</span><span class="n">20</span><span class="o">+</span><span class="n">20</span><span class="o">+</span><span class="s">&#34;javaEE&#34;</span><span class="o">+(</span><span class="n">20</span><span class="o">+</span><span class="n">20</span><span class="o">)+</span><span class="s">&#34;havaee&#34;</span><span class="o">+</span><span class="n">10</span><span class="o">+(</span><span class="n">10</span><span class="o">+</span><span class="n">20</span><span class="o">)+</span><span class="n">30</span><span class="o">);</span>
+<span class="err">​</span>								<span class="c1">// 10+10+20+&#34;java&#34;+20+20+&#34;javaEE&#34;+40+&#34;havaee&#34;+10+30+30
+</span><span class="c1"></span>    <span class="err">​</span>								<span class="c1">// &#34;40java2020javaEE40havaee103030&#34;
+</span><span class="c1"></span>
+    <span class="err">​</span>			<span class="n">题目</span><span class="err">：</span>
+    <span class="err">​</span>				<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="err">​</span>				<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+    <span class="err">​</span>					<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+        <span class="err">​</span>						<span class="n">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="err">​</span>						<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="err">​</span>						<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="err">​</span>						<span class="c1">// 请补齐后面的代码 需求： 当用户输入 第一个数4  第二个数5的时候，  黑窗口显示  4*5=20 
+</span><span class="c1"></span>            <span class="err">​</span>						<span class="c1">//........
+</span><span class="c1"></span>            <span class="err">​</span>						<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">+</span><span class="s">&#34;*&#34;</span><span class="o">+</span><span class="n">b</span><span class="o">+</span><span class="s">&#34;=&#34;</span><span class="o">+(</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">));</span>
+        <span class="err">​</span>					<span class="o">}</span>
+    <span class="err">​</span>				<span class="o">}</span>
+</code></pre></div><h3 id="自增自减运算符">自增自减运算符：<a href="#自增自减运算符" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<pre><code>			// ++  自身增加1   -- 自身减少1
+​	
+​			/*
+​			// 不管++ 放在后面 还是放在前面  只要这个变量经过一次++运算  那么这个变量自己就会增加1
+​			int a  = 10;
+​			a++;
+​			System.out.println(a); //11
+
+​			//20++;
+​			//System.out.println(20);
+
+​			int b = 10;
+​			++b;
+​			System.out.println(b);  //11
+
+​			*/
+</code></pre><p>​			<strong>表达式的概念</strong> 
+​			 <strong>用运算符连接起来的式子 叫做 表达式。</strong><br>
+​			 <strong>表达式 有两个特点  1：一般不能单独成语句   2： 表达式会有一个结果。</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+        <span class="err">​</span>			<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+        <span class="err">​</span>			<span class="c1">//a+b; // 报错 不是语句
+</span><span class="c1"></span>        <span class="err">​</span>			<span class="c1">//30; // 报错 不是语句
+</span><span class="c1"></span>
+        <span class="err">​</span>			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">30</span><span class="o">);</span>
+        <span class="err">​</span>			<span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">30</span><span class="o">;</span>
+
+        <span class="err">​</span>			<span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">;</span>   <span class="c1">// 运算符是有优先级的。  先算乘除后算甲减 有小伙好的先算小括号。
+</span><span class="c1"></span>        <span class="err">​</span>			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">d</span><span class="o">);</span> <span class="c1">//30
+</span><span class="c1"></span>
+        <span class="err">​</span>			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;============&#34;</span><span class="o">);</span>
+        <span class="err">​</span>			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">);</span>
+
+        <span class="err">​</span>			<span class="c1">//=================
+</span><span class="c1"></span>        <span class="err">​</span>			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;---------------&#34;</span><span class="o">);</span>
+        <span class="err">​</span>			<span class="c1">// 同理  ++ 和-- 他们链接起来的式子 也是表达式。
+</span><span class="c1"></span>        <span class="err">​</span>			<span class="kt">int</span> <span class="n">e</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+        <span class="err">​</span>			<span class="kt">int</span> <span class="n">f</span> <span class="o">=</span> <span class="n">e</span><span class="o">++;</span>  <span class="c1">// ++放后面  整体表达式的结果取的是变量+1之前的值。
+</span><span class="c1"></span>        <span class="err">​</span>			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">f</span><span class="o">);</span> <span class="c1">//10
+</span><span class="c1"></span>        <span class="err">​</span>			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">);</span> <span class="c1">//11
+</span><span class="c1"></span>
+        <span class="err">​</span>			<span class="kt">int</span> <span class="n">g</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+        <span class="err">​</span>			<span class="kt">int</span> <span class="n">h</span> <span class="o">=</span> <span class="o">++</span><span class="n">g</span><span class="o">;</span>  <span class="c1">// ++放前面  整体表达式的结果取的是变量+1之后的值。
+</span><span class="c1"></span>        <span class="err">​</span>			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">h</span><span class="o">);</span> <span class="c1">//11	
+</span><span class="c1"></span>        <span class="err">​</span>			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">g</span><span class="o">);</span> <span class="c1">//11
+</span></code></pre></div><p>​			// ++ 无论放在前面还是后面，  只要经过++ ，自身绝对会增加1
+​			// 放前面和放后面 不同的是
+​				// 整体表达式的结果不同。
+​					//++放后面  整体表达式的结果取的是变量+1之前的值。
+​					//++放前面  整体表达式的结果取的是变量+1之后的值</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//	题目1：
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="c1">//10     11	 9
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">a</span><span class="o">++</span> <span class="o">+</span> <span class="o">++</span><span class="n">b</span> <span class="o">+</span> <span class="o">--</span><span class="n">c</span><span class="o">;</span>
+<span class="c1">//d = 
+</span><span class="c1">//	表达式的结果
+</span><span class="c1">//	= 表达式1 + 表达式2 + 表达式3
+</span><span class="c1"></span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">//11
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">);</span> <span class="c1">//11
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c</span><span class="o">);</span> <span class="c1">//9
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">d</span><span class="o">);</span> <span class="c1">//30
+</span></code></pre></div><p>​</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//	题目2：
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="c1">//10    10	10		9	  8   10
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">e</span> <span class="o">=</span> <span class="n">a</span><span class="o">++</span> <span class="o">+</span> <span class="n">b</span><span class="o">++</span> <span class="o">+</span> <span class="n">c</span><span class="o">--</span> <span class="o">+</span> <span class="o">--</span><span class="n">d</span> <span class="o">+</span> <span class="o">--</span><span class="n">c</span><span class="o">+</span> <span class="o">++</span><span class="n">d</span><span class="o">;</span>
+<span class="c1">//a=11  b=11  c=9   d=9   c=8   d=10
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">//11
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">);</span> <span class="c1">//11
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c</span><span class="o">);</span> <span class="c1">//8
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">d</span><span class="o">);</span> <span class="c1">//10
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">);</span> <span class="c1">//57
+</span></code></pre></div><h3 id="赋值运算符">赋值运算符：<a href="#赋值运算符" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//	普通赋值运算符 =
+</span><span class="c1"></span><span class="err">​</span>			<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="err">​</span>		
+    <span class="err">​</span>	<span class="c1">//	复合赋值运算符：
+</span><span class="c1"></span>    <span class="err">​</span>			<span class="o">+=</span> <span class="o">-=</span> <span class="o">*=</span> <span class="o">/=</span> <span class="o">%=</span>
+
+    <span class="err">​</span>			<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="err">​</span>			<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+<span class="err">​</span>			<span class="n">b</span> <span class="o">+=</span> <span class="n">a</span><span class="o">;</span> <span class="c1">// b = b+a; // 30
+</span><span class="c1"></span><span class="err">​</span>			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">);</span> <span class="c1">//30
+</span><span class="c1"></span>
+<span class="err">​</span>			<span class="n">注意</span><span class="err">：</span> <span class="n">复合赋值运算符</span> <span class="n">底层有一个强制类型转换的动作</span><span class="err">。</span>
+    <span class="err">​</span>				<span class="kt">short</span> <span class="n">s</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="err">​</span>				<span class="kt">byte</span> <span class="n">b</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+<span class="err">​</span>				<span class="n">b</span><span class="o">+=</span><span class="n">s</span><span class="o">;</span> <span class="c1">// 正确的  底层 b = (byte)(b+s);  // b 先转为int类型   s也转为int类型 相加之后是int类型  但是  强制类型转为了 byte
+</span><span class="c1"></span><span class="err">​</span>				<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">);</span>
+</code></pre></div><h3 id="比较运算符">比较运算符<a href="#比较运算符" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>比较运算的结果全部都是boolean类型的数据。</p>
+<pre><code>        &gt; &lt; &gt;= &lt;= == !=
+</code></pre>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+		<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+		<span class="c1">//  a&gt;b; // 表达式不能单独成语句。 
+</span><span class="c1"></span>		<span class="c1">// false;
+</span><span class="c1"></span>		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">&gt;</span><span class="n">b</span><span class="o">);</span> <span class="c1">// false 
+</span><span class="c1"></span>		<span class="kt">boolean</span> <span class="n">bo</span> <span class="o">=</span> <span class="n">a</span><span class="o">&gt;</span><span class="n">b</span> <span class="o">;</span> <span class="c1">// false
+</span></code></pre></div><h3 id="逻辑运算符">逻辑运算符<a href="#逻辑运算符" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/*	a 在 0 - 100的范围吗？
+</span><span class="cm">​			System.out.println( 0&lt;a &amp; a&lt;100 );
+</span><span class="cm">
+</span><span class="cm">​		&amp; : 并且的意思
+</span><span class="cm">​			一箱酒(两瓶)，里面有一瓶真酒 有一瓶假酒  ，请问你认为 这一箱酒是真的还是假的， 你肯定认为是假的 不买。
+</span><span class="cm">​			
+</span><span class="cm">​			并且， 有假则假。  有false则false
+</span><span class="cm">​		
+</span><span class="cm">​		| ： 或者的意思
+</span><span class="cm">​			我两只手 每一只收里面有一个苹果， 一个是好苹果 另一个是烂苹果， 请问你选哪一个。  肯定选好的。
+</span><span class="cm">​			
+</span><span class="cm">​			或者， 有真则真，  有true 则true
+</span><span class="cm">​		
+</span><span class="cm">​		^ : 异或  异 ：不同   ， 或：通假字 惑  疑惑。    意思：疑惑是否不同吗
+</span><span class="cm">
+</span><span class="cm">​			如果是 不同，  true，  不是 false*/</span>
+
+<span class="err">​</span>			<span class="kc">true</span> <span class="o">^</span> <span class="kc">true</span>  <span class="o">----</span><span class="kc">false</span> 
+    <span class="err">​</span>			<span class="kc">false</span> <span class="o">^</span> <span class="kc">true</span>  <span class="o">---</span><span class="kc">true</span>
+
+    <span class="err">​</span>			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="kc">true</span> <span class="o">!=</span> <span class="kc">true</span><span class="o">);</span> <span class="c1">//false
+</span><span class="c1"></span><span class="err">​</span>			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="sc">&#39;a&#39;</span><span class="o">!=</span><span class="sc">&#39;b&#39;</span><span class="o">);</span> <span class="c1">//true
+</span><span class="c1"></span><span class="err">​</span>			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">10</span><span class="o">!=</span><span class="n">20</span><span class="o">);</span> <span class="c1">//true
+</span><span class="c1"></span><span class="o">!</span> <span class="o">:</span> <span class="n">取反</span><span class="err">。</span>
+</code></pre></div><h3 id="短路逻辑运算符">短路逻辑运算符：<a href="#短路逻辑运算符" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>​		&amp;&amp; 和&amp; 的结果是一样的。
+​		&amp;&amp; 效率高。<br>
+​		并且， 有false则false。 如果左侧看到false了  右侧就不执行了。
+​</p>
+<p>​		|| 和| 的结果是一样的。
+​		|| 效率高。<br>
+​		或者， 有true则true。 如果左侧看到true了  右侧就不执行了。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+<span class="c1">//System.out.println(a&gt;100 &amp;&amp; b++); // &amp;&amp; 逻辑运算  只能运算 boolean类型的数据。
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">&gt;</span><span class="n">100</span> <span class="o">&amp;&amp;</span> <span class="n">b</span><span class="o">++</span> <span class="o">&gt;</span><span class="n">0</span><span class="o">);</span> 
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">);</span>
+</code></pre></div><h3 id="三元运算符">三元运算符:<a href="#三元运算符" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//一元运算符： 元是元素的意思， 参与运算的元素最多是1个
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(+</span><span class="n">10</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(-</span><span class="n">10</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="n">a</span><span class="o">++;</span>
+<span class="o">--</span><span class="n">a</span><span class="o">;</span>
+
+<span class="c1">//二元运算符：
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">&gt;</span><span class="n">b</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="kc">true</span><span class="o">&amp;</span><span class="kc">false</span><span class="o">);</span>
+
+<span class="c1">//三元运算符：
+</span><span class="c1">//格式： 关系表达式? 表达式1 : 表达式2; 
+</span><span class="c1"></span>
+<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+
+<span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;</span><span class="n">b</span> <span class="o">?</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span> <span class="o">:</span> <span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c</span><span class="o">);</span> <span class="c1">//-10
+</span><span class="c1"></span>
+<span class="c1">// a&gt;b? a+b:a-b;  //编译错误的  表达式不能成语句
+</span><span class="c1">// -10;
+</span><span class="c1"></span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="n">a</span><span class="o">&gt;</span><span class="n">b</span><span class="o">?</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">:</span><span class="n">a</span><span class="o">-</span><span class="n">b</span> <span class="o">);</span>
+
+<span class="c1">//案例：
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">a</span><span class="o">&gt;</span><span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">max</span><span class="o">);</span>
+
+<span class="c1">//案例：键盘录入三个数， 使用三元运算符 求出 三个数中最大的那个值。
+</span><span class="c1"></span><span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+        <span class="n">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="kt">int</span> <span class="n">temp</span>  <span class="o">=</span> <span class="n">a</span><span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span><span class="n">b</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">&gt;</span> <span class="n">c</span> <span class="o">?</span> <span class="n">temp</span> <span class="o">:</span> <span class="n">c</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">max</span><span class="o">);</span>
+
+        <span class="kt">int</span> <span class="n">max1</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;</span><span class="n">b</span> <span class="o">?</span> <span class="o">(</span><span class="n">a</span><span class="o">&gt;</span><span class="n">c</span><span class="o">?</span><span class="n">a</span><span class="o">:</span><span class="n">c</span><span class="o">)</span> <span class="o">:</span> <span class="o">(</span><span class="n">b</span><span class="o">&gt;</span><span class="n">c</span><span class="o">?</span><span class="n">b</span><span class="o">:</span><span class="n">c</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">max1</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="逻辑语句">逻辑语句(☆☆☆☆☆)<a href="#逻辑语句" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="顺序结构">顺序结构<a href="#顺序结构" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;haha1&#34;</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;haha1&#34;</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;haha1&#34;</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;haha1&#34;</span><span class="o">);</span>
+</code></pre></div><h3 id="选择结构">选择结构<a href="#选择结构" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;haha1&#34;</span><span class="o">);</span>				
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;haha1&#34;</span><span class="o">);</span><span class="c1">// 选择性的执行。
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;haha1&#34;</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;haha1&#34;</span><span class="o">);</span>
+
+<span class="k">if</span>
+<span class="n">三种格式</span><span class="err">：</span>
+<span class="k">if</span> <span class="n">第一种格式</span>
+<span class="nf">if</span> <span class="o">(</span><span class="n">条件表达式</span><span class="o">){</span>
+<span class="n">语句体</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="c1">//举例：
+</span><span class="c1"></span><span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="n">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">score</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">score</span> <span class="o">&gt;</span> <span class="n">60</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;及格&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;结束&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="o">}</span>
+<span class="cm">/*
+</span><span class="cm">if第二种格式
+</span><span class="cm">if (条件表达式){
+</span><span class="cm">语句体1;
+</span><span class="cm">}else{
+</span><span class="cm">语句体2;
+</span><span class="cm">}
+</span><span class="cm">*/</span>
+
+<span class="c1">//举例：
+</span><span class="c1"></span><span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="n">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">score</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">score</span> <span class="o">&gt;=</span> <span class="n">60</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;及格&#34;</span><span class="o">);</span>
+<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;不及格&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;结束&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="o">}</span>
+
+<span class="k">if</span> <span class="n">第三种格式</span>
+<span class="nf">if</span> <span class="o">(</span><span class="n">条件表达式1</span><span class="o">){</span>
+<span class="n">语句体1</span><span class="o">;</span>
+<span class="o">}</span><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">条件表达式2</span><span class="o">){</span>
+<span class="n">语句体2</span><span class="o">;</span>
+<span class="o">}</span><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">条件表达式3</span><span class="o">){</span>
+<span class="n">语句体3</span><span class="o">;</span>
+<span class="o">}</span><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">条件表达式4</span><span class="o">){</span>
+<span class="n">语句体4</span><span class="o">;</span>
+<span class="o">}</span><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">条件表达式5</span><span class="o">){</span>
+<span class="n">语句体5</span><span class="o">;</span>
+<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+<span class="n">语句体6</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="n">举例1</span><span class="err">：</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="n">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">score</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">score</span> <span class="o">&gt;=</span><span class="n">90</span> <span class="o">&amp;&amp;</span> <span class="n">score</span> <span class="o">&lt;=</span><span class="n">100</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;优秀&#34;</span><span class="o">);</span>
+<span class="o">}</span><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">score</span> <span class="o">&gt;=</span><span class="n">80</span> <span class="o">&amp;&amp;</span> <span class="n">score</span> <span class="o">&lt;=</span><span class="n">90</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;良好&#34;</span><span class="o">);</span>
+<span class="o">}</span><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">score</span> <span class="o">&gt;=</span><span class="n">70</span> <span class="o">&amp;&amp;</span> <span class="n">score</span> <span class="o">&lt;=</span><span class="n">80</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;差不多儿&#34;</span><span class="o">);</span>
+<span class="o">}</span><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">score</span> <span class="o">&gt;=</span><span class="n">60</span> <span class="o">&amp;&amp;</span> <span class="n">score</span> <span class="o">&lt;=</span><span class="n">70</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;及格&#34;</span><span class="o">);</span>
+<span class="o">}</span><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">score</span> <span class="o">&gt;=</span><span class="n">50</span> <span class="o">&amp;&amp;</span> <span class="n">score</span> <span class="o">&lt;=</span><span class="n">60</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;不太好&#34;</span><span class="o">);</span>
+<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;太不好了&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;结束&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">举例2</span><span class="err">：</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span> <span class="o">{</span>
+<span class="cm">/*
+</span><span class="cm">需求：键盘录入学生考试成绩, 根据成绩程序给出不同的奖励。
+</span><span class="cm">
+</span><span class="cm">95~100分 : 自行车一辆
+</span><span class="cm">90~94分  : 游乐场一次
+</span><span class="cm">80~89分	 : 变形金刚一个
+</span><span class="cm">80分以下 : 挨顿揍, 这座城市又多了一个伤心的人~
+</span><span class="cm">
+</span><span class="cm">步骤:
+</span><span class="cm">1. 使用Scanner录入考试成绩
+</span><span class="cm">2. 判断成绩是否在合法范围内 0~100
+</span><span class="cm">非法的话, 给出错误提示
+</span><span class="cm">3. 在合法的语句块中判断成绩范围符合哪一个奖励
+</span><span class="cm">并给出对应的奖励.
+</span><span class="cm">
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="c1">// 1. 使用Scanner录入考试成绩
+</span><span class="c1"></span><span class="n">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;请输入您的成绩:&#34;</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">score</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+<span class="c1">// 2. 判断成绩是否在合法范围内 0~100
+</span><span class="c1"></span><span class="k">if</span><span class="o">(</span><span class="n">score</span> <span class="o">&gt;=</span><span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="n">score</span> <span class="o">&lt;=</span> <span class="n">100</span><span class="o">){</span>
+<span class="c1">// 合法成绩
+</span><span class="c1">// 3. 在合法的语句块中判断成绩范围符合哪一个奖励
+</span><span class="c1"></span><span class="k">if</span><span class="o">(</span><span class="n">score</span> <span class="o">&gt;=</span> <span class="n">95</span> <span class="o">&amp;&amp;</span> <span class="n">score</span> <span class="o">&lt;=</span> <span class="n">100</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;自行车一辆&#34;</span><span class="o">);</span>
+<span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">score</span> <span class="o">&gt;=</span> <span class="n">90</span> <span class="o">&amp;&amp;</span> <span class="n">score</span> <span class="o">&lt;=</span> <span class="n">94</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;游乐场一次&#34;</span><span class="o">);</span>
+<span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">score</span> <span class="o">&gt;=</span> <span class="n">80</span> <span class="o">&amp;&amp;</span> <span class="n">score</span> <span class="o">&lt;=</span> <span class="n">89</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;变形金刚一个&#34;</span><span class="o">);</span>
+<span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;挨顿揍, 这座城市又多了一个伤心的人~&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+<span class="c1">// 非法的话, 给出错误提示
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;您的成绩输入有误!&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="o">}</span>
+<span class="o">}</span>
+<span class="k">switch</span> 
+
+<span class="n">循环结构</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;haha1&#34;</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;haha1&#34;</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;haha1&#34;</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;haha1&#34;</span><span class="o">);</span>
+</code></pre></div><p>​</p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>Demon</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1791 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-08-21 08:00 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://demon-github1996.github.io/posts/day01/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Day01 介绍java</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://demon-github1996.github.io">郭  栋</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://demon-github1996.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://demon-github1996.github.io/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>
