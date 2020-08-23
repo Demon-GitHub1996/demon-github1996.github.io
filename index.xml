@@ -7,15 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 21 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 22 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://demon-github1996.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Day03 循环</title>
+      <link>https://demon-github1996.github.io/posts/day03/</link>
+      <pubDate>Thu, 22 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day03/</guid>
+      <description>循环结构 结构语句： 顺序结构 选择结构 switch(☆☆☆) 格式：
+​switch (表达式 或者 变量){​case 常量值1:​语句1;​	break;​	case 常量值2:​	语句2;​	break;​	case 常量值3:​	语句3;​	break;​	case 常量值4:​	语句4;​	break;​	...​	default:​	语句n;​	break;​	​	}switch和if的第三种格式比较： 1：能用switch的地方是一定能够用if的第三种格式的， 但是 能用if的第三种格式的地方，是不一定能够使用switch去替换的。 if 可以对范围判断 也可以对值进行判断 switch只能对值进行判断。 2: 当对值进行判断的时候， switch的效率比if高很多。 文章链接：https://www.bilibili.com/read/cv5912019
+案例1：if和switch的替换 使用switch做
+int a = 10; switch (a){ case 7: System.</description>
+    </item>
+    
+    <item>
       <title>Day2 运算符与逻辑语句</title>
       <link>https://demon-github1996.github.io/posts/day02/</link>
-      <pubDate>Fri, 21 Aug 2020 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://demon-github1996.github.io/posts/day02/</guid>
       <description>Day2 运算符与逻辑语句 昨日回顾： ​	java的介绍 ​	java是一门语言 ​	java的火 ​	jdk ​	jdk的下载和安装 ​	HelloWorld程序 ​	dos窗口 ​	环境变量 ​	HelloWorld编写编译和运行 ​	HelloWorld的详细的解释 ​	书写习惯 ​	notepad++ ​	java的基本语法 ​	程序的基本组成单位：
@@ -25,7 +37,7 @@
     <item>
       <title>Day01 介绍java</title>
       <link>https://demon-github1996.github.io/posts/day01/</link>
-      <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://demon-github1996.github.io/posts/day01/</guid>
       <description>介绍java： ​	java 是一门语言， 汉语也是一门语言，是人和人交流的语言， java是人和计算机交流的语言， c c# c++ Python php&amp;hellip;. ​	1995年 高司令 创造的。

@@ -6,13 +6,661 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>zh-CN</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Fri, 21 Aug 2020 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Thu, 22 Aug 2019 00:00:00 +0000</lastBuildDate>
 		<atom:link href="https://demon-github1996.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Day03 循环</title>
+			<link>https://demon-github1996.github.io/posts/day03/</link>
+			<pubDate>Thu, 22 Aug 2019 00:00:00 +0000</pubDate>
+			
+			<guid>https://demon-github1996.github.io/posts/day03/</guid>
+			<description>循环结构 结构语句： 顺序结构 选择结构 switch(☆☆☆) 格式：
+​switch (表达式 或者 变量){​case 常量值1:​语句1;​	break;​	case 常量值2:​	语句2;​	break;​	case 常量值3:​	语句3;​	break;​	case 常量值4:​	语句4;​	break;​	...​	default:​	语句n;​	break;​	​	}switch和if的第三种格式比较： 1：能用switch的地方是一定能够用if的第三种格式的， 但是 能用if的第三种格式的地方，是不一定能够使用switch去替换的。 if 可以对范围判断 也可以对值进行判断 switch只能对值进行判断。 2: 当对值进行判断的时候， switch的效率比if高很多。 文章链接：https://www.bilibili.com/read/cv5912019
+案例1：if和switch的替换 使用switch做
+int a = 10; switch (a){ case 7: System.</description>
+			<content type="html"><![CDATA[<h1 id="循环结构">循环结构</h1>
+<h2 id="结构语句">结构语句：</h2>
+<h3 id="顺序结构">顺序结构</h3>
+<h3 id="选择结构">选择结构</h3>
+<h4 id="switch">switch(☆☆☆)</h4>
+<p>格式：</p>
+<pre><code>
+​switch (表达式 或者 变量){
+​case 常量值1:
+​语句1;
+​	break;
+​	case 常量值2:
+​	语句2;
+​	break;
+​	case 常量值3:
+​	语句3;
+​	break;
+​	case 常量值4:
+​	语句4;
+​	break;
+​	...
+​	default:
+​	语句n;
+​	break;
+​					
+
+​	}
+
+
+</code></pre><p>switch和if的第三种格式比较：
+1：能用switch的地方是一定能够用if的第三种格式的，  但是 能用if的第三种格式的地方，是不一定能够使用switch去替换的。
+if 可以对范围判断 也可以对值进行判断
+switch只能对值进行判断。
+2: 当对值进行判断的时候， switch的效率比if高很多。
+文章链接：https://www.bilibili.com/read/cv5912019</p>
+<p>案例1：if和switch的替换
+使用switch做</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="k">switch</span> <span class="o">(</span><span class="n">a</span><span class="o">){</span>
+<span class="k">case</span> <span class="n">7</span><span class="o">:</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;7&#34;</span><span class="o">);</span>
+<span class="k">break</span><span class="o">;</span>
+<span class="k">case</span> <span class="n">8</span><span class="o">:</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;8&#34;</span><span class="o">);</span>
+<span class="k">break</span><span class="o">;</span>
+<span class="k">case</span> <span class="n">9</span><span class="o">:</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;9&#34;</span><span class="o">);</span>
+<span class="k">break</span><span class="o">;</span>
+<span class="k">case</span> <span class="n">10</span><span class="o">:</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;10&#34;</span><span class="o">);</span>
+<span class="k">break</span><span class="o">;</span>
+<span class="k">default</span><span class="o">:</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;default&#34;</span><span class="o">);</span>
+<span class="k">break</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div><p>使用if做</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">==</span><span class="n">7</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;7&#34;</span><span class="o">);</span>
+<span class="o">}</span><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">a</span><span class="o">==</span><span class="n">8</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;8&#34;</span><span class="o">);</span>
+<span class="o">}</span><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">a</span><span class="o">==</span><span class="n">9</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;9&#34;</span><span class="o">);</span>
+<span class="o">}</span><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">a</span><span class="o">==</span><span class="n">10</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;10&#34;</span><span class="o">);</span>
+<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;else&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div><p>案例2：我们对范围的判断，是不能使用 switch的
+95~100分 : 自行车一辆
+90~94分  : 游乐场一次
+80~89分	 : 变形金刚一个
+80分以下 : 挨顿揍, 这座城市又多了一个伤心的人~</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">score</span> <span class="o">=</span> <span class="n">99</span><span class="o">;</span>
+<span class="k">switch</span> <span class="o">(</span><span class="n">score</span><span class="o">){</span>
+<span class="c1">//case 95-100:  // case -5
+</span><span class="c1">//case 95~100 : // 没有这个符号 
+</span><span class="c1">//case  score &lt;100&amp;&amp; score &gt;95   // 报错 99 不能和true去匹配的
+</span><span class="c1"></span>
+<span class="o">}</span>
+<span class="cm">/*
+</span><span class="cm">switch ( score &lt;100&amp;&amp; score &gt;95){   // 报错（）里面 不运行 对boolean类型进行判断的
+</span><span class="cm">case true:  
+</span><span class="cm">
+</span><span class="cm">}*/</span>
+
+</code></pre></div><p>注意事项：
+<strong>1：case 后面必须是常量 ，不能是变量。</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="k">switch</span> <span class="o">(</span><span class="n">a</span><span class="o">){</span>
+<span class="k">case</span> <span class="n">b</span><span class="o">:</span>  <span class="c1">// 编译报错 需要常量
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;10&#34;</span><span class="o">);</span>
+<span class="k">break</span><span class="o">;</span>
+<span class="k">default</span><span class="o">:</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;default&#34;</span><span class="o">);</span>
+<span class="k">break</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div><p>​	<strong>2：case 不能重复判断</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">a</span>  <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="k">switch</span> <span class="o">(</span><span class="n">a</span><span class="o">){</span>
+<span class="k">case</span> <span class="n">4</span><span class="o">:</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;10&#34;</span><span class="o">);</span>
+<span class="k">break</span><span class="o">;</span>
+<span class="k">case</span> <span class="n">4</span><span class="o">:</span> <span class="c1">// 编译报错。 重复判断
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;10&#34;</span><span class="o">);</span>
+<span class="k">break</span><span class="o">;</span>
+<span class="k">default</span><span class="o">:</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;default&#34;</span><span class="o">);</span>
+<span class="k">break</span><span class="o">;</span>
+<span class="o">}</span>
+
+</code></pre></div><p><strong>3：default可以省略， 和if的第三种格式的 最后那个else也可以省略</strong> <strong>他们是一样的道理</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">a</span>  <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="k">switch</span> <span class="o">(</span><span class="n">a</span><span class="o">){</span>
+<span class="k">case</span> <span class="n">4</span><span class="o">:</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;10&#34;</span><span class="o">);</span>
+<span class="k">break</span><span class="o">;</span>
+<span class="o">}</span>
+
+</code></pre></div><p><strong>4： if 的第三种格式的 最后那个else 只能放在最后，但是 switch的default 可以放在任意地方。</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+
+<span class="k">switch</span> <span class="o">(</span><span class="n">a</span><span class="o">){</span>
+<span class="k">case</span> <span class="n">7</span><span class="o">:</span> 
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;7&#34;</span><span class="o">);</span>
+<span class="k">break</span><span class="o">;</span>
+<span class="k">default</span><span class="o">:</span>  <span class="c1">// 虽然 default可以放在任意的位置 但是他的作用依然还是兜底的，  所有的case都不满足的情况下 他才回去执行的。
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;default&#34;</span><span class="o">);</span>
+<span class="k">break</span><span class="o">;</span>
+<span class="k">case</span> <span class="n">8</span><span class="o">:</span> 
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;8&#34;</span><span class="o">);</span>
+<span class="k">break</span><span class="o">;</span>
+<span class="k">case</span> <span class="n">10</span><span class="o">:</span> 
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;10&#34;</span><span class="o">);</span>  <span class="c1">//10
+</span><span class="c1"></span><span class="k">break</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div><p><strong>5：switch的小括号内 的数据类型 必须是这几种之一， byte short char int 枚举 String</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">boolean</span> <span class="n">a</span>  <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+<span class="k">switch</span> <span class="o">(</span><span class="n">a</span><span class="o">){</span>  <span class="c1">//编译报错 
+</span><span class="c1"></span><span class="k">case</span> <span class="kc">true</span><span class="o">:</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;10&#34;</span><span class="o">);</span>
+<span class="k">break</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div><p><strong>6：break可以省略，会操作 case穿透了。</strong></p>
+<p>为什么break可以省略。 因为break是用来终结 switch的。如果你不想终结 switch 就省略就可以了。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">1</span><span class="err">：</span> 
+    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+<span class="k">switch</span> <span class="o">(</span><span class="n">a</span><span class="o">){</span>
+    <span class="k">case</span> <span class="n">10</span><span class="o">:</span>
+        <span class="n">b</span><span class="o">++;</span>
+    <span class="k">case</span> <span class="n">20</span><span class="o">:</span>
+        <span class="n">b</span><span class="o">++;</span>
+        <span class="k">break</span><span class="o">;</span>
+    <span class="k">default</span> <span class="o">:</span>
+        <span class="n">b</span><span class="o">++;</span>
+<span class="o">}</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">);</span> <span class="c1">//2
+</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nl">2:</span>
+<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+<span class="k">switch</span> <span class="o">(</span><span class="n">a</span><span class="o">){</span>
+    <span class="k">case</span> <span class="n">10</span><span class="o">:</span>
+        <span class="n">b</span><span class="o">++;</span>
+    <span class="k">default</span> <span class="o">:</span>
+        <span class="n">b</span><span class="o">++;</span>
+        <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="n">20</span><span class="o">:</span>
+        <span class="n">b</span><span class="o">++;</span>
+<span class="o">}</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">);</span> <span class="c1">//2
+</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nl">3:</span>
+<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+<span class="k">switch</span> <span class="o">(</span><span class="n">a</span><span class="o">){</span>
+    <span class="k">case</span> <span class="n">30</span><span class="o">:</span>
+        <span class="n">b</span><span class="o">++;</span>
+    <span class="k">default</span> <span class="o">:</span>
+        <span class="n">b</span><span class="o">++;</span>
+        <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="n">20</span><span class="o">:</span>
+        <span class="n">b</span><span class="o">++;</span>
+<span class="o">}</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">);</span> <span class="c1">//1
+</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nl">4:</span>
+<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+<span class="k">switch</span> <span class="o">(</span><span class="n">a</span><span class="o">){</span>
+    <span class="k">case</span> <span class="n">30</span><span class="o">:</span>
+        <span class="n">b</span><span class="o">++;</span>
+    <span class="k">default</span> <span class="o">:</span>
+        <span class="n">b</span><span class="o">++;</span>
+    <span class="k">case</span> <span class="n">20</span><span class="o">:</span>
+        <span class="n">b</span><span class="o">++;</span>
+<span class="o">}</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">);</span> <span class="c1">//2
+</span></code></pre></div><h4 id="for">for(☆☆☆☆☆)：</h4>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">格式</span><span class="err">：</span>
+<span class="k">for</span> <span class="o">(</span><span class="n">语句</span><span class="o">;</span><span class="n">booelan值</span> <span class="o">;</span> <span class="n">语句</span><span class="o">){</span>
+<span class="n">语句体</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="k">for</span> <span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;初始化语句&#34;</span><span class="o">);</span><span class="kc">true</span> <span class="o">;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;控制循环语句&#34;</span><span class="o">)</span> <span class="o">){</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;循环体&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+
+</code></pre></div><pre><code>// 你并不想让他无限循环下去。 你想执行有限的次数
+//System.out.println(&quot;HelloWorld&quot;);
+// 想让他执行5次
+// 你怎么知道他执行的5次， 我告诉你 你是数出来的， 每执行一次 你记录一下。
+</code></pre><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">5</span> <span class="o">;</span> <span class="n">i</span><span class="o">++){</span> <span class="c1">//0 1 2 3 4
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;HelloWorld&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//所以根据每一个部分的作用
+</span><span class="c1"></span><span class="k">for</span> <span class="o">(</span><span class="n">初始化语句</span><span class="o">;</span><span class="n">条件表达式</span> <span class="o">;</span> <span class="n">控制循环语句</span><span class="o">){</span>
+<span class="n">循环体</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div><p>案例1： 打印1-5</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">5</span> <span class="o">;</span> <span class="n">i</span><span class="o">++){</span> <span class="c1">//1 2 3 4 5
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span> 
+<span class="o">}</span>
+</code></pre></div><p>案例2： 打印5-1</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">5</span><span class="o">;</span><span class="n">i</span><span class="o">&gt;</span><span class="n">0</span> <span class="o">;</span> <span class="n">i</span><span class="o">--){</span> 
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span> <span class="c1">//5 4 3 2 1
+</span><span class="c1"></span><span class="o">}</span>
+</code></pre></div><p>案例3: 打印 55-69</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">55</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">69</span> <span class="o">;</span> <span class="n">i</span><span class="o">++){</span> <span class="c1">//
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span> 
+<span class="o">}</span>
+</code></pre></div><p>案例4：打印 1 4 7 10 13 16 &hellip;..   不能超过100</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">方法一</span><span class="err">：</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="n">1</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">100</span><span class="o">;</span> <span class="n">i</span><span class="o">+=</span><span class="n">3</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+<span class="o">}</span>
+
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">方法二</span><span class="err">：</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="n">1</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+<span class="c1">//if (满足条件){
+</span><span class="c1"></span><span class="k">if</span> <span class="o">(</span><span class="n">i</span><span class="o">%</span><span class="n">3</span><span class="o">==</span><span class="n">1</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>案例5：打印（10以内的奇数） 1 3 5 7 9</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">方法一</span><span class="err">：</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="n">1</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">10</span><span class="o">;</span> <span class="n">i</span><span class="o">+=</span><span class="n">2</span><span class="o">){</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+    <span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">方法二</span><span class="err">：</span><span class="n">效率比方法一低</span>
+<span class="nf">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="n">1</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span> <span class="c1">// 循环里面的条件 是了终止循环用的
+</span><span class="c1"></span><span class="k">if</span> <span class="o">(</span><span class="n">i</span><span class="o">%</span><span class="n">2</span><span class="o">==</span><span class="n">1</span><span class="o">){</span>    <span class="c1">// 你if里面的判断 那是为了选择执行的。
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+<span class="o">}</span>	
+<span class="o">}</span>
+<span class="cm">/* 下面这样做不行 if和for不能合在一起
+</span><span class="cm">true &amp;&amp;false
+</span><span class="cm">for (int i =1; i&lt;10 &amp;&amp; i%2==1; i++){
+</span><span class="cm">System.out.println(i);	  //1
+</span><span class="cm">}
+</span><span class="cm">*/</span>
+</code></pre></div><p>案例6：打印满足 (个位数 和十位数 相同)的 两位数   11 22 33 44 55 &hellip;.</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">方法一</span><span class="err">：</span>
+<span class="k">for</span> <span class="o">(</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="n">11</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">100</span> <span class="o">;</span><span class="n">i</span><span class="o">+=</span><span class="n">11</span> <span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span> <span class="c1">// 11 22 33 44
+</span><span class="c1"></span><span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">方法二</span><span class="err">：</span>
+    <span class="k">for</span> <span class="o">(</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="n">11</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">100</span> <span class="o">;</span><span class="n">i</span><span class="o">++</span> <span class="o">){</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">i</span><span class="o">%</span><span class="n">11</span><span class="o">==</span><span class="n">0</span><span class="o">){</span>  
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>  <span class="c1">// 11 22 33 44 
+</span><span class="c1"></span>        <span class="o">}</span>	
+    <span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">方法三</span><span class="err">：</span><span class="n">通用方法</span> <span class="o">--</span><span class="n">把需求的汉语</span> <span class="n">翻译为</span> <span class="n">java语言</span>
+
+    <span class="c1">// 打印这么多满足条件的数组  写 无数个打印语句 你要写多少行。 
+</span><span class="c1"></span>    <span class="c1">// 想到 循环
+</span><span class="c1"></span>    <span class="c1">// 两位数 给了范围了  10-99
+</span><span class="c1"></span>    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">99</span><span class="o">;</span><span class="n">i</span><span class="o">++</span> <span class="o">){</span>
+        <span class="c1">//满足 (个位数 和十位数 相同)
+</span><span class="c1"></span>        <span class="c1">//if (个位数 和十位数 相同){
+</span><span class="c1"></span>        <span class="c1">//if (个位数 == 十位数 ){
+</span><span class="c1"></span>        <span class="c1">// 个位数
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">ge</span> <span class="o">=</span> <span class="n">i</span> <span class="o">%</span><span class="n">10</span><span class="o">;</span>
+        <span class="c1">// 十位数
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">shi</span> <span class="o">=</span> <span class="n">i</span><span class="o">/</span><span class="n">10</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">ge</span> <span class="o">==</span> <span class="n">shi</span> <span class="o">){</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+<span class="c1">// 78  78-70 =8 
+</span><span class="c1">// 我们的数 都是10进制的。
+</span><span class="c1">// 78%10= 8;
+</span><span class="c1">// 78/10 = 7;
+</span><span class="c1"></span>
+
+<span class="c1">// 57932
+</span><span class="c1">// 57932%10 = 2;
+</span><span class="c1">// 57932/10%10 = 3      ------ 57932/10 = 5793   5793 %10 =3 
+</span><span class="c1">// 57932/10/10%10 = 9
+</span><span class="c1">// 57932/10/10/10%10 = 7
+</span><span class="c1">//.....
+</span><span class="c1">// 规律： 求百位  数/100 %10 = 百位
+</span></code></pre></div><p>案例7：打印所有的水仙花数。</p>
+<p>1：水仙花数是三位数
+2：每个位上的数的立方和 等于该数本身 比如： 371 =  3<em>3</em>3 + 7<em>7</em>7 +1<em>1</em>1</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">100</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">999</span><span class="o">;</span><span class="n">i</span><span class="o">++</span> <span class="o">){</span>
+<span class="c1">// 个位数
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">ge</span> <span class="o">=</span> <span class="n">i</span> <span class="o">%</span><span class="n">10</span><span class="o">;</span>
+<span class="c1">// 十位数
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">shi</span> <span class="o">=</span> <span class="n">i</span><span class="o">/</span><span class="n">10</span><span class="o">%</span><span class="n">10</span><span class="o">;</span>
+<span class="c1">//百位数
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">bai</span> <span class="o">=</span> <span class="n">i</span><span class="o">/</span><span class="n">10</span><span class="o">/</span><span class="n">10</span><span class="o">%</span><span class="n">10</span><span class="o">;</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">ge</span><span class="o">*</span><span class="n">ge</span><span class="o">*</span><span class="n">ge</span> <span class="o">+</span> <span class="n">shi</span><span class="o">*</span><span class="n">shi</span><span class="o">*</span><span class="n">shi</span> <span class="o">+</span> <span class="n">bai</span><span class="o">*</span><span class="n">bai</span><span class="o">*</span><span class="n">bai</span> <span class="o">==</span> <span class="n">i</span> <span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>案例8：打印所有的水仙花数 的和。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">100</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">999</span><span class="o">;</span><span class="n">i</span><span class="o">++</span> <span class="o">){</span>
+<span class="c1">// 个位数
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">ge</span> <span class="o">=</span> <span class="n">i</span> <span class="o">%</span><span class="n">10</span><span class="o">;</span>
+<span class="c1">// 十位数
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">shi</span> <span class="o">=</span> <span class="n">i</span><span class="o">/</span><span class="n">10</span><span class="o">%</span><span class="n">10</span><span class="o">;</span>
+<span class="c1">//百位数
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">bai</span> <span class="o">=</span> <span class="n">i</span><span class="o">/</span><span class="n">10</span><span class="o">/</span><span class="n">10</span><span class="o">%</span><span class="n">10</span><span class="o">;</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">ge</span><span class="o">*</span><span class="n">ge</span><span class="o">*</span><span class="n">ge</span> <span class="o">+</span> <span class="n">shi</span><span class="o">*</span><span class="n">shi</span><span class="o">*</span><span class="n">shi</span> <span class="o">+</span> <span class="n">bai</span><span class="o">*</span><span class="n">bai</span><span class="o">*</span><span class="n">bai</span> <span class="o">==</span> <span class="n">i</span> <span class="o">){</span>
+<span class="n">sum</span> <span class="o">+=</span><span class="n">i</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">}</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sum</span><span class="o">);</span>
+</code></pre></div><p>案例9：打印所有的水仙花数 的个数。 //4</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">100</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">999</span><span class="o">;</span><span class="n">i</span><span class="o">++</span> <span class="o">){</span>
+<span class="c1">// 个位数
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">ge</span> <span class="o">=</span> <span class="n">i</span> <span class="o">%</span><span class="n">10</span><span class="o">;</span>
+<span class="c1">// 十位数
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">shi</span> <span class="o">=</span> <span class="n">i</span><span class="o">/</span><span class="n">10</span><span class="o">%</span><span class="n">10</span><span class="o">;</span>
+<span class="c1">//百位数
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">bai</span> <span class="o">=</span> <span class="n">i</span><span class="o">/</span><span class="n">10</span><span class="o">/</span><span class="n">10</span><span class="o">%</span><span class="n">10</span><span class="o">;</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">ge</span><span class="o">*</span><span class="n">ge</span><span class="o">*</span><span class="n">ge</span> <span class="o">+</span> <span class="n">shi</span><span class="o">*</span><span class="n">shi</span><span class="o">*</span><span class="n">shi</span> <span class="o">+</span> <span class="n">bai</span><span class="o">*</span><span class="n">bai</span><span class="o">*</span><span class="n">bai</span> <span class="o">==</span> <span class="n">i</span> <span class="o">){</span>
+<span class="n">count</span> <span class="o">++;</span>
+<span class="o">}</span>
+<span class="o">}</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">count</span><span class="o">);</span>
+</code></pre></div><p>案例10：打印所有水仙花数 要求 每行打印2个（之前的题都是一个数占一行，现在是2个占一行）</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">100</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">999</span><span class="o">;</span><span class="n">i</span><span class="o">++</span> <span class="o">){</span>
+<span class="c1">// 个位数
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">ge</span> <span class="o">=</span> <span class="n">i</span> <span class="o">%</span><span class="n">10</span><span class="o">;</span>
+<span class="c1">// 十位数
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">shi</span> <span class="o">=</span> <span class="n">i</span><span class="o">/</span><span class="n">10</span><span class="o">%</span><span class="n">10</span><span class="o">;</span>
+<span class="c1">//百位数
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">bai</span> <span class="o">=</span> <span class="n">i</span><span class="o">/</span><span class="n">10</span><span class="o">/</span><span class="n">10</span><span class="o">%</span><span class="n">10</span><span class="o">;</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">ge</span><span class="o">*</span><span class="n">ge</span><span class="o">*</span><span class="n">ge</span> <span class="o">+</span> <span class="n">shi</span><span class="o">*</span><span class="n">shi</span><span class="o">*</span><span class="n">shi</span> <span class="o">+</span> <span class="n">bai</span><span class="o">*</span><span class="n">bai</span><span class="o">*</span><span class="n">bai</span> <span class="o">==</span> <span class="n">i</span> <span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="s">&#34; &#34;</span><span class="o">);</span>
+<span class="n">count</span><span class="o">++;</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">count</span><span class="o">%</span><span class="n">2</span><span class="o">==</span><span class="n">0</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="o">}</span>
+<span class="o">}</span>
+
+<span class="cm">/*
+</span><span class="cm">System.out.print(153+&#34; &#34;);
+</span><span class="cm">System.out.print(370+&#34; &#34;);
+</span><span class="cm">System.out.println();
+</span><span class="cm">System.out.print(371+&#34; &#34;);
+</span><span class="cm">System.out.print(407+&#34; &#34;);
+</span><span class="cm">*/</span>
+
+</code></pre></div><h4 id="while-">while :</h4>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">格式</span><span class="err">：</span>
+<span class="k">while</span> <span class="o">(</span><span class="n">boolean值</span><span class="o">){</span>
+
+<span class="o">}</span>
+
+<span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;HelloWorld&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">
+<span class="c1">// 如果我们想 控制循环 让循环打印有限的次数
+</span><span class="c1"></span><span class="n">初始化语句</span><span class="o">;</span>
+<span class="k">while</span> <span class="o">(</span><span class="n">条件表达式</span>  <span class="o">){</span>
+<span class="n">循环体</span><span class="o">;</span>
+<span class="n">控制循环语句</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="n">1</span><span class="o">;</span>
+<span class="k">while</span> <span class="o">(</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">5</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;HelloWorld&#34;</span><span class="o">);</span>
+<span class="n">i</span><span class="o">++;</span>
+<span class="o">}</span>
+
+</code></pre></div><h5 id="for循环和while循环的比较">for循环和while循环的比较：</h5>
+<p>1：for循环 和while循环在任何情况下 都可以互相转换。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+<span class="k">while</span> <span class="o">(</span><span class="n">i</span><span class="o">&lt;</span><span class="n">5</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;haha&#34;</span><span class="o">);</span>
+<span class="n">i</span><span class="o">++;</span>
+<span class="o">}</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+
+<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+<span class="k">for</span> <span class="o">(</span> <span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">5</span> <span class="o">;</span>  <span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;haha&#34;</span><span class="o">);</span>
+<span class="n">i</span><span class="o">++;</span>
+<span class="o">}</span>
+</code></pre></div><p>2：习惯的用途不一样，程序员们习惯这样用， 有明确范围的时候用for， 没有明确范围的时候 用while</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">案例</span><span class="err">：</span><span class="n">珠穆朗玛峰的高度</span> <span class="n">8848米</span> <span class="err">，</span><span class="n">有一张纸</span>  <span class="n">0</span><span class="o">.</span><span class="na">2毫米</span><span class="err">，</span> <span class="n">假设纸的宽度足够大</span><span class="err">，</span>  <span class="n">请问对折多少次</span> <span class="n">可以达到珠穆朗玛峰的高度</span><span class="err">。</span>
+    <span class="kt">int</span> <span class="n">high</span> <span class="o">=</span> <span class="n">8848</span><span class="o">;</span>
+<span class="kt">double</span> <span class="n">hou</span> <span class="o">=</span> <span class="n">0</span><span class="o">.</span><span class="na">0002</span><span class="o">;</span> <span class="c1">//米
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+<span class="k">while</span> <span class="o">(</span><span class="n">hou</span> <span class="o">&lt;</span> <span class="n">high</span><span class="o">){</span>
+    <span class="n">hou</span><span class="o">*=</span><span class="n">2</span><span class="o">;</span>
+    <span class="n">count</span><span class="o">++;</span>
+<span class="o">}</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">count</span><span class="o">);</span>
+
+<span class="c1">// -----------------for循环
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="n">2</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">88480000</span> <span class="o">;</span> <span class="n">i</span><span class="o">*=</span><span class="n">2</span><span class="o">){</span>
+    <span class="n">count</span> <span class="o">++;</span>
+<span class="o">}</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">count</span><span class="o">);</span>
+
+</code></pre></div><h4 id="do-while-">do while :</h4>
+<pre><code>格式：
+do{
+
+}while (boolean值);
+//------------------
+初始化语句;
+do{
+循环体;
+控制循环语句;
+}while (条件表达式 );
+
+//特点是 先执行一次， 后续的次数正常判断执行
+</code></pre><p>案例1： 打印3次HelloWorld</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">3</span> <span class="o">;</span><span class="n">i</span><span class="o">++</span> <span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;helloworld&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">//--------------
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+<span class="k">while</span> <span class="o">(</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">3</span> <span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;helloworld&#34;</span><span class="o">);</span>
+<span class="n">i</span><span class="o">++</span> <span class="o">;</span>
+<span class="o">}</span>
+
+<span class="c1">//--------------
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+<span class="k">do</span><span class="o">{</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;helloworld&#34;</span><span class="o">);</span>
+<span class="n">j</span><span class="o">++</span> <span class="o">;</span>
+<span class="o">}</span>
+<span class="k">while</span> <span class="o">(</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">3</span><span class="o">);</span> <span class="c1">//???
+</span></code></pre></div><p>案例2：打印0次HelloWorld</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">0</span> <span class="o">;</span><span class="n">i</span><span class="o">++</span> <span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;helloworld&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">//--------------
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+<span class="k">while</span> <span class="o">(</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">0</span> <span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;helloworld&#34;</span><span class="o">);</span>
+<span class="n">i</span><span class="o">++</span> <span class="o">;</span>
+<span class="o">}</span>
+
+<span class="c1">//dowhile循环 至少打印一次
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+<span class="k">do</span><span class="o">{</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;helloworld&#34;</span><span class="o">);</span>
+<span class="n">j</span><span class="o">++</span> <span class="o">;</span>
+<span class="o">}</span>
+<span class="k">while</span> <span class="o">(</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">0</span><span class="o">);</span>
+</code></pre></div><p>应用案例：
+键盘录入一个 整数
+判断如果这个数不在这个1-100这个范围，就让他重新录入，
+不管用户录入多少次，直到录入正确为止。
+Scanner sc = new Scanner(System.in);</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/*
+</span><span class="cm">int a = sc.nextInt(); // a是用户录入的数
+</span><span class="cm">if (a&lt;1 || a&gt;100){
+</span><span class="cm">a = sc.nextInt();
+</span><span class="cm">if (a&lt;1 || a&gt;100){
+</span><span class="cm">a = sc.nextInt();
+</span><span class="cm">if (a&lt;1 || a&gt;100){
+</span><span class="cm">a = sc.nextInt();
+</span><span class="cm">if (a&lt;1 || a&gt;100){
+</span><span class="cm">a = sc.nextInt();
+</span><span class="cm">if (a&lt;1 || a&gt;100){
+</span><span class="cm">a = sc.nextInt();
+</span><span class="cm">}
+</span><span class="cm">}
+</span><span class="cm">}
+</span><span class="cm">}
+</span><span class="cm">}
+</span><span class="cm">*/</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 循环优化
+</span><span class="c1"></span><span class="cm">/*
+</span><span class="cm">int a = sc.nextInt(); 
+</span><span class="cm">while (a&lt;1 || a&gt;100){
+</span><span class="cm">a = sc.nextInt();
+</span><span class="cm">}
+</span><span class="cm">*/</span>
+
+<span class="c1">// 上面循环有何不妥？？ 循环是为了去掉重复，但是我感觉 你的nextInt重复了。
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">a</span> <span class="o">;</span>
+<span class="k">do</span><span class="o">{</span>
+<span class="n">a</span><span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+<span class="o">}</span><span class="k">while</span> <span class="o">(</span><span class="n">a</span><span class="o">&lt;</span><span class="n">1</span> <span class="o">||</span> <span class="n">a</span><span class="o">&gt;</span><span class="n">100</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
+</code></pre></div><p>三者循环的死循环格式：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">for</span> <span class="o">(;</span> <span class="o">;</span> <span class="o">){</span>
+
+<span class="o">}</span>
+
+<span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">){</span>
+
+<span class="o">}</span>
+
+<span class="k">do</span><span class="o">{</span>
+
+<span class="o">}</span>
+<span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</code></pre></div><h3 id="循环中断语句">循环中断语句：</h3>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="k">continue</span> <span class="o">:</span> <span class="n">只能写在循环中</span><span class="err">。</span>
+        <span class="n">跳过本次循环</span><span class="err">，</span> <span class="n">后续的循环继续</span><span class="err">。</span>
+        <span class="n">continue的正确用法</span><span class="err">：</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">10</span> <span class="o">;</span><span class="n">i</span><span class="o">++</span> <span class="o">){</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span><span class="n">4</span><span class="o">){</span>
+                <span class="k">continue</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>	  <span class="c1">// 4 就不打印了。
+</span><span class="c1"></span>        <span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">continue的错误用法</span><span class="err">：</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">10</span> <span class="o">;</span><span class="n">i</span><span class="o">++</span> <span class="o">){</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>  <span class="c1">// 依然会打印 4
+</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span><span class="n">4</span><span class="o">){</span>
+    <span class="k">continue</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></div><p>break : 只能写在switch和循环中。终止循环。 不再循环了。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">18</span> <span class="o">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span><span class="n">60</span><span class="o">){</span>
+<span class="k">break</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="s">&#34;工作&#34;</span><span class="o">);</span>   <span class="c1">// 59岁干完之后， 60岁不干了。
+</span><span class="c1"></span><span class="o">}</span>
+
+
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">18</span> <span class="o">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="s">&#34;工作&#34;</span><span class="o">);</span>   <span class="c1">// 60岁 干完  后面才不干的。
+</span><span class="c1"></span><span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span><span class="n">60</span><span class="o">){</span>
+<span class="k">break</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>带标号的循环：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nl">a:</span><span class="k">for</span> <span class="o">(;</span> <span class="o">;</span> <span class="o">){</span>
+<span class="nl">b:</span><span class="k">switch</span> <span class="o">(){</span>
+<span class="k">case</span> <span class="o">:</span>
+<span class="k">break</span> <span class="n">a</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>生成随机数：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 导包
+</span><span class="c1"></span><span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="c1">// 创建Random对象
+</span><span class="c1"></span><span class="n">Random</span> <span class="n">r</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="o">();</span>
+
+<span class="c1">// 生成随机数 
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="n">100</span><span class="o">);</span> <span class="c1">//[0-99]
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="n">101</span><span class="o">);</span> <span class="c1">//[0-100]
+</span><span class="c1"></span>
+<span class="c1">// 如果我要生成1-100的随机数呢
+</span><span class="c1"></span>
+<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="n">100</span><span class="o">)+</span><span class="n">1</span><span class="o">;</span> <span class="c1">//[0-99]+1 =[1-100]
+</span><span class="c1"></span><span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>综合案例：猜数字小游戏</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">        <span class="kn">package</span> <span class="nn">com.guodong.Demo</span><span class="o">;</span>
+
+        <span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
+        <span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+        <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+
+        <span class="n">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="n">100</span><span class="o">)+</span><span class="n">1</span><span class="o">;</span>
+<span class="nl">
+</span><span class="nl">      lo:</span>  <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+          <span class="n">lo1</span><span class="o">:</span> <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;请输入1-100的数字：&#34;</span><span class="o">);</span>
+                <span class="n">Scanner</span> <span class="n">scanner</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+                <span class="kt">int</span> <span class="n">number</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">number</span> <span class="o">&gt;</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;大了&#34;</span><span class="o">);</span>
+                    <span class="k">break</span> <span class="n">lo1</span><span class="o">;</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">number</span> <span class="o">&lt;</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;小了&#34;</span><span class="o">);</span>
+                    <span class="k">break</span> <span class="n">lo1</span><span class="o">;</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">number</span> <span class="o">==</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;猜对了！！答案是：&#34;</span> <span class="o">+</span> <span class="n">number</span><span class="o">);</span>
+                    <span class="k">break</span> <span class="n">lo</span><span class="o">;</span>
+                <span class="o">}</span>
+
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="o">}</span>
+
+        <span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="n">计算优先级问题</span><span class="err">：</span>
+	<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="kc">false</span> <span class="o">||</span> <span class="kc">true</span> <span class="o">&amp;&amp;</span> <span class="kc">false</span><span class="o">);</span><span class="c1">//
+</span><span class="c1"></span>					<span class="c1">//  true&amp;&amp;false 
+</span><span class="c1"></span>					<span class="c1">// false
+</span><span class="c1"></span>	
+	<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="kc">true</span> <span class="o">||</span> <span class="kc">false</span><span class="o">);</span><span class="c1">//
+</span><span class="c1"></span>
+
+	<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">10</span> <span class="o">+</span> <span class="n">20</span> <span class="o">+</span><span class="n">30</span><span class="o">);</span><span class="c1">//60
+</span><span class="c1"></span>					<span class="c1">// 30 +30
+</span><span class="c1"></span>					<span class="c1">// 60
+</span><span class="c1"></span>					<span class="c1">// 同优先级的运算符 从左往右运算的。
+</span><span class="c1"></span>
+	<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">10</span> <span class="o">+</span> <span class="n">20</span> <span class="o">+</span><span class="n">30</span><span class="o">/</span><span class="n">3</span><span class="o">);</span>
+					<span class="c1">// 10+20 +10
+</span><span class="c1"></span>					<span class="c1">// 30 +10
+</span><span class="c1"></span>					<span class="c1">// 40
+</span></code></pre></div>]]></content>
+		</item>
 		
 		<item>
 			<title>Day2 运算符与逻辑语句</title>
 			<link>https://demon-github1996.github.io/posts/day02/</link>
-			<pubDate>Fri, 21 Aug 2020 00:00:00 +0000</pubDate>
+			<pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
 			
 			<guid>https://demon-github1996.github.io/posts/day02/</guid>
 			<description>Day2 运算符与逻辑语句 昨日回顾： ​	java的介绍 ​	java是一门语言 ​	java的火 ​	jdk ​	jdk的下载和安装 ​	HelloWorld程序 ​	dos窗口 ​	环境变量 ​	HelloWorld编写编译和运行 ​	HelloWorld的详细的解释 ​	书写习惯 ​	notepad++ ​	java的基本语法 ​	程序的基本组成单位：
@@ -603,7 +1251,7 @@
 		<item>
 			<title>Day01 介绍java</title>
 			<link>https://demon-github1996.github.io/posts/day01/</link>
-			<pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+			<pubDate>Tue, 20 Aug 2019 00:00:00 +0000</pubDate>
 			
 			<guid>https://demon-github1996.github.io/posts/day01/</guid>
 			<description>介绍java： ​	java 是一门语言， 汉语也是一门语言，是人和人交流的语言， java是人和计算机交流的语言， c c# c++ Python php&amp;hellip;. ​	1995年 高司令 创造的。
