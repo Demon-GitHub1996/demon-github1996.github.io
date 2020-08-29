@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Day7  面向对象">
+<meta itemprop="description" content="面向对象 java的语法： java的组成： 注释 关键字 标识符 数据： 常量： 变量： 数据类型 基本： byte short int long&hellip;.. 引用: 数组： 数组的定义 使用 内存图 异常 遍历 求和 查找 评委打分 二维数组： 循环的嵌套 类 接口
+​	类型转换 ​	隐式 ​	强制 ​	符号 ​	基本符号 (){}[].&quot;&quot;&#39;&#39;; ​	(): ​	强制类型 ​	运算 ​	结构语句 ​	方法 ​	​	运算符： ​	算术 ​	赋值 ​	比较 ​	逻辑 ​	三元 ​	位 逻辑语句： ​	顺序结构 ​	选择结构 ifswitch ​	循环结构 for while dowhile break continue 猜数字小游戏">
+<meta itemprop="datePublished" content="2019-08-28T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-08-28T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1449">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta property="og:title" content="Day7  面向对象" />
+<meta property="og:description" content="面向对象 java的语法： java的组成： 注释 关键字 标识符 数据： 常量： 变量： 数据类型 基本： byte short int long&hellip;.. 引用: 数组： 数组的定义 使用 内存图 异常 遍历 求和 查找 评委打分 二维数组： 循环的嵌套 类 接口
+​	类型转换 ​	隐式 ​	强制 ​	符号 ​	基本符号 (){}[].&quot;&quot;&#39;&#39;; ​	(): ​	强制类型 ​	运算 ​	结构语句 ​	方法 ​	​	运算符： ​	算术 ​	赋值 ​	比较 ​	逻辑 ​	三元 ​	位 逻辑语句： ​	顺序结构 ​	选择结构 ifswitch ​	循环结构 for while dowhile break continue 猜数字小游戏" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://demon-github1996.github.io/posts/day07/" />
+<meta property="article:published_time" content="2019-08-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-08-28T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Day7  面向对象"/>
+<meta name="twitter:description" content="面向对象 java的语法： java的组成： 注释 关键字 标识符 数据： 常量： 变量： 数据类型 基本： byte short int long&hellip;.. 引用: 数组： 数组的定义 使用 内存图 异常 遍历 求和 查找 评委打分 二维数组： 循环的嵌套 类 接口
+​	类型转换 ​	隐式 ​	强制 ​	符号 ​	基本符号 (){}[].&quot;&quot;&#39;&#39;; ​	(): ​	强制类型 ​	运算 ​	结构语句 ​	方法 ​	​	运算符： ​	算术 ​	赋值 ​	比较 ​	逻辑 ​	三元 ​	位 逻辑语句： ​	顺序结构 ​	选择结构 ifswitch ​	循环结构 for while dowhile break continue 猜数字小游戏"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Day7  面向对象</title>
+	<link rel="stylesheet" href="https://demon-github1996.github.io/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://demon-github1996.github.io">Demon的博客</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://demon-github1996.github.io/posts/">文章</a>
+				<a href="https://demon-github1996.github.io/about-hugo/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://instagram.com/" target="_blank" rel="noopener me" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://github.com/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://demon-github1996.github.io/posts/">文章</a></li>
+			<li><a href="https://demon-github1996.github.io/about-hugo/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 28, 2019</span></div>
+				<h1>Day7  面向对象</h1>
+			</header>
+			<div class="content">
+				<h1 id="面向对象">面向对象<a href="#面向对象" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>java的语法：
+java的组成：
+注释
+关键字
+标识符
+数据：
+常量：
+变量：
+数据类型
+基本： byte short int long&hellip;..
+引用:
+数组：
+数组的定义
+使用
+内存图
+异常
+遍历
+求和
+查找
+评委打分
+二维数组： 循环的嵌套
+类
+接口</p>
+<p>​			类型转换
+​				隐式
+​				强制
+​	符号
+​		基本符号  (){}[].&quot;&quot;''; 
+​			():
+​				强制类型
+​				运算
+​				结构语句
+​				方法
+​				
+​		运算符：
+​			算术
+​			赋值
+​			比较
+​			逻辑
+​			三元
+​			位 
+逻辑语句：
+​	顺序结构
+​	选择结构 ifswitch
+​	循环结构 for while dowhile break continue 猜数字小游戏</p>
+<p>方法：
+基本使用
+参数
+返回值
+重载 
+参数的传递</p>
+<p>​</p>
+<p>jre核心类库的类：
+Scanner 
+Random 
+String
+StringBuilder
+ArrayList</p>
+<p>学生管理系统。</p>
+<h2 id="面向对象思想">面向对象思想：<a href="#面向对象思想" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>java的为什么火：
+面向对象语言
+开源
+跨平台</p>
+<p>面向过程：
+其实就是 面向的这个过程。
+生活案例：洗衣服这个过程，  把衣服扔到盆里 &ndash;放上水泡上&ndash;放洗衣液&ndash;揉洗 &ndash;拧干&ndash;涮一遍&ndash;拧干&ndash;晾干
+程序中  ：如果洗衣服这个过程类比到代码中，这个过程的每一行代码 都需要你自己去写。</p>
+<p>面向对象 ：
+你面向的不再是过程了， 而是面向的是这个对象。
+生活案例：你不需要面向洗衣机这个过程了， 你找一个洗衣机过来，  把洗衣放到洗衣机里面去(把衣服扔到盆里 &ndash;放上水泡上&ndash;放洗衣液&ndash;揉洗 &ndash;拧干&ndash;涮一遍&ndash;拧干&ndash;晾干);
+现在你发现 面向的不是那个洗衣服的过程了吧， 你面向的是洗衣机啦。  我们只需要他去做事情就可以啦。
+程序中： 洗衣服的这个过程 你不需要去写啦。 你只需要写一行  调用洗衣服的代码就可以啦。</p>
+<p>​	疑问：
+​		问题： 洗衣机拿来的呢？ 你不要还是要去写 洗衣机里面这个过程的代码吗？
+​		回到现实生活中：
+​			如果你去洗衣服， 请问 您去造一个一洗衣机吗？？ 会吗？？
+​			你有三种方式来指挥洗衣机帮你去做事情：
+​			1：自己造一个。
+​			2：你家里面本身就有一个洗衣机。
+​			3：你买一个洗衣机 来洗衣服。</p>
+<p>​		回到代码中：
+​			你也有三种方式 调用洗衣机
+​			1：你也去自己造一个， 自己手写 洗衣机洗衣服的这个过程。
+​			2：jdk包括 jre  里面包括一个 核心类库，  jre的核心类库里面就提供了大量的类似于洗衣机的这样的类， 你直接调用就可以啦。
+​			3：其实市面上有很多的 软件公司  生产类似于洗衣机这样 代码。  你只需要从他们买过来代码 放到你自己的程序中， 直接调用就可以啦。
+​		所以今天学学自己怎么去定义 一个类似于洗衣机这种的东西：</p>
+<p>回到代码中：
+你也有三种方式 调用洗衣机
+1：你也去自己造一个， 自己手写 洗衣机洗衣服的这个过程。
+2：jdk包括 jre  里面包括一个 核心类库，  jre的核心类库里面就提供了大量的类似于洗衣机的这样的类， 你直接调用就可以啦。
+3：其实市面上有很多的 软件公司  生产类似于洗衣机这样 代码。  你只需要从他们买过来代码 放到你自己的程序中， 直接调用就可以啦。
+所以今天学学自己怎么去定义 一个类似于洗衣机这种的东西：</p>
+<p>类： 类 是对 这种事物类型的描述。
+对象： 真正让洗衣机工作的时候， 我们需要通过对 洗衣机的描述  去内存中创建出一个实实在在的洗衣机。</p>
+<h3 id="面向对象的作用">面向对象的作用：<a href="#面向对象的作用" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>​			其实面向对象， 代码去执行的过程， 也是基于面向过程的，所以面向对象根本不会提高程序的执行效率，甚至有一丁点的 减低了程序的执行效率。
+​			因为多了一步调用的过程。
+​			他提高了我们开发人员的开发效率。
+​			c语言是 世界上最快的语言，c语言是面向过程语言。</p>
+<h2 id="类和对象">类和对象(☆☆☆☆☆)：<a href="#类和对象" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>类：一类事物的设计图 模板
+属性： 变量去表示
+功能： 方法去表示</p>
+<p>​		对象： 是这一类事物中 的一个具体的存在。</p>
+<p>案例1：定义学生类 创建学生对象</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 模板  设计图
+</span><span class="c1"></span>			<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Student</span> <span class="o">{</span>
+				<span class="c1">// 类是模板， 是对事物的描述
+</span><span class="c1"></span>				<span class="c1">// 事物应该具备  属性(学生的那些值) 行为
+</span><span class="c1"></span>
+				<span class="c1">// 属性 ： 成员变量 （类中方法外面）
+</span><span class="c1"></span>				<span class="c1">// 行为 ： 比较复杂的顺序 逻辑 ... 应该是一系列的语句来组成，  所以我们把这些语句写在方法内，  行为用方法来表示。
+</span><span class="c1"></span>
+				<span class="c1">//System.out.println(&#34;sdf&#34;);
+</span><span class="c1"></span>
+				<span class="c1">// 属性： 年龄  30  20  25 ....
+</span><span class="c1"></span>				<span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+				<span class="c1">// 属性： 姓名    &#34;张三&#34;  &#34;李四&#34;
+</span><span class="c1"></span>				<span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+				<span class="c1">// 行为  学习 吃饭
+</span><span class="c1"></span>				<span class="kd">public</span> <span class="kt">void</span> <span class="nf">study</span><span class="o">(){</span>
+					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;学生学习&#34;</span><span class="o">);</span>
+				<span class="o">}</span>
+				<span class="kd">public</span> <span class="kt">void</span> <span class="nf">eat</span><span class="o">(){</span>
+					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;学生吃饭&#34;</span><span class="o">);</span>
+				<span class="o">}</span>
+
+				<span class="c1">// 行为 帮老师去买冰糕
+</span><span class="c1"></span>				<span class="kd">public</span> <span class="kt">char</span> <span class="nf">buyBingGao</span><span class="o">(</span><span class="kt">int</span> <span class="n">money</span><span class="o">){</span>
+					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;用&#34;</span><span class="o">+</span><span class="n">money</span><span class="o">+</span><span class="s">&#34;元 去买了一根冰糕&#34;</span><span class="o">);</span>
+					<span class="k">return</span> <span class="sc">&#39;糕&#39;</span><span class="o">;</span>
+				<span class="o">}</span>
+			<span class="o">}</span>
+			<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo1</span> <span class="o">{</span>
+				<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+					<span class="c1">// 根据Student 这个设计图   创建一个具体的 学生。
+</span><span class="c1"></span>					<span class="c1">// 创建对象
+</span><span class="c1"></span>					<span class="c1">// 格式
+</span><span class="c1"></span>					<span class="c1">// 类名 对象名 = new 类名();
+</span><span class="c1"></span>
+					<span class="n">Student</span> <span class="n">stu</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Student</span><span class="o">();</span>
+					<span class="c1">// stu 就是那个实实在在的对象。
+</span><span class="c1"></span>
+					<span class="c1">// 指挥对象 做事情。
+</span><span class="c1"></span>					<span class="c1">// 对象名.属性名
+</span><span class="c1"></span>					<span class="c1">// 对象名.方法()
+</span><span class="c1"></span>					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">stu</span><span class="o">.</span><span class="na">age</span><span class="o">);</span>
+					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">stu</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+
+					<span class="n">stu</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">23</span><span class="o">;</span>
+					<span class="n">stu</span><span class="o">.</span><span class="na">name</span><span class="o">=</span><span class="s">&#34;张三&#34;</span><span class="o">;</span>
+
+					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">stu</span><span class="o">.</span><span class="na">age</span><span class="o">);</span>
+					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">stu</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+
+					<span class="n">stu</span><span class="o">.</span><span class="na">study</span><span class="o">();</span>
+					<span class="n">stu</span><span class="o">.</span><span class="na">eat</span><span class="o">();</span>
+					<span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">stu</span><span class="o">.</span><span class="na">buyBingGao</span><span class="o">(</span><span class="n">10</span><span class="o">);</span>
+					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;我作为老师就拿到了你给我买的&#34;</span><span class="o">+</span><span class="n">c</span><span class="o">);</span>
+
+					<span class="c1">//----------------------------------
+</span><span class="c1"></span>					<span class="c1">//Random // 这是jre核心类库里面提供的一个类。
+</span><span class="c1"></span>
+					<span class="n">Random</span> <span class="n">r</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="o">();</span>
+					<span class="kt">int</span> <span class="n">anInt</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="n">100</span><span class="o">);</span>
+
+				<span class="o">}</span>
+			<span class="o">}</span>
+
+</code></pre></div><p>​	案例2：定义一个手机类， 并且创建手机对象并使用
+​		手机的属性有：品牌 价格 颜色
+​		手机的行为有： 打电话发短信</p>
+<pre><code>
+class Phone {
+String brand;
+double price;
+String color;
+
+public void call(){
+System.out.println(&quot;打电话&quot;);
+}
+public void sendMessege(){
+System.out.println(&quot;发短信&quot;);
+}
+}
+
+class Demo {
+public static void main(String[] args){
+Phone ph  = new Phone();
+
+System.out.println(ph.brand); //null
+System.out.println(ph.price); //0.0
+System.out.println(ph.color); //null
+
+ph.brand = &quot;apple&quot;;
+ph.price = 9999.9;
+ph.color = &quot;炫酷紫&quot;
+
+System.out.println(ph.brand); //apple
+System.out.println(ph.price); //9999.9
+System.out.println(ph.color); //炫酷紫
+
+ph.call(); // 打电话
+ph.sendMessege();// 发短信
+}
+}
+</code></pre><p>​	内存图(☆☆☆):</p>
+<p>一个对象的内存图：
+方法区  是用来存储 类的 字节码文件的， 就是代码的存储位置。
+堆内存  用来存储 对象的数据的。
+栈内存  代码一句一句的执行 在栈里面发生的， 栈里面是以方法为单位。</p>
+<pre><code>        类的代码存储在 方法区中的。
+        对象 是创建在 堆内存中的，  我们给对象中的属性赋值， 是赋值到堆内存中的。
+			
+            class Demo {
+                public static void main(String[] args){
+                    Phone ph  = new Phone();
+                    System.out.println(ph);  // 地址 
+                }
+            }
+</code></pre>
+<p>​	两个对象的内存图：</p>
+<p>类的字节码文件， 只有第一次使用到的时候， 加载一次， 以后再执行到的时候 就不再加载了。
+类的字节码文件在 方法区的存储，是跟着jvm的， 只要jvm不停止， 方法区里面的东西就不会停止。</p>
+<pre><code>引用类型的数据 每new一次 就是要在堆内存开辟新的空间。
+
+class Demo {
+public static void main(String[] args){
+Phone ph  = new Phone();
+ph.brand = &quot;大米&quot;;
+System.out.println(ph.brand); //大米
+
+Phone ph1  = new Phone();
+ph1.brand = &quot;长粒米&quot;;
+System.out.println(ph.brand); // 大米
+}
+}
+</code></pre>
+<p>两个变量指向同一个对象的内存图：
+可以多个变量同时去操作 一个对象(堆内存中的)， 只要其中一个通过变量去变量 对象里面的内容，第二变量再去使用对象里面的内容的时候 就已经发生改变了。</p>
+<pre><code>Student s = new Student();
+s.name = &quot;张三&quot;;
+Student stu = s;
+stu.name = &quot;李四&quot;;
+System.out.println(s.name + stu.name); // 李四李四
+</code></pre><p>当一个应用类型变量 不指向堆内存中任何内容了， 这时候再通过这个变量去访问内容 就会报空指针异常</p>
+<pre><code>Studnet stu = null;
+System.out.println(stu.name);  // 空指针异常
+</code></pre><p>垃圾回收：
+栈内存：方法被调用 就会在栈内存存在， 
+方法执行结束之后，从栈内存中消失了，包括里面的 变量 以及基本类型的数据值 都消失了。</p>
+<p>堆内存：当指向这个堆内存中的对象的 所有的变量 都消失了的时候。
+这时候 这个对象 就会变成内存垃圾，但是并不会立刻消失。
+而是 java底层有一个垃圾回收机制 定时轮训 每隔一段时间就去检测垃圾，并且回收垃圾。</p>
+<p>方法区：方法区中的内容， 只要jvm不关闭，任何时候都不消失。</p>
+<pre><code>class Demo {
+public static void main(String[] args){
+show();
+System.out.println(&quot;main方法不结束了&quot;);
+}
+public static void show(){
+int a = 10;
+Student s = new Student();
+
+}
+}
+
+</code></pre><h3 id="成员变量和局部变量的区别">成员变量和局部变量的区别(☆☆☆)：<a href="#成员变量和局部变量的区别" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<pre><code>书写位置：
+成员：类中方法外面
+局部：方法内部
+// 类是java写代码的最基本单位，就是说你无论写什么代码 都必须写在类中。
+//int c = 30;
+class Phone {
+int price; // 成员变量
+public void show(){
+int a=10;  // 局部变量
+System.out.println(a);
+}
+}
+</code></pre><p>内存位置：
+成员： 堆内存中  （存在对象里面 而对象在堆内存中）
+局部： 栈内存中。</p>
+<p>声明周期：
+成员： 随着对象的创建而存在， 随着对象的消失而消失
+局部： 随着方法的调用 执行到定义变量的代码的时候，存在，  方法执行结束就立刻消失。</p>
+<p>初始化：
+成员： 有默认值，所以使用之前不需要赋值。
+局部： 使用之前必须先赋值， 因为他没有默认值的。</p>
+<h3 id="private-">private (☆☆☆☆☆)：<a href="#private-" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>​	private修饰 成员，   被private修饰的成员 不能在类的外部直接访问的。 只能在类内部访问</p>
+<pre><code>public class Student {
+private int age;
+private String name;
+
+public int getAge() {
+return age;
+}
+
+public void setAge(int a) {
+age = a;
+}
+
+public String getName() {
+return name;
+}
+
+public void setName(String n) {
+name = n;
+}
+}
+public class Demo {
+public static void main(String[] args){
+Student s = new Student();
+//s.age = 10;
+s.setAge(10);
+int a = s.getAge();
+System.out.println(a);
+
+}
+}
+
+</code></pre><h3 id="this">this(☆☆☆☆☆)<a href="#this" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<pre><code>就近原则：
+public class Student {
+int a;  // 堆内存中
+public void show(){
+int a = 10;  // 不会报错
+// 之前学的变量的注意事项： 同一个范围内 不能定义相同名字的变量。
+// 矛盾解释如下 注释
+System.out.println(a);
+}
+}
+</code></pre><pre><code>// 之前学的变量的注意事项： 同一个范围内 不能定义相同名字的变量。
+class Demo{
+public static void main(String[] args){
+int a = 10;
+//int a = 10;  //报错。
+if (true){
+//int a =10;  //报错。
+System.out.println(a);
+}
+}
+}
+// 之前是这么理解的， 但是之前我们遇到的所有的变量 都是在栈内存中的，
+*/
+
+class Demo {
+public static void main(String[] args){
+Student s = new Student();
+s.show(); // 10    就近原则。  
+}
+}
+</code></pre><pre><code>
+this区分成员变量和局部变量，如果我就是想 用成员位置的遍历。
+public class Student {
+int a;  
+public void show(){
+int a = 10;  
+System.out.println(this.a);
+}
+}
+class Demo {
+public static void main(String[] args){
+Student s = new Student();
+s.show(); // 0 
+}
+}
+
+</code></pre><p>this 的实质： 谁来调用包含this的这个方法， this就指的是谁。</p>
+<pre><code>public class Phone {
+public void show(){
+System.out.println(this);
+}
+}
+class Demo {
+public static void main(String[] args){
+Phone p = new Phone();
+System.out.println(p); // 0x001
+p.show(); // 0x001
+
+Phone p1 = new Phone();
+System.out.println(p1); // 0x002
+p1.show(); // 0x002
+
+//Cat c = new Cat();
+//c.show();  报错
+}
+}
+</code></pre><h3 id="封装-面向对象的三大特征--封装--继承--多态">封装 ：面向对象的三大特征  封装  继承  多态<a href="#封装-面向对象的三大特征--封装--继承--多态" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>​		1：提高安全性  private 
+​		2：提高复用性  方法
+​		3：数据打包一起  JavaBean类</p>
+<pre><code>
+类： class 类名 { }   根据类 使用场景来划分 能分为三种类
+工具类： 定义 大量的方法(功能)  没有什么属性
+public class Utils {
+public void show(){
+
+}
+public void method(){
+
+}
+
+public void function(){
+
+}
+}
+</code></pre><pre><code>测试类：能够运行的 （包含main方法的类）
+public class Demo {
+public static void main(String[] args){
+int a = 10;
+System.out.println(a);
+}
+}
+
+public class Demo1 {
+@Test
+public void show(){
+
+}
+}
+</code></pre><p>​	JavaBean类： 他里面 只有属性(并且包含 属性的输入口和出口 set/get)</p>
+<pre><code>public class Student {
+private int age;
+private String name;
+
+public int getAge() {
+return age;
+}
+
+public void setAge(int age) {
+this.age = age;
+}
+
+public String getName() {
+return name;
+}
+
+public void setName(String name) {
+this.name = name;
+}
+}
+public class Demo {
+public static void main(String[] args){
+int age =10;
+String name = &quot;张三&quot;;
+
+//int[] arr = {age,name};
+//String[] strs = {age, name};
+
+Student s = new Student();
+s.setAge( age);
+s.setName(name);
+}
+}
+
+</code></pre><pre><code>					
+	构造方法：
+		定义格式：
+			1：必须和类名相同
+			2：不能有返回值类型 void也不能有
+			3：不能写返回值  （但是可以单独写一个 return ， 目的是为了强制终止构造方法）
+		
+		调用：
+			构造方法的作用是创建对象， 只能使用new 调用， 用来创建对象。
+			不能使用对象去调用。
+			class Student{
+				public Student(){
+					System.out.println(&quot;构造方法执行&quot;);
+				}
+			}
+			class  Demo {
+				public static void main(String[] args){
+					Studnet s  = new Student(); // 构造方法执行
+					Student s1 = new Student(); // 构造方法执行
+					//s.Student(); // 编译报错 
+				}
+			}
+</code></pre><pre><code>//-----------------------------------------
+class Phone{
+public Phone(){
+System.out.println(&quot;Phone构造方法执行&quot;);
+}
+public void Phone( ){ // 这个方法 就相当于 一个 普通类似举例那种 show方法。 只不过名字 我不叫show了  叫Phone
+System.out.println(&quot;这是一个普通方法 名字叫Phone（恰好方法名和类名相同了 你管得着吗） 不是构造方法&quot;);
+}
+public void show(){
+System.out.println(&quot;这是一个普通方法 名字叫show 不是构造方法&quot;);
+}
+}
+class  Demo {
+public static void main(String[] args){
+Phone s  = new Phone(); // Phone构造方法执行
+Phone s1  = new Phone(); // Phone构造方法执行
+s.Phone();  // 可以 正确  但是 Phone() 这不是构造方法了。
+s.show();
+}
+}
+
+</code></pre><p>注意事项：
+1：构造方法 顾名思义 &ldquo;构造&rdquo;  也就是说 这个方法是为了创建对象而存在的，换句话说， 如果一个类中没有构造方法 那么这个类创建不了对象。</p>
+<pre><code>public class Student {
+/*
+如果一个类中 没有手动写出构造方法
+那么系统 会提供给你一个 构造方法
+public Student(){
+
+}
+
+手动写出构造方法之后
+系统就不再提供了
+*/
+
+public Student(){
+System.out.println(&quot;sdfsdf&quot;);
+}
+
+}
+public class Demo {
+public static void main(String[] args) {
+Student s = new Student();
+// 然而 这个类却能创建对象
+// 说明这个类中有构造方法。
+System.out.println(s);
+}
+}
+</code></pre><p>​	2：构造方法可以重载</p>
+<pre><code>public class Phone {
+/*
+构造方法 是不是属于方法。
+方法的重载
+构造方法也必然存在着重载这种现象
+方法名名相同 参数列表必须不同
+*/
+/*public Phone(){
+System.out.println(&quot;没有参数的构造方法--无参构造&quot;);
+}*/
+public Phone(int a){
+System.out.println(&quot;有参数的构造方法--有参构造&quot;);
+}
+
+/*
+如果我们没有手动写出构造方法
+系统将会默认提供一个 无参数的构造方法
+public Phone(){ }
+
+如果我要手动给出了 系统就不再提供了。
+*/
+
+}
+public class Demo1 {
+public static void main(String[] args) {
+//Phone p = new Phone(); //编译报错
+
+Phone p1 = new Phone(10);
+
+}
+}
+
+</code></pre><p>3：构造方法作用， 在创建对象的时候 顺便给 属性赋值</p>
+<pre><code>public class Car {
+private String brand;
+private int price;
+
+public Car(){
+
+}
+
+public Car(String brand, int price){
+this.brand = brand;
+this.price = price;
+}
+
+public void setBrand(String brand) {
+this.brand = brand;
+}
+
+public void setPrice(int price) {
+this.price = price;
+}
+
+public int getPrice() {
+return price;
+}
+
+public String getBrand() {
+return brand;
+}
+}
+</code></pre><pre><code>public class Demo2 {
+					public static void main(String[] args) {
+						// 构造方法是创建对象而生的。
+						// 系统给一个 我也能创建对象， 你给了也能用你的 ， 有什么区别吗？
+
+						Car c = new Car();
+						c.setBrand(&quot;宝驴&quot;);
+						c.setPrice(199);
+						//这就是我们创建一个 汽车对象 并把他的属性 弄好的。
+						// 三句话。 你用了三条语句。
+
+						// 我觉得三条语句有点麻烦，
+						//以后万一 他有1万个属性呢 你需要写1万01条语句
+
+						// 那能不能 一条语句结束呢
+						// 无论你想用几条语句 你必须得有创建对象的那条语句。
+						// 那我就在想 能不能在创建对象的时候 就给我赋值呢？？
+
+						Car c1 = new Car(&quot;奔马&quot;,299);
+						System.out.println(c1.getBrand());
+						System.out.println(c1.getPrice());
+
+						// 你有了 有参构造之后 你还要 set方法干嘛啊？
+						// 反正 构造方法可以赋值。
+
+						// 你不想要set了
+						// 你要充分了解一下 set方法的作用。
+						//1:赋值
+						// 2: 需求： 刚才那个 奔马 这个名字 我好像起错了 应该是 奔驹
+
+						// 假设此时 没有set方法。
+
+						//c1 = new Car(&quot;奔驹&quot;,299);  //  你要这么做 就是把之前的那个车 报废掉。 重新造一辆车 九尾了改个名字
+
+						//set方法
+						c1.setBrand(&quot;奔驹&quot;);
+
+					}
+				}
+</code></pre><p><strong>标准的JavaBean类几部分：
+属性全部private
+无参构造方法
+有参构造方法
+set/get方法</strong></p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>Demon</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1449 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-08-28 08:00 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://demon-github1996.github.io/posts/day06/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Day06  Debug工具和进制</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://demon-github1996.github.io">郭  栋</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://demon-github1996.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://demon-github1996.github.io/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

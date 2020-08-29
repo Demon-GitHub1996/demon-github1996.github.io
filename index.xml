@@ -7,10 +7,54 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 22 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 28 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://demon-github1996.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Day7  面向对象</title>
+      <link>https://demon-github1996.github.io/posts/day07/</link>
+      <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day07/</guid>
+      <description>面向对象 java的语法： java的组成： 注释 关键字 标识符 数据： 常量： 变量： 数据类型 基本： byte short int long&amp;hellip;.. 引用: 数组： 数组的定义 使用 内存图 异常 遍历 求和 查找 评委打分 二维数组： 循环的嵌套 类 接口
+​	类型转换 ​	隐式 ​	强制 ​	符号 ​	基本符号 (){}[].&amp;quot;&amp;quot;&#39;&#39;; ​	(): ​	强制类型 ​	运算 ​	结构语句 ​	方法 ​	​	运算符： ​	算术 ​	赋值 ​	比较 ​	逻辑 ​	三元 ​	位 逻辑语句： ​	顺序结构 ​	选择结构 ifswitch ​	循环结构 for while dowhile break continue 猜数字小游戏</description>
+    </item>
+    
+    <item>
+      <title>Day06  Debug工具和进制</title>
+      <link>https://demon-github1996.github.io/posts/day06/</link>
+      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day06/</guid>
+      <description>Debug工具和进制 java的语法： 程序的基本组成 注释 关键字 标识符 数据 常量 变量 数据类型 基本 应用 数组 二维数组 类 接口 类型转换 隐式 强制 byte a = (byte)200;
+​	符号： ​	基本符号 ​	运算符 ​	算术 ​	赋值 ​	关系 ​	逻辑 ​	三元 ​	位 结构语句： ​	顺序 ​	选择 ifswitch ​	循环 forwhiledowhile break continue
+方法： 基本 参数 返回值 注意事项 重载 参数的传递 案例：引用类型的值传递
+jre核心类库提供的类： Scanner Random
+debug 工具 (☆☆☆☆☆) debug ： 详细查看程序的执行步骤 1：加断点 ， 一般 在你要查看的程序的第一行， 左侧点一下。 2：右键 debug 程序 （不再是run） 3：左下侧 是栈， 表示现在有多少个方法进栈了， 正在执行哪个方法的哪一行。 右下侧 是方法里面的变量值。 4：下一步 F7 即可 5： 如果查看程序 查看到中间，不想看后面的了， 停止程序。 按 ctrl + F2 （红色方框按钮）</description>
+    </item>
+    
+    <item>
+      <title>Day05 方法</title>
+      <link>https://demon-github1996.github.io/posts/day05/</link>
+      <pubDate>Sat, 24 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day05/</guid>
+      <description>Day05 方法 回顾 java的语法： 程序的组成 注释 关键字 标识符 数据 常量 变量 数据类型 基本 引用： 数组 数组的定义格式 int[] arr = new int[3]; int[] arr = new int[]{4,5,7,7}; int[] arr = {6,7,8,9}; 数组的使用 int[] arr = {6,7,8,9}; System.out.println(arr[0]); arr[0] = 10;
+数组的内存图： 一个数组的内存图 int[] arr = {6,7,8,9}; System.out.println(arr); arr[0] = 10; System.out.println(arr); 两个数组的内存图 int[] arrA = new int[3]; int[] arrB = new int[3]; arrA[0] = 10; System.out.println(arrB[0]); //0  多个变量指向同一数组的内存图 int[] arrA = new int[3]; int[] arrB = arrA; arrA[0] = 10; System.</description>
+    </item>
+    
+    <item>
+      <title>Day04 IDEA 和数组</title>
+      <link>https://demon-github1996.github.io/posts/day04/</link>
+      <pubDate>Fri, 23 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day04/</guid>
+      <description>IDEA idea &amp;ndash; 今后开发 全部使用idea 来开发。 idea版本： 2017版 最多支持到 jdk10 2018版 最多支持到 jdk11， jdk12不支持。 2019版 支持jdk12 jdk13 不支持jdk14 2020版 都支持。
+ 管理java文件的目录结构：总目录， 以后 所有的idea产生的 所有的文件 基本上都会在这里面。 D:\develop\ideaProjects 项目目录模块目录包目录java文件 资料： ideaIU-2019.3.3.exe jetbrains-agent.jar 破解包 IDEA汉化包 激活教程视频
+ idea的快捷键：psvm + 回车 快速生成main方法sout + 回车 快速生成输出语句Alt + 1 打开 \ 隐藏工程目录结构Alt + 4 打开 \ 隐藏控制台Ctrl + D 向下复制一行Ctrl + X 剪切当前行Ctrl + alt + L 格式化代码Alt+ enter 代码修正提示Ctrl + / 批量加入单行注释，再按一次就是取消Ctrl + shift + / 批量加入多行注释，再按一次就是取消Alt + shift + ↑ 上移当前行Alt + shift + ↓ 下移当前行true.</description>
+    </item>
     
     <item>
       <title>Day03 循环</title>
@@ -31,7 +75,8 @@ int a = 10; switch (a){ case 7: System.</description>
       
       <guid>https://demon-github1996.github.io/posts/day02/</guid>
       <description>Day2 运算符与逻辑语句 昨日回顾： ​	java的介绍 ​	java是一门语言 ​	java的火 ​	jdk ​	jdk的下载和安装 ​	HelloWorld程序 ​	dos窗口 ​	环境变量 ​	HelloWorld编写编译和运行 ​	HelloWorld的详细的解释 ​	书写习惯 ​	notepad++ ​	java的基本语法 ​	程序的基本组成单位：
-//dfsakdjfhad ​	class HelloWorld { ​	public static void main(String[] args){ ​	int a = 10; ​	System.out.println(a); ​	{ ​	int b =10; ​	System.out.println(b); ​	} ​	} ​	} ​	注释 ​	关键字 ​	标识符 ​	数据 ​	常量 10 ​	变量</description>
+//dfsakdjfhad class HelloWorld { public static void main(String[] args){ int a = 10; System.out.println(a); { int b =10; System.out.println(b); } } } ​	注释 ​	关键字 ​	标识符 ​	数据 ​	常量 10 ​	变量
+​	注释 ​	关键字 ​	标识符 ​	数据 ​	常量 10 ​	变量</description>
     </item>
     
     <item>

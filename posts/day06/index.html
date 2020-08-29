@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Day06  Debug工具和进制">
+<meta itemprop="description" content="Debug工具和进制 java的语法： 程序的基本组成 注释 关键字 标识符 数据 常量 变量 数据类型 基本 应用 数组 二维数组 类 接口 类型转换 隐式 强制 byte a = (byte)200;
+​	符号： ​	基本符号 ​	运算符 ​	算术 ​	赋值 ​	关系 ​	逻辑 ​	三元 ​	位 结构语句： ​	顺序 ​	选择 ifswitch ​	循环 forwhiledowhile break continue
+方法： 基本 参数 返回值 注意事项 重载 参数的传递 案例：引用类型的值传递
+jre核心类库提供的类： Scanner Random
+debug 工具 (☆☆☆☆☆) debug ： 详细查看程序的执行步骤 1：加断点 ， 一般 在你要查看的程序的第一行， 左侧点一下。 2：右键 debug 程序 （不再是run） 3：左下侧 是栈， 表示现在有多少个方法进栈了， 正在执行哪个方法的哪一行。 右下侧 是方法里面的变量值。 4：下一步 F7 即可 5： 如果查看程序 查看到中间，不想看后面的了， 停止程序。 按 ctrl &#43; F2 （红色方框按钮）">
+<meta itemprop="datePublished" content="2019-08-27T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-08-27T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1335">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta property="og:title" content="Day06  Debug工具和进制" />
+<meta property="og:description" content="Debug工具和进制 java的语法： 程序的基本组成 注释 关键字 标识符 数据 常量 变量 数据类型 基本 应用 数组 二维数组 类 接口 类型转换 隐式 强制 byte a = (byte)200;
+​	符号： ​	基本符号 ​	运算符 ​	算术 ​	赋值 ​	关系 ​	逻辑 ​	三元 ​	位 结构语句： ​	顺序 ​	选择 ifswitch ​	循环 forwhiledowhile break continue
+方法： 基本 参数 返回值 注意事项 重载 参数的传递 案例：引用类型的值传递
+jre核心类库提供的类： Scanner Random
+debug 工具 (☆☆☆☆☆) debug ： 详细查看程序的执行步骤 1：加断点 ， 一般 在你要查看的程序的第一行， 左侧点一下。 2：右键 debug 程序 （不再是run） 3：左下侧 是栈， 表示现在有多少个方法进栈了， 正在执行哪个方法的哪一行。 右下侧 是方法里面的变量值。 4：下一步 F7 即可 5： 如果查看程序 查看到中间，不想看后面的了， 停止程序。 按 ctrl &#43; F2 （红色方框按钮）" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://demon-github1996.github.io/posts/day06/" />
+<meta property="article:published_time" content="2019-08-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-08-27T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Day06  Debug工具和进制"/>
+<meta name="twitter:description" content="Debug工具和进制 java的语法： 程序的基本组成 注释 关键字 标识符 数据 常量 变量 数据类型 基本 应用 数组 二维数组 类 接口 类型转换 隐式 强制 byte a = (byte)200;
+​	符号： ​	基本符号 ​	运算符 ​	算术 ​	赋值 ​	关系 ​	逻辑 ​	三元 ​	位 结构语句： ​	顺序 ​	选择 ifswitch ​	循环 forwhiledowhile break continue
+方法： 基本 参数 返回值 注意事项 重载 参数的传递 案例：引用类型的值传递
+jre核心类库提供的类： Scanner Random
+debug 工具 (☆☆☆☆☆) debug ： 详细查看程序的执行步骤 1：加断点 ， 一般 在你要查看的程序的第一行， 左侧点一下。 2：右键 debug 程序 （不再是run） 3：左下侧 是栈， 表示现在有多少个方法进栈了， 正在执行哪个方法的哪一行。 右下侧 是方法里面的变量值。 4：下一步 F7 即可 5： 如果查看程序 查看到中间，不想看后面的了， 停止程序。 按 ctrl &#43; F2 （红色方框按钮）"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Day06  Debug工具和进制</title>
+	<link rel="stylesheet" href="https://demon-github1996.github.io/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://demon-github1996.github.io">Demon的博客</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://demon-github1996.github.io/posts/">文章</a>
+				<a href="https://demon-github1996.github.io/about-hugo/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://instagram.com/" target="_blank" rel="noopener me" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://github.com/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://demon-github1996.github.io/posts/">文章</a></li>
+			<li><a href="https://demon-github1996.github.io/about-hugo/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 27, 2019</span></div>
+				<h1>Day06  Debug工具和进制</h1>
+			</header>
+			<div class="content">
+				<h1 id="debug工具和进制">Debug工具和进制<a href="#debug工具和进制" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p><code>java的语法：</code>
+<code>程序的基本组成</code>
+<code>注释</code>
+<code>关键字</code>
+<code>标识符</code>
+<code>数据</code>
+<code>常量</code>
+<code>变量</code>
+<code>数据类型</code>
+<code>基本</code>
+<code>应用</code>
+<code>数组</code> 
+<code>二维数组</code>
+<code>类</code>
+<code>接口</code>
+<code>类型转换</code>
+<code>隐式</code>
+<code>强制</code>
+<code>byte a = (byte)200;</code></p>
+<p>​	<code>符号：</code>
+​		<code>基本符号</code>
+​		<code>运算符</code>
+​			<code>算术</code>
+​			<code>赋值</code>
+​			<code>关系</code>
+​			<code>逻辑</code>
+​			<code>三元</code>
+​			<code>位</code>
+<code>结构语句：</code>
+​	<code>顺序</code>
+​	<code>选择 ifswitch</code>
+​	<code>循环 forwhiledowhile break continue</code></p>
+<p><code>方法：</code>
+<code>基本</code>
+<code>参数</code>
+<code>返回值</code>
+<code>注意事项</code>
+<code>重载</code>
+<code>参数的传递</code>
+<code>案例：引用类型的值传递</code></p>
+<p><code>jre核心类库提供的类：</code>
+<code>Scanner</code>
+<code>Random</code></p>
+<h1 id="debug-工具-">debug 工具 (☆☆☆☆☆)<a href="#debug-工具-" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>debug ： 详细查看程序的执行步骤
+1：加断点 ， 一般 在你要查看的程序的第一行， 左侧点一下。
+2：右键  debug 程序 （不再是run）
+3：左下侧 是栈， 表示现在有多少个方法进栈了， 正在执行哪个方法的哪一行。
+右下侧  是方法里面的变量值。
+4：下一步  F7 即可
+5： 如果查看程序 查看到中间，不想看后面的了， 停止程序。
+按 ctrl + F2  （红色方框按钮）</p>
+<p>​		6：如果查看代码  中间有一些代码 不想看了， 相看这些代码后面的代码。
+​			这是你就在后面的代码上 加一个断点， 
+​			按 F9 （绿色三角按钮）跳到下一个断点。
+​			如果没有下一个断点， 程序就会立即执行完毕。
+​			或者 alt+f9 （他需要有光标的配合， 跳到下一个光标位置）
+​		7：程序结束之后 想把断点取消掉
+​			如果断点少的话， 再点一下 断点的符号即可。
+​			如果断点多的话。 ctrl+ shift + f8 （红色双原按钮）</p>
+<h2 id="debug-查看循环的执行流程">debug 查看循环的执行流程：<a href="#debug-查看循环的执行流程" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>for (初始化语句; 条件表达式 ; 条件控制语句 ){
+语句体;
+}</p>
+<p>​		如果你想清楚的看到一些代码的执行顺序， 尽量把代码分成不同的行， 否则 debug就会把他当做一行代码去执行了。
+​		int[] arr = {4,5,6,7,8};
+​		for (int i = 0;
+​			 i &lt; arr.length;
+​			 i++) {
+​			System.out.println(arr[i]);
+​		}</p>
+<h3 id="debug的快捷键">debug的快捷键：<a href="#debug的快捷键" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>1： F8  ：step over  下一步下一步， 当遇到调用方法， 直接把方法当做一句话执行完毕，不会进入方法
+2： F7 ： step into 也是下一步的意思，但是当遇到 “自已定义的方法” 就会进入方法，把方法执行完毕之后，再回调用处继续执行。
+3： alt+shift+F7   也是下一步的意思，当他遇到“源码的方法和自己定义的方法” 就会进入方法，把方法执行完毕之后，再回调用处继续执行。
+4： shift+ F8  跳出方法。当进入了方法之后，不想再继续看方法里面下一步下一步怎么执行了， 想跳出方法，就按此键。
+5： 想要查看表达式的结果，就可以选中表达式，右键 点击 add to watches
+6： alt+ F8  如果运行过程中，你想临时的去修改一些 变量的值。你可以使用
+此功能修改。 改完之后，点击 Evaluate就可以了。</p>
+<h1 id="进制">进制(☆)<a href="#进制" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>进制的概述：
+逢几进1 ， 就是几进制。 常见 十进制 二进制 八进制 十六进制。</p>
+<pre><code>System.out.println(100); // 十进制
+System.out.println(0b10); // binary二进制    2
+System.out.println(010); // Octal八进制    8
+System.out.println(0x10); // hex 十六进制    16  
+</code></pre>
+<h2 id="进制之间的转换">进制之间的转换：<a href="#进制之间的转换" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>进制之间的转换：
+其他进制转换为十进制：
+十进制&ndash;&gt; 十进制
+999 = 9<em>10^2 + 9</em>10^1 + 9*10^0;</p>
+<p>​			其他进制 &ndash;&gt; 十进制
+​				0b100 = 1<em>2^2 + 0</em>2^1 + 0^2^0;  =4</p>
+<p>​			二进制转换为十进制&mdash;简化方法 8421码
+​				11111111 = 128+64+32+16+8+4+2+1 =  255
+​				&hellip;..</p>
+<p>十进制转换其他进制
+除以基 倒取余</p>
+<pre><code>    其他进制和其他进制的转换：
+        二进制 ：1111 1111
+</code></pre>
+<p>​			八进制： 2的3次方  011 111 111  &mdash; 377</p>
+<p>​			十六进制： 2的4次方。  1111 1111 &ndash; FF</p>
+<p>​			这就是八进制和十六进制的由来。
+​				写程序的时候 我们只需要考虑十进制的
+​				计算机计算的时候 用 二进制。
+​				研究计算机的科学家(人)  也要使用二进制运算。  10101010101010101010101010101010</p>
+<p>​	案例练习：</p>
+<pre><code>// 二进制
+// 101010  --- 十进制  32+8+2 = 42
+// 101010  --- 八进制  101 010 = 52
+// 101010  --- 十六进制  0010 1010 = 2a
+
+// 十六进制 6c  --&gt; 二进制  1101100
+// 十进制 70  --&gt; 二进制 64 4 2 ----  1000110
+// 十进制 70   
+//         1   1   1  1 1 1
+//	       64  32  16 8 4 2
+</code></pre><h1 id="原码反码补码">原码反码补码(☆☆)<a href="#原码反码补码" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>二进制： 计算机中 电子 电阻和电容。  1 0  最底层用二进制来表示的。</p>
+<pre><code>十进制的 10  --  二进制 1010
+十进制的 -10  --- 负数怎么表示   -1010 ？？  
+计算机表示 负10 是绝对不会在二进制的前面加负号的， 因为计算机里面只有01 
+
+数据类型：
+byte  1个字节 8个位
+short 2个字节 16个位
+int   4个字节 32位。
+
+正号和符号：必须要结合着 数据类型的 最高位来去表示。
+数据类型的里面 最高位 0不表示正号 1表示负号。
+
+假设 10 和 -10 都是byte类型的。
+
+正10	0000 1010
+负10    1000 1010
+
+byte  -128 到 127	
+1111 1111   -127
+1000 0000    -128
+0000 0000     0
+0111 1111    127
+
+数据以后使用来计算的。
+现在咱们来看  两个 正10相加 得到 正20吗？
+0000 1010
+0000 1010
+--------------
+0001 0100  ----  正20
+
+继续发现问题 如果 一个正10 加上一个 负10 会得到0吗？
+0000 1010
+1000 1010
+-------------
+1001 0100 ----- 负20
+
+所以得到了结论， 负数的表示 不能只用高位是1 
+那还能怎么表示呢？
+0000 1010   --- +10  这个是正10的源码。
+
+1111 0101	--- 反码	
+
+1111 1111  
++			1
+----------------
+10000 0000  --- 0
+
+
+1111 0101 
++			1
+---------------
+1111 0110	-10   这才是计算机真实底层保存的那个 -10
+
+1000 1010 -- 原码 ---原码就是 把-10 直接按照二进制翻译为2进制的数据然后高位变1
+1111 0101 -- 反码 ---反码就是因中间推导的过程而得名 高位不变 其他位取反。
+1111 0110 -- 补码 ---补码才是负数在计算机中真实存储的数据，然后人为无法直接通过转换二进制计算出来，所以需要用过原码反码的过程推导出来。
+</code></pre>
+<p>​</p>
+<pre><code>案例1：
+byte b = (byte)(100+110);
+System.out.println(b);
+
+100+110 这个过程如下：
+00000000 00000000 00000000 01100100
+00000000 00000000 00000000 01101110
+-------------------------------------------
+00000000 00000000 00000000 11010010    
+
+(byte)210 的过程如下
+00000000 00000000 00000000 11010010
+11010010   ---  高位是1 这是负数的补码
+
+-      1
+-------------
+11010001   --- 反码
+---------
+10101110  ---  原码   翻译为 10进制  -46
+案例2：
+byte a = (byte)40;
+System.out.println(a); //40 
+
+40---- 00000000 00000000 00000000  00101000  
+(byte)40  --- 00101000    
+--- 40 
+</code></pre>
+<h1 id="位运算">位运算(☆☆☆)<a href="#位运算" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>&amp; | ~ ^ 
+和逻辑运算符的运算规则是一样的 只不过他运算的是1和0
+你就把 1当做true  把0当做false  然后进行逻辑运算。</p>
+<pre><code>
+^ : 异或  是否不同，   不同为true 1  相同为false  0
+
+特点：一个数 对另一数异或两次 自身不变。
+int a = 10^20^20;
+System.out.println(a);
+
+int b = 10^20;
+System.out.println(b);
+int c = b^20;
+System.out.println(c); //10
+int d = b^10;
+System.out.println(d); //20
+
+int e = 10^20^10;
+System.out.println(e); //20
+
+
+
+int a = 10^ 20 ^ 20;
+//int a = 10^(20^20); 
+
+00010100    ---20
+^ 00010100    ---20
+--------------------
+00000000    ----0
+
+00001010
+^ 00000000 
+-------------
+00001010    ---10
+
+</code></pre><pre><code>
+两个数交换(☆☆☆☆☆)
+int a = 10;
+int b = 20;
+
+方法1：
+int temp = a;
+a = b;
+b = temp;
+
+方法2：
+a = a^b; // 10^20
+b = a^b; // 10^20^20 =10
+a = a^b; // 10^20^10 = 20
+
+
+int c = 10;
+int d = 10;
+//请交换 c和d
+c = c^d; // 10^10 =0
+d = c^d; // 0^10 = 10
+c = c^d; // 0^10 = 10
+
+
+方法3：
+a = a+b; // 10+20
+b = a-b; // 10+20-20 = 10
+a = a-b; // 10+20-10 = 20
+
+方法4：
+a = a*b;
+b = a/b;
+a = a/b;
+
+</code></pre><h2 id="-左移-">&laquo; 左移 ：(☆☆☆☆)<a href="#-左移-" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<pre><code>
+
+100 &lt;&lt;2
+
+00000000 00000000 00000000 01100100
+__000000 00000000 00000000 0110010000      400 =100*4
+
+
+-100 &lt;&lt; 2
+10000000 00000000 00000000 01100100  这是-100的原码
+11111111 11111111 11111111 10011011  反码
+11111111 11111111 11111111 10011100  补码   从此处进行位运算
+__111111 11111111 11111111 1001110000  补码
+__111111 11111111 11111111 1001101111  反码
+__100000 00000000 00000000 0110010000  原码   -400   = -100 *4
+
+</code></pre><h2 id="-有符号右移">&raquo; 有符号右移(☆☆☆☆)：<a href="#-有符号右移" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<pre><code>100 &gt;&gt;2
+
+00000000 00000000 00000000 01100100
+0000000000 00000000 00000000 011001__   25 =  100/4
+
+-100 &gt;&gt; 2
+0000000 00000000 00000000 01100100  这是-100的原码
+11111111 11111111 11111111 10011011  反码
+11111111 11111111 11111111 10011100  补码   从此处进行位运算
+1111111111 11111111 11111111 100111__ 补码
+1111111111 11111111 11111111 100110__ 反码
+1000000000 00000000 00000000 011001__ 原码  -25 = -100/4
+</code></pre><h2 id="-无符号右移">&raquo;&gt; 无符号右移(☆☆☆)。<a href="#-无符号右移" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<pre><code>100 &gt;&gt;&gt;2
+
+00000000 00000000 00000000 01100100
+0000000000 00000000 00000000 011001__   25 =  100/4
+
+-100 &gt;&gt;&gt; 2	
+0000000 00000000 00000000 01100100  这是-100的原码
+11111111 11111111 11111111 10011011  反码
+11111111 11111111 11111111 10011100  补码   从此处进行位运算
+0011111111 11111111 11111111 100111__  正数 不区分原反补
+
+</code></pre><h1 id="数组的反转">数组的反转：<a href="#数组的反转" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<pre><code>需求：
+int[] arr = {5,8,2,4,6};
+// {6,4,2,8,5} 
+
+// 第一  不是让你倒着打印
+// 第二 也不让你新建一个新数组
+// 而是让你把现有的这个数 里面的元素 倒过来。
+
+for (int start = 0, end = arr.length-1 ; start&lt; end  ;start++, end--  ){
+int temp = arr[start];
+arr[start] = arr[end];
+arr[end] = temp;
+}
+
+//------------------------- 
+// 下面是贤哥教的第二种反转的方法
+int[] arr = {5,8,2,4,6}
+for (int i = 0;i&lt;arr.length/2;i++){
+int temp = arr[i];
+arr[i] = arr[arr.length-1-i];
+arr[arr.length-1-i] = temp;
+}
+</code></pre><h1 id="二维数组">二维数组(☆☆)<a href="#二维数组" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>二维数组的由来：
+数据类型：
+基本类型： byte short int long char boolean float double
+引用类型:
+数组</p>
+<pre><code>定义格式：
+数据类型[] 变量名 = new 数据类型[数组长度];
+
+int[] arr = new int[3];
+byte[] brr = new byte[3];
+
+引用类型数组：类属于引用类型 属于数据类型 符合 数组的定义格式的。
+Random r = new Random();
+Random r1 = new Random();
+Random r2 = new Random();
+
+Random[] rr = new Random[3];
+rr[0] = r;
+rr[1] = r1;
+rr[2] = r2;
+
+</code></pre><pre><code>引用类型数组： 数组是属于引用类型 属于数据类型 也符合 数组的定义格式啊。
+int[][] arr = new int[2][3];  //  大数组里面 有两个小数组， 每个小数组 存3个元素
+
+int[] a0 = new int[3];
+int[] a1 = new int[3];
+
+arr[0] = a0;
+arr[1] = a1;
+
+
+int[][] brr = {{3,4,5},{5,6,7},{8,9,2}};
+
+int[][] brr = {{3},{5,6,7},{8,9,2,5,6,8,6}};
+
+
+--------------------------
+int[][][] arr = new int[2][3][4];  // 大数组里面存 2个中数组  每个中数组里面存3个小数组， 每个小数组里面存4个元素。
+
+--------------------------
+依次类推 四维数组 五维数组 六维数组.....
+
+类:
+Scanner  Random 
+</code></pre><pre><code>
+二维数组的创建：
+1：
+int[][] arr = new int[4][5];
+
+arr[0] = new int[]{1,2,3,4,5};
+
+arr[1] = new int[5];
+
+int[] a = new int[5];
+arr[2] = a;
+
+arr[3][0] = 10;
+arr[3][1] = 20;
+arr[3][2] = 30;
+arr[3][3] = 40;
+arr[3][4] = 50;
+
+System.out.println(arr[0][0]); //1
+
+注意事项：
+int[][] arr = new int[2][3];
+arr[0] = new int[8];
+arr[1] = new int[10]; // 虽然 二维数组定义规定了每一个一维数组里面是3个元素，但是 无论多个元素的一维数组都是可以赋值的。
+
+// 虽然是直接赋值一维数组是可以的，但是 直接给一维数组赋值元素是不能超出范围的。
+int[][] brr = new int[2][3];
+brr[0][10]  = 20; //索引越界异常
+
+2：
+int[][] arr = {{1,2,3},{4,5,6,7,8},{9,1,2,3,5,6,4,8}};
+
+int[] a = {3,4,5,6,7,8,9};
+int[] b = {4,6,7,4,9};
+int[][] brr = {a,b};
+
+二维数组的遍历：循环嵌套(☆☆☆☆)
+// 遍历： 把容器中每一个元素 一一展示出来。
+
+/*int[][] arr = new int[3][4];
+
+arr[0][1] = 10;
+
+arr[1][1] = 20;
+
+arr[2][1] = 30;*/
+int[][] arr = {{1,2,3},{6,7,8,5,6,8},{3,4,5,6,7,8,9}};
+
+/*
+// 第一个一维数组 arr[0]
+for (int i = 0; i &lt; arr[0].length; i++) {
+System.out.println(arr[0][i]);
+}
+System.out.println(&quot;----------&quot;);
+// 第二个一位数组  arr[1]
+for (int i = 0; i &lt; arr[1].length; i++) {
+System.out.println(arr[1][i]);
+}
+System.out.println(&quot;----------&quot;);
+// 第三个一位数组  arr[2]
+for (int i = 0; i &lt; arr[2].length; i++) {
+System.out.println(arr[2][i]);
+}
+*/
+
+for (int j = 0; j &lt; arr.length; j++) {
+for (int i = 0; i &lt; arr[j].length; i++) {
+System.out.print(arr[j][i]+&quot; &quot;);
+}
+System.out.println();
+}
+
+案例1：二维数组的求和
+int[][] arr = {{1,2,3},{6,7,8,5,6,8},{3,4,5,6,7,8,9}};
+
+int sum =0;
+for (int j = 0; j &lt; arr.length; j++) {
+for (int i = 0; i &lt; arr[j].length; i++) {
+sum+=arr[j][i];
+}
+}
+System.out.println(sum);
+
+案例2：二维数组的求总和打印出来，  每个一维数组的和 打印出来。
+int sum = 0;
+for (int j = 0; j &lt; arrs.length; j++) {
+int sumArr = 0;
+for (int i = 0; i &lt; arrs[j].length; i++) {  //遍历一维数组
+sum += arrs[j][i];
+sumArr+=arrs[j][i];
+}
+System.out.println(&quot;第&quot;+j+&quot;个一位数组的和是：&quot;+sumArr);
+
+}
+System.out.println(&quot;总和是：&quot;+sum);
+
+
+
+
+
+
+</code></pre>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>Demon</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1335 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-08-27 08:00 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://demon-github1996.github.io/posts/day07/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Day7  面向对象</span>
+			</a>
+			<a class="prev-post" href="https://demon-github1996.github.io/posts/day05/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Day05 方法</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://demon-github1996.github.io">郭  栋</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://demon-github1996.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://demon-github1996.github.io/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

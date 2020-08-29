@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Day05 方法">
+<meta itemprop="description" content="Day05 方法 回顾 java的语法： 程序的组成 注释 关键字 标识符 数据 常量 变量 数据类型 基本 引用： 数组 数组的定义格式 int[] arr = new int[3]; int[] arr = new int[]{4,5,7,7}; int[] arr = {6,7,8,9}; 数组的使用 int[] arr = {6,7,8,9}; System.out.println(arr[0]); arr[0] = 10;
+数组的内存图： 一个数组的内存图 int[] arr = {6,7,8,9}; System.out.println(arr); arr[0] = 10; System.out.println(arr); 两个数组的内存图 int[] arrA = new int[3]; int[] arrB = new int[3]; arrA[0] = 10; System.out.println(arrB[0]); //0  多个变量指向同一数组的内存图 int[] arrA = new int[3]; int[] arrB = arrA; arrA[0] = 10; System.">
+<meta itemprop="datePublished" content="2019-08-24T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-08-24T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1660">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta property="og:title" content="Day05 方法" />
+<meta property="og:description" content="Day05 方法 回顾 java的语法： 程序的组成 注释 关键字 标识符 数据 常量 变量 数据类型 基本 引用： 数组 数组的定义格式 int[] arr = new int[3]; int[] arr = new int[]{4,5,7,7}; int[] arr = {6,7,8,9}; 数组的使用 int[] arr = {6,7,8,9}; System.out.println(arr[0]); arr[0] = 10;
+数组的内存图： 一个数组的内存图 int[] arr = {6,7,8,9}; System.out.println(arr); arr[0] = 10; System.out.println(arr); 两个数组的内存图 int[] arrA = new int[3]; int[] arrB = new int[3]; arrA[0] = 10; System.out.println(arrB[0]); //0  多个变量指向同一数组的内存图 int[] arrA = new int[3]; int[] arrB = arrA; arrA[0] = 10; System." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://demon-github1996.github.io/posts/day05/" />
+<meta property="article:published_time" content="2019-08-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-08-24T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Day05 方法"/>
+<meta name="twitter:description" content="Day05 方法 回顾 java的语法： 程序的组成 注释 关键字 标识符 数据 常量 变量 数据类型 基本 引用： 数组 数组的定义格式 int[] arr = new int[3]; int[] arr = new int[]{4,5,7,7}; int[] arr = {6,7,8,9}; 数组的使用 int[] arr = {6,7,8,9}; System.out.println(arr[0]); arr[0] = 10;
+数组的内存图： 一个数组的内存图 int[] arr = {6,7,8,9}; System.out.println(arr); arr[0] = 10; System.out.println(arr); 两个数组的内存图 int[] arrA = new int[3]; int[] arrB = new int[3]; arrA[0] = 10; System.out.println(arrB[0]); //0  多个变量指向同一数组的内存图 int[] arrA = new int[3]; int[] arrB = arrA; arrA[0] = 10; System."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Day05 方法</title>
+	<link rel="stylesheet" href="https://demon-github1996.github.io/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://demon-github1996.github.io">Demon的博客</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://demon-github1996.github.io/posts/">文章</a>
+				<a href="https://demon-github1996.github.io/about-hugo/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://instagram.com/" target="_blank" rel="noopener me" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://github.com/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://demon-github1996.github.io/posts/">文章</a></li>
+			<li><a href="https://demon-github1996.github.io/about-hugo/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 24, 2019</span></div>
+				<h1>Day05 方法</h1>
+			</header>
+			<div class="content">
+				<h1 id="day05-方法">Day05 方法<a href="#day05-方法" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h2 id="回顾">回顾<a href="#回顾" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>java的语法：
+程序的组成
+注释
+关键字
+标识符
+数据
+常量
+变量
+数据类型
+基本
+引用：
+数组
+数组的定义格式
+int[] arr = new int[3];
+int[] arr = new int[]{4,5,7,7};
+int[] arr = {6,7,8,9};
+数组的使用
+int[] arr = {6,7,8,9};
+System.out.println(arr[0]);
+arr[0] = 10;</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">数组的内存图</span><span class="err">：</span>
+    <span class="n">一个数组的内存图</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="n">6</span><span class="o">,</span><span class="n">7</span><span class="o">,</span><span class="n">8</span><span class="o">,</span><span class="n">9</span><span class="o">};</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+<span class="n">arr</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+
+<span class="n">两个数组的内存图</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">arrA</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">3</span><span class="o">];</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">arrB</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">3</span><span class="o">];</span>
+
+<span class="n">arrA</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arrB</span><span class="o">[</span><span class="n">0</span><span class="o">]);</span> <span class="c1">//0
+</span><span class="c1"></span>
+<span class="n">多个变量指向同一数组的内存图</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">arrA</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">3</span><span class="o">];</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">arrB</span> <span class="o">=</span> <span class="n">arrA</span><span class="o">;</span>
+<span class="n">arrA</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arrB</span><span class="o">[</span><span class="n">0</span><span class="o">]);</span> <span class="c1">//10
+</span><span class="c1"></span>
+<span class="n">数组的常见的异常</span><span class="err">：</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">3</span><span class="o">];</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">110</span><span class="o">]);</span> 
+
+<span class="kt">int</span><span class="o">[]</span> <span class="n">arrA</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">110</span><span class="o">]);</span>
+
+<span class="n">数组的遍历</span><span class="err">：</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">3</span><span class="o">];</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">案例1</span><span class="err">：</span><span class="n">求数组的最大值</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="n">6</span><span class="o">,</span><span class="n">7</span><span class="o">,</span><span class="n">8</span><span class="o">,</span><span class="n">9</span><span class="o">};</span>
+<span class="kt">int</span> <span class="n">leitai</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">leitai</span><span class="o">){</span>
+        <span class="n">leitai</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">案例2</span><span class="err">：</span><span class="n">求数组的和</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="n">6</span><span class="o">,</span><span class="n">7</span><span class="o">,</span><span class="n">8</span><span class="o">,</span><span class="n">9</span><span class="o">};</span>
+<span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+<span class="o">}</span>
+
+<span class="n">案例3</span><span class="err">：</span><span class="n">找某个元素</span> <span class="n">第一次出现的索引位置</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="n">6</span><span class="o">,</span><span class="n">7</span><span class="o">,</span><span class="n">8</span><span class="o">,</span><span class="n">9</span><span class="o">};</span>  <span class="c1">// 找7这个元素第一次出现的索引位置
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="o">-</span><span class="n">1</span><span class="o">;</span>
+
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">7</span><span class="o">==</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]){</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+        <span class="k">break</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">案例4</span><span class="err">：</span> <span class="n">评委打分的题</span><span class="err">。</span>
+
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">6</span><span class="o">];</span>
+<span class="n">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="n">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">;</span><span class="n">i</span><span class="o">++</span> <span class="o">){</span>
+    <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p>​</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+<span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+<span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="n">1</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">;</span><span class="n">i</span><span class="o">++</span> <span class="o">){</span>
+    <span class="n">sum</span> <span class="o">+=</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">max</span><span class="o">){</span>
+        <span class="n">max</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+    <span class="o">}</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">min</span><span class="o">){</span>
+        <span class="n">min</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">((</span><span class="n">sum</span> <span class="o">-</span> <span class="n">max</span> <span class="o">-</span> <span class="n">min</span><span class="o">)</span> <span class="o">/(</span><span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">2</span><span class="o">.</span><span class="na">0</span><span class="o">));</span>
+
+<span class="n">类</span>
+    <span class="n">接口</span>
+    <span class="n">类型转换</span>
+    <span class="n">隐式</span>
+    <span class="n">强制</span>
+    <span class="n">符号</span>
+    <span class="n">基本符号</span>
+    <span class="n">运算符</span>
+
+    <span class="n">语句</span><span class="err">：</span>
+    <span class="n">顺序结构</span>
+    <span class="n">选择结构</span>
+    <span class="k">if</span> <span class="k">switch</span>
+        <span class="n">循环结构</span>
+        <span class="k">for</span> <span class="k">while</span> <span class="n">dowhile</span>
+</code></pre></div><h2 id="方法">方法<a href="#方法" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><strong>作用：提高代码的复用性。（循环也可以提高代码的复用性， 但是他只对局部代码去重复， 方法 可以提高全局的复用度）</strong></p>
+<h3 id="方法使用1-基本使用">方法使用1-基本使用：<a href="#方法使用1-基本使用" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>基本定义格式：
+public static void 方法名(){
+很多代码。
+}</p>
+<pre><code>            public static 写死的。
+            void 代表的是没有返回值的。
+            方法名 ： 标识符  组成大小写字母0-9$_ 不能关键字 不能数字开头   大驼峰 小驼峰 峡谷先锋
+</code></pre>
+<h3 id="注意事项">注意事项：<a href="#注意事项" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">			<span class="n">1</span><span class="err">：</span><span class="n">方法定义了之后</span> <span class="nf">不调用不执行的</span> <span class="o">(</span><span class="n">main方法才是程序的入口</span><span class="err">，</span> <span class="n">我们执行职能执行main方法</span><span class="err">，</span> <span class="n">你要想让自己的方法执行</span><span class="err">，</span><span class="n">就必须要在main方法中被调用</span><span class="o">)</span><span class="n">jaba</span>
+			<span class="n">2</span><span class="err">：</span><span class="n">方法和方法都是独立的</span><span class="err">，</span> <span class="n">不能嵌套定义</span><span class="err">。</span>
+			<span class="n">3</span><span class="err">：</span><span class="n">方法的定义</span> <span class="n">没有先后顺序</span>
+			<span class="n">4</span><span class="err">：</span> <span class="n">main方法调</span>
+</code></pre></div><p>举例：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo3</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">(){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;3&#34;</span><span class="o">);</span>  <span class="c1">// 第三步
+</span><span class="c1"></span><span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;1&#34;</span><span class="o">);</span>  <span class="c1">// 第一步
+</span><span class="c1"></span><span class="n">show</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;结束&#34;</span><span class="o">);</span>  <span class="c1">// 第五步
+</span><span class="c1"></span><span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">show</span><span class="o">(){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;2&#34;</span><span class="o">);</span>  <span class="c1">// 第二步
+</span><span class="c1"></span><span class="n">method</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;4&#34;</span><span class="o">);</span>  <span class="c1">// 第四步
+</span><span class="c1"></span><span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>案例：定义一个方法 ， 判断9这个数 是奇数还是偶数 如果是奇数，就打印奇数， 如果是偶数就打印偶数。</p>
+<pre><code>public class Demo5 {
+					public static void main(String[] args) {
+						judge9JiOu();
+					}
+</code></pre><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//定义一个方法 ， 判断9这个数 是奇数还是偶数 如果是奇数，就打印奇数， 如果是偶数就打印偶数。
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">judge9JiOu</span><span class="o">(){</span>
+    <span class="cm">/*if (9%2==0){
+</span><span class="cm">                                System.out.println(&#34;偶数&#34;);
+</span><span class="cm">                            }else{
+</span><span class="cm">                                System.out.println(&#34;奇数&#34;);
+</span><span class="cm">                            }*/</span>
+
+    <span class="c1">// ifesle 如果否则 这个逻辑结构  和 我们的三元运算符 有点类似。
+</span><span class="c1"></span>
+    <span class="c1">// 条件表达式 ? 表达式1 : 表达式2;
+</span><span class="c1"></span>
+    <span class="c1">//9%2==0?System.out.println(&#34;偶数&#34;) :  System.out.println(&#34;奇数&#34;);   // 表达式不能单独成语句。
+</span><span class="c1"></span>
+    <span class="c1">//int a = 9%2==0? System.out.println(&#34;偶数&#34;) :  System.out.println(&#34;奇数&#34;);
+</span><span class="c1"></span>    <span class="c1">//  表达式1   表达式2  这两个东西 无论多么复杂 最终必须要有值。
+</span><span class="c1"></span>    <span class="cm">/*
+</span><span class="cm">                            int a = 10;
+</span><span class="cm">                            int b = 20;
+</span><span class="cm">                            int max = a&gt;b ? a : b;
+</span><span class="cm">
+</span><span class="cm">                            int max1;
+</span><span class="cm">                            if (a&gt;b){
+</span><span class="cm">                                max1= a;
+</span><span class="cm">                            }else{
+</span><span class="cm">                                max1 = b;
+</span><span class="cm">                            }*/</span>
+    <span class="c1">// 能用三元的地方 一定可以用 ifelse的 ，但是能用ifelse的地方是不一定能用三元的。
+</span><span class="c1"></span>    <span class="c1">// 因为三元表达式， 要求 : 两侧的东西 是必须要有值的。
+</span><span class="c1"></span>    <span class="c1">// 而ifelse  是用{}结构 他里面可以写很多很多的语句 表达很多的内容 不一定非要有值的， 所以ifelse更加灵活。
+</span><span class="c1"></span>
+    <span class="cm">/*System.out.println(&#34;奇数&#34;);
+</span><span class="cm">                            System.out.println(&#34;偶数&#34;);*/</span>
+
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">9</span><span class="o">%</span><span class="n">2</span><span class="o">==</span><span class="n">0</span><span class="o">?</span><span class="s">&#34;偶数&#34;</span><span class="o">:</span><span class="s">&#34;奇数&#34;</span><span class="o">);</span>
+
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h3 id="方法的使用2-参数用法">方法的使用2-参数用法<a href="#方法的使用2-参数用法" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">参数位置</span><span class="err">：</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">方法名字</span><span class="o">(</span><span class="n">数据类型</span> <span class="n">变量名</span><span class="o">,</span> <span class="n">数据类型</span> <span class="n">变量名</span> <span class="o">....){</span>
+<span class="n">很多的语句</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="n">案例演示</span><span class="err">：</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo7</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+<span class="c1">//judge9JiOu();
+</span><span class="c1"></span>
+<span class="n">judgeShuJiOu</span><span class="o">(</span><span class="n">10</span><span class="o">);</span>
+
+<span class="n">judgeShuJiOu</span><span class="o">(</span><span class="n">11</span><span class="o">);</span>
+
+<span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+<span class="n">judgeShuJiOu</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+
+<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">21</span><span class="o">;</span>
+<span class="n">judgeShuJiOu</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
+
+<span class="o">}</span>
+<span class="n">s</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/*public static void judge9JiOu(){
+</span><span class="cm">System.out.println(9%2==0?&#34;偶数&#34;:&#34;奇数&#34;);
+</span><span class="cm">}*/</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">judgeShuJiOu</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">%</span><span class="n">2</span><span class="o">==</span><span class="n">0</span><span class="o">?</span><span class="s">&#34;偶数&#34;</span><span class="o">:</span><span class="s">&#34;奇数&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo9</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+<span class="cm">/*int a= 10;
+</span><span class="cm">System.out.println(a%2==0?&#34;偶数&#34;:&#34;奇数&#34;);*/</span>
+
+<span class="cm">/*int c = 10;
+</span><span class="cm">int d = 30;
+</span><span class="cm">panDuanShuJiOu(c,d);*/</span>
+
+<span class="cm">/*byte c = 10;
+</span><span class="cm">byte d = 20;
+</span><span class="cm">panDuanShuJiOu(c,d);*/</span>
+
+<span class="kt">long</span> <span class="n">c</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="kt">long</span> <span class="n">d</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+<span class="c1">//panDuanShuJiOu(c,d);
+</span><span class="c1"></span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">panDuanShuJiOu</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span><span class="kt">int</span> <span class="n">b</span><span class="o">){</span>  <span class="c1">// 箱子的大小是 4个字节箱子
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">%</span><span class="n">2</span><span class="o">==</span><span class="n">0</span><span class="o">?</span><span class="s">&#34;偶数&#34;</span><span class="o">:</span><span class="s">&#34;奇数&#34;</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">%</span><span class="n">2</span><span class="o">==</span><span class="n">0</span><span class="o">?</span><span class="s">&#34;偶数&#34;</span><span class="o">:</span><span class="s">&#34;奇数&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>​			案例1 : 判断一个年龄 是否成年， 如果成年了 打印可以进入网吧  如果不成年 打印不能进入网吧，成年年龄 也不能写死，  因为每个国家的成年年龄不同的，</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo10</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+<span class="n">judgeAdultAge</span><span class="o">(</span><span class="n">20</span><span class="o">,</span><span class="n">18</span><span class="o">);</span>
+
+<span class="n">judgeAdultAge</span><span class="o">(</span><span class="n">16</span><span class="o">,</span><span class="n">14</span><span class="o">);</span>
+
+<span class="n">judgeAdultAge</span><span class="o">(</span><span class="n">14</span><span class="o">,</span><span class="n">16</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">//判断一个年龄 是否成年， 如果成年了 打印可以进入网吧  如果不成年 打印不能进入网吧，成年年龄 也不能写死，  因为每个国家的成年年龄不同的，
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">judgeAdultAge</span><span class="o">(</span><span class="kt">int</span> <span class="n">age</span><span class="o">,</span> <span class="kt">int</span> <span class="n">adultAge</span> <span class="o">){</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">age</span><span class="o">&gt;=</span> <span class="n">adultAge</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;可以上网吧&#34;</span><span class="o">);</span>
+<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;不能去网吧&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>​			案例2： 写一个方法， 打印 m - n的所有奇数。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo6</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+<span class="n">printJi</span><span class="o">(</span><span class="n">100</span><span class="o">,</span><span class="n">69</span><span class="o">);</span>
+<span class="n">printJi</span><span class="o">(</span><span class="n">69</span><span class="o">,</span><span class="n">100</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">//案例1： 定义一个方法， 打印 m-n之间的 所有的奇数。
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printJi</span><span class="o">(</span><span class="kt">int</span> <span class="n">m</span> <span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">){</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">n</span><span class="o">&lt;</span><span class="n">m</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;您传入的参数 和我要做的事情 有出入&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">m</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">i</span><span class="o">%</span><span class="n">2</span><span class="o">!=</span><span class="n">0</span><span class="o">){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="o">}</span>
+
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h3 id="方法的使用3--返回值">方法的使用3&ndash;返回值：<a href="#方法的使用3--返回值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>​		返回值位置：
+​			public static 数据类型 方法名字(数据类型 变量名, 数据类型 变量名 &hellip;.){
+​				很多的语句;
+​				return 返回值;
+​			}</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">案例1</span><span class="err">：</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo8</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+<span class="n">isEquals</span><span class="o">(</span><span class="n">10</span><span class="o">,</span><span class="n">11</span><span class="o">);</span>  <span class="c1">// 直接调用不接收 其实意义不大
+</span><span class="c1"></span>
+<span class="kt">boolean</span> <span class="n">g</span> <span class="o">=</span> <span class="n">isEquals</span><span class="o">(</span><span class="n">10</span><span class="o">,</span><span class="n">11</span><span class="o">);</span>  <span class="c1">// 调用了之后 我们用一个变量去接收。
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">g</span><span class="o">);</span> <span class="c1">//false
+</span><span class="c1"></span>
+<span class="kt">boolean</span> <span class="n">c</span> <span class="o">=</span> <span class="n">isEquals</span><span class="o">(</span><span class="n">15</span><span class="o">,</span> <span class="n">14</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">isEquals</span><span class="o">(</span><span class="n">20</span><span class="o">,</span><span class="n">20</span><span class="o">));</span>  <span class="c1">// 调用了之后 我直接打印返回的结果。
+</span><span class="c1"></span><span class="o">}</span>
+
+<span class="cm">/*
+</span><span class="cm">两个数是否相同
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isEquals</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">){</span>
+<span class="kt">boolean</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">==</span><span class="n">b</span><span class="o">;</span>
+<span class="k">return</span> <span class="n">c</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div><p>案例2：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo7</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+<span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="n">19</span><span class="o">;</span>
+<span class="c1">//judgeAdult(age,18);
+</span><span class="c1">//boolean b = judgeAdult(age, 18);
+</span><span class="c1">//if (b){
+</span><span class="c1"></span><span class="k">if</span> <span class="o">(</span><span class="n">judgeAdult</span><span class="o">(</span><span class="n">age</span><span class="o">,</span> <span class="n">18</span><span class="o">)){</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;你可以结婚了&#34;</span><span class="o">);</span>
+<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;不能结婚&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">judgeAdult</span><span class="o">(</span><span class="kt">int</span> <span class="n">age</span><span class="o">,</span> <span class="kt">int</span> <span class="n">adultAge</span><span class="o">){</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">age</span> <span class="o">&gt;=</span> <span class="n">adultAge</span><span class="o">){</span>			
+<span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+<span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+<span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">案例3</span><span class="err">：</span> <span class="n">定义一个方法</span><span class="err">，</span> <span class="n">返回三个int数的最大值</span><span class="err">。</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo9</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+<span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">getMax</span><span class="o">(</span><span class="n">20</span><span class="o">,</span> <span class="n">30</span><span class="o">,</span> <span class="n">45</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">max</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">//定义一个方法， 返回三个int数的最大值。
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getMax</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span> <span class="o">,</span> <span class="kt">int</span> <span class="n">c</span><span class="o">){</span>
+<span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">&gt;</span> <span class="n">c</span> <span class="o">?</span> <span class="n">temp</span> <span class="o">:</span> <span class="n">c</span><span class="o">;</span>
+<span class="k">return</span> <span class="n">max</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h3 id="方法的通用格式总结">方法的通用格式总结：<a href="#方法的通用格式总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>​			public static 数据类型 方法名字(数据类型 变量名, 数据类型 变量名 &hellip;.){
+​				很多的语句;
+​				return 返回值;
+​			}</p>
+<p>定义的时候 两个明确：
+参数：如果你定义的这个方法功能， 是需要一些原材料的，这时候你就需要定义参数， 如果不需要原材料就不用写参数
+返回值类型：如果你这个方法，执行结束之后 需要有产品产出，就需要定义返回值， 如果没有 就写void</p>
+<h3 id="方法的注意事项">方法的注意事项：<a href="#方法的注意事项" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>​	<strong>1：方法不能嵌套
+​			2：方法和方法之间是没有先后顺序的。
+​			3：方法不调用不会执行的，  因为我们程序的入口都是main方法。
+​			4：void的方法，说明方法内是不能有返回值的，  但是你是可以写一个 单独的return的。用来强制终止方法。</strong></p>
+<p>​		**return 这个关键字的作用， 两个作用 
+​					第一个：return 强制终止方法的作用。
+​					第二个： return 返回值， 把 值扔给调用者 **</p>
+<p>5：如果一个方法有返回值类型， 那么这个方法 则必须各个逻辑上，都应该有返回值。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">案例1</span><span class="err">：</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getInt</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">){</span>
+<span class="k">if</span><span class="o">(</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">10</span><span class="o">){</span>
+<span class="k">return</span> <span class="n">a</span> <span class="o">;</span>
+<span class="o">}</span>
+<span class="o">}</span> <span class="c1">// 编译
+</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">案例2</span><span class="err">：</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getInt</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">){</span>
+<span class="k">if</span><span class="o">(</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">0</span><span class="o">){</span>
+<span class="k">return</span> <span class="n">a</span> <span class="o">;</span>
+<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+<span class="k">return</span> <span class="n">0</span><span class="o">-</span><span class="n">a</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">}</span> <span class="c1">// 编译正确。 要么进入 if  要么进入else  所以这个方法是肯定会执行return的。
+</span><span class="c1"></span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">案例3</span><span class="err">：</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getInt</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">){</span>
+<span class="k">if</span><span class="o">(</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">0</span><span class="o">){</span>
+<span class="k">return</span> <span class="n">a</span> <span class="o">;</span>
+<span class="o">}</span>
+<span class="k">return</span> <span class="n">0</span><span class="o">-</span><span class="n">a</span><span class="o">;</span> 
+<span class="o">}</span><span class="c1">// 编译正
+</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">
+<span class="n">案例4</span><span class="err">：</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getInt</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">){</span>
+<span class="k">if</span><span class="o">(</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">0</span><span class="o">){</span>
+<span class="k">return</span> <span class="n">a</span> <span class="o">;</span>
+<span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">a</span><span class="o">==</span><span class="n">0</span><span class="o">){</span>
+<span class="k">return</span> <span class="n">0</span><span class="o">;</span>
+<span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">a</span><span class="o">&lt;</span><span class="n">0</span><span class="o">){</span>
+<span class="k">return</span> <span class="n">0</span><span class="o">-</span><span class="n">a</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">}</span>  <span class="c1">// 编译错
+</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">案例5</span><span class="err">：</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getInt</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">){</span>
+<span class="k">if</span><span class="o">(</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">0</span><span class="o">){</span>
+<span class="k">return</span> <span class="n">a</span> <span class="o">;</span>
+<span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">a</span><span class="o">==</span><span class="n">0</span><span class="o">){</span>
+<span class="k">return</span> <span class="n">0</span><span class="o">;</span>
+<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+<span class="k">return</span> <span class="n">0</span><span class="o">-</span><span class="n">a</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">}</span> <span class="c1">// 编译正确：这个结构语句的逻辑是完善的。
+</span></code></pre></div><h3 id="方法的重载">方法的重载：<a href="#方法的重载" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>概念： 同一个类中， 出现了方法名相同 参数列表必须不同  返回值类型无关 这些方法 相互重载。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">
+<span class="n">案例1</span><span class="err">：</span>
+<span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">show</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">){</span>
+
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">show</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">){</span>  <span class="c1">// 方法重复，  方法的返回类型 无所谓
+</span><span class="c1"></span><span class="k">return</span> <span class="n">a</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">案例2</span><span class="err">：</span>
+    <span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">show</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">){</span>
+
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">show</span><span class="o">(</span><span class="kt">double</span> <span class="n">a</span><span class="o">){</span>  <span class="c1">// 重载 类型不同
+</span><span class="c1"></span>    <span class="k">return</span> <span class="n">a</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="o">}</span>
+
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">案例3</span><span class="err">：</span>
+<span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">show</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">){</span>
+
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">show</span><span class="o">(</span><span class="kt">int</span> <span class="n">b</span><span class="o">){</span>  <span class="c1">//报错 方法重复
+</span><span class="c1"></span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">案例3</span><span class="err">：</span>
+<span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">show</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">){</span>
+
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">show</span><span class="o">(</span><span class="kt">int</span> <span class="n">b</span><span class="o">){</span>  <span class="c1">//报错 方法重复
+</span><span class="c1"></span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">
+<span class="n">案例5</span><span class="err">：</span>
+<span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">show</span><span class="o">(</span><span class="kt">double</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">){</span>
+
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">show</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">double</span> <span class="n">b</span><span class="o">){</span>  <span class="c1">// 重载 类型的顺序不同
+</span><span class="c1"></span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>好处：给程序员减轻了记忆的压力。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">
+<span class="n">案例</span><span class="err">：</span> <span class="n">比较两个数是否相同</span> <span class="o">(</span><span class="kt">byte</span> <span class="kt">short</span> <span class="kt">int</span> <span class="kt">long</span><span class="o">)</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo12</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">compare</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">){</span>
+<span class="k">return</span> <span class="n">a</span><span class="o">==</span><span class="n">b</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">compare</span><span class="o">(</span><span class="kt">byte</span> <span class="n">a</span><span class="o">,</span> <span class="kt">byte</span> <span class="n">b</span><span class="o">){</span>
+<span class="k">return</span> <span class="n">a</span><span class="o">==</span><span class="n">b</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">compare</span><span class="o">(</span><span class="kt">long</span> <span class="n">a</span><span class="o">,</span> <span class="kt">long</span> <span class="n">b</span><span class="o">){</span>
+<span class="k">return</span> <span class="n">a</span><span class="o">==</span><span class="n">b</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">compare</span><span class="o">(</span><span class="kt">short</span> <span class="n">a</span><span class="o">,</span> <span class="kt">short</span> <span class="n">b</span><span class="o">){</span>
+<span class="k">return</span> <span class="n">a</span><span class="o">==</span><span class="n">b</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">
+<span class="c1">// 如果单纯为了实现这道题的需求来说。 用下面的方法更简单。
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo14</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+<span class="kt">byte</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+<span class="kt">boolean</span> <span class="n">compare</span> <span class="o">=</span> <span class="n">compare</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">compare</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">compare</span><span class="o">(</span><span class="kt">long</span> <span class="n">lo1</span><span class="o">,</span> <span class="kt">long</span> <span class="n">lo2</span><span class="o">){</span>  <span class="c1">//  面向对象 多态。 
+</span><span class="c1"></span><span class="k">return</span> <span class="n">lo1</span><span class="o">==</span><span class="n">lo2</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">方法参数的传递</span><span class="err">：</span>
+<span class="n">案例1</span><span class="err">：</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo14</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">// 10
+</span><span class="c1"></span><span class="n">change</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">// 10
+</span><span class="c1"></span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">change</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">){</span>   
+<span class="n">a</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">案例6</span><span class="err">：</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo14</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">// 10
+</span><span class="c1"></span><span class="n">a</span> <span class="o">=</span> <span class="n">change</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">// 20
+</span><span class="c1"></span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">change</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">){</span>   
+<span class="n">a</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+<span class="k">return</span> <span class="n">a</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">案例2</span><span class="err">：</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo14</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="n">10</span><span class="o">,</span><span class="n">20</span><span class="o">,</span><span class="n">30</span><span class="o">};</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">1</span><span class="o">]);</span> <span class="c1">// 20
+</span><span class="c1"></span><span class="n">change</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">1</span><span class="o">]);</span> <span class="c1">// 200
+</span><span class="c1"></span><span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">change</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">){</span>   
+<span class="n">arr</span><span class="o">[</span><span class="n">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">200</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">案例5</span><span class="err">：</span>	
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo14</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="n">10</span><span class="o">,</span><span class="n">20</span><span class="o">,</span><span class="n">30</span><span class="o">};</span>  <span class="c1">//0x001
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">1</span><span class="o">]);</span> <span class="c1">// 20
+</span><span class="c1"></span><span class="n">arr</span> <span class="o">=</span> <span class="n">change</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span> <span class="c1">// arr = 0x001
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">1</span><span class="o">]);</span> <span class="c1">// 200
+</span><span class="c1"></span><span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">change</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">){</span>    <span class="c1">//arr = 0x001
+</span><span class="c1"></span><span class="n">arr</span><span class="o">[</span><span class="n">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">200</span><span class="o">;</span>
+<span class="k">return</span> <span class="n">arr</span><span class="o">;</span>  <span class="c1">//0x001
+</span><span class="c1"></span><span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><pre><code>案例3：
+public class Demo14 {
+public static void main(String[] args) {
+int[] arr = {10,20,30};
+System.out.println(arr[1]); // 20
+change(arr);
+System.out.println(arr[1]); // 20
+}
+
+public static void change(int[] arr){   
+arr = new int[]{100,200,300};
+}
+} // 只有引类型 传递到另一个方法里面， 去操作了这个引用类型里面的内容的时候， 才会改变的。
+</code></pre><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">案例4</span><span class="err">：</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo14</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="n">10</span><span class="o">,</span><span class="n">20</span><span class="o">,</span><span class="n">30</span><span class="o">};</span>  <span class="c1">//oo1 
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">1</span><span class="o">]);</span> <span class="c1">// 20
+</span><span class="c1"></span><span class="n">arr</span> <span class="o">=</span> <span class="n">change</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span> <span class="c1">// arr=002
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">1</span><span class="o">]);</span> <span class="c1">// 200
+</span><span class="c1"></span><span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">change</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">){</span>   <span class="c1">//001 
+</span><span class="c1"></span><span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">100</span><span class="o">,</span><span class="n">200</span><span class="o">,</span><span class="n">300</span><span class="o">};</span>  <span class="c1">//002
+</span><span class="c1"></span><span class="k">return</span> <span class="n">arr</span><span class="o">;</span> <span class="c1">//002
+</span><span class="c1"></span><span class="o">}</span>
+<span class="o">}</span> 
+</code></pre></div><p><strong>结论：
+是不要片面理解 ，要学会自己分析。</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">练习1</span><span class="err">：</span> <span class="n">定义一个方法</span> <span class="n">传入一个int</span><span class="o">[]</span> <span class="n">遍历数组</span><span class="err">。</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo19</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="n">6</span><span class="o">,</span><span class="n">8</span><span class="o">,</span><span class="n">3</span><span class="o">,</span><span class="n">5</span><span class="o">};</span>
+<span class="n">printArr</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">//练习1： 定义一个方法 传入一个int[] 遍历数组。
+</span><span class="c1"></span><span class="cm">/*
+</span><span class="cm">参数： int[] arr
+</span><span class="cm">返回值类型： void
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printArr</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">){</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]+</span><span class="s">&#34; &#34;</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">练习2</span><span class="err">：</span> <span class="n">定义一个方法</span> <span class="n">传入一个int</span><span class="o">[]</span> <span class="n">返回数组的最大值</span><span class="err">。</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo20</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="n">5</span><span class="o">,</span><span class="n">7</span><span class="o">,</span><span class="n">9</span><span class="o">,</span><span class="n">3</span><span class="o">,</span><span class="n">2</span><span class="o">};</span>
+<span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">getMax</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">max</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// 定义一个方法 传入一个int[] 返回数组的最大值。
+</span><span class="c1"></span><span class="cm">/*
+</span><span class="cm">参数： int[] arr
+</span><span class="cm">返回值类型： int
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getMax</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">){</span>
+<span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]&gt;</span> <span class="n">max</span><span class="o">){</span>
+<span class="n">max</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+<span class="o">}</span>
+<span class="o">}</span>
+<span class="k">return</span> <span class="n">max</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">练习3</span><span class="err">：</span> <span class="n">定义一个方法</span> <span class="n">传入一个int</span><span class="o">[]</span> <span class="n">返回数组的</span> <span class="n">最大和最小值</span><span class="err">。</span>	
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo20</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="n">5</span><span class="o">,</span><span class="n">7</span><span class="o">,</span><span class="n">9</span><span class="o">,</span><span class="n">3</span><span class="o">,</span><span class="n">2</span><span class="o">};</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">brr</span> <span class="o">=</span> <span class="n">getMaxAndMin</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">brr</span><span class="o">[</span><span class="n">0</span><span class="o">]);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">brr</span><span class="o">[</span><span class="n">1</span><span class="o">]);</span>
+<span class="o">}</span>
+
+<span class="c1">// 定义一个方法 传入一个int[] 返回数组的最大值。
+</span><span class="c1"></span><span class="cm">/*
+</span><span class="cm">参数： int[] arr
+</span><span class="cm">返回值类型： int
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">getMaxAndMin</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">){</span>
+<span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+<span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]&gt;</span> <span class="n">max</span><span class="o">){</span>
+<span class="n">max</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+<span class="o">}</span>
+
+<span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">min</span><span class="o">){</span>
+<span class="n">min</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+<span class="o">}</span>
+<span class="o">}</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">arr1</span> <span class="o">=</span> <span class="o">{</span><span class="n">max</span><span class="o">,</span> <span class="n">min</span><span class="o">};</span>
+<span class="k">return</span> <span class="n">arr1</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>Demon</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1660 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-08-24 08:00 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://demon-github1996.github.io/posts/day06/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Day06  Debug工具和进制</span>
+			</a>
+			<a class="prev-post" href="https://demon-github1996.github.io/posts/day04/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Day04 IDEA 和数组</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://demon-github1996.github.io">郭  栋</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://demon-github1996.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://demon-github1996.github.io/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

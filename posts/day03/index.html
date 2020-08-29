@@ -610,21 +610,21 @@ Scanner sc = new Scanner(System.in);</p>
 <span class="o">}</span>
 <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">);</span>
 </code></pre></div><h3 id="循环中断语句">循环中断语句：<a href="#循环中断语句" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="k">continue</span> <span class="o">:</span> <span class="n">只能写在循环中</span><span class="err">。</span>
-        <span class="n">跳过本次循环</span><span class="err">，</span> <span class="n">后续的循环继续</span><span class="err">。</span>
-        <span class="n">continue的正确用法</span><span class="err">：</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">10</span> <span class="o">;</span><span class="n">i</span><span class="o">++</span> <span class="o">){</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span><span class="n">4</span><span class="o">){</span>
-                <span class="k">continue</span><span class="o">;</span>
-            <span class="o">}</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>	  <span class="c1">// 4 就不打印了。
-</span><span class="c1"></span>        <span class="o">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">continue的错误用法</span><span class="err">：</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">continue</span> <span class="o">:</span> <span class="n">只能写在循环中</span><span class="err">。</span>
+    <span class="n">跳过本次循环</span><span class="err">，</span> <span class="n">后续的循环继续</span><span class="err">。</span>
+    <span class="n">continue的正确用法</span><span class="err">：</span>
     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">10</span> <span class="o">;</span><span class="n">i</span><span class="o">++</span> <span class="o">){</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>  <span class="c1">// 依然会打印 4
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span><span class="n">4</span><span class="o">){</span>
-    <span class="k">continue</span><span class="o">;</span>
-    <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span><span class="n">4</span><span class="o">){</span>
+            <span class="k">continue</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>	  <span class="c1">// 4 就不打印了。
+</span><span class="c1"></span>    <span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">continue的错误用法</span><span class="err">：</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">10</span> <span class="o">;</span><span class="n">i</span><span class="o">++</span> <span class="o">){</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>  <span class="c1">// 依然会打印 4
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span><span class="n">4</span><span class="o">){</span>
+            <span class="k">continue</span><span class="o">;</span>
+        <span class="o">}</span>
     <span class="o">}</span>
 </code></pre></div><p>break : 只能写在switch和循环中。终止循环。 不再循环了。</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">18</span> <span class="o">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
@@ -727,6 +727,9 @@ Scanner sc = new Scanner(System.in);</p>
 			</footer>
 		</article>
 		<div class="post-nav thin">
+			<a class="next-post" href="https://demon-github1996.github.io/posts/day04/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Day04 IDEA 和数组</span>
+			</a>
 			<a class="prev-post" href="https://demon-github1996.github.io/posts/day02/">
 				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Day2 运算符与逻辑语句</span>
 			</a>
