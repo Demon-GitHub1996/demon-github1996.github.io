@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Demon的博客</title>
+    <title>Demon&#39;s Blog</title>
     <link>https://demon-github1996.github.io/</link>
-    <description>Recent content on Demon的博客</description>
+    <description>Recent content on Demon&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 28 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <language>zh</language>
+    <lastBuildDate>Thu, 29 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://demon-github1996.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Day08 Api</title>
+      <link>https://demon-github1996.github.io/posts/day08/</link>
+      <pubDate>Thu, 29 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day08/</guid>
+      <description>Day08 Api 面向对象： 什么是面向对象 类和对象 内存图 一个 两个 两一个指向一个的内存图 private this 构造方法
+面向对象：指挥对象做事情1：自己造一个 ： 自己创建类 2：自己家有一个 ： jre核心类库里面提供了很多的 类3：买来一个 ： 去其他的软件公司 购买这些代码。 jre核心类库： 之前学过的类：
+	Scanner ： Scanner sc = new Scanner(System.in);int a = sc.nextInt();​
+ Random :Random r = new Random();int a = r.nextInt(100); API： 意思指的是 jre提供的这些类： 说明文档： 案例：生成一个随机数。（前提 你是小白 不知道Random这个类） 1：在 说明书中 去搜 “随机数”的英文 ， “随机数”因为就是random 。 这种不准确， 因为一个汉语 可以有多个英文单词对应着。 2：或者 去百度 “java生成随机数” 百度上就会告诉你 使用 Random类，但是你并不懂Random是什么，这时候你再去查说明书。</description>
+    </item>
     
     <item>
       <title>Day7  面向对象</title>

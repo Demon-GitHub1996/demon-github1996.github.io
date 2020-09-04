@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Day08 Api | Demon&#39;s Blog</title>
+
+    
+
+
+
+<meta name="author" content="Demon" />
+<meta name="description" content="Day08 Api 面向对象： 什么是面向对象 类和对象 内存图 一个 两个 两一个指向一个的内存图 private this 构造方法
+面向对象：指挥对象做事情1：自己造一个 ： 自己创建类 2：自己家有一个 ： jre核心类库里面提供了很多的 类3：买来一个 ： 去其他的软件公司 购买这些代码。 jre核心类库： 之前学过的类：
+	Scanner ： Scanner sc = new Scanner(System.in);int a = sc.nextInt();​
+ Random :Random r = new Random();int a = r.nextInt(100); API： 意思指的是 jre提供的这些类： 说明文档： 案例：生成一个随机数。（前提 你是小白 不知道Random这个类） 1：在 说明书中 去搜 “随机数”的英文 ， “随机数”因为就是random 。 这种不准确， 因为一个汉语 可以有多个英文单词对应着。 2：或者 去百度 “java生成随机数” 百度上就会告诉你 使用 Random类，但是你并不懂Random是什么，这时候你再去查说明书。" />
+
+
+
+<meta name="generator" content="Hugo 0.74.3" />
+
+<link rel="canonical" href="https://demon-github1996.github.io/posts/day08/" />
+
+
+<meta property="og:title" content="Day08 Api" />
+<meta property="og:description" content="Day08 Api 面向对象： 什么是面向对象 类和对象 内存图 一个 两个 两一个指向一个的内存图 private this 构造方法
+面向对象：指挥对象做事情1：自己造一个 ： 自己创建类 2：自己家有一个 ： jre核心类库里面提供了很多的 类3：买来一个 ： 去其他的软件公司 购买这些代码。 jre核心类库： 之前学过的类：
+	Scanner ： Scanner sc = new Scanner(System.in);int a = sc.nextInt();​
+ Random :Random r = new Random();int a = r.nextInt(100); API： 意思指的是 jre提供的这些类： 说明文档： 案例：生成一个随机数。（前提 你是小白 不知道Random这个类） 1：在 说明书中 去搜 “随机数”的英文 ， “随机数”因为就是random 。 这种不准确， 因为一个汉语 可以有多个英文单词对应着。 2：或者 去百度 “java生成随机数” 百度上就会告诉你 使用 Random类，但是你并不懂Random是什么，这时候你再去查说明书。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://demon-github1996.github.io/posts/day08/" />
+<meta property="article:published_time" content="2019-08-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-08-29T00:00:00+00:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Day08 Api"/>
+<meta name="twitter:description" content="Day08 Api 面向对象： 什么是面向对象 类和对象 内存图 一个 两个 两一个指向一个的内存图 private this 构造方法
+面向对象：指挥对象做事情1：自己造一个 ： 自己创建类 2：自己家有一个 ： jre核心类库里面提供了很多的 类3：买来一个 ： 去其他的软件公司 购买这些代码。 jre核心类库： 之前学过的类：
+	Scanner ： Scanner sc = new Scanner(System.in);int a = sc.nextInt();​
+ Random :Random r = new Random();int a = r.nextInt(100); API： 意思指的是 jre提供的这些类： 说明文档： 案例：生成一个随机数。（前提 你是小白 不知道Random这个类） 1：在 说明书中 去搜 “随机数”的英文 ， “随机数”因为就是random 。 这种不准确， 因为一个汉语 可以有多个英文单词对应着。 2：或者 去百度 “java生成随机数” 百度上就会告诉你 使用 Random类，但是你并不懂Random是什么，这时候你再去查说明书。"/>
+
+
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
+
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
+
+
+    
+<link rel="stylesheet" href="/css/github-markdown.css" />
+
+
+
+
+  </head>
+
+  
+  <body style="background: white;">
+  
+    
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/demon-github1996.github.io'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single">
+
+    <section class="ui top attached segment" id="dream-save-post-as-img">
+      <header style="margin-top: 0 !important;">
+        <h1 class="ui large header">
+          Day08 Api
+          <div class="sub header">
+            @
+            
+              
+                Demon
+              
+            
+            · Thursday, Aug 29, 2019
+            · 8 分钟阅读
+            · 更新于 Aug 29, 2019
+          </div>
+        </h1>
+      </header>
+
+      
+        <img class="ui image" style="margin-top: 2rem;" src="" />
+      
+
+      <article style="margin-top: 2rem;"><h1 id="day08-api">Day08 Api</h1>
+<p>面向对象：
+什么是面向对象
+类和对象
+内存图 一个 两个 两一个指向一个的内存图
+private
+this 
+构造方法</p>
+<pre><code>面向对象：指挥对象做事情
+    1：自己造一个  ： 自己创建类 
+    2：自己家有一个 ： jre核心类库里面提供了很多的 类
+    3：买来一个 ： 去其他的软件公司 购买这些代码。
+</code></pre>
+<h1 id="jre核心类库">jre核心类库：</h1>
+<p>之前学过的类：</p>
+<pre><code>	Scanner ： 
+			Scanner sc = new Scanner(System.in);
+			int a = sc.nextInt();
+</code></pre><p>​</p>
+<pre><code>    Random :
+        Random r = new Random();
+        int a = r.nextInt(100);
+</code></pre>
+<h1 id="api-意思指的是-jre提供的这些类">API： 意思指的是 jre提供的这些类：</h1>
+<p>说明文档：
+案例：生成一个随机数。（前提 你是小白 不知道Random这个类）
+1：在 说明书中 去搜 “随机数”的英文 ， “随机数”因为就是random 。  这种不准确， 因为一个汉语 可以有多个英文单词对应着。
+2：或者 去百度 “java生成随机数”   百度上就会告诉你 使用 Random类，但是你并不懂Random是什么，这时候你再去查说明书。</p>
+<p>​				包： jre提供的核心类库里面的类， 只要是 java.lang包下的类， 都不需要导包。
+​					其他包下的类 就必须要导包。  import
+​				
+​				查看类的解释说明（术语太多 有的时候看不懂）
+​				看构造方法。
+​				再看具体方法。</p>
+<h2 id="自学scanner的其他方法">自学Scanner的其他方法：</h2>
+<pre><code>Scanner sc = new Scanner(System.in);
+String s = sc.nextLine(); // 键盘录入字符串
+
+bug : Scanner的一个bug
+先使用nextInt录入数字 再用nextLine录入字符串， 就会出现nextLine 直接跳过的现象。
+Scanner sc = new Scanner(System.in);
+int a = sc.nextInt();
+String s = sc.nextLine();  // 直接跳过。不让你录入了。
+
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA">
+<span style="color:#75715e">// 有同学说 很好解决啊， 你可以先nextLine录入字符串 后 使用nextInt录入数字 ，不就解决了吗？
+</span><span style="color:#75715e">// 您太天真了 太烂漫了。
+</span><span style="color:#75715e">// 如果你遇到下面的情况， 请问 你的先后顺序能解决吗？？
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i<span style="color:#f92672">&lt;</span>5<span style="color:#f92672">;</span> i<span style="color:#f92672">++){</span>
+String s <span style="color:#f92672">=</span> sc<span style="color:#f92672">.</span><span style="color:#a6e22e">nextLine</span><span style="color:#f92672">();</span>
+<span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> sc<span style="color:#f92672">.</span><span style="color:#a6e22e">nextInt</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">/*
+</span><span style="color:#75715e">String s = sc.nextLine();
+</span><span style="color:#75715e">int a = sc.nextInt();
+</span><span style="color:#75715e">String s = sc.nextLine();
+</span><span style="color:#75715e">int a = sc.nextInt();
+</span><span style="color:#75715e">String s = sc.nextLine();
+</span><span style="color:#75715e">int a = sc.nextInt();
+</span><span style="color:#75715e">String s = sc.nextLine();
+</span><span style="color:#75715e">int a = sc.nextInt();
+</span><span style="color:#75715e">String s = sc.nextLine();
+</span><span style="color:#75715e">int a = sc.nextInt();
+</span><span style="color:#75715e">*/</span>
+</code></pre></div><h3 id="解决方案1">解决方案1：</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo</span> <span style="color:#f92672">{</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">){</span>
+Scanner sc <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner<span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">in</span><span style="color:#f92672">);</span>
+<span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> sc<span style="color:#f92672">.</span><span style="color:#a6e22e">nextInt</span><span style="color:#f92672">();</span>
+String s <span style="color:#f92672">=</span> sc<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span> <span style="color:#75715e">// 第一种解决方案  用next 代替nextLine。
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 但是缺点： next 只能接收空格之前的数据。 空格之后的你就没有办法接收了。
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="解决方案2">解决方案2</h3>
+<pre><code>class Demo {
+public static void main(String[] args){
+Scanner sc = new Scanner(System.in);
+int a = sc.nextInt();
+Scanner sc1 = new Scanner(System.in);// 第二种解决方案  重新创建Scanner对象 ，使用新的Scanner对象调用nextLine方法就可以了。。
+String s = sc1.nextLine();  
+
+// 但是缺点： 浪费空间。。
+}
+}
+</code></pre><h1 id="string-">String ：</h1>
+<h2 id="string-的特点">String 的特点：</h2>
+<p><strong>字符串是常量
+常量：字面值常量 (数据 是可以通过键盘直接写出来。)</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA">
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>10<span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">5</span><span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>  <span style="color:#75715e">// null是空常量
+</span><span style="color:#75715e"></span>
+字面值常量<span style="color:#960050;background-color:#1e0010">：</span>基本数据
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Student</span> <span style="color:#f92672">{</span>
+<span style="color:#66d9ef">int</span> age <span style="color:#f92672">;</span>
+String name<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Student</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> age<span style="color:#f92672">,</span> String name<span style="color:#f92672">){</span>
+<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA"><span style="color:#75715e">// Student s = &#34;张三&#34;;  // 不能
+</span><span style="color:#75715e"></span>Student s <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">(</span>10<span style="color:#f92672">,</span><span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]{</span>1<span style="color:#f92672">,</span>2<span style="color:#f92672">,</span>3<span style="color:#f92672">};</span>
+
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>10<span style="color:#f92672">);</span>
+<span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span>
+
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">);</span>
+String s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">;</span>
+</code></pre></div><p>​			发现一个问题： 综合类型(引用类型)的数据 都是由基本数据组成的。
+​				唯独有一个例外  String  ， 
+​				String 是一个引用类型。
+​					数据类型
+​						基本类型
+​						引用
+​							数组
+​							类： String</p>
+<pre><code>所以只有String 这个例外， 是 直接写一个 &quot;abc&quot; 字符串常量 他就是一个String的对象
+                String s = &quot;abc&quot;;
+</code></pre>
+<p><strong>字面值常量 : 数据不可改变</strong></p>
+<pre><code>System.out.println(10);
+System.out.println(20);
+int a = 10;
+a = 20;
+
+System.out.println(&quot;abc&quot;);
+System.out.println(&quot;bcd&quot;);
+String s = &quot;abc&quot;;
+s = &quot;bcd&quot;;
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA"><span style="color:#f92672">==</span> <span style="color:#f92672">:</span>比较两侧的值是否相等
+基本类型<span style="color:#960050;background-color:#1e0010">：</span>比较的是值
+<span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>a<span style="color:#f92672">==</span>b<span style="color:#f92672">);</span> <span style="color:#75715e">//true
+</span><span style="color:#75715e"></span>
+引用类型比较的是地址值<span style="color:#960050;background-color:#1e0010">：</span>
+Student stu <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">(</span>10<span style="color:#f92672">);</span>
+Student stu1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">(</span>10<span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>stu1 <span style="color:#f92672">==</span> stu<span style="color:#f92672">);</span> <span style="color:#75715e">//false    引用类型的比变量 比较，  比较的是地址值，  和对象里面的内容无关。
+</span></code></pre></div><h2 id="字符串的面试题">字符串的面试题：</h2>
+<pre><code>String s1 = &quot;abc&quot;;  // &quot;abc&quot;是在字符串常量池中的
+String s2 = &quot;abc&quot;; // 常量有这样的特点， 当你再写一个 相同的字符串常量的时候， 就会第一次写常量的那个地址 直接赋值过来
+System.out.println(s1==s2); // true
+System.out.println(s1.equals(s2)); //true
+
+String s3 = new String(&quot;abc&quot;);
+System.out.println(s1== s3); // false
+System.out.println(s1.equals(s3)); // true 
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA"><span style="color:#75715e">/*
+</span><span style="color:#75715e">byte a = 10; // 10明明是int的数 为什么可以放进去呢  是因为 常量优化机制。
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">int c = 10;
+</span><span style="color:#75715e">//byte b = c; //编译报错。
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">byte d = 10+20; // 正确的  因为常量相加， 等翻译为class文件之后， class文件里面的这句话 就成为了 byte d = 30; 
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">byte e = 20;
+</span><span style="color:#75715e">//byte f = 10+e; // 编译报错
+</span><span style="color:#75715e">*/</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA">
+String s4 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ab&#34;</span> <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;c&#34;</span><span style="color:#f92672">;</span>  <span style="color:#75715e">// 正确的  以为你常量进行相加 等翻译为class文件之后 这句话 就变成了 String s4 = &#34;abc&#34;;
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s1 <span style="color:#f92672">==</span> s4<span style="color:#f92672">);</span> <span style="color:#75715e">// true
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s1<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>s4<span style="color:#f92672">));</span><span style="color:#75715e">//true
+</span><span style="color:#75715e"></span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA">String s5 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ab&#34;</span><span style="color:#f92672">;</span>
+String s6 <span style="color:#f92672">=</span> s5<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;c&#34;</span><span style="color:#f92672">;</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s1 <span style="color:#f92672">==</span> s6<span style="color:#f92672">);</span> <span style="color:#75715e">//false
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s1<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>s6<span style="color:#f92672">));</span> <span style="color:#75715e">//true 		
+</span></code></pre></div><h2 id="string-的构造方法">String 的构造方法：</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA">String s <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">();</span> <span style="color:#75715e">//  无参数构造方法   
+</span><span style="color:#75715e"></span>String s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">;</span>   
+String str <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+
+String s2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">);</span> 
+
+<span style="color:#66d9ef">char</span><span style="color:#f92672">[]</span> chs <span style="color:#f92672">=</span> <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#39;b&#39;</span><span style="color:#f92672">};</span>
+String s3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">(</span>chs<span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s3<span style="color:#f92672">);</span> <span style="color:#75715e">// ab
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> bys <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>97<span style="color:#f92672">,</span>98<span style="color:#f92672">}</span>
+String s4 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">(</span>bys<span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s4<span style="color:#f92672">);</span> <span style="color:#75715e">// ab
+</span><span style="color:#75715e"></span>
+String s5 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">;</span>
+
+</code></pre></div><h2 id="string-的成员方法">String 的成员方法：</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA"><span style="color:#75715e">//public char charAt(int index)   返回index位置上的 那个字符。
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">//char c = charAt(10);  //不能这么调用
+</span><span style="color:#75715e"></span><span style="color:#75715e">/*
+</span><span style="color:#75715e">class Student{
+</span><span style="color:#75715e">public void method(){}
+</span><span style="color:#75715e">}
+</span><span style="color:#75715e">*/</span>
+<span style="color:#75715e">//method();   //不能这么调用
+</span><span style="color:#75715e">//Student.method(); //不能这么调用
+</span><span style="color:#75715e">//Student s = new Student();
+</span><span style="color:#75715e">//s.method();  //正确
+</span><span style="color:#75715e"></span>
+String s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;yur&#34;</span><span style="color:#f92672">;</span>
+<span style="color:#66d9ef">char</span> c<span style="color:#f92672">=</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">charAt</span><span style="color:#f92672">(</span>2<span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c<span style="color:#f92672">);</span>
+
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA"><span style="color:#75715e">//public boolean equals(String str); 调用equals的字符串 和 参数上的字符  比较字符串里面的内容， 如果内容相同，则返回true 如果内容不同则返回false
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">boolean</span> ury <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;yur&#34;</span><span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>ury<span style="color:#f92672">);</span>
+
+<span style="color:#75715e">//public boolean equalsIgnoreCase(String str);调用equalsIgnoreCase的字符串 和 参数上的字符  比较字符串里面的内容()不区分大小写， 如果内容相同，则返回true 如果内容不同则返回false
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">boolean</span> yuR <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span> <span style="color:#a6e22e">equalsIgnoreCase</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;YuR&#34;</span><span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>yuR<span style="color:#f92672">);</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA"><span style="color:#75715e">//public int length();
+</span><span style="color:#75715e"></span>String s1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;abcdefg&#34;</span><span style="color:#f92672">;</span>
+<span style="color:#66d9ef">int</span> length <span style="color:#f92672">=</span> s1<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">();</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>length<span style="color:#f92672">);</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//public char[] toCharArray();   把字符串里面的每个字符拆开 放到一个字符数组中 并返回。
+</span><span style="color:#75715e"></span>String s2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bcdef&#34;</span><span style="color:#f92672">;</span>
+<span style="color:#66d9ef">char</span><span style="color:#f92672">[]</span> chars <span style="color:#f92672">=</span> s2<span style="color:#f92672">.</span><span style="color:#a6e22e">toCharArray</span><span style="color:#f92672">();</span>
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> chars<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>chars<span style="color:#f92672">[</span>i<span style="color:#f92672">]+</span><span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//public String substring(int start); // 从字符串的start这个索引开始 截取到最后  返回成新的字符串。
+</span><span style="color:#75715e"></span>String s3 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;heima&#34;</span><span style="color:#f92672">;</span>
+String substring <span style="color:#f92672">=</span> s3<span style="color:#f92672">.</span><span style="color:#a6e22e">substring</span><span style="color:#f92672">(</span>2<span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s3<span style="color:#f92672">);</span> <span style="color:#75715e">//heima
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>substring<span style="color:#f92672">);</span> <span style="color:#75715e">//ima
+</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA">
+<span style="color:#75715e">//public String substring(int start,int end); // 从字符串的start这个索引开始 截取到end的索引  返回成新的字符串。
+</span><span style="color:#75715e"></span>String s4 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;heima&#34;</span><span style="color:#f92672">;</span>
+String sub <span style="color:#f92672">=</span> s3<span style="color:#f92672">.</span><span style="color:#a6e22e">substring</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span>2<span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s4<span style="color:#f92672">);</span> <span style="color:#75715e">//heima
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>sub<span style="color:#f92672">);</span> <span style="color:#75715e">//he
+</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA"><span style="color:#75715e">//public String replaceAll(String old , String newStr); 字符串中 用 newStr 这个串  去替换 字符串中 所有old的小串。
+</span><span style="color:#75715e">//public String replace(CharSequence old , CharSequence newStr); // 字符串中 用 newStr 这个串  去替换 字符串中 所有old的小串。
+</span><span style="color:#75715e">//	这个方法 和replaceAll的区别在于， replaceAll 只能传字符串， 而这个方法可以传字符串也可以传字符。
+</span><span style="color:#75715e"></span>String s5 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;abcdefgbcdefbchah&#34;</span><span style="color:#f92672">;</span>
+String s6 <span style="color:#f92672">=</span> s5<span style="color:#f92672">.</span><span style="color:#a6e22e">replaceAll</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;bc&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;$$&#34;</span><span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s6<span style="color:#f92672">);</span> <span style="color:#75715e">//a$$defg$$def$$hah
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s5<span style="color:#f92672">);</span> <span style="color:#75715e">//abcdefgbcdefbchah
+</span><span style="color:#75715e"></span>String s7 <span style="color:#f92672">=</span> s5<span style="color:#f92672">.</span><span style="color:#a6e22e">replace</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#39;b&#39;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#39;@&#39;</span><span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s7<span style="color:#f92672">);</span> <span style="color:#75715e">//a@cdefg@cdef@chah
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s5<span style="color:#f92672">);</span> <span style="color:#75715e">//abcdefgbcdefbchah
+</span><span style="color:#75715e"></span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA"><span style="color:#75715e">//public String replaceFirst(String old , String newStr); 字符串中 用 newStr 这个串  去替换 字符串中 第一个old的小串。
+</span><span style="color:#75715e"></span>String s8<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;abcbcd&#34;</span><span style="color:#f92672">;</span>
+String s9 <span style="color:#f92672">=</span> s8<span style="color:#f92672">.</span><span style="color:#a6e22e">replaceFirst</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;bc&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;$$&#34;</span><span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s9<span style="color:#f92672">);</span> <span style="color:#75715e">//a$$bcd
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s8<span style="color:#f92672">);</span> <span style="color:#75715e">//abcbcd
+</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA">
+<span style="color:#75715e">//public String[] split(String regex); // 根据regex 这个小串 把大串切割出来。
+</span><span style="color:#75715e"></span>String s10<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ab,cd,ef&#34;</span><span style="color:#f92672">;</span>
+String<span style="color:#f92672">[]</span> srr <span style="color:#f92672">=</span> s10<span style="color:#f92672">.</span><span style="color:#a6e22e">split</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s10<span style="color:#f92672">);</span> <span style="color:#75715e">//ab,cd,ef
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>srr<span style="color:#f92672">[</span>0<span style="color:#f92672">]);</span> <span style="color:#75715e">//ab
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>srr<span style="color:#f92672">[</span>1<span style="color:#f92672">]);</span> <span style="color:#75715e">//cd
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>srr<span style="color:#f92672">[</span>2<span style="color:#f92672">]);</span> <span style="color:#75715e">//ef
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>srr<span style="color:#f92672">[</span>3<span style="color:#f92672">]);</span> <span style="color:#75715e">//索引越界异常
+</span></code></pre></div><h3 id="案例1">案例1：</h3>
+<p>​			程序中 有两个字符串  String username = &ldquo;admin&rdquo;;   String password = &ldquo;admin&rdquo;;
+​			这两个字符串 作为你已经注册好的用户名和密码。</p>
+<p>​		请您键盘录入 两个字符串， 分别作为 的登录的 用户名和密码。 
+​		去和你已经注册好的的那两个用户名和密码 去比较，   都相同就登录成功。  提示你 登录成功， 可以玩猜数字小游戏了。 
+​		如果有不同的 就提示你 错误 重新录入，  只有三次错误的机会，  3次都错了 程序就结束了。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA">
+<span style="color:#75715e">// 1. 已知用户名和密码，定义两个字符串表示即可
+</span><span style="color:#75715e"></span>String username <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;admin&#34;</span><span style="color:#f92672">;</span>
+String password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;admin&#34;</span><span style="color:#f92672">;</span>
+<span style="color:#75715e">// 2. 键盘录入要登录的用户名和密码，用 Scanner 实现
+</span><span style="color:#75715e"></span>Scanner sc <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner<span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">in</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">// 4. 用循环实现多次机会，这里的次数明确，采用for循环实现
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;=</span> 3<span style="color:#f92672">;</span> i<span style="color:#f92672">++){</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;请输入用户名:&#34;</span><span style="color:#f92672">);</span>
+String scUsername <span style="color:#f92672">=</span> sc<span style="color:#f92672">.</span><span style="color:#a6e22e">nextLine</span><span style="color:#f92672">();</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;请输入密码:&#34;</span><span style="color:#f92672">);</span>
+String scPassword <span style="color:#f92672">=</span> sc<span style="color:#f92672">.</span><span style="color:#a6e22e">nextLine</span><span style="color:#f92672">();</span>
+<span style="color:#75715e">// 3. 拿键盘录入的用户名、密码和已知的用户名、密码进行比较，给出相应的提示。
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>username<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>scUsername<span style="color:#f92672">)</span> <span style="color:#f92672">&amp;&amp;</span> password<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>scPassword<span style="color:#f92672">)){</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;登录成功&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">// 调用猜数字小游戏的方法。
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span><span style="color:#66d9ef">else</span><span style="color:#f92672">{</span>
+<span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>i <span style="color:#f92672">==</span> 3<span style="color:#f92672">){</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;您的登录次数已达到今日上限, 请明天再来&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span><span style="color:#66d9ef">else</span><span style="color:#f92672">{</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;登录失败,您还剩余&#34;</span> <span style="color:#f92672">+</span> <span style="color:#f92672">(</span>3<span style="color:#f92672">-</span>i<span style="color:#f92672">)</span> <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;次机会&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="案例2">案例2：</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA">键盘录入一个字符串  然后 里面的字符 分着打印出来 <span style="color:#960050;background-color:#1e0010">（</span>遍历字符串<span style="color:#960050;background-color:#1e0010">）。</span>
+String s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;abcde&#34;</span><span style="color:#f92672">;</span>
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">();</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">.</span><span style="color:#a6e22e">charAt</span><span style="color:#f92672">(</span>i<span style="color:#f92672">));</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">char</span><span style="color:#f92672">[]</span> chars <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">toCharArray</span><span style="color:#f92672">();</span>
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> chars<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>chars<span style="color:#f92672">[</span>i<span style="color:#f92672">]);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="案例3">案例3：</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA">有这样一个字符串<span style="color:#f92672">(</span>也可以键盘录入<span style="color:#f92672">)</span>  String s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;HJHKJHJHkhgjhgjhgjhgJGGUYGUYTGUY565765767687$^%$%$%$^%&amp;97u98&#34;</span>
+请统计 大写字符有多少个  小写字母有多少个 数字字母有多少个   其他字符有多少个<span style="color:#960050;background-color:#1e0010">。</span>
+String s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;HJHKJHJHkhgjhgjhgjhgJGGUYGUYTGUY565765767687$^%$%$%$^%&amp;97u98&#34;</span>
+<span style="color:#66d9ef">int</span> bigCount <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">int</span> smallCount <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">int</span> numCount <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">int</span> elseCount <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">();</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+<span style="color:#66d9ef">char</span> c <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">charAt</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>c<span style="color:#f92672">&gt;=</span><span style="color:#e6db74">&#39;A&#39;</span><span style="color:#f92672">&amp;&amp;</span>c<span style="color:#f92672">&lt;=</span><span style="color:#e6db74">&#39;Z&#39;</span><span style="color:#f92672">){</span>  <span style="color:#75715e">// if (c&gt;=65 &amp;&amp; c&lt;= 65+25)   // 为什么字符可以和字符比较？？ 用们之前学过的内容推导
+</span><span style="color:#75715e">//  70&gt;68
+</span><span style="color:#75715e">//  比int小的数据进行运算的时候 会双双提升为 int类型再运算
+</span><span style="color:#75715e">//  比较运算是运算把
+</span><span style="color:#75715e">//  c &gt;= &#39;A&#39;
+</span><span style="color:#75715e">//  数 &gt;=65 
+</span><span style="color:#75715e"></span>bigCount<span style="color:#f92672">++;</span>
+<span style="color:#f92672">}</span><span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>c<span style="color:#f92672">&gt;=</span><span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">&amp;&amp;</span>c<span style="color:#f92672">&lt;=</span><span style="color:#e6db74">&#39;z&#39;</span><span style="color:#f92672">){</span>
+smallCount<span style="color:#f92672">++;</span>
+<span style="color:#f92672">}</span><span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>c<span style="color:#f92672">&gt;=</span><span style="color:#e6db74">&#39;0&#39;</span><span style="color:#f92672">&amp;&amp;</span>c<span style="color:#f92672">&lt;=</span><span style="color:#e6db74">&#39;9&#39;</span><span style="color:#f92672">){</span>
+numCount<span style="color:#f92672">++;</span>
+<span style="color:#f92672">}</span><span style="color:#66d9ef">else</span><span style="color:#f92672">{</span>
+elseCount<span style="color:#f92672">++;</span>
+<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;大写字母有&#34;</span><span style="color:#f92672">+</span>bigCount<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;个&#34;</span><span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;小写字母有&#34;</span><span style="color:#f92672">+</span>smallCount<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;个&#34;</span><span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;数字字符有&#34;</span><span style="color:#f92672">+</span>numCount<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;个&#34;</span><span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;其他字符有&#34;</span><span style="color:#f92672">+</span>elseCount<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;个&#34;</span><span style="color:#f92672">);</span>
+</code></pre></div><h3 id="案例4">案例4</h3>
+<p>键盘录入一个  手机号 (自觉  不校验了。) 要求把中间四位隐藏之后并打印</p>
+<p>比如13611118888   打印 136****8888</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA">
+方案一<span style="color:#960050;background-color:#1e0010">：</span>
+Scanner sc <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner<span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">in</span><span style="color:#f92672">);</span>
+String s <span style="color:#f92672">=</span> sc<span style="color:#f92672">.</span><span style="color:#a6e22e">nextLine</span><span style="color:#f92672">();</span>
+
+String qian3 <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">substring</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span>3<span style="color:#f92672">);</span>
+String hou4 <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">substring</span><span style="color:#f92672">(</span>7<span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>qian3<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;****&#34;</span><span style="color:#f92672">+</span>hou4<span style="color:#f92672">);</span>
+
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA">方案二<span style="color:#960050;background-color:#1e0010">：</span>
+Scanner sc <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner<span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">in</span><span style="color:#f92672">);</span>
+String s <span style="color:#f92672">=</span> sc<span style="color:#f92672">.</span><span style="color:#a6e22e">nextLine</span><span style="color:#f92672">();</span>
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i<span style="color:#f92672">&lt;</span>s<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">();</span> i<span style="color:#f92672">++){</span>
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>i<span style="color:#f92672">&gt;=</span>3 <span style="color:#f92672">&amp;&amp;</span> i<span style="color:#f92672">&lt;=</span>6<span style="color:#f92672">){</span> <span style="color:#75715e">//012 3456
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;*&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span><span style="color:#66d9ef">else</span><span style="color:#f92672">{</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>s<span style="color:#f92672">.</span><span style="color:#a6e22e">charAt</span><span style="color:#f92672">(</span>i<span style="color:#f92672">));</span>
+<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+</code></pre></div><h3 id="案例5键盘录入一个-字符串-要求字符串中-包含--tmd--自觉-不校验了">案例5：键盘录入一个 字符串 要求字符串中 包含  TMD  (自觉 不校验了)</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA">请把 字符串中 所有的 TMD 变成 <span style="color:#f92672">***</span>
+Scanner sc <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner<span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">in</span><span style="color:#f92672">);</span>
+String s <span style="color:#f92672">=</span> sc<span style="color:#f92672">.</span><span style="color:#a6e22e">nextLine</span><span style="color:#f92672">();</span>
+String s1 <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">replaceAll</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;TMD&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;***&#34;</span><span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s1<span style="color:#f92672">);</span>
+
+</code></pre></div><h3 id="案例6">案例6：</h3>
+<p>以字符串的形式从键盘录入学生信息，例如：“张三 , 23”
+从该字符串中切割出有效数据,封装为Student学生对象</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA"><span style="color:#75715e">// 1. 创建学生类
+</span><span style="color:#75715e">// 2. 键盘录入一个字符串，用 Scanner 实现
+</span><span style="color:#75715e"></span>Scanner sc <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner<span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">in</span><span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;请输入学生信息:&#34;</span><span style="color:#f92672">);</span>
+String stuInfo <span style="color:#f92672">=</span> sc<span style="color:#f92672">.</span><span style="color:#a6e22e">nextLine</span><span style="color:#f92672">();</span>
+<span style="color:#75715e">// stuInfo = &#34;张三,23&#34;;
+</span><span style="color:#75715e">// 3. 根据逗号切割字符串，得到（张三）（23）
+</span><span style="color:#75715e"></span>String<span style="color:#f92672">[]</span> sArr <span style="color:#f92672">=</span> stuInfo<span style="color:#f92672">.</span><span style="color:#a6e22e">split</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">);</span>
+
+<span style="color:#75715e">//        System.out.println(sArr[0]);
+</span><span style="color:#75715e">//        System.out.println(sArr[1]);
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 4. 从得到的字符串数组中取出元素内容，通过Student类的有参构造方法封装为对象
+</span><span style="color:#75715e"></span>Student stu <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">(</span>sArr<span style="color:#f92672">[</span>0<span style="color:#f92672">],</span>sArr<span style="color:#f92672">[</span>1<span style="color:#f92672">]);</span>
+
+<span style="color:#75715e">// 5. 调用对象getXxx方法，取出数据并打印。
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>stu<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;...&#34;</span> <span style="color:#f92672">+</span> stu<span style="color:#f92672">.</span><span style="color:#a6e22e">getAge</span><span style="color:#f92672">());</span>
+
+</code></pre></div><h2 id="stringbuilder--字符串缓冲区类">StringBuilder ： 字符串缓冲区类</h2>
+<p>作用： 提高字符串拼接的效率  （有的时候我们涉及到大量的字符串拼接，这时候们就会用到StringBuilder）</p>
+<h3 id="构造方法">构造方法：</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA">StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">();</span>  
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>sb<span style="color:#f92672">);</span> <span style="color:#75715e">// 无内容
+</span><span style="color:#75715e"></span>
+StringBuilder sb1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abcd&#34;</span><span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>sb1<span style="color:#f92672">);</span> <span style="color:#75715e">// abcd 
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">/*
+</span><span style="color:#75715e">//StringBuilder sb2 = &#34;abcdef&#34;; //编译报错
+</span><span style="color:#75715e">String s = &#34;abcdef&#34;;
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">class Cat { //猫
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">}
+</span><span style="color:#75715e">class Student { //学生
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">}
+</span><span style="color:#75715e">Student s = new Student();
+</span><span style="color:#75715e">//Cat c = new Student(); // 编译报错。
+</span><span style="color:#75715e">*/</span>
+</code></pre></div><h3 id="成员方法">成员方法：</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA"><span style="color:#66d9ef">public</span> StringBuilder <span style="color:#a6e22e">append</span><span style="color:#f92672">(</span>任何类型的数据<span style="color:#f92672">);</span>
+StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">();</span>
+sb<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span> <span style="color:#75715e">// &#34;true&#34;
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">public</span> StringBuilder <span style="color:#a6e22e">reverse</span><span style="color:#f92672">();</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">length</span><span style="color:#f92672">();</span>
+<span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+
+代码演示<span style="color:#960050;background-color:#1e0010">：</span>
+StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">();</span>
+<span style="color:#75715e">//sb.append(&#34;红色&#34;);
+</span><span style="color:#75715e">//System.out.println(sb);
+</span><span style="color:#75715e">//sb.append(&#34;蓝色&#34;);
+</span><span style="color:#75715e">//System.out.println(sb);
+</span><span style="color:#75715e">//sb.append(&#34;绿色&#34;);
+</span><span style="color:#75715e">//System.out.println(sb);
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">//StringBuilder sb2 = sb.append(&#34;红色&#34;);
+</span><span style="color:#75715e">//StringBuilder sb3 = sb2.append(&#34;蓝色&#34;);
+</span><span style="color:#75715e">//sb3.append(&#34;绿色&#34;);
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 链式编程: 如果一个方法返回的是对象类型, 对象就可以继续向下调用方法.
+</span><span style="color:#75715e"></span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;红色&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;蓝色&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;绿色&#34;</span><span style="color:#f92672">);</span>
+
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;反转前:&#34;</span> <span style="color:#f92672">+</span> sb<span style="color:#f92672">);</span>
+
+sb<span style="color:#f92672">.</span><span style="color:#a6e22e">reverse</span><span style="color:#f92672">();</span>
+
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;反转后:&#34;</span> <span style="color:#f92672">+</span> sb<span style="color:#f92672">);</span>
+
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;sb中字符的个数为:&#34;</span> <span style="color:#f92672">+</span> sb<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">());</span>
+
+<span style="color:#75715e">// public String toString() : 通过toString()就可以实现把StringBuilder转换为String
+</span><span style="color:#75715e"></span>String s <span style="color:#f92672">=</span> sb<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">);</span>
+</code></pre></div><h3 id="stringbuilder-提高拼接效率的原理">StringBuilder 提高拼接效率的原理：</h3>
+<p>详见ppt图解</p>
+<h3 id="string-和-stringbuilder-之间的转换">String 和 StringBuilder 之间的转换：</h3>
+<p>为什么转换：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">String s<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">;</span>
+<span style="color:#75715e">//StringBuilder sb = &#34;abc&#34;; //编译报错
+</span><span style="color:#75715e"></span>
+String s1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">;</span>
+String s2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bcd&#34;</span><span style="color:#f92672">;</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s1<span style="color:#f92672">+</span>s2<span style="color:#f92672">);</span> <span style="color:#75715e">// abcbcd
+</span><span style="color:#75715e"></span>
+StringBuilder sb1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">);</span>
+StringBuilder sb2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;bcd&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">//System.out.println(sb1+sb2);  // 编译报错。
+</span><span style="color:#75715e"></span>
+
+<span style="color:#75715e">// 我们今后 最常用的类 就是String类， StringBuilder这个类仅仅是在字符串拼接的时候 能提高拼接的效率。
+</span><span style="color:#75715e">// 所以我们都是 日常用String类 当涉及到 字符串大量拼接的时候， 就利用StringBuilder 提高效率
+</span><span style="color:#75715e">// 怎么利用StringBuilder去提高效率呢？
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 当遇到大量拼接的时候，我们就会 把String 转换为 StringBuilder
+</span><span style="color:#75715e">// 当拼接完了， 再把StringBuilder 再转换回 String
+</span></code></pre></div><p>​	怎么转换：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">String <span style="color:#f92672">--&gt;</span> StringBuilder
+1<span style="color:#960050;background-color:#1e0010">：</span> StringBuilder sb1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abcd&#34;</span><span style="color:#f92672">);</span>
+
+2<span style="color:#960050;background-color:#1e0010">：</span> StringBuilder sb2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">();</span>
+sb2<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abcd&#34;</span><span style="color:#f92672">);</span>
+
+StringBuilder <span style="color:#f92672">--&gt;</span> String
+StringBuilder sb2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">();</span>
+String s <span style="color:#f92672">=</span> sb2<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+</code></pre></div><h3 id="案例演示">案例演示：</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">String s <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">;</span>
+StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">(</span>s<span style="color:#f92672">);</span>
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span>i<span style="color:#f92672">&lt;</span>1000 <span style="color:#f92672">;</span>i<span style="color:#f92672">++</span> <span style="color:#f92672">){</span>
+<span style="color:#75715e">//s+=i;
+</span><span style="color:#75715e"></span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+String s1 <span style="color:#f92672">=</span> sb<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+<span style="color:#75715e">// 后续的代码继续使用 String的这个对象s1
+</span></code></pre></div><h3 id="案例1键盘录入一个字符串请判断这个字符串--是否对称">案例1：键盘录入一个字符串，请判断这个字符串  是否对称。</h3>
+<pre><code>123321  对称的
+			12321   对称的
+			123123  不对称。	
+ 			
+			//  1. 键盘录入一个字符串，用 Scanner 实现
+			Scanner sc = new Scanner(System.in);
+			System.out.println(&quot;请输入对称字符串:&quot;);
+			String s = sc.nextLine();
+			// 2. 将键盘录入的字符串反转
+			// 将字符串封装为StringBuilder对象, 目的是为了掉用其反转的方法
+			StringBuilder sb = new StringBuilder(s);
+			sb.reverse();
+			String reverseStr = sb.toString();
+			// s : String
+			// sb : StringBuilder
+			// 3. 使用反转后的字符串，和原字符串进行比对
+			if(s.equals(reverseStr)){
+				System.out.println(&quot;是对称字符串&quot;);
+			}else{
+				System.out.println(&quot;不是对称字符串&quot;);
+			}
+
+</code></pre><h3 id="案例2-定义一个方法传入一个-int--返回一个有格式的字符串">案例2： 定义一个方法，传入一个 int[]  返回一个有格式的字符串。</h3>
+<pre><code>// String s = &quot;[3, 6, 8]&quot;	
+public static String getString(int[] arr){ //int[] arr = {3,6,8};
+
+}
+
+答案：
+public static void main(String[] args) {
+// 1. 定义一个 int 类型的数组，用静态初始化完成数组元素的初始化
+int[] arr = {1,2,3};
+// 4. 调用方法，用一个变量接收结果
+String s = arrayToString(arr);
+// 5. 输出结果
+System.out.println(s);
+}
+
+// 2. 定义一个方法，返回值类型 String，参数列表 int[] arr
+public static String arrayToString(int[] arr){
+// 3. 在方法中用 StringBuilder 按照要求进行拼接，并把结果转成 String 返回
+StringBuilder sb = new StringBuilder(&quot;[&quot;);
+
+for (int i = 0; i &lt; arr.length; i++) {
+if(i == arr.length -1){
+sb.append(arr[i]).append(&quot;]&quot;);
+}else{
+sb.append(arr[i]).append(&quot;, &quot;);
+}
+}
+
+return sb.toString();
+}
+
+
+</code></pre></article>
+    </section>
+
+    <footer class="ui attached segment dream-tags">
+      
+          <a class="ui label">暂无标签</a>
+      
+      <div
+        class="ui label"
+        style="float: right; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>保存为图片
+      </div>
+    </footer>
+
+    
+
+    
+    
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="/img/avatar.jpg">
+      
+    </div>
+
+    
+    <div class="ui medium header">Guo Dong 的博客<div class="sub header" style="margin-top: 0.5rem;">Motto</div>
+    </div>
+    
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="/posts">
+        <i class="archive icon" title="归档"></i>
+      </a>
+      
+      <a class="item" href="/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+      <a class="item" href="/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+    </div>
+  </section>
+
+  
+
+  
+
+  <section class="ui attached segment header-socials">
+    <nav class="ui secondary menu dream-menu dream-socials">
+  
+  
+    <div class="item">
+      <a href="mailto:g1enyy0ung@gmail.com">
+        <i class=" mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</nav>
+
+  </section>
+
+  <section class="ui bottom attached center aligned segment">
+    
+      <p>© 2016 - 2020 Demon&#39;s Blog</p>
+    
+
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+    
+  </section>
+</article>
+
+  </div>
+</div>
+
+        </section>
+        <section class="back">
+          <div class="ui centered relaxed grid dream-grid dream-back">
+  
+  
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">社交链接</h3>
+      </div>
+      <div class="ui bottom attached segment">
+        <nav class="ui secondary menu dream-menu dream-socials">
+  
+  
+    <div class="item">
+      <a href="mailto:g1enyy0ung@gmail.com">
+        <i class="large mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</nav>
+
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </section>
+
+  
+  
+</div>
+
+        </section>
+      </div>
+    </div>
+
+    <script>
+  window.darkNav =  true 
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

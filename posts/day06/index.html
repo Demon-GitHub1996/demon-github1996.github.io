@@ -1,25 +1,29 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Day06  Debug工具和进制 | Demon&#39;s Blog</title>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="theme-color" content="#494f5c">
-	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="Day06  Debug工具和进制">
-<meta itemprop="description" content="Debug工具和进制 java的语法： 程序的基本组成 注释 关键字 标识符 数据 常量 变量 数据类型 基本 应用 数组 二维数组 类 接口 类型转换 隐式 强制 byte a = (byte)200;
+    
+
+
+
+<meta name="author" content="Demon" />
+<meta name="description" content="Debug工具和进制 java的语法： 程序的基本组成 注释 关键字 标识符 数据 常量 变量 数据类型 基本 应用 数组 二维数组 类 接口 类型转换 隐式 强制 byte a = (byte)200;
 ​	符号： ​	基本符号 ​	运算符 ​	算术 ​	赋值 ​	关系 ​	逻辑 ​	三元 ​	位 结构语句： ​	顺序 ​	选择 ifswitch ​	循环 forwhiledowhile break continue
 方法： 基本 参数 返回值 注意事项 重载 参数的传递 案例：引用类型的值传递
 jre核心类库提供的类： Scanner Random
-debug 工具 (☆☆☆☆☆) debug ： 详细查看程序的执行步骤 1：加断点 ， 一般 在你要查看的程序的第一行， 左侧点一下。 2：右键 debug 程序 （不再是run） 3：左下侧 是栈， 表示现在有多少个方法进栈了， 正在执行哪个方法的哪一行。 右下侧 是方法里面的变量值。 4：下一步 F7 即可 5： 如果查看程序 查看到中间，不想看后面的了， 停止程序。 按 ctrl &#43; F2 （红色方框按钮）">
-<meta itemprop="datePublished" content="2019-08-27T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2019-08-27T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1335">
+debug 工具 (☆☆☆☆☆) debug ： 详细查看程序的执行步骤 1：加断点 ， 一般 在你要查看的程序的第一行， 左侧点一下。 2：右键 debug 程序 （不再是run） 3：左下侧 是栈， 表示现在有多少个方法进栈了， 正在执行哪个方法的哪一行。 右下侧 是方法里面的变量值。 4：下一步 F7 即可 5： 如果查看程序 查看到中间，不想看后面的了， 停止程序。 按 ctrl &#43; F2 （红色方框按钮）" />
 
 
 
-<meta itemprop="keywords" content="" />
+<meta name="generator" content="Hugo 0.74.3" />
+
+<link rel="canonical" href="https://demon-github1996.github.io/posts/day06/" />
+
+
 <meta property="og:title" content="Day06  Debug工具和进制" />
 <meta property="og:description" content="Debug工具和进制 java的语法： 程序的基本组成 注释 关键字 标识符 数据 常量 变量 数据类型 基本 应用 数组 二维数组 类 接口 类型转换 隐式 强制 byte a = (byte)200;
 ​	符号： ​	基本符号 ​	运算符 ​	算术 ​	赋值 ​	关系 ​	逻辑 ​	三元 ​	位 结构语句： ​	顺序 ​	选择 ifswitch ​	循环 forwhiledowhile break continue
@@ -30,6 +34,9 @@ debug 工具 (☆☆☆☆☆) debug ： 详细查看程序的执行步骤 1：�
 <meta property="og:url" content="https://demon-github1996.github.io/posts/day06/" />
 <meta property="article:published_time" content="2019-08-27T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-08-27T00:00:00+00:00" />
+
+
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Day06  Debug工具和进制"/>
 <meta name="twitter:description" content="Debug工具和进制 java的语法： 程序的基本组成 注释 关键字 标识符 数据 常量 变量 数据类型 基本 应用 数组 二维数组 类 接口 类型转换 隐式 强制 byte a = (byte)200;
@@ -38,54 +45,83 @@ debug 工具 (☆☆☆☆☆) debug ： 详细查看程序的执行步骤 1：�
 jre核心类库提供的类： Scanner Random
 debug 工具 (☆☆☆☆☆) debug ： 详细查看程序的执行步骤 1：加断点 ， 一般 在你要查看的程序的第一行， 左侧点一下。 2：右键 debug 程序 （不再是run） 3：左下侧 是栈， 表示现在有多少个方法进栈了， 正在执行哪个方法的哪一行。 右下侧 是方法里面的变量值。 4：下一步 F7 即可 5： 如果查看程序 查看到中间，不想看后面的了， 停止程序。 按 ctrl &#43; F2 （红色方框按钮）"/>
 
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
-	<link rel="shortcut icon" href="/favicon.ico">
 
-	<title>Day06  Debug工具和进制</title>
-	<link rel="stylesheet" href="https://demon-github1996.github.io/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
-	
-</head>
-
-<body id="page">
-	
-	<header id="site-header" class="animated slideInUp">
-		<div class="hdr-wrapper section-inner">
-			<div class="hdr-left">
-				<div class="site-branding">
-					<a href="https://demon-github1996.github.io">Demon的博客</a>
-				</div>
-				<nav class="site-nav hide-in-mobile">
-					
-				<a href="https://demon-github1996.github.io/posts/">文章</a>
-				<a href="https://demon-github1996.github.io/about-hugo/">关于</a>
-
-				</nav>
-			</div>
-			<div class="hdr-right hdr-icons">
-				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://instagram.com/" target="_blank" rel="noopener me" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://github.com/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
-			</div>
-		</div>
-	</header>
-	<div id="mobile-menu" class="animated fast">
-		<ul>
-			<li><a href="https://demon-github1996.github.io/posts/">文章</a></li>
-			<li><a href="https://demon-github1996.github.io/about-hugo/">关于</a></li>
-		</ul>
-	</div>
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/site.css" />
 
 
-	<main class="site-main section-inner animated fadeIn faster">
-		<article class="thin">
-			<header class="post-header">
-				<div class="post-meta"><span>Aug 27, 2019</span></div>
-				<h1>Day06  Debug工具和进制</h1>
-			</header>
-			<div class="content">
-				<h1 id="debug工具和进制">Debug工具和进制<a href="#debug工具和进制" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
+
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
+
+
+    
+<link rel="stylesheet" href="/css/github-markdown.css" />
+
+
+
+
+  </head>
+
+  
+  <body style="background: white;">
+  
+    
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/demon-github1996.github.io'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single">
+
+    <section class="ui top attached segment" id="dream-save-post-as-img">
+      <header style="margin-top: 0 !important;">
+        <h1 class="ui large header">
+          Day06  Debug工具和进制
+          <div class="sub header">
+            @
+            
+              
+                Demon
+              
+            
+            · Tuesday, Aug 27, 2019
+            · 7 分钟阅读
+            · 更新于 Aug 27, 2019
+          </div>
+        </h1>
+      </header>
+
+      
+        <img class="ui image" style="margin-top: 2rem;" src="" />
+      
+
+      <article style="margin-top: 2rem;"><h1 id="debug工具和进制">Debug工具和进制</h1>
 <p><code>java的语法：</code>
 <code>程序的基本组成</code>
 <code>注释</code>
@@ -129,7 +165,7 @@ debug 工具 (☆☆☆☆☆) debug ： 详细查看程序的执行步骤 1：�
 <p><code>jre核心类库提供的类：</code>
 <code>Scanner</code>
 <code>Random</code></p>
-<h1 id="debug-工具-">debug 工具 (☆☆☆☆☆)<a href="#debug-工具-" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h1 id="debug-工具-">debug 工具 (☆☆☆☆☆)</h1>
 <p>debug ： 详细查看程序的执行步骤
 1：加断点 ， 一般 在你要查看的程序的第一行， 左侧点一下。
 2：右键  debug 程序 （不再是run）
@@ -146,7 +182,7 @@ debug 工具 (☆☆☆☆☆) debug ： 详细查看程序的执行步骤 1：�
 ​		7：程序结束之后 想把断点取消掉
 ​			如果断点少的话， 再点一下 断点的符号即可。
 ​			如果断点多的话。 ctrl+ shift + f8 （红色双原按钮）</p>
-<h2 id="debug-查看循环的执行流程">debug 查看循环的执行流程：<a href="#debug-查看循环的执行流程" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="debug-查看循环的执行流程">debug 查看循环的执行流程：</h2>
 <p>for (初始化语句; 条件表达式 ; 条件控制语句 ){
 语句体;
 }</p>
@@ -157,7 +193,7 @@ debug 工具 (☆☆☆☆☆) debug ： 详细查看程序的执行步骤 1：�
 ​			 i++) {
 ​			System.out.println(arr[i]);
 ​		}</p>
-<h3 id="debug的快捷键">debug的快捷键：<a href="#debug的快捷键" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="debug的快捷键">debug的快捷键：</h3>
 <p>1： F8  ：step over  下一步下一步， 当遇到调用方法， 直接把方法当做一句话执行完毕，不会进入方法
 2： F7 ： step into 也是下一步的意思，但是当遇到 “自已定义的方法” 就会进入方法，把方法执行完毕之后，再回调用处继续执行。
 3： alt+shift+F7   也是下一步的意思，当他遇到“源码的方法和自己定义的方法” 就会进入方法，把方法执行完毕之后，再回调用处继续执行。
@@ -165,7 +201,7 @@ debug 工具 (☆☆☆☆☆) debug ： 详细查看程序的执行步骤 1：�
 5： 想要查看表达式的结果，就可以选中表达式，右键 点击 add to watches
 6： alt+ F8  如果运行过程中，你想临时的去修改一些 变量的值。你可以使用
 此功能修改。 改完之后，点击 Evaluate就可以了。</p>
-<h1 id="进制">进制(☆)<a href="#进制" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h1 id="进制">进制(☆)</h1>
 <p>进制的概述：
 逢几进1 ， 就是几进制。 常见 十进制 二进制 八进制 十六进制。</p>
 <pre><code>System.out.println(100); // 十进制
@@ -173,7 +209,7 @@ System.out.println(0b10); // binary二进制    2
 System.out.println(010); // Octal八进制    8
 System.out.println(0x10); // hex 十六进制    16  
 </code></pre>
-<h2 id="进制之间的转换">进制之间的转换：<a href="#进制之间的转换" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="进制之间的转换">进制之间的转换：</h2>
 <p>进制之间的转换：
 其他进制转换为十进制：
 十进制&ndash;&gt; 十进制
@@ -205,7 +241,7 @@ System.out.println(0x10); // hex 十六进制    16
 // 十进制 70   
 //         1   1   1  1 1 1
 //	       64  32  16 8 4 2
-</code></pre><h1 id="原码反码补码">原码反码补码(☆☆)<a href="#原码反码补码" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+</code></pre><h1 id="原码反码补码">原码反码补码(☆☆)</h1>
 <p>二进制： 计算机中 电子 电阻和电容。  1 0  最底层用二进制来表示的。</p>
 <pre><code>十进制的 10  --  二进制 1010
 十进制的 -10  --- 负数怎么表示   -1010 ？？  
@@ -292,7 +328,7 @@ System.out.println(a); //40
 (byte)40  --- 00101000    
 --- 40 
 </code></pre>
-<h1 id="位运算">位运算(☆☆☆)<a href="#位运算" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h1 id="位运算">位运算(☆☆☆)</h1>
 <p>&amp; | ~ ^ 
 和逻辑运算符的运算规则是一样的 只不过他运算的是1和0
 你就把 1当做true  把0当做false  然后进行逻辑运算。</p>
@@ -362,7 +398,7 @@ a = a*b;
 b = a/b;
 a = a/b;
 
-</code></pre><h2 id="-左移-">&laquo; 左移 ：(☆☆☆☆)<a href="#-左移-" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre><h2 id="-左移-">&laquo; 左移 ：(☆☆☆☆)</h2>
 <pre><code>
 
 100 &lt;&lt;2
@@ -379,7 +415,7 @@ __111111 11111111 11111111 1001110000  补码
 __111111 11111111 11111111 1001101111  反码
 __100000 00000000 00000000 0110010000  原码   -400   = -100 *4
 
-</code></pre><h2 id="-有符号右移">&raquo; 有符号右移(☆☆☆☆)：<a href="#-有符号右移" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre><h2 id="-有符号右移">&raquo; 有符号右移(☆☆☆☆)：</h2>
 <pre><code>100 &gt;&gt;2
 
 00000000 00000000 00000000 01100100
@@ -392,7 +428,7 @@ __100000 00000000 00000000 0110010000  原码   -400   = -100 *4
 1111111111 11111111 11111111 100111__ 补码
 1111111111 11111111 11111111 100110__ 反码
 1000000000 00000000 00000000 011001__ 原码  -25 = -100/4
-</code></pre><h2 id="-无符号右移">&raquo;&gt; 无符号右移(☆☆☆)。<a href="#-无符号右移" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre><h2 id="-无符号右移">&raquo;&gt; 无符号右移(☆☆☆)。</h2>
 <pre><code>100 &gt;&gt;&gt;2
 
 00000000 00000000 00000000 01100100
@@ -404,7 +440,7 @@ __100000 00000000 00000000 0110010000  原码   -400   = -100 *4
 11111111 11111111 11111111 10011100  补码   从此处进行位运算
 0011111111 11111111 11111111 100111__  正数 不区分原反补
 
-</code></pre><h1 id="数组的反转">数组的反转：<a href="#数组的反转" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+</code></pre><h1 id="数组的反转">数组的反转：</h1>
 <pre><code>需求：
 int[] arr = {5,8,2,4,6};
 // {6,4,2,8,5} 
@@ -427,7 +463,7 @@ int temp = arr[i];
 arr[i] = arr[arr.length-1-i];
 arr[arr.length-1-i] = temp;
 }
-</code></pre><h1 id="二维数组">二维数组(☆☆)<a href="#二维数组" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+</code></pre><h1 id="二维数组">二维数组(☆☆)</h1>
 <p>二维数组的由来：
 数据类型：
 基本类型： byte short int long char boolean float double
@@ -573,39 +609,177 @@ System.out.println(&quot;总和是：&quot;+sum);
 
 
 
-</code></pre>
-			</div>
-			<hr class="post-end">
-			<footer class="post-info">
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>Demon</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1335 Words</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-08-27 08:00 &#43;0800</p>
-			</footer>
-		</article>
-		<div class="post-nav thin">
-			<a class="next-post" href="https://demon-github1996.github.io/posts/day07/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Day7  面向对象</span>
-			</a>
-			<a class="prev-post" href="https://demon-github1996.github.io/posts/day05/">
-				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Day05 方法</span>
-			</a>
-		</div>
-		<div id="comments" class="thin">
+</code></pre></article>
+    </section>
+
+    <footer class="ui attached segment dream-tags">
+      
+          <a class="ui label">暂无标签</a>
+      
+      <div
+        class="ui label"
+        style="float: right; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>保存为图片
+      </div>
+    </footer>
+
+    
+
+    
+    
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="/img/avatar.jpg">
+      
+    </div>
+
+    
+    <div class="ui medium header">Guo Dong 的博客<div class="sub header" style="margin-top: 0.5rem;">Motto</div>
+    </div>
+    
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="/posts">
+        <i class="archive icon" title="归档"></i>
+      </a>
+      
+      <a class="item" href="/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+      <a class="item" href="/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+    </div>
+  </section>
+
+  
+
+  
+
+  <section class="ui attached segment header-socials">
+    <nav class="ui secondary menu dream-menu dream-socials">
+  
+  
+    <div class="item">
+      <a href="mailto:g1enyy0ung@gmail.com">
+        <i class=" mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</nav>
+
+  </section>
+
+  <section class="ui bottom attached center aligned segment">
+    
+      <p>© 2016 - 2020 Demon&#39;s Blog</p>
+    
+
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+    
+  </section>
+</article>
+
+  </div>
 </div>
-	</main>
 
-	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2020 <a href="https://demon-github1996.github.io">郭  栋</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
-		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://demon-github1996.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
-		</p>
-	</footer>
+        </section>
+        <section class="back">
+          <div class="ui centered relaxed grid dream-grid dream-back">
+  
+  
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">社交链接</h3>
+      </div>
+      <div class="ui bottom attached segment">
+        <nav class="ui secondary menu dream-menu dream-socials">
+  
+  
+    <div class="item">
+      <a href="mailto:g1enyy0ung@gmail.com">
+        <i class="large mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</nav>
+
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </section>
+
+  
+  
+</div>
+
+        </section>
+      </div>
+    </div>
+
+    <script>
+  window.darkNav =  true 
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
 
 
 
-	<script src="https://demon-github1996.github.io/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
-	
 
-</body>
 
+    
+
+    
+  </body>
 </html>
