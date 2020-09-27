@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>21  I/O总结 | Demon&#39;s Blog</title>
+
+    
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+
+
+<meta name="author" content="Demon" />
+<meta name="description" content="io总结 io流结构
+结论:
+​	输入流是读文件的输出流是写文件的1.字节流(附件复制优先使用) 1.1普通字节输入输出流 字节输入流
+//创建输入流 FileInputStream fis = new FileInputStream(&amp;#34;C:\\io_homework\\hello.txt&amp;#34;); //一次读一个字节数据 int byteValue = fis.read(); //一次读1024长度的内容,返回读取到数据的长度 byte[] bytes = new byte[1024]; int length = fis.read(bytes); //关闭输入流 fis.close(); 字节输出流
+//创建输出流 FileOutputStream fos = new FileOutputStream(&amp;#34;C:\\io_homework\\world.txt&amp;#34;); //将指定内容写入文件 fos.write(&amp;#34;hello world&amp;#34;.getBytes(&amp;#34;utf-8&amp;#34;)); //换行 fos.write(&amp;#34;\r\n&amp;#34;.getBytes()); //写指定个数个数据到文件 fos.write(&amp;#34;hello world&amp;#34;.getBytes(&amp;#34;utf-8&amp;#34;),0,5); //关流 fos.close(); 1.2缓冲字节输入输出流 缓冲字节输入流
+//创建字节缓冲输入流 BufferedInputStream bis = new BufferedInputStream(new FileInputStream(&amp;#34;C:\\hello.txt&amp;#34;)); //一次读一个字节数据 int byteValue = bis.read(); //一次读1024长度的内容,返回读取到数据的长度 byte[] bytes = new byte[1024]; int length = bis." />
+
+
+
+<meta name="generator" content="Hugo 0.74.3" />
+
+<link rel="canonical" href="https://demon-github1996.github.io/posts/day21_io%E6%B5%81%E6%80%BB%E7%BB%93/" />
+
+
+<meta property="og:title" content="21  I/O总结" />
+<meta property="og:description" content="io总结 io流结构
+结论:
+​	输入流是读文件的输出流是写文件的1.字节流(附件复制优先使用) 1.1普通字节输入输出流 字节输入流
+//创建输入流 FileInputStream fis = new FileInputStream(&#34;C:\\io_homework\\hello.txt&#34;); //一次读一个字节数据 int byteValue = fis.read(); //一次读1024长度的内容,返回读取到数据的长度 byte[] bytes = new byte[1024]; int length = fis.read(bytes); //关闭输入流 fis.close(); 字节输出流
+//创建输出流 FileOutputStream fos = new FileOutputStream(&#34;C:\\io_homework\\world.txt&#34;); //将指定内容写入文件 fos.write(&#34;hello world&#34;.getBytes(&#34;utf-8&#34;)); //换行 fos.write(&#34;\r\n&#34;.getBytes()); //写指定个数个数据到文件 fos.write(&#34;hello world&#34;.getBytes(&#34;utf-8&#34;),0,5); //关流 fos.close(); 1.2缓冲字节输入输出流 缓冲字节输入流
+//创建字节缓冲输入流 BufferedInputStream bis = new BufferedInputStream(new FileInputStream(&#34;C:\\hello.txt&#34;)); //一次读一个字节数据 int byteValue = bis.read(); //一次读1024长度的内容,返回读取到数据的长度 byte[] bytes = new byte[1024]; int length = bis." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://demon-github1996.github.io/posts/day21_io%E6%B5%81%E6%80%BB%E7%BB%93/" />
+<meta property="article:published_time" content="2019-09-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-09-18T00:00:00+00:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="21  I/O总结"/>
+<meta name="twitter:description" content="io总结 io流结构
+结论:
+​	输入流是读文件的输出流是写文件的1.字节流(附件复制优先使用) 1.1普通字节输入输出流 字节输入流
+//创建输入流 FileInputStream fis = new FileInputStream(&#34;C:\\io_homework\\hello.txt&#34;); //一次读一个字节数据 int byteValue = fis.read(); //一次读1024长度的内容,返回读取到数据的长度 byte[] bytes = new byte[1024]; int length = fis.read(bytes); //关闭输入流 fis.close(); 字节输出流
+//创建输出流 FileOutputStream fos = new FileOutputStream(&#34;C:\\io_homework\\world.txt&#34;); //将指定内容写入文件 fos.write(&#34;hello world&#34;.getBytes(&#34;utf-8&#34;)); //换行 fos.write(&#34;\r\n&#34;.getBytes()); //写指定个数个数据到文件 fos.write(&#34;hello world&#34;.getBytes(&#34;utf-8&#34;),0,5); //关流 fos.close(); 1.2缓冲字节输入输出流 缓冲字节输入流
+//创建字节缓冲输入流 BufferedInputStream bis = new BufferedInputStream(new FileInputStream(&#34;C:\\hello.txt&#34;)); //一次读一个字节数据 int byteValue = bis.read(); //一次读1024长度的内容,返回读取到数据的长度 byte[] bytes = new byte[1024]; int length = bis."/>
+
+
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
+
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
+
+
+    
+<link rel="stylesheet" href="/css/github-markdown.css" />
+
+
+
+
+  </head>
+
+  
+  <body style="background: pink;">
+  
+    
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/demon-github1996.github.io\/'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single">
+
+    <section class="ui top attached segment" id="dream-save-post-as-img">
+      <header style="margin-top: 0 !important;">
+        <h1 class="ui large header">
+          21  I/O总结
+          <div class="sub header">
+            @
+            
+              
+                Demon
+              
+            
+            · Wednesday, Sep 18, 2019
+            · 3 分钟阅读
+            · 更新于 Sep 18, 2019
+          </div>
+        </h1>
+      </header>
+
+      
+        <img class="ui image" style="margin-top: 2rem;" src="" />
+      
+
+      <article style="margin-top: 2rem;"><h1 id="io总结">io总结</h1>
+<p>io流结构</p>
+<p><img src="https://gitee.com/guo_dong123/images/raw/master/img/20200922140140.png" alt="1"></p>
+<p>结论:</p>
+<p>​	<!-- raw HTML omitted -->输入流是读文件的<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --> 输出流是写文件的<!-- raw HTML omitted --></p>
+<h1 id="font-colorred1字节流附件复制优先使用font"><!-- raw HTML omitted -->1.字节流(附件复制优先使用)<!-- raw HTML omitted --></h1>
+<h2 id="11普通字节输入输出流">1.1普通字节输入输出流</h2>
+<p>字节输入流</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//创建输入流
+</span><span style="color:#75715e"></span>FileInputStream fis <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;C:\\io_homework\\hello.txt&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">//一次读一个字节数据
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> byteValue <span style="color:#f92672">=</span> fis<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">();</span>
+<span style="color:#75715e">//一次读1024长度的内容,返回读取到数据的长度
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> bytes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[</span>1024<span style="color:#f92672">];</span>
+<span style="color:#66d9ef">int</span> length <span style="color:#f92672">=</span> fis<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">(</span>bytes<span style="color:#f92672">);</span>
+<span style="color:#75715e">//关闭输入流
+</span><span style="color:#75715e"></span>fis<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</code></pre></div><p>字节输出流</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//创建输出流
+</span><span style="color:#75715e"></span>FileOutputStream fos <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileOutputStream<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;C:\\io_homework\\world.txt&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">//将指定内容写入文件
+</span><span style="color:#75715e"></span>fos<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hello world&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getBytes</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;utf-8&#34;</span><span style="color:#f92672">));</span>
+<span style="color:#75715e">//换行
+</span><span style="color:#75715e"></span>fos<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\r\n&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getBytes</span><span style="color:#f92672">());</span>
+<span style="color:#75715e">//写指定个数个数据到文件
+</span><span style="color:#75715e"></span>fos<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hello world&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getBytes</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;utf-8&#34;</span><span style="color:#f92672">),</span>0<span style="color:#f92672">,</span>5<span style="color:#f92672">);</span>
+<span style="color:#75715e">//关流
+</span><span style="color:#75715e"></span>fos<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</code></pre></div><h2 id="12缓冲字节输入输出流">1.2缓冲字节输入输出流</h2>
+<p>缓冲字节输入流</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//创建字节缓冲输入流
+</span><span style="color:#75715e"></span>BufferedInputStream bis <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedInputStream<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;C:\\hello.txt&#34;</span><span style="color:#f92672">));</span>
+<span style="color:#75715e">//一次读一个字节数据
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> byteValue <span style="color:#f92672">=</span> bis<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">();</span>
+<span style="color:#75715e">//一次读1024长度的内容,返回读取到数据的长度
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> bytes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[</span>1024<span style="color:#f92672">];</span>
+<span style="color:#66d9ef">int</span> length <span style="color:#f92672">=</span> bis<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">(</span>bytes<span style="color:#f92672">);</span>
+<span style="color:#75715e">//关闭输入流
+</span><span style="color:#75715e"></span>bis<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</code></pre></div><p>缓冲字节输出流</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//创建字节缓冲输出流
+</span><span style="color:#75715e"></span>BufferedOutputStream bos <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedOutputStream<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FileOutputStream<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;C:\\world.txt&#34;</span><span style="color:#f92672">));</span>
+<span style="color:#75715e">//将指定内容写入文件
+</span><span style="color:#75715e"></span>bos<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hello world&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getBytes</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;utf-8&#34;</span><span style="color:#f92672">));</span>
+<span style="color:#75715e">//换行
+</span><span style="color:#75715e"></span>bos<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\r\n&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getBytes</span><span style="color:#f92672">());</span>
+<span style="color:#75715e">//写指定个数个数据到文件
+</span><span style="color:#75715e"></span>bos<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hello world&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getBytes</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;utf-8&#34;</span><span style="color:#f92672">),</span>0<span style="color:#f92672">,</span>5<span style="color:#f92672">);</span>
+<span style="color:#75715e">//关流
+</span><span style="color:#75715e"></span>bos<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</code></pre></div><h2 id="13乱码问题">1.3乱码问题</h2>
+<p><!-- raw HTML omitted -->出现乱码的本质<!-- raw HTML omitted --></p>
+<p>文件本身的编码格式和我们操作文件的编码格式不一样</p>
+<p>划重点!!!</p>
+<pre><code>BGK编码集,一个中文对应2个字节
+UTF-8编码集,一个中文对应3个字节
+
+所以操作过程中编码集如果不一致就会导致乱码
+</code></pre><h1 id="font-colorred2字符流文本文件可以使用font"><!-- raw HTML omitted -->2.字符流(文本文件可以使用)<!-- raw HTML omitted --></h1>
+<h2 id="21普通字符输入输出流">2.1普通字符输入输出流</h2>
+<p>字符输入流</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//一次读1024字符长度的内容,返回读取到数据的长度
+</span><span style="color:#75715e">//创建字符输入流
+</span><span style="color:#75715e"></span>FileReader reader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileReader<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;C:\\jn27_workspace\\io_project\\io_homework\\hello.txt&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">//一次读一个字符数据
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> charValue <span style="color:#f92672">=</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">char</span><span style="color:#f92672">)</span>reader<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">();</span>
+<span style="color:#66d9ef">char</span><span style="color:#f92672">[]</span> chars <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">[</span>1024<span style="color:#f92672">];</span>
+<span style="color:#66d9ef">int</span> read <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">(</span>chars<span style="color:#f92672">);</span>
+<span style="color:#75715e">//关闭字符输入流
+</span><span style="color:#75715e"></span>reader<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</code></pre></div><p>字符输出流</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//创建字符输出流
+</span><span style="color:#75715e"></span>FileWriter writer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileWriter<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;C:\\jn27_workspace\\io_project\\io_homework\\hello.txt&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">//将指定内容写入文件
+</span><span style="color:#75715e"></span>writer<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hello world&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">//换行
+</span><span style="color:#75715e"></span>writer<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\r\n&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">//写指定个数个数据到文件
+</span><span style="color:#75715e"></span>writer<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hello world&#34;</span><span style="color:#f92672">,</span>0<span style="color:#f92672">,</span>5<span style="color:#f92672">);</span>
+<span style="color:#75715e">//关流
+</span><span style="color:#75715e"></span>writer<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</code></pre></div><h2 id="22缓冲字符输入输出流">2.2缓冲字符输入输出流</h2>
+<p>缓冲字符输入流</p>
+<ul>
+<li>
+<p>原始读取内容(用char[]去接收数据)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//1.创建字符缓冲输入流对象
+</span><span style="color:#75715e"></span>BufferedReader br <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedReader<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FileReader<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;io_homework\\bw.txt&#34;</span><span style="color:#f92672">));</span>
+<span style="color:#75715e">//2.读数据
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span><span style="color:#f92672">[]</span> chs <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">[</span>1024<span style="color:#f92672">];</span>
+<span style="color:#66d9ef">int</span> len<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">while</span> <span style="color:#f92672">((</span>len<span style="color:#f92672">=</span>br<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">(</span>chs<span style="color:#f92672">))!=-</span>1<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> String<span style="color:#f92672">(</span>chs<span style="color:#f92672">,</span>0<span style="color:#f92672">,</span>len<span style="color:#f92672">));</span>
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">//3.关流
+</span><span style="color:#75715e"></span>br<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</code></pre></div></li>
+<li>
+<p>使用字符缓冲输入流特有方法读取(一读读一行)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//1.创建字符缓冲输出流对象
+</span><span style="color:#75715e"></span>BufferedReader br <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedReader<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FileReader<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;io_homework\\bw.txt&#34;</span><span style="color:#f92672">));</span>
+<span style="color:#75715e">//2.读数据
+</span><span style="color:#75715e"></span>String line<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">while</span> <span style="color:#f92672">((</span>line<span style="color:#f92672">=</span>br<span style="color:#f92672">.</span><span style="color:#a6e22e">readLine</span><span style="color:#f92672">())!=</span><span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>line<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">//3.关流
+</span><span style="color:#75715e"></span>br<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</code></pre></div></li>
+</ul>
+<p>缓冲字符输出流</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//1.创建字符缓冲输出流对象
+</span><span style="color:#75715e"></span>BufferedWriter bw <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedWriter<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FileWriter<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;io_homework\\bw.txt&#34;</span><span style="color:#f92672">));</span>
+<span style="color:#75715e">//2.1将数据写到文件中
+</span><span style="color:#75715e"></span>bw<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hello&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">//2.2换行
+</span><span style="color:#75715e"></span>bw<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\r\n&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">//2.3换行 字符缓冲输出流换行更简单快捷
+</span><span style="color:#75715e"></span>bw<span style="color:#f92672">.</span><span style="color:#a6e22e">newLine</span><span style="color:#f92672">();</span>
+<span style="color:#75715e">//2.4刷新流
+</span><span style="color:#75715e"></span>bw<span style="color:#f92672">.</span><span style="color:#a6e22e">flush</span><span style="color:#f92672">();</span>
+<span style="color:#75715e">//3.关闭
+</span><span style="color:#75715e"></span>bw<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</code></pre></div><ul>
+<li>注意 缓冲字符输出流独有的bw.newLine()表示写入换行</li>
+</ul>
+<h1 id="font-colororange3转换流用指定字符集读写文件font"><!-- raw HTML omitted -->3.转换流(用指定字符集读写文件)<!-- raw HTML omitted --></h1>
+<!-- raw HTML omitted -->
+<p><img src="https://gitee.com/guo_dong123/images/raw/master/img/20200922140230.jpg" alt="如何查看文件的默认编码"></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">文件在操作过程字符集必须和文件本身的字符集一模一样</span>
+<span style="color:#960050;background-color:#1e0010">如果文件时</span>utf<span style="color:#f92672">-</span><span style="color:#ae81ff">8</span>,<span style="color:#960050;background-color:#1e0010">就用</span>utf<span style="color:#f92672">-</span><span style="color:#ae81ff">8</span><span style="color:#960050;background-color:#1e0010">读取</span>
+<span style="color:#960050;background-color:#1e0010">如果文件时</span>gbk,<span style="color:#960050;background-color:#1e0010">就用</span>gbk读取
+</code></pre></div><h2 id="31用utf-8格式读取文件内容">3.1用utf-8格式读取文件内容</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//采用指定编码从文本文件中读取内容
+</span><span style="color:#75715e"></span>BufferedReader br <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedReader<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> InputStreamReader<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;C:\\a.txt&#34;</span><span style="color:#f92672">),</span> <span style="color:#e6db74">&#34;UTF-8&#34;</span><span style="color:#f92672">));</span>
+String line <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+<span style="color:#66d9ef">while</span> <span style="color:#f92672">((</span>line<span style="color:#f92672">=</span>br<span style="color:#f92672">.</span><span style="color:#a6e22e">readLine</span><span style="color:#f92672">())!=</span><span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>line<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+br<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</code></pre></div><h2 id="32用utf-8格式把指定内容写入文件">3.2用utf-8格式把指定内容写入文件</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">BufferedWriter bw <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedWriter<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> OutputStreamWriter<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FileOutputStream<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;C:\\a.txt&#34;</span><span style="color:#f92672">),</span> <span style="color:#e6db74">&#34;UTF-8&#34;</span><span style="color:#f92672">));</span>
+bw<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;I am 老王&#34;</span><span style="color:#f92672">);</span>
+bw<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</code></pre></div><h1 id="4对象流">4.对象流</h1>
+<h2 id="font-colorred41序列化和反序列化font"><!-- raw HTML omitted -->4.1序列化和反序列化<!-- raw HTML omitted --></h2>
+<ul>
+<li>使用前提
+<ul>
+<li>需要让实体类实现Serializable接口</li>
+</ul>
+</li>
+</ul>
+<pre><code>序列化和反序列化概念
+
+    序列化
+
+    ​将对象存到文件中
+
+    反序列化
+
+    ​将文件读取到内存中,转换成对象
+</code></pre><p>在序列化的时候不想让当前类中的某个成员变量属性被序列化,可以使用瞬态,属性加transient关键子</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">transient</span> <span style="color:#66d9ef">int</span> age<span style="color:#f92672">;</span>
+</code></pre></div><h2 id="42将对象写入文件">4.2将对象写入文件</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//1.创建序列化流对象
+</span><span style="color:#75715e"></span>ObjectOutputStream oos <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ObjectOutputStream<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FileOutputStream<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;io_homework\\oos.txt&#34;</span><span style="color:#f92672">));</span>
+<span style="color:#75715e">//2.创建对象
+</span><span style="color:#75715e"></span>目标类 对象 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> 目标类<span style="color:#f92672">();</span>
+<span style="color:#75715e">//3.将对象写入文件
+</span><span style="color:#75715e"></span>oos<span style="color:#f92672">.</span><span style="color:#a6e22e">writeObject</span><span style="color:#f92672">(</span>对象<span style="color:#f92672">);</span>
+oos<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</code></pre></div><h2 id="43将文件中的数据读取并且转换成对象">4.3将文件中的数据读取并且转换成对象</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//1.创建反序列化流对象
+</span><span style="color:#75715e"></span>ObjectInputStream ois <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ObjectInputStream<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;io_homework\\oos.txt&#34;</span><span style="color:#f92672">));</span>
+<span style="color:#75715e">//2. 直接读取目标对象,注意之前怎么存,现在就怎么接收
+</span><span style="color:#75715e"></span>目标类 对象 <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>目标类<span style="color:#f92672">)</span>ois<span style="color:#f92672">.</span><span style="color:#a6e22e">readObject</span><span style="color:#f92672">();</span>
+<span style="color:#75715e">//3.对对象进行操作
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>对象<span style="color:#f92672">);</span>
+<span style="color:#75715e">//4.关流
+</span><span style="color:#75715e"></span>ois<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</code></pre></div><h1 id="font-colorred5properties重点font"><!-- raw HTML omitted -->5.Properties(重点)<!-- raw HTML omitted --></h1>
+<p>Properties本身就是一个Map,他实际应用场景是操作配置文件		xxx.properties</p>
+<h2 id="51将数据写入properties">5.1将数据写入Properties</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//1.指定properties文件存放位置
+</span><span style="color:#75715e"></span>FileWriter writer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileWriter<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;io_homework\\target.properties&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">//2.创建Properties对象
+</span><span style="color:#75715e"></span>Properties pp <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Properties<span style="color:#f92672">();</span>
+<span style="color:#75715e">//3.存数据
+</span><span style="color:#75715e"></span>pp<span style="color:#f92672">.</span><span style="color:#a6e22e">setProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;key1&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;value1&#34;</span><span style="color:#f92672">);</span>
+pp<span style="color:#f92672">.</span><span style="color:#a6e22e">setProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;key2&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;value2&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">//4.将数据写入target.properties
+</span><span style="color:#75715e"></span>pp<span style="color:#f92672">.</span><span style="color:#a6e22e">store</span><span style="color:#f92672">(</span>writer<span style="color:#f92672">,</span><span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
+</code></pre></div><h2 id="font-colorred52从配置文件中获取指定key的值font"><!-- raw HTML omitted -->5.2从配置文件中获取指定key的值<!-- raw HTML omitted --></h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//指定要读取的target.properties配置文件
+</span><span style="color:#75715e"></span>FileInputStream fis <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;io_homework\\target.properties&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">//创建对象
+</span><span style="color:#75715e"></span>Properties pp <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Properties<span style="color:#f92672">();</span>
+<span style="color:#75715e">//Properties加载我们获取文件的输入流
+</span><span style="color:#75715e"></span>pp<span style="color:#f92672">.</span><span style="color:#a6e22e">load</span><span style="color:#f92672">(</span>fis<span style="color:#f92672">);</span>
+<span style="color:#75715e">//获取target.properties配置文件中指定名称的key的值
+</span><span style="color:#75715e"></span>String value1 <span style="color:#f92672">=</span> pp<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;key1&#34;</span><span style="color:#f92672">);</span>
+</code></pre></div><h2 id="53使用resourcebundle获取properties对应key的值">5.3使用ResourceBundle获取properties对应key的值</h2>
+<pre><code>/**
+* 1.配置文件在src目录
+* 2.指定配置文件的时候不需要给后缀名
+*/
+ResourceBundle bundle = ResourceBundle.getBundle(&quot;target&quot;);
+String key2 = bundle.getString(&quot;key1&quot;);
+System.out.println(key2);
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * 配置文件一定要放在src目录下!!!!!
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PropertiesTestCase</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        method3<span style="color:#f92672">();</span>
+
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">method3</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        ResourceBundle bundle <span style="color:#f92672">=</span> ResourceBundle<span style="color:#f92672">.</span><span style="color:#a6e22e">getBundle</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;db&#34;</span><span style="color:#f92672">);</span>
+        String url <span style="color:#f92672">=</span> bundle<span style="color:#f92672">.</span><span style="color:#a6e22e">getString</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;url&#34;</span><span style="color:#f92672">);</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>url<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">method2</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        <span style="color:#75715e">//去编译目录下去找db.properties文件,将其转换成流
+</span><span style="color:#75715e"></span>        InputStream is <span style="color:#f92672">=</span> PropertiesTestCase<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getClassLoader</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getResourceAsStream</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;db.properties&#34;</span><span style="color:#f92672">);</span>
+        Properties pp <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Properties<span style="color:#f92672">();</span>
+        pp<span style="color:#f92672">.</span><span style="color:#a6e22e">load</span><span style="color:#f92672">(</span>is<span style="color:#f92672">);</span>
+        String url <span style="color:#f92672">=</span> pp<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;url&#34;</span><span style="color:#f92672">);</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>url<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">method1</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        FileInputStream fis <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;demo/src/db.properties&#34;</span><span style="color:#f92672">);</span>
+        Properties pp <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Properties<span style="color:#f92672">();</span>
+        pp<span style="color:#f92672">.</span><span style="color:#a6e22e">load</span><span style="color:#f92672">(</span>fis<span style="color:#f92672">);</span>
+        String url <span style="color:#f92672">=</span> pp<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;url&#34;</span><span style="color:#f92672">);</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>url<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+</code></pre></div></article>
+    </section>
+
+    <footer class="ui attached segment dream-tags">
+      
+          <a class="ui label">暂无标签</a>
+      
+      <div
+        class="ui label"
+        style="float: right; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>保存为图片
+      </div>
+    </footer>
+
+    
+      <footer class="ui attached segment">
+        guo dong
+      </footer>
+    
+
+    
+    
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="/img/avatar.jpg">
+      
+    </div>
+
+    
+    <div class="ui medium header">Guo Dong 的博客<div class="sub header" style="margin-top: 0.5rem;">Motto</div>
+    </div>
+    
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="/posts">
+        <i class="archive icon" title="归档"></i>
+      </a>
+      
+      <a class="item" href="/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+      <a class="item" href="/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+    </div>
+  </section>
+
+  
+
+  
+
+  <section class="ui attached segment header-socials">
+    <nav class="ui secondary menu dream-menu dream-socials">
+  
+  
+    <div class="item">
+      <a href="mailto:guodong5490@gmail.com">
+        <i class=" mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</nav>
+
+  </section>
+
+  <section class="ui bottom attached center aligned segment">
+    
+      <p>© 2019 - 2020 Demon&#39;s Blog</p>
+    
+
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+    
+  </section>
+</article>
+
+  </div>
+</div>
+
+        </section>
+        <section class="back">
+          <div class="ui centered relaxed grid dream-grid dream-back">
+  
+  
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">社交链接</h3>
+      </div>
+      <div class="ui bottom attached segment">
+        <nav class="ui secondary menu dream-menu dream-socials">
+  
+  
+    <div class="item">
+      <a href="mailto:guodong5490@gmail.com">
+        <i class="large mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</nav>
+
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+      <footer class="ui segment">
+        guo dong
+      </footer>
+    
+  </section>
+
+  
+  
+</div>
+
+        </section>
+      </div>
+    </div>
+
+    <script>
+  window.darkNav =  true 
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>22   多线程2 | Demon&#39;s Blog</title>
+
+    
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+
+
+<meta name="author" content="Demon" />
+<meta name="description" content="多线程02 1.线程状态(重点) java中对线程的6种状态进行了描述
+public class Thread { public enum State { /* 新建 */ NEW , /* 可运行状态 */ RUNNABLE , /* 阻塞状态 */ BLOCKED , /* 无限等待状态 */ WAITING , /* 计时等待 */ TIMED_WAITING , /* 终止 */ TERMINATED; } // 获取当前线程的状态  public State getState() { return jdk.internal.misc.VM.toThreadState(threadStatus); } } 通过源码我们可以看到Java中的线程存在6种状态，每种线程状态的含义如下
+   线程状态 具体含义     NEW 一个尚未启动的线程的状态。也称之为初始状态、开始状态。线程刚被创建，但是并未启动。还没调用start方法。MyThread t = new MyThread()只有线程象，没有线程特征。   RUNNABLE 当我们调用线程对象的start方法，那么此时线程对象进入了RUNNABLE状态。那么此时才是真正的在JVM进程中创建了一个线程，线程一经启动并不是立即得到执行，线程的运行与否要听令与CPU的调度，那么我们把这个中间状态称之为可执行状态(RUNNABLE)也就是说它具备执行的资格，但是并没有真正的执行起来而是在等待CPU的度。   BLOCKED 当一个线程试图获取一个对象锁，而该对象锁被其他的线程持有，则该线程进入Blocked状态；当该线程持有锁时，该线程将变成Runnable状态。   WAITING 一个正在等待的线程的状态。也称之为等待状态。例如：因为wait()而等待的线程正在等待另一个线程去调用notify()或notifyAll()；   TIMED_WAITING 一个在限定时间内等待的线程的状态。也称之为限时等待状态。Thread." />
+
+
+
+<meta name="generator" content="Hugo 0.74.3" />
+
+<link rel="canonical" href="https://demon-github1996.github.io/posts/day23%E5%A4%9A%E7%BA%BF%E7%A8%8B02/" />
+
+
+<meta property="og:title" content="22   多线程2" />
+<meta property="og:description" content="多线程02 1.线程状态(重点) java中对线程的6种状态进行了描述
+public class Thread { public enum State { /* 新建 */ NEW , /* 可运行状态 */ RUNNABLE , /* 阻塞状态 */ BLOCKED , /* 无限等待状态 */ WAITING , /* 计时等待 */ TIMED_WAITING , /* 终止 */ TERMINATED; } // 获取当前线程的状态  public State getState() { return jdk.internal.misc.VM.toThreadState(threadStatus); } } 通过源码我们可以看到Java中的线程存在6种状态，每种线程状态的含义如下
+   线程状态 具体含义     NEW 一个尚未启动的线程的状态。也称之为初始状态、开始状态。线程刚被创建，但是并未启动。还没调用start方法。MyThread t = new MyThread()只有线程象，没有线程特征。   RUNNABLE 当我们调用线程对象的start方法，那么此时线程对象进入了RUNNABLE状态。那么此时才是真正的在JVM进程中创建了一个线程，线程一经启动并不是立即得到执行，线程的运行与否要听令与CPU的调度，那么我们把这个中间状态称之为可执行状态(RUNNABLE)也就是说它具备执行的资格，但是并没有真正的执行起来而是在等待CPU的度。   BLOCKED 当一个线程试图获取一个对象锁，而该对象锁被其他的线程持有，则该线程进入Blocked状态；当该线程持有锁时，该线程将变成Runnable状态。   WAITING 一个正在等待的线程的状态。也称之为等待状态。例如：因为wait()而等待的线程正在等待另一个线程去调用notify()或notifyAll()；   TIMED_WAITING 一个在限定时间内等待的线程的状态。也称之为限时等待状态。Thread." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://demon-github1996.github.io/posts/day23%E5%A4%9A%E7%BA%BF%E7%A8%8B02/" />
+<meta property="article:published_time" content="2019-09-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-09-20T00:00:00+00:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="22   多线程2"/>
+<meta name="twitter:description" content="多线程02 1.线程状态(重点) java中对线程的6种状态进行了描述
+public class Thread { public enum State { /* 新建 */ NEW , /* 可运行状态 */ RUNNABLE , /* 阻塞状态 */ BLOCKED , /* 无限等待状态 */ WAITING , /* 计时等待 */ TIMED_WAITING , /* 终止 */ TERMINATED; } // 获取当前线程的状态  public State getState() { return jdk.internal.misc.VM.toThreadState(threadStatus); } } 通过源码我们可以看到Java中的线程存在6种状态，每种线程状态的含义如下
+   线程状态 具体含义     NEW 一个尚未启动的线程的状态。也称之为初始状态、开始状态。线程刚被创建，但是并未启动。还没调用start方法。MyThread t = new MyThread()只有线程象，没有线程特征。   RUNNABLE 当我们调用线程对象的start方法，那么此时线程对象进入了RUNNABLE状态。那么此时才是真正的在JVM进程中创建了一个线程，线程一经启动并不是立即得到执行，线程的运行与否要听令与CPU的调度，那么我们把这个中间状态称之为可执行状态(RUNNABLE)也就是说它具备执行的资格，但是并没有真正的执行起来而是在等待CPU的度。   BLOCKED 当一个线程试图获取一个对象锁，而该对象锁被其他的线程持有，则该线程进入Blocked状态；当该线程持有锁时，该线程将变成Runnable状态。   WAITING 一个正在等待的线程的状态。也称之为等待状态。例如：因为wait()而等待的线程正在等待另一个线程去调用notify()或notifyAll()；   TIMED_WAITING 一个在限定时间内等待的线程的状态。也称之为限时等待状态。Thread."/>
+
+
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
+
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
+
+
+    
+<link rel="stylesheet" href="/css/github-markdown.css" />
+
+
+
+
+  </head>
+
+  
+  <body style="background: pink;">
+  
+    
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/demon-github1996.github.io\/'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single">
+
+    <section class="ui top attached segment" id="dream-save-post-as-img">
+      <header style="margin-top: 0 !important;">
+        <h1 class="ui large header">
+          22   多线程2
+          <div class="sub header">
+            @
+            
+              
+                Demon
+              
+            
+            · Friday, Sep 20, 2019
+            · 6 分钟阅读
+            · 更新于 Sep 20, 2019
+          </div>
+        </h1>
+      </header>
+
+      
+        <img class="ui image" style="margin-top: 2rem;" src="" />
+      
+
+      <article style="margin-top: 2rem;"><h1 id="多线程02">多线程02</h1>
+<h2 id="font-colorred1线程状态重点font"><!-- raw HTML omitted -->1.线程状态(重点)<!-- raw HTML omitted --></h2>
+<p>java中对线程的6种状态进行了描述</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Thread</span> <span style="color:#f92672">{</span>
+    
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">enum</span> State <span style="color:#f92672">{</span>
+    
+        <span style="color:#75715e">/* 新建 */</span>
+        NEW <span style="color:#f92672">,</span> 
+
+        <span style="color:#75715e">/* 可运行状态 */</span>
+        RUNNABLE <span style="color:#f92672">,</span> 
+
+        <span style="color:#75715e">/* 阻塞状态 */</span>
+        BLOCKED <span style="color:#f92672">,</span> 
+
+        <span style="color:#75715e">/* 无限等待状态 */</span>
+        WAITING <span style="color:#f92672">,</span> 
+
+        <span style="color:#75715e">/* 计时等待 */</span>
+        TIMED_WAITING <span style="color:#f92672">,</span> 
+
+        <span style="color:#75715e">/* 终止 */</span>
+        TERMINATED<span style="color:#f92672">;</span>
+    
+	<span style="color:#f92672">}</span>
+    
+    <span style="color:#75715e">// 获取当前线程的状态
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> State <span style="color:#a6e22e">getState</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> jdk<span style="color:#f92672">.</span><span style="color:#a6e22e">internal</span><span style="color:#f92672">.</span><span style="color:#a6e22e">misc</span><span style="color:#f92672">.</span><span style="color:#a6e22e">VM</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toThreadState</span><span style="color:#f92672">(</span>threadStatus<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+    
+<span style="color:#f92672">}</span>
+</code></pre></div><p>通过源码我们可以看到Java中的线程存在6种状态，每种线程状态的含义如下</p>
+<table>
+<thead>
+<tr>
+<th>线程状态</th>
+<th>具体含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NEW</td>
+<td>一个尚未启动的线程的状态。也称之为初始状态、开始状态。线程刚被创建，但是并未启动。还没调用start方法。MyThread t = new MyThread()只有线程象，没有线程特征。</td>
+</tr>
+<tr>
+<td>RUNNABLE</td>
+<td>当我们调用线程对象的<!-- raw HTML omitted --><!-- raw HTML omitted -->start<!-- raw HTML omitted --><!-- raw HTML omitted -->方法，那么此时线程对象进入了RUNNABLE状态。那么<!-- raw HTML omitted --><!-- raw HTML omitted -->此时才是真正的在JVM进程中创建了一个线程<!-- raw HTML omitted --><!-- raw HTML omitted -->，线程一经启动并不是立即得到执行，线程的运行与否要听令与CPU的调度，那么我们把这个中间状态称之为可执行状态(RUNNABLE)也就是说它具备执行的资格，但是并没有真正的执行起来而是在等待CPU的度。</td>
+</tr>
+<tr>
+<td>BLOCKED</td>
+<td>当一个线程试图获取一个对象锁，而该对象锁被其他的线程持有，则该线程进入Blocked状态；当该线程持有锁时，该线程将变成Runnable状态。</td>
+</tr>
+<tr>
+<td>WAITING</td>
+<td>一个正在等待的线程的状态。也称之为等待状态。例如：因为wait()而等待的线程正在等待另一个线程去调用notify()或notifyAll()；</td>
+</tr>
+<tr>
+<td>TIMED_WAITING</td>
+<td>一个在限定时间内等待的线程的状态。也称之为限时等待状态。Thread.sleep(时间)</td>
+</tr>
+<tr>
+<td>TERMINATED</td>
+<td>一个完全运行完成的线程的状态。也称之为终止状态、结束状态</td>
+</tr>
+</tbody>
+</table>
+<p>各个状态的转换，如下图所示：</p>
+<p><img src="https://gitee.com/guo_dong123/images/raw/master/img/20200922141834.png" alt=""></p>
+<hr>
+<p><!-- raw HTML omitted -->注意:下面代码了解即可,线程状态这块的重点在理解<!-- raw HTML omitted --></p>
+<hr>
+<h4 id="11-线程的状态-练习1">1.1 线程的状态-练习1</h4>
+<p><strong>目的 :</strong> 本案例主要演示TIME_WAITING的状态转换。</p>
+<p>**需求：**编写一段代码，依次显示一个线程的这些状态：NEW -&gt; RUNNABLE -&gt; TIME_WAITING -&gt; RUNNABLE -&gt; TERMINATED</p>
+<p>为了简化我们的开发，本次我们使用匿名内部类结合lambda表达式的方式使用多线程。</p>
+<p><strong>代码实现</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ThreadStateDemo01</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> InterruptedException <span style="color:#f92672">{</span>
+
+        <span style="color:#75715e">//定义一个内部线程
+</span><span style="color:#75715e"></span>        Thread thread <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;2.执行thread.start()之后，线程的状态：&#34;</span> <span style="color:#f92672">+</span> Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getState</span><span style="color:#f92672">());</span>
+            <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+                <span style="color:#75715e">//休眠100毫秒
+</span><span style="color:#75715e"></span>                Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>100<span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+            <span style="color:#f92672">}</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;4.执行Thread.sleep(long)完成之后，线程的状态：&#34;</span> <span style="color:#f92672">+</span> Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getState</span><span style="color:#f92672">());</span>
+        <span style="color:#f92672">});</span>
+
+        <span style="color:#75715e">//获取start()之前的状态
+</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;1.通过new初始化一个线程，但是还没有start()之前，线程的状态：&#34;</span> <span style="color:#f92672">+</span> thread<span style="color:#f92672">.</span><span style="color:#a6e22e">getState</span><span style="color:#f92672">());</span>
+
+        <span style="color:#75715e">//启动线程
+</span><span style="color:#75715e"></span>        thread<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+
+        <span style="color:#75715e">//休眠50毫秒
+</span><span style="color:#75715e"></span>        Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>50<span style="color:#f92672">);</span>
+
+        <span style="color:#75715e">//因为thread1需要休眠100毫秒，所以在第50毫秒，thread处于sleep状态
+</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;3.执行Thread.sleep(long)时，线程的状态：&#34;</span> <span style="color:#f92672">+</span> thread<span style="color:#f92672">.</span><span style="color:#a6e22e">getState</span><span style="color:#f92672">());</span>
+
+        <span style="color:#75715e">//thread1和main线程主动休眠150毫秒，所以在第150毫秒,thread早已执行完毕
+</span><span style="color:#75715e"></span>        Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>100<span style="color:#f92672">);</span>
+
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5.线程执行完毕之后，线程的状态：&#34;</span> <span style="color:#f92672">+</span> thread<span style="color:#f92672">.</span><span style="color:#a6e22e">getState</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\n&#34;</span><span style="color:#f92672">);</span>
+
+    <span style="color:#f92672">}</span>
+
+<span style="color:#f92672">}</span>
+</code></pre></div><p>控制台输出</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">1<span style="color:#f92672">.</span><span style="color:#a6e22e">通过new初始化一个线程</span><span style="color:#960050;background-color:#1e0010">，</span>但是还没有start<span style="color:#f92672">()</span>之前<span style="color:#960050;background-color:#1e0010">，</span>线程的状态<span style="color:#960050;background-color:#1e0010">：</span>NEW
+2<span style="color:#f92672">.</span><span style="color:#a6e22e">执行thread</span><span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">()</span>之后<span style="color:#960050;background-color:#1e0010">，</span>线程的状态<span style="color:#960050;background-color:#1e0010">：</span>RUNNABLE
+3<span style="color:#f92672">.</span><span style="color:#a6e22e">执行Thread</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span><span style="color:#66d9ef">long</span><span style="color:#f92672">)</span>时<span style="color:#960050;background-color:#1e0010">，</span>线程的状态<span style="color:#960050;background-color:#1e0010">：</span>TIMED_WAITING
+4<span style="color:#f92672">.</span><span style="color:#a6e22e">执行Thread</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span><span style="color:#66d9ef">long</span><span style="color:#f92672">)</span>完成之后<span style="color:#960050;background-color:#1e0010">，</span>线程的状态<span style="color:#960050;background-color:#1e0010">：</span>RUNNABLE
+5<span style="color:#f92672">.</span><span style="color:#a6e22e">线程执行完毕之后</span><span style="color:#960050;background-color:#1e0010">，</span>线程的状态<span style="color:#960050;background-color:#1e0010">：</span>TERMINATED
+</code></pre></div><h4 id="12-线程的状态-练习2">1.2 线程的状态-练习2</h4>
+<p><strong>目的 :</strong> 本案例主要演示WAITING的状态转换。</p>
+<p>**需求 ：**编写一段代码，依次显示一个线程的这些状态：NEW -&gt; RUNNABLE -&gt; WAITING -&gt; RUNNABLE -&gt; TERMINATED</p>
+<p><strong>代码实现 :</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ThreadStateDemo02</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> InterruptedException <span style="color:#f92672">{</span>
+
+        <span style="color:#75715e">//定义一个对象，用来加锁和解锁
+</span><span style="color:#75715e"></span>        Object obj <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">();</span>
+
+        <span style="color:#75715e">//定义一个内部线程
+</span><span style="color:#75715e"></span>        Thread thread1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;2.执行thread.start()之后，线程的状态：&#34;</span> <span style="color:#f92672">+</span> Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getState</span><span style="color:#f92672">());</span>
+            <span style="color:#66d9ef">synchronized</span> <span style="color:#f92672">(</span>obj<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+
+                    <span style="color:#75715e">//thread1需要休眠100毫秒
+</span><span style="color:#75715e"></span>                    Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>100<span style="color:#f92672">);</span>
+
+                    <span style="color:#75715e">//thread1100毫秒之后，通过wait()方法释放obj对象是锁
+</span><span style="color:#75715e"></span>                    obj<span style="color:#f92672">.</span><span style="color:#a6e22e">wait</span><span style="color:#f92672">();</span>
+                    
+                <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                    e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+                <span style="color:#f92672">}</span>
+            <span style="color:#f92672">}</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;4.被object.notify()方法唤醒之后，线程的状态：&#34;</span> <span style="color:#f92672">+</span> Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getState</span><span style="color:#f92672">());</span>
+        <span style="color:#f92672">});</span>
+
+        <span style="color:#75715e">//获取start()之前的状态
+</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;1.通过new初始化一个线程，但是还没有start()之前，线程的状态：&#34;</span> <span style="color:#f92672">+</span> thread1<span style="color:#f92672">.</span><span style="color:#a6e22e">getState</span><span style="color:#f92672">());</span>
+
+        <span style="color:#75715e">//启动线程
+</span><span style="color:#75715e"></span>        thread1<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+
+        <span style="color:#75715e">//main线程休眠150毫秒
+</span><span style="color:#75715e"></span>        Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>150<span style="color:#f92672">);</span>
+
+        <span style="color:#75715e">//因为thread1在第100毫秒进入wait等待状态，所以第150秒肯定可以获取其状态
+</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;3.执行object.wait()时，线程的状态：&#34;</span> <span style="color:#f92672">+</span> thread1<span style="color:#f92672">.</span><span style="color:#a6e22e">getState</span><span style="color:#f92672">());</span>
+
+        <span style="color:#75715e">//声明另一个线程进行解锁
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">synchronized</span> <span style="color:#f92672">(</span>obj<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#75715e">//唤醒等待的线程
+</span><span style="color:#75715e"></span>                obj<span style="color:#f92672">.</span><span style="color:#a6e22e">notify</span><span style="color:#f92672">();</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}).</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+
+        <span style="color:#75715e">//main线程休眠10毫秒等待thread1线程能够苏醒
+</span><span style="color:#75715e"></span>        Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>10<span style="color:#f92672">);</span>
+
+        <span style="color:#75715e">//获取thread1运行结束之后的状态
+</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5.线程执行完毕之后，线程的状态：&#34;</span> <span style="color:#f92672">+</span> thread1<span style="color:#f92672">.</span><span style="color:#a6e22e">getState</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\n&#34;</span><span style="color:#f92672">);</span>
+
+    <span style="color:#f92672">}</span>
+
+<span style="color:#f92672">}</span>
+</code></pre></div><p>控制台输出结果</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">1<span style="color:#f92672">.</span><span style="color:#a6e22e">通过new初始化一个线程</span><span style="color:#960050;background-color:#1e0010">，</span>但是还没有start<span style="color:#f92672">()</span>之前<span style="color:#960050;background-color:#1e0010">，</span>线程的状态<span style="color:#960050;background-color:#1e0010">：</span>NEW
+2<span style="color:#f92672">.</span><span style="color:#a6e22e">执行thread</span><span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">()</span>之后<span style="color:#960050;background-color:#1e0010">，</span>线程的状态<span style="color:#960050;background-color:#1e0010">：</span>RUNNABLE
+3<span style="color:#f92672">.</span><span style="color:#a6e22e">执行object</span><span style="color:#f92672">.</span><span style="color:#a6e22e">wait</span><span style="color:#f92672">()</span>时<span style="color:#960050;background-color:#1e0010">，</span>线程的状态<span style="color:#960050;background-color:#1e0010">：</span>WAITING
+4<span style="color:#f92672">.</span><span style="color:#a6e22e">被object</span><span style="color:#f92672">.</span><span style="color:#a6e22e">notify</span><span style="color:#f92672">()</span>方法唤醒之后<span style="color:#960050;background-color:#1e0010">，</span>线程的状态<span style="color:#960050;background-color:#1e0010">：</span>RUNNABLE
+5<span style="color:#f92672">.</span><span style="color:#a6e22e">线程执行完毕之后</span><span style="color:#960050;background-color:#1e0010">，</span>线程的状态<span style="color:#960050;background-color:#1e0010">：</span>TERMINATED
+</code></pre></div><h4 id="13-线程的状态-练习3">1.3 线程的状态-练习3</h4>
+<p><strong>目的 :</strong>   本案例主要演示BLOCKED的状态转换。</p>
+<p>**需求 ：**编写一段代码，依次显示一个线程的这些状态：NEW -&gt; RUNNABLE -&gt; BLOCKED -&gt; RUNNABLE -&gt; TERMINATED</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ThreadStateDemo03</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> InterruptedException <span style="color:#f92672">{</span>
+
+        <span style="color:#75715e">//定义一个对象，用来加锁和解锁
+</span><span style="color:#75715e"></span>        Object obj2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">();</span>
+
+        <span style="color:#75715e">//定义一个线程，先抢占了obj2对象的锁
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">synchronized</span> <span style="color:#f92672">(</span>obj2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+                    Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>100<span style="color:#f92672">);</span>              <span style="color:#75715e">//第一个线程要持有锁100毫秒
+</span><span style="color:#75715e"></span>                    obj2<span style="color:#f92672">.</span><span style="color:#a6e22e">wait</span><span style="color:#f92672">();</span>                          <span style="color:#75715e">//然后通过wait()方法进行等待状态，并释放obj2的对象锁
+</span><span style="color:#75715e"></span>                <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                    e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+                <span style="color:#f92672">}</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}).</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+
+        <span style="color:#75715e">//定义目标线程，获取等待获取obj2的锁
+</span><span style="color:#75715e"></span>        Thread thread <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;2.执行thread.start()之后，线程的状态：&#34;</span> <span style="color:#f92672">+</span> Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getState</span><span style="color:#f92672">());</span>
+            <span style="color:#66d9ef">synchronized</span> <span style="color:#f92672">(</span>obj2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+                    Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>100<span style="color:#f92672">);</span>              <span style="color:#75715e">//thread3要持有对象锁100毫秒
+</span><span style="color:#75715e"></span>                    obj2<span style="color:#f92672">.</span><span style="color:#a6e22e">notify</span><span style="color:#f92672">();</span>                        <span style="color:#75715e">//然后通过notify()方法唤醒所有在ojb2上等待的线程继续执行后续操作
+</span><span style="color:#75715e"></span>                <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                    e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+                <span style="color:#f92672">}</span>
+            <span style="color:#f92672">}</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;4.阻塞结束后，线程的状态：&#34;</span> <span style="color:#f92672">+</span> Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getState</span><span style="color:#f92672">());</span>
+        <span style="color:#f92672">});</span>
+
+        <span style="color:#75715e">//获取start()之前的状态
+</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;1.通过new初始化一个线程，但是还没有thread.start()之前，线程的状态：&#34;</span> <span style="color:#f92672">+</span> thread<span style="color:#f92672">.</span><span style="color:#a6e22e">getState</span><span style="color:#f92672">());</span>
+
+        <span style="color:#75715e">//启动线程
+</span><span style="color:#75715e"></span>        thread<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+
+        <span style="color:#75715e">//先等100毫秒
+</span><span style="color:#75715e"></span>        Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>50<span style="color:#f92672">);</span>
+
+        <span style="color:#75715e">//第一个线程释放锁至少需要100毫秒，所以在第50毫秒时，thread正在因等待obj的对象锁而阻塞
+</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;3.因为等待锁而阻塞时，线程的状态：&#34;</span> <span style="color:#f92672">+</span> thread<span style="color:#f92672">.</span><span style="color:#a6e22e">getState</span><span style="color:#f92672">());</span>
+
+        <span style="color:#75715e">//再等300毫秒
+</span><span style="color:#75715e"></span>        Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>300<span style="color:#f92672">);</span>
+
+        <span style="color:#75715e">//两个线程的执行时间加上之前等待的50毫秒总共是250毫秒，所以第300毫秒，所有的线程都已经执行完毕
+</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5.线程执行完毕之后，线程的状态：&#34;</span> <span style="color:#f92672">+</span> thread<span style="color:#f92672">.</span><span style="color:#a6e22e">getState</span><span style="color:#f92672">());</span>
+
+    <span style="color:#f92672">}</span>
+
+<span style="color:#f92672">}</span>
+</code></pre></div><p><strong>控制台输出结果</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">1<span style="color:#f92672">.</span><span style="color:#a6e22e">通过new初始化一个线程</span><span style="color:#960050;background-color:#1e0010">，</span>但是还没有thread<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">()</span>之前<span style="color:#960050;background-color:#1e0010">，</span>线程的状态<span style="color:#960050;background-color:#1e0010">：</span>NEW
+2<span style="color:#f92672">.</span><span style="color:#a6e22e">执行thread</span><span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">()</span>之后<span style="color:#960050;background-color:#1e0010">，</span>线程的状态<span style="color:#960050;background-color:#1e0010">：</span>RUNNABLE
+3<span style="color:#f92672">.</span><span style="color:#a6e22e">因为等待锁而阻塞时</span><span style="color:#960050;background-color:#1e0010">，</span>线程的状态<span style="color:#960050;background-color:#1e0010">：</span>BLOCKED
+4<span style="color:#f92672">.</span><span style="color:#a6e22e">阻塞结束后</span><span style="color:#960050;background-color:#1e0010">，</span>线程的状态<span style="color:#960050;background-color:#1e0010">：</span>RUNNABLE
+5<span style="color:#f92672">.</span><span style="color:#a6e22e">线程执行完毕之后</span><span style="color:#960050;background-color:#1e0010">，</span>线程的状态<span style="color:#960050;background-color:#1e0010">：</span>TERMINATED
+</code></pre></div><h2 id="font-colorred2线程池font"><!-- raw HTML omitted -->2.线程池<!-- raw HTML omitted --></h2>
+<h4 id="font-colorred21-线程池-threadpoolexecutorfont"><!-- raw HTML omitted -->2.1 线程池-ThreadPoolExecutor<!-- raw HTML omitted --></h4>
+<p><strong>创建线程池对象 :</strong></p>
+<p><img src="https://gitee.com/guo_dong123/images/raw/master/img/20200922142230.png" alt="1591165506516"></p>
+<p>API需要记住创建线程池的7个参数</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//创建线程池
+</span><span style="color:#75715e"></span>ThreadPoolExecutor pool <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ThreadPoolExecutor<span style="color:#f92672">(</span>
+											核心线程数量<span style="color:#f92672">,</span>
+											最大线程数量<span style="color:#f92672">,</span>
+											空闲线程最大存活时间<span style="color:#f92672">,</span>
+											时间单位<span style="color:#f92672">,</span>
+											任务队列<span style="color:#f92672">,</span>
+    										创建线程工厂<span style="color:#f92672">,</span>
+											任务的拒绝策略
+										<span style="color:#f92672">);</span>
+</code></pre></div><p>例子</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">ThreadPoolExecutor pool <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ThreadPoolExecutor<span style="color:#f92672">(</span>
+	10 <span style="color:#f92672">,</span>  <span style="color:#75715e">//核心线程数10
+</span><span style="color:#75715e"></span>	20 <span style="color:#f92672">,</span>  <span style="color:#75715e">//最大线程数20(不包括任务队列中排队的数量)
+</span><span style="color:#75715e"></span>	60 <span style="color:#f92672">,</span>  <span style="color:#75715e">//空闲线程超过60秒没任务,会被销毁
+</span><span style="color:#75715e"></span>	TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span> <span style="color:#f92672">,</span><span style="color:#75715e">//单位秒
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">new</span> ArrayBlockingQueue<span style="color:#f92672">&lt;&gt;(</span>20<span style="color:#f92672">)</span> <span style="color:#f92672">,</span><span style="color:#75715e">//创建队列,核心线程都被占满后把多余的任务放入队列
+</span><span style="color:#75715e"></span>	Executors<span style="color:#f92672">.</span><span style="color:#a6e22e">defaultThreadFactory</span><span style="color:#f92672">()</span> <span style="color:#f92672">,</span> <span style="color:#75715e">//默认创建线程的工厂
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">new</span> ThreadPoolExecutor<span style="color:#f92672">.</span><span style="color:#a6e22e">AbortPolicy</span><span style="color:#f92672">()</span><span style="color:#75715e">//任务超出最大线程数的时候,新进入的任务执行的策略
+</span><span style="color:#75715e"></span><span style="color:#f92672">)</span> <span style="color:#f92672">;</span>
+
+<span style="color:#66d9ef">for</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0 <span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;=</span> 10 <span style="color:#f92672">;</span> i<span style="color:#f92672">++){</span>
+	pool<span style="color:#f92672">.</span><span style="color:#a6e22e">submit</span><span style="color:#f92672">(</span>runnable对象<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+
+pool<span style="color:#f92672">.</span><span style="color:#a6e22e">shutdown</span><span style="color:#f92672">();</span>
+</code></pre></div><h4 id="font-colorred22线程池的执行流程重点font"><!-- raw HTML omitted -->2.2线程池的执行流程(重点)<!-- raw HTML omitted --></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">1<span style="color:#f92672">.</span><span style="color:#a6e22e">当线程数小于corePoolSize时</span><span style="color:#960050;background-color:#1e0010">，</span>每添加一个任务<span style="color:#960050;background-color:#1e0010">，</span>则立即开启线程执行
+2<span style="color:#f92672">.</span><span style="color:#a6e22e">当corePoolSize满的时候</span><span style="color:#960050;background-color:#1e0010">，</span>后面添加的任务将放入缓冲队列workQueue等待<span style="color:#960050;background-color:#1e0010">；</span>
+3<span style="color:#f92672">.</span><span style="color:#a6e22e">当workQueue也满的时候</span><span style="color:#960050;background-color:#1e0010">，</span>看是否超过maximumPoolSize线程数
+	如果超过<span style="color:#960050;background-color:#1e0010">，</span>默认拒绝执行
+	如果没有超过<span style="color:#960050;background-color:#1e0010">，</span>则创建线程立即执行<span style="color:#960050;background-color:#1e0010">。</span>
+</code></pre></div><h4 id="23线程池-非默认任务拒绝策略了解">2.3线程池-非默认任务拒绝策略(了解)</h4>
+<p>RejectedExecutionHandler是jdk提供的一个任务拒绝策略接口，它下面存在4个子类。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">ThreadPoolExecutor<span style="color:#f92672">.</span><span style="color:#a6e22e">AbortPolicy</span><span style="color:#f92672">:</span> 		    丢弃任务并抛出RejectedExecutionException异常<span style="color:#960050;background-color:#1e0010">。</span>是默认的策略<span style="color:#960050;background-color:#1e0010">。</span>
+ThreadPoolExecutor<span style="color:#f92672">.</span><span style="color:#a6e22e">DiscardPolicy</span><span style="color:#960050;background-color:#1e0010">：</span> 		   丢弃任务<span style="color:#960050;background-color:#1e0010">，</span>但是不抛出异常 这是不推荐的做法<span style="color:#960050;background-color:#1e0010">。</span>
+ThreadPoolExecutor<span style="color:#f92672">.</span><span style="color:#a6e22e">DiscardOldestPolicy</span><span style="color:#960050;background-color:#1e0010">：</span>    抛弃队列中等待最久的任务 然后把当前任务加入队列中<span style="color:#960050;background-color:#1e0010">。</span>
+ThreadPoolExecutor<span style="color:#f92672">.</span><span style="color:#a6e22e">CallerRunsPolicy</span><span style="color:#f92672">:</span>        调用任务的run<span style="color:#f92672">()</span>方法绕过线程池直接执行<span style="color:#960050;background-color:#1e0010">。</span>
+</code></pre></div><p>注：明确线程池最多可执行的任务数 = 队列容量 + 最大线程数</p>
+<h5 id="231threadpoolexecutorabortpolicy任务处理策略">2.3.1.ThreadPoolExecutor.AbortPolicy任务处理策略</h5>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->核心处理:新进来的任务超出总容量直接拒绝然后抛异常<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * 核心线程数量为1 ， 最大线程池数量为3, 任务容器的容量为1 ,空闲线程的最大存在时间为20s
+</span><span style="color:#75715e"> */</span>
+ThreadPoolExecutor pool <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ThreadPoolExecutor<span style="color:#f92672">(</span>
+		1<span style="color:#f92672">,</span>
+		3<span style="color:#f92672">,</span>
+		20<span style="color:#f92672">,</span>
+		TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">,</span>
+		<span style="color:#66d9ef">new</span> ArrayBlockingQueue<span style="color:#f92672">&lt;&gt;(</span>1<span style="color:#f92672">),</span>
+		Executors<span style="color:#f92672">.</span><span style="color:#a6e22e">defaultThreadFactory</span><span style="color:#f92672">(),</span>
+		<span style="color:#66d9ef">new</span> ThreadPoolExecutor<span style="color:#f92672">.</span><span style="color:#a6e22e">AbortPolicy</span><span style="color:#f92672">()</span>
+<span style="color:#f92672">);</span>
+
+<span style="color:#75715e">//线程池最多接收4个任务(最多并行任务数[3]+队列中任务数[1])
+</span><span style="color:#75715e">//此时进来5个任务执行
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> x <span style="color:#f92672">&lt;</span> 5<span style="color:#f92672">;</span> x<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+	pool<span style="color:#f92672">.</span><span style="color:#a6e22e">submit</span><span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;----&gt;&gt; 执行了任务&#34;</span><span style="color:#f92672">);</span>
+	<span style="color:#f92672">});</span>
+<span style="color:#f92672">}</span>
+
+pool<span style="color:#f92672">.</span><span style="color:#a6e22e">shutdown</span><span style="color:#f92672">();</span>
+</code></pre></div><p><strong>控制台输出结果</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">pool<span style="color:#f92672">-</span>1<span style="color:#f92672">-</span>thread<span style="color:#f92672">-</span>1<span style="color:#f92672">----&gt;&gt;</span> 执行了任务
+pool<span style="color:#f92672">-</span>1<span style="color:#f92672">-</span>thread<span style="color:#f92672">-</span>3<span style="color:#f92672">----&gt;&gt;</span> 执行了任务
+pool<span style="color:#f92672">-</span>1<span style="color:#f92672">-</span>thread<span style="color:#f92672">-</span>1<span style="color:#f92672">----&gt;&gt;</span> 执行了任务
+pool<span style="color:#f92672">-</span>1<span style="color:#f92672">-</span>thread<span style="color:#f92672">-</span>2<span style="color:#f92672">----&gt;&gt;</span> 执行了任务
+Exception in thread <span style="color:#e6db74">&#34;main&#34;</span> java<span style="color:#f92672">.</span><span style="color:#a6e22e">util</span><span style="color:#f92672">.</span><span style="color:#a6e22e">concurrent</span><span style="color:#f92672">.</span><span style="color:#a6e22e">RejectedExecutionException</span><span style="color:#f92672">:</span> Task java<span style="color:#f92672">.</span><span style="color:#a6e22e">util</span><span style="color:#f92672">.</span><span style="color:#a6e22e">concurrent</span><span style="color:#f92672">.</span><span style="color:#a6e22e">FutureTask</span><span style="color:#a6e22e">@448139f0</span> rejected from java<span style="color:#f92672">.</span><span style="color:#a6e22e">util</span><span style="color:#f92672">.</span><span style="color:#a6e22e">concurrent</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ThreadPoolExecutor</span><span style="color:#a6e22e">@7cca494b</span><span style="color:#f92672">[</span>Running<span style="color:#f92672">,</span> pool size <span style="color:#f92672">=</span> 3<span style="color:#f92672">,</span> active threads <span style="color:#f92672">=</span> 0<span style="color:#f92672">,</span> queued tasks <span style="color:#f92672">=</span> 0<span style="color:#f92672">,</span> completed tasks <span style="color:#f92672">=</span> 4<span style="color:#f92672">]</span>
+	at java<span style="color:#f92672">.</span><span style="color:#a6e22e">util</span><span style="color:#f92672">.</span><span style="color:#a6e22e">concurrent</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ThreadPoolExecutor$AbortPolicy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">rejectedExecution</span><span style="color:#f92672">(</span>ThreadPoolExecutor<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>2047<span style="color:#f92672">)</span>
+	at java<span style="color:#f92672">.</span><span style="color:#a6e22e">util</span><span style="color:#f92672">.</span><span style="color:#a6e22e">concurrent</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ThreadPoolExecutor</span><span style="color:#f92672">.</span><span style="color:#a6e22e">reject</span><span style="color:#f92672">(</span>ThreadPoolExecutor<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>823<span style="color:#f92672">)</span>
+	at java<span style="color:#f92672">.</span><span style="color:#a6e22e">util</span><span style="color:#f92672">.</span><span style="color:#a6e22e">concurrent</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ThreadPoolExecutor</span><span style="color:#f92672">.</span><span style="color:#a6e22e">execute</span><span style="color:#f92672">(</span>ThreadPoolExecutor<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>1369<span style="color:#f92672">)</span>
+	at java<span style="color:#f92672">.</span><span style="color:#a6e22e">util</span><span style="color:#f92672">.</span><span style="color:#a6e22e">concurrent</span><span style="color:#f92672">.</span><span style="color:#a6e22e">AbstractExecutorService</span><span style="color:#f92672">.</span><span style="color:#a6e22e">submit</span><span style="color:#f92672">(</span>AbstractExecutorService<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>112<span style="color:#f92672">)</span>
+	at Demo<span style="color:#f92672">.</span><span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>Demo<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>22<span style="color:#f92672">)</span>
+</code></pre></div><p>控制台报错，仅仅执行了4个任务，有一个任务被丢弃了</p>
+<h5 id="232threadpoolexecutordiscardpolicy任务处理策略">2.3.2ThreadPoolExecutor.DiscardPolicy任务处理策略</h5>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->核心处理:新进来的任务超出总容量直接丢弃,注意后没有任何提示<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * 核心线程数量为1 ， 最大线程池数量为3, 任务容器的容量为1 ,空闲线程的最大存在时间为20s
+</span><span style="color:#75715e"> */</span>
+ThreadPoolExecutor pool <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ThreadPoolExecutor<span style="color:#f92672">(</span>
+		1<span style="color:#f92672">,</span>
+		3<span style="color:#f92672">,</span>
+		20<span style="color:#f92672">,</span>
+		TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">,</span>
+		<span style="color:#66d9ef">new</span> ArrayBlockingQueue<span style="color:#f92672">&lt;&gt;(</span>1<span style="color:#f92672">),</span>
+		Executors<span style="color:#f92672">.</span><span style="color:#a6e22e">defaultThreadFactory</span><span style="color:#f92672">(),</span>
+		<span style="color:#66d9ef">new</span> ThreadPoolExecutor<span style="color:#f92672">.</span><span style="color:#a6e22e">DiscardPolicy</span><span style="color:#f92672">()</span>
+<span style="color:#f92672">);</span>
+
+<span style="color:#75715e">//线程池最多接收4个任务(最多并行任务数[3]+队列中任务数[1])
+</span><span style="color:#75715e">//此时进来5个任务执行
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> x <span style="color:#f92672">&lt;</span> 5<span style="color:#f92672">;</span> x<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+	pool<span style="color:#f92672">.</span><span style="color:#a6e22e">submit</span><span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;----&gt;&gt; 执行了任务&#34;</span><span style="color:#f92672">);</span>
+	<span style="color:#f92672">});</span>
+<span style="color:#f92672">}</span>
+
+pool<span style="color:#f92672">.</span><span style="color:#a6e22e">shutdown</span><span style="color:#f92672">();</span>
+</code></pre></div><p><strong>控制台输出结果</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">pool<span style="color:#f92672">-</span>1<span style="color:#f92672">-</span>thread<span style="color:#f92672">-</span>1<span style="color:#f92672">----&gt;&gt;</span> 执行了任务
+pool<span style="color:#f92672">-</span>1<span style="color:#f92672">-</span>thread<span style="color:#f92672">-</span>1<span style="color:#f92672">----&gt;&gt;</span> 执行了任务
+pool<span style="color:#f92672">-</span>1<span style="color:#f92672">-</span>thread<span style="color:#f92672">-</span>3<span style="color:#f92672">----&gt;&gt;</span> 执行了任务
+pool<span style="color:#f92672">-</span>1<span style="color:#f92672">-</span>thread<span style="color:#f92672">-</span>2<span style="color:#f92672">----&gt;&gt;</span> 执行了任务
+</code></pre></div><p>控制台没有报错，仅仅执行了4个任务，有一个任务被丢弃了</p>
+<h5 id="233threadpoolexecutordiscardoldestpolicy任务处理策略">2.3.3ThreadPoolExecutor.DiscardOldestPolicy任务处理策略</h5>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->核心处理:新进来的任务进入队列后,会将队列中最老的任务移除<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * 核心线程数量为1 ， 最大线程池数量为3, 任务容器的容量为1 ,空闲线程的最大存在时间为20s
+</span><span style="color:#75715e"> */</span>
+ThreadPoolExecutor pool <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ThreadPoolExecutor<span style="color:#f92672">(</span>
+		1<span style="color:#f92672">,</span>
+		3<span style="color:#f92672">,</span>
+		20<span style="color:#f92672">,</span>
+		TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">,</span>
+		<span style="color:#66d9ef">new</span> ArrayBlockingQueue<span style="color:#f92672">&lt;&gt;(</span>1<span style="color:#f92672">),</span>
+		Executors<span style="color:#f92672">.</span><span style="color:#a6e22e">defaultThreadFactory</span><span style="color:#f92672">(),</span>
+		<span style="color:#66d9ef">new</span> ThreadPoolExecutor<span style="color:#f92672">.</span><span style="color:#a6e22e">DiscardOldestPolicy</span><span style="color:#f92672">()</span>
+<span style="color:#f92672">);</span>
+
+<span style="color:#75715e">//线程池最多接收4个任务(最多并行任务数[3]+队列中任务数[1])
+</span><span style="color:#75715e">//此时进来5个任务执行
+</span><span style="color:#75715e">//这里为了演示效果,在遍历过程中输出循环中的索引 执行了任务 + finalX 
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> x <span style="color:#f92672">&lt;</span> 5<span style="color:#f92672">;</span> x<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">int</span> finalX <span style="color:#f92672">=</span> x<span style="color:#f92672">;</span>
+	pool<span style="color:#f92672">.</span><span style="color:#a6e22e">submit</span><span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;----&gt;&gt; 执行了任务&#34;</span><span style="color:#f92672">+</span> finalX<span style="color:#f92672">);</span>
+	<span style="color:#f92672">});</span>
+<span style="color:#f92672">}</span>
+
+pool<span style="color:#f92672">.</span><span style="color:#a6e22e">shutdown</span><span style="color:#f92672">();</span>
+</code></pre></div><p><strong>控制台输出结果</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">pool<span style="color:#f92672">-</span>1<span style="color:#f92672">-</span>thread<span style="color:#f92672">-</span>1<span style="color:#f92672">----&gt;&gt;</span> 执行了任务0
+pool<span style="color:#f92672">-</span>1<span style="color:#f92672">-</span>thread<span style="color:#f92672">-</span>2<span style="color:#f92672">----&gt;&gt;</span> 执行了任务2
+pool<span style="color:#f92672">-</span>1<span style="color:#f92672">-</span>thread<span style="color:#f92672">-</span>3<span style="color:#f92672">----&gt;&gt;</span> 执行了任务3
+pool<span style="color:#f92672">-</span>1<span style="color:#f92672">-</span>thread<span style="color:#f92672">-</span>1<span style="color:#f92672">----&gt;&gt;</span> 执行了任务4
+</code></pre></div><p>由于任务1在线程池中等待时间最长，因此任务1被丢弃。</p>
+<h5 id="234threadpoolexecutorcallerrunspolicy任务处理策略">2.3.4ThreadPoolExecutor.CallerRunsPolicy任务处理策略</h5>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->核心处理:新进来的任务进入队列后,如果所有线程都在工作,那么会直接调用runnable的run方法执行<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * 核心线程数量为1 ， 最大线程池数量为3, 任务容器的容量为1 ,空闲线程的最大存在时间为20s
+</span><span style="color:#75715e"> */</span>
+ThreadPoolExecutor pool <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ThreadPoolExecutor<span style="color:#f92672">(</span>
+		1<span style="color:#f92672">,</span>
+		3<span style="color:#f92672">,</span>
+		20<span style="color:#f92672">,</span>
+		TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">,</span>
+		<span style="color:#66d9ef">new</span> ArrayBlockingQueue<span style="color:#f92672">&lt;&gt;(</span>1<span style="color:#f92672">),</span>
+		Executors<span style="color:#f92672">.</span><span style="color:#a6e22e">defaultThreadFactory</span><span style="color:#f92672">(),</span>
+		<span style="color:#66d9ef">new</span> ThreadPoolExecutor<span style="color:#f92672">.</span><span style="color:#a6e22e">CallerRunsPolicy</span><span style="color:#f92672">()</span>
+<span style="color:#f92672">);</span>
+
+<span style="color:#75715e">//线程池最多接收4个任务(最多并行任务数[3]+队列中任务数[1])
+</span><span style="color:#75715e">//此时进来5个任务执行
+</span><span style="color:#75715e">//这里为了演示效果,在遍历过程中输出循环中的索引 执行了任务 + finalX 
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> x <span style="color:#f92672">&lt;</span> 5<span style="color:#f92672">;</span> x<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">int</span> finalX <span style="color:#f92672">=</span> x<span style="color:#f92672">;</span>
+	pool<span style="color:#f92672">.</span><span style="color:#a6e22e">submit</span><span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;----&gt;&gt; 执行了任务&#34;</span><span style="color:#f92672">+</span> finalX<span style="color:#f92672">);</span>
+	<span style="color:#f92672">});</span>
+<span style="color:#f92672">}</span>
+
+pool<span style="color:#f92672">.</span><span style="color:#a6e22e">shutdown</span><span style="color:#f92672">();</span>
+</code></pre></div><p><strong>控制台输出结果</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">pool<span style="color:#f92672">-</span>1<span style="color:#f92672">-</span>thread<span style="color:#f92672">-</span>1<span style="color:#f92672">----&gt;&gt;</span> 执行了任务0
+pool<span style="color:#f92672">-</span>1<span style="color:#f92672">-</span>thread<span style="color:#f92672">-</span>3<span style="color:#f92672">----&gt;&gt;</span> 执行了任务3
+main<span style="color:#f92672">----&gt;&gt;</span> 执行了任务4
+pool<span style="color:#f92672">-</span>1<span style="color:#f92672">-</span>thread<span style="color:#f92672">-</span>2<span style="color:#f92672">----&gt;&gt;</span> 执行了任务2
+pool<span style="color:#f92672">-</span>1<span style="color:#f92672">-</span>thread<span style="color:#f92672">-</span>1<span style="color:#f92672">----&gt;&gt;</span> 执行了任务1
+</code></pre></div><p>通过控制台的输出，我们可以看到此策略没有通过线程池中的线程执行任务，而是直接调用任务的run()方法绕过线程池直接执行。</p>
+<h2 id="font-colorred3volatile重要font"><!-- raw HTML omitted -->3.volatile(重要)<!-- raw HTML omitted --></h2>
+<h4 id="31-volatile的作用是什么">3.1 volatile的作用是什么</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">强制线程每次在使用成员变量的时候<span style="color:#960050;background-color:#1e0010">，</span>都会看一下共享区域最新的值
+</code></pre></div><h4 id="32-什么时候用volatile">3.2 什么时候用volatile</h4>
+<h5 id="a使用volatile的场景">a.使用volatile的场景</h5>
+<p>​		在两个或者更多的线程访问的成员变量上使用volatile。</p>
+<h5 id="b不需要使用volatile的场景">b.不需要使用volatile的场景</h5>
+<p>​		当要访问的变量已在<!-- raw HTML omitted --><!-- raw HTML omitted -->synchronized代码块<!-- raw HTML omitted --><!-- raw HTML omitted -->中，或者为<!-- raw HTML omitted --><!-- raw HTML omitted -->常量<!-- raw HTML omitted --><!-- raw HTML omitted -->时，不必使用。</p>
+<h4 id="33-volatile缺点">3.3 volatile缺点</h4>
+<p>​		频繁更改、改变或写入让使用volatile关键字的效率变低,可能出现性能问题</p>
+<h4 id="34-为什么说volatile不能解决线程安全问题">3.4 为什么说volatile不能解决线程安全问题</h4>
+<p>​		volatile关键字只能作用于成员变量,不能加在方法上</p>
+<p>​		而我们在解决线程安全的问题时是通过锁来进行控制的</p>
+<h4 id="35-volatile不能保证原子性">3.5 volatile不能保证原子性</h4>
+<h5 id="351-什么是原子性">3.5.1 什么是原子性</h5>
+<p><strong>概述 :</strong> 所谓的原子性是指在一次操作或者多次操作中，要么所有的操作全部都得到了执行并且不会受到任何因素的干扰而中断，要么所有的操作都不执行，多个操作是一个不可以分割的整体。</p>
+<h5 id="352-volatile不能保证原子性">3.5.2 volatile不能保证原子性</h5>
+<p>去看我整理的另一个笔记,<strong>volitile为什么无法保证原子性.md</strong></p>
+<h2 id="4原子类会用atomicinteger">4.原子类(会用AtomicInteger)</h2>
+<h4 id="font-colorred41-并发原子类atomicinteger会用font"><!-- raw HTML omitted -->4.1 并发原子类AtomicInteger(会用)<!-- raw HTML omitted --></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//进行指定数字加法后返回结果
+</span><span style="color:#75715e"></span>addAndGet<span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> number<span style="color:#f92672">)</span>
+<span style="color:#75715e">//先获取值后再进行指定数字加法
+</span><span style="color:#75715e"></span>getAndAdd<span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> number<span style="color:#f92672">)</span>
+<span style="color:#75715e">//+1后获取值
+</span><span style="color:#75715e"></span>incrementAndGet<span style="color:#f92672">()</span>
+<span style="color:#75715e">//获取值后+1
+</span><span style="color:#75715e"></span>getAndIncrement<span style="color:#f92672">()</span>
+<span style="color:#75715e">//-1后获取值    
+</span><span style="color:#75715e"></span>decrementAndGet<span style="color:#f92672">()</span>
+<span style="color:#75715e">//获取值后-1
+</span><span style="color:#75715e"></span>getAndDecrement<span style="color:#f92672">()</span>
+</code></pre></div><p><strong>例子</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">AtomicInteger atomicInteger <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AtomicInteger<span style="color:#f92672">(</span>100<span style="color:#f92672">);</span>
+<span style="color:#75715e">//+2后在获取值
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>atomicInteger<span style="color:#f92672">.</span><span style="color:#a6e22e">addAndGet</span><span style="color:#f92672">(</span>2<span style="color:#f92672">));</span>   		<span style="color:#75715e">//102
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>atomicInteger<span style="color:#f92672">);</span>                      <span style="color:#75715e">//102
+</span><span style="color:#75715e">//获取值后+2
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>atomicInteger<span style="color:#f92672">.</span><span style="color:#a6e22e">getAndAdd</span><span style="color:#f92672">(</span>2<span style="color:#f92672">));</span>   		<span style="color:#75715e">//102
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>atomicInteger<span style="color:#f92672">);</span>                      <span style="color:#75715e">//104
+</span><span style="color:#75715e">//+1后获取值
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>atomicInteger<span style="color:#f92672">.</span><span style="color:#a6e22e">incrementAndGet</span><span style="color:#f92672">());</span>    <span style="color:#75715e">//105
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>atomicInteger<span style="color:#f92672">);</span>                      <span style="color:#75715e">//105
+</span><span style="color:#75715e">//获取值后+1
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>atomicInteger<span style="color:#f92672">.</span><span style="color:#a6e22e">getAndIncrement</span><span style="color:#f92672">());</span>    <span style="color:#75715e">//105
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>atomicInteger<span style="color:#f92672">);</span>                      <span style="color:#75715e">//106
+</span><span style="color:#75715e">//-1后获取值
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>atomicInteger<span style="color:#f92672">.</span><span style="color:#a6e22e">decrementAndGet</span><span style="color:#f92672">());</span>    <span style="color:#75715e">//105
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>atomicInteger<span style="color:#f92672">);</span>                      <span style="color:#75715e">//105
+</span><span style="color:#75715e">//获取值后-1
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>atomicInteger<span style="color:#f92672">.</span><span style="color:#a6e22e">getAndDecrement</span><span style="color:#f92672">());</span>    <span style="color:#75715e">//105
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>atomicInteger<span style="color:#f92672">);</span>          			<span style="color:#75715e">//104
+</span></code></pre></div><h4 id="42-atomicinteger-内存解析">4.2 AtomicInteger-内存解析</h4>
+<p><strong>AtomicInteger原理 :</strong> 自旋锁  + CAS 算法</p>
+<p><strong>CAS算法：</strong></p>
+<p>​	有3个操作数（内存值V， 旧的预期值A，要修改的值B）</p>
+<p>​	当旧的预期值A == 内存值   此时修改成功，将V改为B</p>
+<p>​	当旧的预期值A！=内存值   此时修改失败，不做任何操作</p>
+<p>​	并重新获取现在的最新值（这个重新获取的动作就是自旋）</p>
+<h4 id="43-atomicinteger-源码解析自己了解">4.3 AtomicInteger-源码解析(自己了解)</h4>
+<p>查看我提供的资料</p>
+<p>​	1.详解java并发原子类AtomicInteger（基于jdk1.8源码分析）</p>
+<p>​	2.Java并发问题&ndash;乐观锁与悲观锁以及乐观锁的一种实现方式-CAS</p>
+<h4 id="44-悲观锁和乐观锁">4.4 悲观锁和乐观锁</h4>
+<p><strong>synchronized和CAS的区别 :</strong></p>
+<p>**相同点：**在多线程情况下，都可以保证共享数据的安全性。</p>
+<p>**不同点：**synchronized总是从最坏的角度出发，认为每次获取数据的时候，别人都有可能修改。所以在每                       次操作共享数据之前，都会上锁。（悲观锁）</p>
+<p><strong>cas执行过程</strong></p>
+<p>1.cas是从乐观的角度出发，假设每次获取数据别人都不会修改，所以不会上锁。只不过在修改共享数据的时候，会检查一下，别人有没有修改过这个数据。</p>
+<p>2.如果别人修改过，那么我再次获取现在最新的值。</p>
+<p>3.如果别人没有修改过，那么我现在直接修改共享数据的值.(乐观锁）</p>
+<h2 id="3-并发工具类">3. 并发工具类</h2>
+<h4 id="31-并发工具类-concurrenthashmap">3.1 并发工具类-ConcurrentHashMap</h4>
+<p>HashMap不能保证线程安全问题,HashTable保证线程安全但是效率太低,所以用ConcurrentHashMap</p>
+<p><strong>体系结构 :</strong></p>
+<p><img src="https://gitee.com/guo_dong123/images/raw/master/img/20200922141922.png" alt=""></p>
+<p><strong>总结 :</strong></p>
+<p>​	1 ，HashMap是线程不安全的。多线程环境下会有数据安全问题</p>
+<p>​	2 ，Hashtable是线程安全的，但是会将整张表锁起来，效率低下</p>
+<p>​	3，ConcurrentHashMap也是线程安全的，效率较高。     在JDK7和JDK8中，底层原理不一样。</p>
+<h5 id="jdk17-concurrenthashmap原理">JDK1.7 ConcurrentHashMap原理</h5>
+<p><img src="https://gitee.com/guo_dong123/images/raw/master/img/20200922141941.png" alt=""></p>
+<h5 id="jdk18-并发工具类-concurrenthashmap原理">JDK1.8 并发工具类-ConcurrentHashMap原理</h5>
+<p><img src="https://gitee.com/guo_dong123/images/raw/master/img/20200922142004.png" alt=""></p>
+<p><strong>总结 :</strong></p>
+<p>​	1，如果使用空参构造创建ConcurrentHashMap对象，则什么事情都不做.在第一次添加元素的时候创建哈希表</p>
+<p>​	2，计算当前元素应存入的索引。</p>
+<p>​	3，如果该索引位置为null，则利用cas算法，将本结点添加到数组中。</p>
+<p>​	4，如果该索引位置不为null，则利用volatile关键字获得当前位置最新的结点地址，挂在他下面，变成链表。</p>
+<p>​	5，当链表的长度大于等于8时，自动转换成红黑树，以链表或者红黑树头结点为锁对象，配合悲观锁保证多线程操作集合时数据的安全性</p>
+<h5 id="关于源码">关于源码</h5>
+<p>查看我提供的资料</p>
+<p>​		3.ConcurrentHashMap底层实现原理(JDK1.7 &amp; 1.8)</p>
+<h4 id="32-并发工具类-countdownlatch">3.2 并发工具类-CountDownLatch</h4>
+<p><strong>使用场景：</strong> 让A线程等待其他线程执行完毕之后再执行</p>
+<p><strong>使用前提:</strong></p>
+<p>我们需要让涉及到的线程持有同一个CountDownLatch对象</p>
+<p><strong>使用步骤</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//1.创建CountDownLatch对象,指定计数器的个数
+</span><span style="color:#75715e"></span>CountDownLatch cdl <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CountDownLatch<span style="color:#f92672">(</span>10<span style="color:#f92672">);</span>
+
+<span style="color:#75715e">//2.在其他线程中的run方法中调用,将计数器中的个数-1
+</span><span style="color:#75715e">//这个代码是在其他线程中实现的
+</span><span style="color:#75715e"></span>cdl<span style="color:#f92672">.</span><span style="color:#a6e22e">countDown</span><span style="color:#f92672">();</span>
+
+<span style="color:#75715e">//3.当计数器中个数为0的时候,会自动唤醒这里等待的线程,继续往下执行
+</span><span style="color:#75715e">//这个代码是在A线程中实现(其他线程都执行完后要执行的线程)
+</span><span style="color:#75715e"></span>cdl<span style="color:#f92672">.</span><span style="color:#a6e22e">await</span><span style="color:#f92672">();</span>
+</code></pre></div><p><strong>代码实现 :</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ChildThread1</span> <span style="color:#66d9ef">extends</span> Thread <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">private</span> CountDownLatch countDownLatch<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ChileThread1</span><span style="color:#f92672">(</span>CountDownLatch countDownLatch<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">countDownLatch</span> <span style="color:#f92672">=</span> countDownLatch<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">//1.吃饺子
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;=</span> 10<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>getName<span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;在吃第&#34;</span> <span style="color:#f92672">+</span> i <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;个饺子&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#75715e">//2.吃完说一声
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//每一次countDown方法的时候，就让计数器-1
+</span><span style="color:#75715e"></span>        countDownLatch<span style="color:#f92672">.</span><span style="color:#a6e22e">countDown</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ChileThread2</span> <span style="color:#66d9ef">extends</span> Thread <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">private</span> CountDownLatch countDownLatch<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ChileThread2</span><span style="color:#f92672">(</span>CountDownLatch countDownLatch<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">countDownLatch</span> <span style="color:#f92672">=</span> countDownLatch<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">//1.吃饺子
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;=</span> 15<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>getName<span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;在吃第&#34;</span> <span style="color:#f92672">+</span> i <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;个饺子&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#75715e">//2.吃完说一声
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//每一次countDown方法的时候，就让计数器-1
+</span><span style="color:#75715e"></span>        countDownLatch<span style="color:#f92672">.</span><span style="color:#a6e22e">countDown</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ChileThread3</span> <span style="color:#66d9ef">extends</span> Thread <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">private</span> CountDownLatch countDownLatch<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ChileThread3</span><span style="color:#f92672">(</span>CountDownLatch countDownLatch<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">countDownLatch</span> <span style="color:#f92672">=</span> countDownLatch<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">//1.吃饺子
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;=</span> 20<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>getName<span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;在吃第&#34;</span> <span style="color:#f92672">+</span> i <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;个饺子&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#75715e">//2.吃完说一声
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//每一次countDown方法的时候，就让计数器-1
+</span><span style="color:#75715e"></span>        countDownLatch<span style="color:#f92672">.</span><span style="color:#a6e22e">countDown</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MotherThread</span> <span style="color:#66d9ef">extends</span> Thread <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> CountDownLatch countDownLatch<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MotherThread</span><span style="color:#f92672">(</span>CountDownLatch countDownLatch<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">countDownLatch</span> <span style="color:#f92672">=</span> countDownLatch<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">//1.等待
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+            <span style="color:#75715e">//当计数器变成0的时候，会自动唤醒这里等待的线程。
+</span><span style="color:#75715e"></span>            countDownLatch<span style="color:#f92672">.</span><span style="color:#a6e22e">await</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#75715e">//2.收拾碗筷
+</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;妈妈在收拾碗筷&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">//1.创建CountDownLatch的对象，需要传递给四个线程。
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//在底层就定义了一个计数器，此时计数器的值就是3
+</span><span style="color:#75715e"></span>    CountDownLatch countDownLatch <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CountDownLatch<span style="color:#f92672">(</span>3<span style="color:#f92672">);</span>
+    <span style="color:#75715e">//2.创建四个线程对象并开启他们。
+</span><span style="color:#75715e"></span>    MotherThread motherThread <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MotherThread<span style="color:#f92672">(</span>countDownLatch<span style="color:#f92672">);</span>
+    motherThread<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+
+    ChileThread1 t1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ChileThread1<span style="color:#f92672">(</span>countDownLatch<span style="color:#f92672">);</span>
+    t1<span style="color:#f92672">.</span><span style="color:#a6e22e">setName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;小明&#34;</span><span style="color:#f92672">);</span>
+
+    ChileThread2 t2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ChileThread2<span style="color:#f92672">(</span>countDownLatch<span style="color:#f92672">);</span>
+    t2<span style="color:#f92672">.</span><span style="color:#a6e22e">setName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;小红&#34;</span><span style="color:#f92672">);</span>
+
+    ChileThread3 t3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ChileThread3<span style="color:#f92672">(</span>countDownLatch<span style="color:#f92672">);</span>
+    t3<span style="color:#f92672">.</span><span style="color:#a6e22e">setName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;小刚&#34;</span><span style="color:#f92672">);</span>
+
+    t1<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+    t2<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+    t3<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p><strong>总结 :</strong></p>
+<p>​	1. CountDownLatch(int count)：参数写等待线程的数量。并定义了一个计数器。</p>
+<p>​	2. await()：让线程等待，当计数器为0时，会唤醒等待的线程</p>
+<p>​	3. countDown()： 线程执行完毕时调用，会将计数器-1。</p>
+<h4 id="33-并发工具类-semaphore">3.3 并发工具类-Semaphore</h4>
+<p><strong>使用场景 :</strong></p>
+<p>​	可以控制访问特定资源的线程数量。</p>
+<p><strong>实现步骤 :</strong></p>
+<p>​	1，需要有人管理这个通道</p>
+<p>​	2，当有车进来了，发通行许可证</p>
+<p>​	3，当车出去了，收回通行许可证</p>
+<p>​	4，如果通行许可证发完了，那么其他车辆只能等着</p>
+<p><strong>代码实现 :</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyRunnable</span> <span style="color:#66d9ef">implements</span> Runnable <span style="color:#f92672">{</span>
+    <span style="color:#75715e">//1.获得管理员对象，
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> Semaphore semaphore <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Semaphore<span style="color:#f92672">(</span>2<span style="color:#f92672">);</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">//2.获得通行证
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+            semaphore<span style="color:#f92672">.</span><span style="color:#a6e22e">acquire</span><span style="color:#f92672">();</span>
+            <span style="color:#75715e">//3.开始行驶
+</span><span style="color:#75715e"></span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;获得了通行证开始行驶&#34;</span><span style="color:#f92672">);</span>
+            Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>2000<span style="color:#f92672">);</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;归还通行证&#34;</span><span style="color:#f92672">);</span>
+            <span style="color:#75715e">//4.归还通行证
+</span><span style="color:#75715e"></span>            semaphore<span style="color:#f92672">.</span><span style="color:#a6e22e">release</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    MyRunnable mr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyRunnable<span style="color:#f92672">();</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> 100<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span>mr<span style="color:#f92672">).</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></article>
+    </section>
+
+    <footer class="ui attached segment dream-tags">
+      
+          <a class="ui label">暂无标签</a>
+      
+      <div
+        class="ui label"
+        style="float: right; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>保存为图片
+      </div>
+    </footer>
+
+    
+      <footer class="ui attached segment">
+        guo dong
+      </footer>
+    
+
+    
+    
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="/img/avatar.jpg">
+      
+    </div>
+
+    
+    <div class="ui medium header">Guo Dong 的博客<div class="sub header" style="margin-top: 0.5rem;">Motto</div>
+    </div>
+    
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="/posts">
+        <i class="archive icon" title="归档"></i>
+      </a>
+      
+      <a class="item" href="/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+      <a class="item" href="/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+    </div>
+  </section>
+
+  
+
+  
+
+  <section class="ui attached segment header-socials">
+    <nav class="ui secondary menu dream-menu dream-socials">
+  
+  
+    <div class="item">
+      <a href="mailto:guodong5490@gmail.com">
+        <i class=" mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</nav>
+
+  </section>
+
+  <section class="ui bottom attached center aligned segment">
+    
+      <p>© 2019 - 2020 Demon&#39;s Blog</p>
+    
+
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+    
+  </section>
+</article>
+
+  </div>
+</div>
+
+        </section>
+        <section class="back">
+          <div class="ui centered relaxed grid dream-grid dream-back">
+  
+  
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">社交链接</h3>
+      </div>
+      <div class="ui bottom attached segment">
+        <nav class="ui secondary menu dream-menu dream-socials">
+  
+  
+    <div class="item">
+      <a href="mailto:guodong5490@gmail.com">
+        <i class="large mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</nav>
+
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+      <footer class="ui segment">
+        guo dong
+      </footer>
+    
+  </section>
+
+  
+  
+</div>
+
+        </section>
+      </div>
+    </div>
+
+    <script>
+  window.darkNav =  true 
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

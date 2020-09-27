@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>19 集合4 | Demon&#39;s Blog</title>
+
+    
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+
+
+<meta name="author" content="Demon" />
+<meta name="description" content="19 集合 可变参数(☆☆☆)：jdk1.5出现的语法  格式： 修饰符 返回值类型 方法名(数据类型&amp;hellip; 参数名){
+}  细节举例：
+class Demo { public static void main(String[] args){ show(); // 不传参 正确。  show(1,2); show(1,2,3); //show(5,6,&amp;#34;abc&amp;#34;); // 报错。  int[] arr = {1,2,3,4}; show(arr); // 直接传数组 正确  int[] arr1 = new int[]{1,2,3,4,5}; show(arr1); // 正确  show(new int[]{1,2,3,4,5}); // 正确  //show( {1,2,3,4,5} ); // 错误。  /* int[] arr2; arr2= new int[3]; // 正确 int[] arr3; arr3= new int[]{1,2,3}; //正确 int[] arr4; arr4= {1,2,3,4}; // 简略格式 是不能分开的。 */ } public static void show(int." />
+
+
+
+<meta name="generator" content="Hugo 0.74.3" />
+
+<link rel="canonical" href="https://demon-github1996.github.io/posts/day19-%E9%9B%86%E5%90%88/" />
+
+
+<meta property="og:title" content="19 集合4" />
+<meta property="og:description" content="19 集合 可变参数(☆☆☆)：jdk1.5出现的语法  格式： 修饰符 返回值类型 方法名(数据类型&hellip; 参数名){
+}  细节举例：
+class Demo { public static void main(String[] args){ show(); // 不传参 正确。  show(1,2); show(1,2,3); //show(5,6,&#34;abc&#34;); // 报错。  int[] arr = {1,2,3,4}; show(arr); // 直接传数组 正确  int[] arr1 = new int[]{1,2,3,4,5}; show(arr1); // 正确  show(new int[]{1,2,3,4,5}); // 正确  //show( {1,2,3,4,5} ); // 错误。  /* int[] arr2; arr2= new int[3]; // 正确 int[] arr3; arr3= new int[]{1,2,3}; //正确 int[] arr4; arr4= {1,2,3,4}; // 简略格式 是不能分开的。 */ } public static void show(int." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://demon-github1996.github.io/posts/day19-%E9%9B%86%E5%90%88/" />
+<meta property="article:published_time" content="2019-09-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-09-16T00:00:00+00:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="19 集合4"/>
+<meta name="twitter:description" content="19 集合 可变参数(☆☆☆)：jdk1.5出现的语法  格式： 修饰符 返回值类型 方法名(数据类型&hellip; 参数名){
+}  细节举例：
+class Demo { public static void main(String[] args){ show(); // 不传参 正确。  show(1,2); show(1,2,3); //show(5,6,&#34;abc&#34;); // 报错。  int[] arr = {1,2,3,4}; show(arr); // 直接传数组 正确  int[] arr1 = new int[]{1,2,3,4,5}; show(arr1); // 正确  show(new int[]{1,2,3,4,5}); // 正确  //show( {1,2,3,4,5} ); // 错误。  /* int[] arr2; arr2= new int[3]; // 正确 int[] arr3; arr3= new int[]{1,2,3}; //正确 int[] arr4; arr4= {1,2,3,4}; // 简略格式 是不能分开的。 */ } public static void show(int."/>
+
+
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
+
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
+
+
+    
+<link rel="stylesheet" href="/css/github-markdown.css" />
+
+
+
+
+  </head>
+
+  
+  <body style="background: pink;">
+  
+    
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/demon-github1996.github.io\/'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single">
+
+    <section class="ui top attached segment" id="dream-save-post-as-img">
+      <header style="margin-top: 0 !important;">
+        <h1 class="ui large header">
+          19 集合4
+          <div class="sub header">
+            @
+            
+              
+                Demon
+              
+            
+            · Monday, Sep 16, 2019
+            · 7 分钟阅读
+            · 更新于 Sep 16, 2019
+          </div>
+        </h1>
+      </header>
+
+      
+        <img class="ui image" style="margin-top: 2rem;" src="" />
+      
+
+      <article style="margin-top: 2rem;"><h1 id="19-集合">19 集合</h1>
+<h2 id="可变参数jdk15出现的语法">可变参数(☆☆☆)：jdk1.5出现的语法</h2>
+<blockquote>
+<p>格式：
+修饰符 返回值类型 方法名(数据类型&hellip; 参数名){</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  <span style="color:#f92672">}</span>
+</code></pre></div></blockquote>
+<p>细节举例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">){</span>
+    show<span style="color:#f92672">();</span> <span style="color:#75715e">// 不传参 正确。
+</span><span style="color:#75715e"></span>    show<span style="color:#f92672">(</span>1<span style="color:#f92672">,</span>2<span style="color:#f92672">);</span>
+    show<span style="color:#f92672">(</span>1<span style="color:#f92672">,</span>2<span style="color:#f92672">,</span>3<span style="color:#f92672">);</span>
+    <span style="color:#75715e">//show(5,6,&#34;abc&#34;); // 报错。
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>1<span style="color:#f92672">,</span>2<span style="color:#f92672">,</span>3<span style="color:#f92672">,</span>4<span style="color:#f92672">};</span>
+    show<span style="color:#f92672">(</span>arr<span style="color:#f92672">);</span> <span style="color:#75715e">// 直接传数组 正确
+</span><span style="color:#75715e"></span>
+    <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr1  <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]{</span>1<span style="color:#f92672">,</span>2<span style="color:#f92672">,</span>3<span style="color:#f92672">,</span>4<span style="color:#f92672">,</span>5<span style="color:#f92672">};</span>
+    show<span style="color:#f92672">(</span>arr1<span style="color:#f92672">);</span> <span style="color:#75715e">// 正确
+</span><span style="color:#75715e"></span>
+    show<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]{</span>1<span style="color:#f92672">,</span>2<span style="color:#f92672">,</span>3<span style="color:#f92672">,</span>4<span style="color:#f92672">,</span>5<span style="color:#f92672">});</span> <span style="color:#75715e">// 正确
+</span><span style="color:#75715e"></span>
+    <span style="color:#75715e">//show( {1,2,3,4,5} );  // 错误。
+</span><span style="color:#75715e"></span>
+    <span style="color:#75715e">/*
+</span><span style="color:#75715e">				int[] arr2;
+</span><span style="color:#75715e">				arr2= new int[3]; // 正确
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">				int[] arr3;
+</span><span style="color:#75715e">				arr3= new int[]{1,2,3}; //正确
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">				int[] arr4;
+</span><span style="color:#75715e">				arr4= {1,2,3,4};  // 简略格式 是不能分开的。
+</span><span style="color:#75715e">				*/</span>
+  <span style="color:#f92672">}</span>
+
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">show</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">...</span> arr<span style="color:#f92672">){</span>  <span style="color:#75715e">// arr 本质就是一个数组
+</span><span style="color:#75715e"></span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">);</span> <span style="color:#75715e">// 长度
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span>0<span style="color:#f92672">;</span>i<span style="color:#f92672">&lt;</span>arr<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">;</span>i<span style="color:#f92672">++</span>	 <span style="color:#f92672">){</span>
+      System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">[</span>i<span style="color:#f92672">]);</span>
+    <span style="color:#f92672">}</span>
+  <span style="color:#f92672">}</span>
+
+  <span style="color:#75715e">//public static void method(int... arr, int a){  // 编译报错。
+</span><span style="color:#75715e"></span>
+  <span style="color:#75715e">//}
+</span><span style="color:#75715e"></span>
+  <span style="color:#75715e">//public static void method(int... arr, String s){  // 编译报错。 语法规定不管你参数是什么类型，有多少个，只要存在可变参数， 可变参数必须要放在最后。
+</span><span style="color:#75715e"></span>
+  <span style="color:#75715e">//}
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">(</span>String s<span style="color:#f92672">,</span><span style="color:#66d9ef">int</span><span style="color:#f92672">...</span> arr<span style="color:#f92672">){</span>  
+
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>应用：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo4</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">// Arrays 类  asList(T ...t);
+</span><span style="color:#75715e"></span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;bcd&#34;</span><span style="color:#f92672">);</span>
+    String<span style="color:#f92672">[]</span> arr <span style="color:#f92672">=</span> <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;bcd&#34;</span><span style="color:#f92672">};</span>
+    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list1 <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">);</span>  <span style="color:#75715e">// 源码 可以参考 ：http://bbs.itheima.com/forum.php?mod=viewthread&amp;tid=342678&amp;highlight=asList
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// list  list1 不能增删， 只能改查
+</span><span style="color:#75715e"></span>
+    <span style="color:#75715e">// List 接口  静态的方法 of
+</span><span style="color:#75715e"></span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list2 <span style="color:#f92672">=</span> List<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;bcd&#34;</span><span style="color:#f92672">);</span>
+    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list3 <span style="color:#f92672">=</span> List<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">);</span> <span style="color:#75715e">// list2  list3 不能增删改， 只能查
+</span><span style="color:#75715e"></span>
+    <span style="color:#75715e">// Set 接口  静态的方法 of
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//List&lt;String&gt; list4 = Set.of(&#34;abc&#34;,&#34;bcd&#34;,&#34;abc&#34;);// 运行报错 不能重复
+</span><span style="color:#75715e"></span>    Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> set <span style="color:#f92672">=</span> Set<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;bcd&#34;</span><span style="color:#f92672">);</span>
+    Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> set1 <span style="color:#f92672">=</span> Set<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">);</span> <span style="color:#75715e">// set  set 不能增删， 只能查
+</span><span style="color:#75715e"></span>
+    <span style="color:#75715e">// Map 接口 静态的方法 of 创建一个具有指定元素的Map集合对象
+</span><span style="color:#75715e"></span>    Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> String<span style="color:#f92672">&gt;</span> map <span style="color:#f92672">=</span> Map<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;zhangsan&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;江苏&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;lisi&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;北京&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;wangwu&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;天津&#34;</span><span style="color:#f92672">);</span>
+    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>map<span style="color:#f92672">);</span>
+    <span style="color:#75715e">// Map 接口 静态的方法 ofEntries
+</span><span style="color:#75715e"></span>    Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> String<span style="color:#f92672">&gt;</span> map1 <span style="color:#f92672">=</span> Map<span style="color:#f92672">.</span><span style="color:#a6e22e">ofEntries</span><span style="color:#f92672">(</span>
+      Map<span style="color:#f92672">.</span><span style="color:#a6e22e">entry</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;zhangsan&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;江苏&#34;</span><span style="color:#f92672">),</span>
+      Map<span style="color:#f92672">.</span><span style="color:#a6e22e">entry</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;lisi&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;北京&#34;</span><span style="color:#f92672">));</span>
+    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>map1<span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="stream--优化集合的操作">==Stream (☆☆☆)： 优化集合的操作。==</h2>
+<blockquote>
+<p>和IO流 半毛钱关系都没有。
+Stream流 是操作集合的。 
+之前200行代码能够通过操作集合搞定的功能
+现在一行就搞定了。</p>
+</blockquote>
+<h3 id="stream流的原理">Stream流的原理</h3>
+<h3 id="是基于匿名内部类的延迟执行现象详见录屏">是基于：匿名内部类的延迟执行现象(详见录屏)</h3>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>1:Collection体系的集合可以使用默认方法stream()生成流
+default Stream<!-- raw HTML omitted --> stream()
+2:Map体系的集合间接的生成流
+3:数组可以通过Stream接口的静态方法of(T&hellip; values)生成流</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StreamDemo</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">//Collection体系的集合可以使用默认方法stream()生成流
+</span><span style="color:#75715e"></span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;();</span>
+    Stream<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> listStream <span style="color:#f92672">=</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">();</span>
+
+    Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> set <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;();</span>
+    Stream<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> setStream <span style="color:#f92672">=</span> set<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">();</span>
+
+    <span style="color:#75715e">//Map体系的集合间接的生成流
+</span><span style="color:#75715e"></span>    Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span>Integer<span style="color:#f92672">&gt;</span> map <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> Integer<span style="color:#f92672">&gt;();</span>
+    Stream<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> keyStream <span style="color:#f92672">=</span> map<span style="color:#f92672">.</span><span style="color:#a6e22e">keySet</span><span style="color:#f92672">().</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">();</span>
+    Stream<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> valueStream <span style="color:#f92672">=</span> map<span style="color:#f92672">.</span><span style="color:#a6e22e">values</span><span style="color:#f92672">().</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">();</span>
+    Stream<span style="color:#f92672">&lt;</span>Map<span style="color:#f92672">.</span><span style="color:#a6e22e">Entry</span><span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> Integer<span style="color:#f92672">&gt;&gt;</span> entryStream <span style="color:#f92672">=</span> map<span style="color:#f92672">.</span><span style="color:#a6e22e">entrySet</span><span style="color:#f92672">().</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">();</span>
+
+    <span style="color:#75715e">//数组可以通过Stream接口的静态方法of(T... values)生成流
+</span><span style="color:#75715e"></span>    String<span style="color:#f92672">[]</span> strArray <span style="color:#f92672">=</span> <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;hello&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;world&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;java&#34;</span><span style="color:#f92672">};</span>
+    Stream<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> strArrayStream  <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">(</span>strArray<span style="color:#f92672">);</span>
+    Stream<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> strArrayStream1 <span style="color:#f92672">=</span> Stream<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>strArray<span style="color:#f92672">);</span>
+    Stream<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> strArrayStream2 <span style="color:#f92672">=</span> Stream<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hello&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;world&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;java&#34;</span><span style="color:#f92672">);</span>
+    Stream<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> intStream <span style="color:#f92672">=</span> Stream<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>10<span style="color:#f92672">,</span> 20<span style="color:#f92672">,</span> 30<span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+</code></pre></div><h3 id="stream流的中间操作">==Stream流的中间操作==</h3>
+<p><strong>Stream<!-- raw HTML omitted --> filter(Predicate predicate)：用于对流中的数据进行过滤</strong></p>
+<p>**Predicate接口中的方法	boolean test(T t)：对给定的参数进行判断，返回一个布尔值		**</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StreamDemo01</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">//创建一个集合，存储多个字符串元素
+</span><span style="color:#75715e"></span>    ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;();</span>
+
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;林青霞&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张曼玉&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;王祖贤&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;柳岩&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张敏&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张无忌&#34;</span><span style="color:#f92672">);</span>
+
+    <span style="color:#75715e">//需求1：把list集合中以张开头的元素在控制台输出
+</span><span style="color:#75715e"></span>    list<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>s <span style="color:#f92672">-&gt;</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">startsWith</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张&#34;</span><span style="color:#f92672">)).</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>s<span style="color:#f92672">-&gt;</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">));</span>
+    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;--------&#34;</span><span style="color:#f92672">);</span>
+
+
+    <span style="color:#75715e">//需求2：把list集合中长度为3的元素在控制台输出
+</span><span style="color:#75715e"></span>    list<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>s <span style="color:#f92672">-&gt;</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">==</span> 3<span style="color:#f92672">).</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>s<span style="color:#f92672">-&gt;</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">));</span>
+    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;--------&#34;</span><span style="color:#f92672">);</span>
+
+    <span style="color:#75715e">//需求3：把list集合中以张开头的，长度为3的元素在控制台输出
+</span><span style="color:#75715e"></span>    list<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>s <span style="color:#f92672">-&gt;</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">startsWith</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张&#34;</span><span style="color:#f92672">)).</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>s <span style="color:#f92672">-&gt;</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">==</span> 3<span style="color:#f92672">).</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>s<span style="color:#f92672">-&gt;</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">));</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><blockquote>
+<blockquote>
+<p>Stream<!-- raw HTML omitted --> limit(long maxSize)：返回此流中的元素组成的流，截取前指定参数个数的数据
+Stream<!-- raw HTML omitted --> skip(long n)：跳过指定参数个数的数据，返回由该流的剩余元素组成的流</p>
+</blockquote>
+</blockquote>
+<pre><code class="language-jav" data-lang="jav">public class StreamDemo02 {
+public static void main(String[] args) {
+//创建一个集合，存储多个字符串元素
+ArrayList&lt;String&gt; list = new ArrayList&lt;String&gt;();
+
+list.add(&quot;林青霞&quot;);
+list.add(&quot;张曼玉&quot;);
+list.add(&quot;王祖贤&quot;);
+list.add(&quot;柳岩&quot;);
+list.add(&quot;张敏&quot;);
+list.add(&quot;张无忌&quot;);
+
+//需求1：取前3个数据在控制台输出
+list.stream().limit(3).forEach(s-&gt;System.out.println(s));
+System.out.println(&quot;--------&quot;);
+
+//需求2：跳过3个元素，把剩下的元素在控制台输出
+list.stream().skip(3).forEach(s-&gt;System.out.println(s));
+System.out.println(&quot;--------&quot;);
+
+//需求3：跳过2个元素，把剩下的元素中前2个在控制台输出
+list.stream().skip(2).limit(2).forEach(s-&gt;System.out.println(s));
+}
+}
+</code></pre><blockquote>
+<blockquote>
+<p>tatic <!-- raw HTML omitted --> Stream<!-- raw HTML omitted --> concat(Stream a, Stream b)：合并a和b两个流为一个流
+Stream<!-- raw HTML omitted --> distinct()：返回由该流的不同元素（根据Object.equals(Object) ）组成的流</p>
+</blockquote>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StreamDemo03</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">//创建一个集合，存储多个字符串元素
+</span><span style="color:#75715e"></span>    ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;();</span>
+
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;林青霞&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张曼玉&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;王祖贤&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;柳岩&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张敏&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张无忌&#34;</span><span style="color:#f92672">);</span>
+
+    <span style="color:#75715e">//需求1：取前4个数据组成一个流
+</span><span style="color:#75715e"></span>    Stream<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> s1 <span style="color:#f92672">=</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">limit</span><span style="color:#f92672">(</span>4<span style="color:#f92672">);</span>
+
+    <span style="color:#75715e">//需求2：跳过2个数据组成一个流
+</span><span style="color:#75715e"></span>    Stream<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> s2 <span style="color:#f92672">=</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">skip</span><span style="color:#f92672">(</span>2<span style="color:#f92672">);</span>
+
+    <span style="color:#75715e">//需求3：合并需求1和需求2得到的流，并把结果在控制台输出
+</span><span style="color:#75715e"></span>    Stream<span style="color:#f92672">.</span><span style="color:#a6e22e">concat</span><span style="color:#f92672">(</span>s1<span style="color:#f92672">,</span>s2<span style="color:#f92672">).</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>s<span style="color:#f92672">-&gt;</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">));</span>
+
+    <span style="color:#75715e">//需求4：合并需求1和需求2得到的流，并把结果在控制台输出，要求字符串元素不能重复
+</span><span style="color:#75715e"></span>    Stream<span style="color:#f92672">.</span><span style="color:#a6e22e">concat</span><span style="color:#f92672">(</span>s1<span style="color:#f92672">,</span>s2<span style="color:#f92672">).</span><span style="color:#a6e22e">distinct</span><span style="color:#f92672">().</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>s<span style="color:#f92672">-&gt;</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">));</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><blockquote>
+<blockquote>
+<p>Stream<!-- raw HTML omitted --> sorted()：返回由此流的元素组成的流，根据自然顺序排序
+Stream<!-- raw HTML omitted --> sorted(Comparator comparator)：返回由该流的元素组成的流，根据提供的Comparator进行排序</p>
+<p>Comparator接口中的方法	int compare(T o1, T o2)</p>
+</blockquote>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StreamDemo04</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">//创建一个集合，存储多个字符串元素
+</span><span style="color:#75715e"></span>    ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;();</span>
+
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;linqingxia&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;zhangmanyu&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;wangzuxian&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;liuyan&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;zhangmin&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;zhangwuji&#34;</span><span style="color:#f92672">);</span>
+
+    <span style="color:#75715e">//需求1：按照字母顺序把数据在控制台输出
+</span><span style="color:#75715e"></span>    list<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">sorted</span><span style="color:#f92672">().</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>s<span style="color:#f92672">-&gt;</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">));</span>
+
+    <span style="color:#75715e">//需求2：按照字符串长度把数据在控制台输出
+</span><span style="color:#75715e"></span>    list<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">sorted</span><span style="color:#f92672">((</span>s1<span style="color:#f92672">,</span> s2<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> s1<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> s2<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()).</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>s<span style="color:#f92672">-&gt;</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">));</span>
+
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">sorted</span><span style="color:#f92672">((</span>s1<span style="color:#f92672">,</span>s2<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">int</span> num <span style="color:#f92672">=</span> s1<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()-</span>s2<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">();</span>
+      <span style="color:#66d9ef">int</span> num2 <span style="color:#f92672">=</span> num<span style="color:#f92672">==</span>0<span style="color:#f92672">?</span>s1<span style="color:#f92672">.</span><span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>s2<span style="color:#f92672">):</span>num<span style="color:#f92672">;</span>
+      <span style="color:#66d9ef">return</span> num2<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}).</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>s<span style="color:#f92672">-&gt;</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">));</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><blockquote>
+<blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">	<span style="color:#f92672">&lt;</span>R<span style="color:#f92672">&gt;</span> Stream<span style="color:#f92672">&lt;</span>R<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Function mapper<span style="color:#f92672">)</span><span style="color:#960050;background-color:#1e0010">：</span>返回由给定函数应用于此流的元素的结果组成的流
+			Function接口中的方法		R <span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>T t<span style="color:#f92672">)</span>
+		IntStream <span style="color:#a6e22e">mapToInt</span><span style="color:#f92672">(</span>ToIntFunction mapper<span style="color:#f92672">)</span><span style="color:#960050;background-color:#1e0010">：</span>返回一个IntStream其中包含将给定函数应用于此流的元素的结果
+			IntStream<span style="color:#960050;background-color:#1e0010">：</span>表示原始 <span style="color:#66d9ef">int</span> 流
+			ToIntFunction接口中的方法	 <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">applyAsInt</span><span style="color:#f92672">(</span>T value<span style="color:#f92672">)</span>
+</code></pre></div></blockquote>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StreamDemo05</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">//创建一个集合，存储多个字符串元素
+</span><span style="color:#75715e"></span>    ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;();</span>
+
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;10&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;20&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;30&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;40&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;50&#34;</span><span style="color:#f92672">);</span>
+
+    <span style="color:#75715e">//需求：将集合中的字符串数据转换为整数之后在控制台输出
+</span><span style="color:#75715e"></span>    list<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>s <span style="color:#f92672">-&gt;</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">parseInt</span><span style="color:#f92672">(</span>s<span style="color:#f92672">)).</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>s<span style="color:#f92672">-&gt;</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">));</span>
+
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">mapToInt</span><span style="color:#f92672">(</span>s <span style="color:#f92672">-&gt;</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">parseInt</span><span style="color:#f92672">(</span>s<span style="color:#f92672">)).</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>s<span style="color:#f92672">-&gt;</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">));</span>
+
+    <span style="color:#75715e">//int sum?() 返回此流中元素的总和
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">mapToInt</span><span style="color:#f92672">(</span>s <span style="color:#f92672">-&gt;</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">parseInt</span><span style="color:#f92672">(</span>s<span style="color:#f92672">)).</span><span style="color:#a6e22e">sum</span><span style="color:#f92672">();</span>
+    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>result<span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="stream流的常见终结操作方法">Stream流的常见终结操作方法</h3>
+<blockquote>
+<blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>Consumer action<span style="color:#f92672">)</span><span style="color:#960050;background-color:#1e0010">：</span>对此流的每个元素执行操作
+            Consumer接口中的方法	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">accept</span><span style="color:#f92672">(</span>T t<span style="color:#f92672">)</span><span style="color:#960050;background-color:#1e0010">：</span>对给定的参数执行此操作
+        <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">count</span><span style="color:#f92672">()</span><span style="color:#960050;background-color:#1e0010">：</span>返回此流中的元素数
+</code></pre></div></blockquote>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StreamDemo</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">//创建一个集合，存储多个字符串元素
+</span><span style="color:#75715e"></span>    ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;();</span>
+
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;林青霞&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张曼玉&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;王祖贤&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;柳岩&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张敏&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张无忌&#34;</span><span style="color:#f92672">);</span>
+
+    <span style="color:#75715e">//需求1：把集合中的元素在控制台输出
+</span><span style="color:#75715e"></span>    list<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>s<span style="color:#f92672">-&gt;</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">));</span>
+
+
+    <span style="color:#75715e">//需求2：统计集合中有几个以张开头的元素，并把统计结果在控制台输出
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">long</span> count <span style="color:#f92672">=</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>s <span style="color:#f92672">-&gt;</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">startsWith</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张&#34;</span><span style="color:#f92672">)).</span><span style="color:#a6e22e">count</span><span style="color:#f92672">();</span>
+    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>count<span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="stream流的收集方法">Stream流的收集方法</h3>
+<blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">	R <span style="color:#a6e22e">collect</span><span style="color:#f92672">(</span>Collector collector<span style="color:#f92672">)</span>
+				它是通过工具类Collectors提供了具体的收集方式
+					<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> Collector <span style="color:#a6e22e">toList</span><span style="color:#f92672">()</span><span style="color:#960050;background-color:#1e0010">：</span>把元素收集到List集合中
+					<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> Collector <span style="color:#a6e22e">toSet</span><span style="color:#f92672">()</span><span style="color:#960050;background-color:#1e0010">：</span>把元素收集到Set集合中
+					<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Collector <span style="color:#a6e22e">toMap</span><span style="color:#f92672">(</span>Function keyMapper<span style="color:#f92672">,</span>Function valueMapper<span style="color:#f92672">)</span><span style="color:#960050;background-color:#1e0010">：</span>把元素收集到Map集合中
+</code></pre></div></blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CollectDemo</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">//创建List集合对象
+</span><span style="color:#75715e"></span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;();</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;林青霞&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张曼玉&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;王祖贤&#34;</span><span style="color:#f92672">);</span>
+    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;柳岩&#34;</span><span style="color:#f92672">);</span>
+
+
+    <span style="color:#75715e">//需求1：得到名字为3个字的流
+</span><span style="color:#75715e"></span>    Stream<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> listStream <span style="color:#f92672">=</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>s <span style="color:#f92672">-&gt;</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">==</span> 3<span style="color:#f92672">);</span>
+
+    <span style="color:#75715e">//需求2：把使用Stream流操作完毕的数据收集到List集合中并遍历
+</span><span style="color:#75715e"></span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> names <span style="color:#f92672">=</span> listStream<span style="color:#f92672">.</span><span style="color:#a6e22e">collect</span><span style="color:#f92672">(</span>Collectors<span style="color:#f92672">.</span><span style="color:#a6e22e">toList</span><span style="color:#f92672">());</span>
+    <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>String name <span style="color:#f92672">:</span> names<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>name<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75715e">//创建Set集合对象
+</span><span style="color:#75715e"></span>    Set<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> set <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;();</span>
+    set<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>10<span style="color:#f92672">);</span>
+    set<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>20<span style="color:#f92672">);</span>
+    set<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>30<span style="color:#f92672">);</span>
+    set<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>33<span style="color:#f92672">);</span>
+    set<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>35<span style="color:#f92672">);</span>
+
+    <span style="color:#75715e">//需求3：得到年龄大于25的流
+</span><span style="color:#75715e"></span>    Stream<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> setStream <span style="color:#f92672">=</span> set<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>age <span style="color:#f92672">-&gt;</span> age <span style="color:#f92672">&gt;</span> 25<span style="color:#f92672">);</span>
+
+    <span style="color:#75715e">//需求4：把使用Stream流操作完毕的数据收集到Set集合中并遍历
+</span><span style="color:#75715e"></span>    Set<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> ages <span style="color:#f92672">=</span> setStream<span style="color:#f92672">.</span><span style="color:#a6e22e">collect</span><span style="color:#f92672">(</span>Collectors<span style="color:#f92672">.</span><span style="color:#a6e22e">toSet</span><span style="color:#f92672">());</span>
+    <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>Integer age <span style="color:#f92672">:</span> ages<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>age<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75715e">//定义一个字符串数组，每一个字符串数据由姓名数据和年龄数据组合而成
+</span><span style="color:#75715e"></span>    String<span style="color:#f92672">[]</span> strArray <span style="color:#f92672">=</span> <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;林青霞,30&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;张曼玉,35&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;王祖贤,33&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;柳岩,25&#34;</span><span style="color:#f92672">};</span>
+
+    <span style="color:#75715e">//需求5：得到字符串中年龄数据大于28的流
+</span><span style="color:#75715e"></span>    Stream<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> arrayStream <span style="color:#f92672">=</span> Stream<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>strArray<span style="color:#f92672">).</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>s <span style="color:#f92672">-&gt;</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">parseInt</span><span style="color:#f92672">(</span>s<span style="color:#f92672">.</span><span style="color:#a6e22e">split</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">)[</span>1<span style="color:#f92672">])</span> <span style="color:#f92672">&gt;</span> 28<span style="color:#f92672">);</span>
+
+    <span style="color:#75715e">//需求6：把使用Stream流操作完毕的数据收集到Map集合中并遍历，字符串中的姓名作键，年龄作值
+</span><span style="color:#75715e"></span>    Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> Integer<span style="color:#f92672">&gt;</span> map <span style="color:#f92672">=</span> arrayStream<span style="color:#f92672">.</span><span style="color:#a6e22e">collect</span><span style="color:#f92672">(</span>Collectors<span style="color:#f92672">.</span><span style="color:#a6e22e">toMap</span><span style="color:#f92672">(</span>s <span style="color:#f92672">-&gt;</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">split</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">)[</span>0<span style="color:#f92672">],</span> s <span style="color:#f92672">-&gt;</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">parseInt</span><span style="color:#f92672">(</span>s<span style="color:#f92672">.</span><span style="color:#a6e22e">split</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">)[</span>1<span style="color:#f92672">])));</span>
+
+    Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> keySet <span style="color:#f92672">=</span> map<span style="color:#f92672">.</span><span style="color:#a6e22e">keySet</span><span style="color:#f92672">();</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>String key <span style="color:#f92672">:</span> keySet<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      Integer value <span style="color:#f92672">=</span> map<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>key<span style="color:#f92672">);</span>
+      System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>key <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;,&#34;</span> <span style="color:#f92672">+</span> value<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+</code></pre></div><h3 id="综合练习">综合练习：</h3>
+<p>​		现在有两个ArrayList集合，分别存储6名男演员名称和6名女演员名称，要求完成如下的操作：
+​			1:男演员只要名字为3个字的前三人
+​			2:女演员只要姓林的，并且不要第一个
+​			3:把过滤后的男演员姓名和女演员姓名合并到一起
+​			5:合并到一起之后，去掉重复的名字，然后返回把这些元素存储到一个新的List集合中。
+​			6:把上一步操作后的集合里面的元素 每个元素 封装到 演员对象中，把所有的演员对象 存储到一个新的集合中。(这一步必须用Stream流)
+​			7:统计这个新集合里面演员 名字 是两个字。 的人员个数。
+​				演员类Actor已经提供，里面有一个成员变量，一个带参构造方法，以及成员变量对应的get/set方法
+​</p>
+<blockquote>
+<p>练习题答案（分步做）：
+List<!-- raw HTML omitted --> man = List.of(&ldquo;张敬轩&rdquo;, &ldquo;张铁林&rdquo;, &ldquo;承龙&rdquo;, &ldquo;黄渤&rdquo;, &ldquo;林心如&rdquo;, &ldquo;冯小刚&rdquo;);
+List<!-- raw HTML omitted --> woman = List.of(&ldquo;林心如&rdquo;, &ldquo;杨紫&rdquo;, &ldquo;杨幂&rdquo;, &ldquo;景甜&rdquo;, &ldquo;林青霞&rdquo;, &ldquo;林颖&rdquo;);</p>
+<pre><code>          Stream&lt;String&gt; manStream = man.stream().filter(s -&gt; s.length() == 3).limit(3);
+          Stream&lt;String&gt; womanStream = woman.stream().filter(s -&gt; s.startsWith(&quot;林&quot;)).skip(1);
+
+          List&lt;String&gt; allPerson = Stream.concat(manStream, womanStream).distinct().collect(Collectors.toList());
+
+          //这是第一种做法
+          //ArrayList&lt;Actor&gt; al = new ArrayList&lt;&gt;();
+          //for (String name : allPerson) {
+          //    al.add(new Actor(name));
+          //}
+
+          //这是第二种做法
+          //ArrayList&lt;Actor&gt; al = new ArrayList&lt;&gt;();
+          //AllPerson.stream().forEach(s-&gt; al.add(new Actor(s)));
+
+          //这是第三种做法
+          List&lt;Actor&gt; collect = allPerson.stream().map(s -&gt; new Actor(s)).collect(Collectors.toList());
+          long count = collect.stream().filter(a-&gt;a.getName().length()==2).count();
+          System.out.println(count);
+  
+      练习题答案（合成一步做）：
+          System.out.println(
+                  Stream.concat(
+                      List.of(&quot;张敬轩s&quot;, &quot;张铁林&quot;, &quot;承龙&quot;, &quot;黄渤&quot;, &quot;林心如&quot;, &quot;冯小刚&quot;).stream().filter(s -&gt; s.length() == 3).limit(3),
+                      List.of(&quot;林心如&quot;, &quot;杨紫&quot;, &quot;杨幂&quot;, &quot;景甜&quot;, &quot;林青霞&quot;, &quot;林颖&quot;).stream().filter(s -&gt; s.startsWith(&quot;林&quot;)).skip(1)
+                  ).distinct().map(s -&gt; new Actor(s)).filter(a-&gt;a.getName().length()==2).count()
+          );
+</code></pre>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
+题目的思想 <span style="color:#960050;background-color:#1e0010">：</span>拿时间换空间<span style="color:#960050;background-color:#1e0010">，</span> 拿空间换时间
+				题<span style="color:#960050;background-color:#1e0010">：</span> 有一个容器<span style="color:#960050;background-color:#1e0010">，</span> 里面存储了1万个 连续的数 0<span style="color:#f92672">-</span>9999 <span style="color:#f92672">(</span>数的顺序是打乱的<span style="color:#f92672">)</span> <span style="color:#960050;background-color:#1e0010">，</span> 但是这些数组里面 其中一个数 是缺失的<span style="color:#960050;background-color:#1e0010">，</span> 有一个数 是重复的<span style="color:#960050;background-color:#1e0010">。</span>
+					比如<span style="color:#960050;background-color:#1e0010">：</span> 0 1 2 3 7 5 6 7 8 9  <span style="color:#f92672">--</span> 7 是重复的 4是缺失的<span style="color:#960050;background-color:#1e0010">。</span>
+					顺序乱的<span style="color:#960050;background-color:#1e0010">：</span> 9 6 7 3 2 7 5 1 0 8    <span style="color:#f92672">--</span> 7 是重复的 4是缺失的<span style="color:#960050;background-color:#1e0010">。</span>
+					请你 用最快速的方法<span style="color:#960050;background-color:#1e0010">，</span> 找到 那个缺失的数<span style="color:#960050;background-color:#1e0010">，</span> 找到那个重复的数<span style="color:#960050;background-color:#1e0010">。</span>
+
+<span style="color:#f92672">package</span> com.itcast.day10<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> java.util.Arrays<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.util.Collections<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.util.List<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.util.Random<span style="color:#f92672">;</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test1</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">/*
+</span><span style="color:#75715e">        题目的思想 ：拿时间换空间， 拿空间换时间
+</span><span style="color:#75715e">				题： 有一个容器， 里面存储了1万个 连续的数 0-9999 (数的顺序是打乱的) ， 但是这些数组里面 其中一个数 是缺失的， 有一个数 是重复的。
+</span><span style="color:#75715e">					比如： 0 1 2 3 7 5 6 7 8 9  -- 7 是重复的 4是缺失的。
+</span><span style="color:#75715e">					顺序乱的： 9 6 7 3 2 7 5 1 0 8    -- 7 是重复的 4是缺失的。
+</span><span style="color:#75715e">					请你 用最快速的方法， 找到 那个缺失的数， 找到那个重复的数。
+</span><span style="color:#75715e">         */</span>
+
+        <span style="color:#75715e">// 本题，我选择用数组 这个容器 ，因为等一会儿我要巧妙的去利用 数组的索引
+</span><span style="color:#75715e"></span>
+        <span style="color:#75715e">//Integer[] arr = getArray(10000);
+</span><span style="color:#75715e"></span>
+        <span style="color:#75715e">/*int count0 = 0;
+</span><span style="color:#75715e">        for (int i = 0; i &lt; arr.length; i++) {
+</span><span style="color:#75715e">            if (0==arr[i]){
+</span><span style="color:#75715e">                count0++;
+</span><span style="color:#75715e">            }
+</span><span style="color:#75715e">        }
+</span><span style="color:#75715e">        if (count0==0){
+</span><span style="color:#75715e">            System.out.println(0+&#34;这个数 是缺失的&#34;);
+</span><span style="color:#75715e">        }else if (count0==2){
+</span><span style="color:#75715e">            System.out.println(0+&#34;这个数 是重复的&#34;);
+</span><span style="color:#75715e">        }
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">        //-------------------------------
+</span><span style="color:#75715e">        int count1 = 0;
+</span><span style="color:#75715e">        for (int i = 0; i &lt; arr.length; i++) {
+</span><span style="color:#75715e">            if (1==arr[i]){
+</span><span style="color:#75715e">                count1++;
+</span><span style="color:#75715e">            }
+</span><span style="color:#75715e">        }
+</span><span style="color:#75715e">        if (count1==0){
+</span><span style="color:#75715e">            System.out.println(1+&#34;这个数 是缺失的&#34;);
+</span><span style="color:#75715e">        }else if (count1==2){
+</span><span style="color:#75715e">            System.out.println(1+&#34;这个数 是重复的&#34;);
+</span><span style="color:#75715e">        }
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">        //-------------------------------
+</span><span style="color:#75715e">        int count2 = 0;
+</span><span style="color:#75715e">        for (int i = 0; i &lt; arr.length; i++) {
+</span><span style="color:#75715e">            if (2==arr[i]){
+</span><span style="color:#75715e">                count2++;
+</span><span style="color:#75715e">            }
+</span><span style="color:#75715e">        }
+</span><span style="color:#75715e">        if (count2==0){
+</span><span style="color:#75715e">            System.out.println(2+&#34;这个数 是缺失的&#34;);
+</span><span style="color:#75715e">        }else if (count2==2){
+</span><span style="color:#75715e">            System.out.println(2+&#34;这个数 是重复的&#34;);
+</span><span style="color:#75715e">        }*/</span>
+
+        <span style="color:#75715e">/*for (int j = 0; j &lt; 10000; j++) {
+</span><span style="color:#75715e">            int count = 0;
+</span><span style="color:#75715e">            for (int i = 0; i &lt; arr.length; i++) {
+</span><span style="color:#75715e">                if (j==arr[i]){
+</span><span style="color:#75715e">                    count++;
+</span><span style="color:#75715e">                }
+</span><span style="color:#75715e">            }
+</span><span style="color:#75715e">            if (count==0){
+</span><span style="color:#75715e">                System.out.println(j+&#34;这个数 是缺失的&#34;);
+</span><span style="color:#75715e">            }else if (count==2){
+</span><span style="color:#75715e">                System.out.println(j+&#34;这个数 是重复的&#34;);
+</span><span style="color:#75715e">            }
+</span><span style="color:#75715e">        }*/</span>
+
+
+
+        Integer<span style="color:#f92672">[]</span> arr <span style="color:#f92672">=</span> getArray<span style="color:#f92672">(</span>10000<span style="color:#f92672">);</span>
+        <span style="color:#75715e">// 10000 个数据要比较亿次， 速度太低了。
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// 我要拿空间来换时间。
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> brr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>arr<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">];</span>  <span style="color:#75715e">//brr  0 0 0 0 0 0 0 0..... 一万个0
+</span><span style="color:#75715e"></span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> brr<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            brr<span style="color:#f92672">[</span>arr<span style="color:#f92672">[</span>i<span style="color:#f92672">]]++;</span>
+            <span style="color:#75715e">// arr[i] 是 0-9999打乱顺序的 每个数 里面有重复的 也有缺失的
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">// 我把这个数 当做 brr的索引
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">// 让brr 所在的这个索引位置上的数 去++
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">// 重复的那个数的位置 必然 加了2次
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">// 而确实的那个数的位置   必然一次都没加
+</span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span>
+
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> brr<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>brr<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">==</span>0<span style="color:#f92672">){</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>i<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;这个数是缺失的&#34;</span><span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span><span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>brr<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">==</span>2<span style="color:#f92672">){</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>i <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;这个数就是重复的&#34;</span><span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+
+        <span style="color:#75715e">// 我额外多写了一个 int[] 数组 浪费了空间， 但是同时换来了时间。
+</span><span style="color:#75715e"></span>
+
+
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Integer<span style="color:#f92672">[]</span> <span style="color:#a6e22e">getArray</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> len<span style="color:#f92672">){</span> <span style="color:#75715e">//10000
+</span><span style="color:#75715e"></span>        Integer<span style="color:#f92672">[]</span> arr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Integer<span style="color:#f92672">[</span>len<span style="color:#f92672">];</span> <span style="color:#75715e">// 0 0 0 0 0 0
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> arr<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            arr<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> i<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+
+        <span style="color:#75715e">// 数据存进去了， 但是顺序还是有序的。 所以要打乱顺序。
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// 打乱顺序之前 我们需要 先把这里面的数  其中一个去掉， 多一个重复的。
+</span><span style="color:#75715e"></span>        Random r <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Random<span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">int</span> repeatNumber <span style="color:#f92672">=</span> r<span style="color:#f92672">.</span><span style="color:#a6e22e">nextInt</span><span style="color:#f92672">(</span>10000<span style="color:#f92672">);</span>  <span style="color:#75715e">// 重复的数
+</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;重复的数是： &#34;</span><span style="color:#f92672">+</span>repeatNumber<span style="color:#f92672">);</span>
+
+        <span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> r<span style="color:#f92672">.</span><span style="color:#a6e22e">nextInt</span><span style="color:#f92672">(</span>10000<span style="color:#f92672">);</span>  <span style="color:#75715e">// 缺失的那个数的位置
+</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;缺失的数是： &#34;</span><span style="color:#f92672">+</span> arr<span style="color:#f92672">[</span>index<span style="color:#f92672">]);</span>
+        arr<span style="color:#f92672">[</span>index<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> repeatNumber<span style="color:#f92672">;</span>
+
+        <span style="color:#75715e">//打乱顺序
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// 如何打乱啊？？
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// Collections   这个类是单列集合的工具类。
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">// public static void shuffle(List t) ;   把list集合传入之后， 会给你把集合的里面的元素的顺序打乱
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//因为这个方法要的是集合，所以你应该想把 数组转换为集合。
+</span><span style="color:#75715e"></span>        List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> integers <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">);</span>
+        Collections<span style="color:#f92672">.</span><span style="color:#a6e22e">shuffle</span><span style="color:#f92672">(</span>integers<span style="color:#f92672">);</span>
+
+        <span style="color:#75715e">//但是方法的返回值是 数组 这时候你就应该把 集合再转回数组。
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//return integers;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//Collection  这个类 里面有两个重载的 集合转数组的方法
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">//public &lt;T&gt; T[] toArray(T[] t);
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">//public  Object[] toArray();
+</span><span style="color:#75715e"></span>
+        <span style="color:#75715e">//Object[] objects = integers.toArray();
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//return objects;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//Integer[] brr =(Integer[])objects;  //数组不能直接转 ， 只能遍历转
+</span><span style="color:#75715e"></span>
+        <span style="color:#75715e">//Integer[] brr = new Integer[integers.size()];
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//for (int i = 0; i &lt; integers.size(); i++) {
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//    brr[i] =integers.get(i);
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//}
+</span><span style="color:#75715e"></span>
+        Integer<span style="color:#f92672">[]</span> brr <span style="color:#f92672">=</span> integers<span style="color:#f92672">.</span><span style="color:#a6e22e">toArray</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Integer<span style="color:#f92672">[</span>0<span style="color:#f92672">]);</span>
+        <span style="color:#66d9ef">return</span> brr<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+</code></pre></div></article>
+    </section>
+
+    <footer class="ui attached segment dream-tags">
+      
+          <a class="ui label">暂无标签</a>
+      
+      <div
+        class="ui label"
+        style="float: right; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>保存为图片
+      </div>
+    </footer>
+
+    
+      <footer class="ui attached segment">
+        guo dong
+      </footer>
+    
+
+    
+    
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="/img/avatar.jpg">
+      
+    </div>
+
+    
+    <div class="ui medium header">Guo Dong 的博客<div class="sub header" style="margin-top: 0.5rem;">Motto</div>
+    </div>
+    
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="/posts">
+        <i class="archive icon" title="归档"></i>
+      </a>
+      
+      <a class="item" href="/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+      <a class="item" href="/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+    </div>
+  </section>
+
+  
+
+  
+
+  <section class="ui attached segment header-socials">
+    <nav class="ui secondary menu dream-menu dream-socials">
+  
+  
+    <div class="item">
+      <a href="mailto:guodong5490@gmail.com">
+        <i class=" mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</nav>
+
+  </section>
+
+  <section class="ui bottom attached center aligned segment">
+    
+      <p>© 2019 - 2020 Demon&#39;s Blog</p>
+    
+
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+    
+  </section>
+</article>
+
+  </div>
+</div>
+
+        </section>
+        <section class="back">
+          <div class="ui centered relaxed grid dream-grid dream-back">
+  
+  
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">社交链接</h3>
+      </div>
+      <div class="ui bottom attached segment">
+        <nav class="ui secondary menu dream-menu dream-socials">
+  
+  
+    <div class="item">
+      <a href="mailto:guodong5490@gmail.com">
+        <i class="large mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</nav>
+
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+      <footer class="ui segment">
+        guo dong
+      </footer>
+    
+  </section>
+
+  
+  
+</div>
+
+        </section>
+      </div>
+    </div>
+
+    <script>
+  window.darkNav =  true 
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>16 集合 | Demon&#39;s Blog</title>
+
+    
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+
+
+<meta name="author" content="Demon" />
+<meta name="description" content="集合 Java的所有容器： 1：变量 : 数据类型 变量名 = 值; 基本类型变量： 只能存储一个数据
+int a =10; a = 20; 引用类型变量：(类)
+class Student { int age ; String name; //double tall;  //boolean sex;  public Student(int age ,String name){ this.age = age; this.name = name; } } Student stu = new Student(13,&amp;#34;张三&amp;#34;); // 引用类型的变量 JavaBean对象， 存储多个内容， 也是固定的 而且这个内容的类型可以多变，随着 属性定的。  2：数组 ： 无限种
+数据类型： 基本类型： 只有8种(jdk规定好的) ，不能自定义。 引用类型： 数组：无限种
+int[] byte[] char[] ... 8种。 数组定义： 数据类型[] 数组名 = new 数据类型[长度]; String[] arr = new String[3]; arr[0] = &amp;#34;abc&amp;#34;; arr[1] = &amp;#34;bcd&amp;#34;; String s = &amp;#34;efg&amp;#34;; arr[2] = s; class Student { } Student[] stus = new Student[3]; Student stu = new Student(); stus[0] = stu; stus[1] = new Student(); int[][] arrr = new int[2][3]; int[][][] arrrr = new int[2][3][4]; 类 ：无限种String StringBuilder Scanner Student Phone Car." />
+
+
+
+<meta name="generator" content="Hugo 0.74.3" />
+
+<link rel="canonical" href="https://demon-github1996.github.io/posts/day16-%E9%9B%86%E5%90%88/" />
+
+
+<meta property="og:title" content="16 集合" />
+<meta property="og:description" content="集合 Java的所有容器： 1：变量 : 数据类型 变量名 = 值; 基本类型变量： 只能存储一个数据
+int a =10; a = 20; 引用类型变量：(类)
+class Student { int age ; String name; //double tall;  //boolean sex;  public Student(int age ,String name){ this.age = age; this.name = name; } } Student stu = new Student(13,&#34;张三&#34;); // 引用类型的变量 JavaBean对象， 存储多个内容， 也是固定的 而且这个内容的类型可以多变，随着 属性定的。  2：数组 ： 无限种
+数据类型： 基本类型： 只有8种(jdk规定好的) ，不能自定义。 引用类型： 数组：无限种
+int[] byte[] char[] ... 8种。 数组定义： 数据类型[] 数组名 = new 数据类型[长度]; String[] arr = new String[3]; arr[0] = &#34;abc&#34;; arr[1] = &#34;bcd&#34;; String s = &#34;efg&#34;; arr[2] = s; class Student { } Student[] stus = new Student[3]; Student stu = new Student(); stus[0] = stu; stus[1] = new Student(); int[][] arrr = new int[2][3]; int[][][] arrrr = new int[2][3][4]; 类 ：无限种String StringBuilder Scanner Student Phone Car." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://demon-github1996.github.io/posts/day16-%E9%9B%86%E5%90%88/" />
+<meta property="article:published_time" content="2019-09-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-09-12T00:00:00+00:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="16 集合"/>
+<meta name="twitter:description" content="集合 Java的所有容器： 1：变量 : 数据类型 变量名 = 值; 基本类型变量： 只能存储一个数据
+int a =10; a = 20; 引用类型变量：(类)
+class Student { int age ; String name; //double tall;  //boolean sex;  public Student(int age ,String name){ this.age = age; this.name = name; } } Student stu = new Student(13,&#34;张三&#34;); // 引用类型的变量 JavaBean对象， 存储多个内容， 也是固定的 而且这个内容的类型可以多变，随着 属性定的。  2：数组 ： 无限种
+数据类型： 基本类型： 只有8种(jdk规定好的) ，不能自定义。 引用类型： 数组：无限种
+int[] byte[] char[] ... 8种。 数组定义： 数据类型[] 数组名 = new 数据类型[长度]; String[] arr = new String[3]; arr[0] = &#34;abc&#34;; arr[1] = &#34;bcd&#34;; String s = &#34;efg&#34;; arr[2] = s; class Student { } Student[] stus = new Student[3]; Student stu = new Student(); stus[0] = stu; stus[1] = new Student(); int[][] arrr = new int[2][3]; int[][][] arrrr = new int[2][3][4]; 类 ：无限种String StringBuilder Scanner Student Phone Car."/>
+
+
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
+
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
+
+
+    
+<link rel="stylesheet" href="/css/github-markdown.css" />
+
+
+
+
+  </head>
+
+  
+  <body style="background: pink;">
+  
+    
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/demon-github1996.github.io\/'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single">
+
+    <section class="ui top attached segment" id="dream-save-post-as-img">
+      <header style="margin-top: 0 !important;">
+        <h1 class="ui large header">
+          16 集合
+          <div class="sub header">
+            @
+            
+              
+                Demon
+              
+            
+            · Thursday, Sep 12, 2019
+            · 6 分钟阅读
+            · 更新于 Sep 12, 2019
+          </div>
+        </h1>
+      </header>
+
+      
+        <img class="ui image" style="margin-top: 2rem;" src="" />
+      
+
+      <article style="margin-top: 2rem;"><h1 id="集合">集合</h1>
+<h2 id="java的所有容器">Java的所有容器：</h2>
+<p>1：变量  : 数据类型 变量名 = 值;
+基本类型变量： 只能存储一个数据</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span>10<span style="color:#f92672">;</span> 
+a <span style="color:#f92672">=</span> 20<span style="color:#f92672">;</span>
+</code></pre></div><p>引用类型变量：(类)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Student</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">int</span> age <span style="color:#f92672">;</span>
+    String name<span style="color:#f92672">;</span>
+    <span style="color:#75715e">//double tall;
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//boolean sex;
+</span><span style="color:#75715e"></span>
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Student</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> age <span style="color:#f92672">,</span>String name<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+Student stu <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">(</span>13<span style="color:#f92672">,</span><span style="color:#e6db74">&#34;张三&#34;</span><span style="color:#f92672">);</span>
+
+<span style="color:#75715e">// 引用类型的变量 JavaBean对象， 存储多个内容， 也是固定的 而且这个内容的类型可以多变，随着 属性定的。
+</span><span style="color:#75715e"></span>
+</code></pre></div><p>2：数组 ： 无限种</p>
+<p>数据类型：
+基本类型： 只有8种(jdk规定好的) ，不能自定义。
+引用类型：
+数组：无限种</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">[]</span> <span style="color:#f92672">...</span> 8种<span style="color:#960050;background-color:#1e0010">。</span>
+数组定义<span style="color:#960050;background-color:#1e0010">：</span> 数据类型<span style="color:#f92672">[]</span> 数组名 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> 数据类型<span style="color:#f92672">[</span>长度<span style="color:#f92672">];</span>
+String<span style="color:#f92672">[]</span> arr  <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">[</span>3<span style="color:#f92672">];</span>
+arr<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">;</span>
+arr<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bcd&#34;</span><span style="color:#f92672">;</span>
+String s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;efg&#34;</span><span style="color:#f92672">;</span>
+arr<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> s<span style="color:#f92672">;</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Student</span> <span style="color:#f92672">{</span>
+
+<span style="color:#f92672">}</span>
+
+Student<span style="color:#f92672">[]</span> stus  <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">[</span>3<span style="color:#f92672">];</span>
+Student stu <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">();</span>
+stus<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> stu<span style="color:#f92672">;</span>
+stus<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">();</span>
+
+<span style="color:#66d9ef">int</span><span style="color:#f92672">[][]</span> arrr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>2<span style="color:#f92672">][</span>3<span style="color:#f92672">];</span>
+
+<span style="color:#66d9ef">int</span><span style="color:#f92672">[][][]</span> arrrr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>2<span style="color:#f92672">][</span>3<span style="color:#f92672">][</span>4<span style="color:#f92672">];</span>
+
+</code></pre></div><pre><code>类 ：无限种
+String StringBuilder  Scanner  Student Phone  Car.....
+接口：无限种
+.....
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>3<span style="color:#f92672">];</span> <span style="color:#75715e">// 数组 长度定死了3  里面只能存储int类型的数据。
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 数组这个容器有什么特点呢？
+</span><span style="color:#75715e">// 1: 数组可以有无限种，  可以达到 数组可以存储任意数据。 
+</span><span style="color:#75715e">// 2: 一个数组 只能存储一种数据 
+</span><span style="color:#75715e">// 3：数组的长度是固定的， 不能变化。
+</span><span style="color:#75715e"></span>
+arr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>4<span style="color:#f92672">];</span>  <span style="color:#75715e">// 这个不是变化长度。
+</span></code></pre></div><p>3：集合 ArrayList</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> al <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+al<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">);</span>
+al<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;bcd&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">//....
+</span><span style="color:#75715e">// 集合这个容器的特点
+</span><span style="color:#75715e">// 1：长度不是固定的， 只要内存不满 随便添加 自动扩容。
+</span><span style="color:#75715e">// 2: 一个集合 开发中基本上只存储一种数据类型。（但是只要不写泛型&lt;&gt; 是可以存储任意的引用类型数据，但是通常开发中 写泛型 值存储一种引用类型数据）
+</span><span style="color:#75715e">// 3: 集合不能存储基本类型的数据， 如果非要存储 100这种值
+</span></code></pre></div><blockquote>
+<blockquote>
+<p>容器之间的嵌套 就可以组合一些层次清晰的数据</p>
+<p>表示咱们济南校区的所有人员
+济南校区
+30期
+6个小组（组数不固定）  每个小数组是8个人(人数固定)
+一组：张三13  李四14 &hellip;
+二组：哈哈15  呵呵16 &hellip;</p>
+<p>​					29期
+​					28期
+​					&hellip;.</p>
+</blockquote>
+</blockquote>
+<p>大概代码如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Student stu1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张三&#34;</span><span style="color:#f92672">,</span>13<span style="color:#f92672">);</span>
+Student stu2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;李四&#34;</span><span style="color:#f92672">,</span>14<span style="color:#f92672">);</span>
+<span style="color:#f92672">......</span>
+
+Student st1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;哈哈&#34;</span><span style="color:#f92672">,</span>15<span style="color:#f92672">);</span>
+Student st2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;呵呵&#34;</span><span style="color:#f92672">,</span>16<span style="color:#f92672">);</span>
+<span style="color:#f92672">.....</span>
+
+
+Student<span style="color:#f92672">[]</span> zu1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">[</span>8<span style="color:#f92672">];</span>
+Student<span style="color:#f92672">[]</span> zu2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">[</span>8<span style="color:#f92672">];</span>
+<span style="color:#f92672">......</span>
+
+zu1<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> stu1<span style="color:#f92672">;</span>
+zu1<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> stu2<span style="color:#f92672">;</span>
+<span style="color:#f92672">.....</span>
+
+zu2<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> st1<span style="color:#f92672">;</span>
+zu2<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> st2<span style="color:#f92672">;</span>
+<span style="color:#f92672">....</span>
+
+
+ArrayList<span style="color:#f92672">&lt;</span>Student<span style="color:#f92672">[]&gt;</span> qi30 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+qi30<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>zu1<span style="color:#f92672">);</span>
+qi30<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>zu2<span style="color:#f92672">);</span>
+<span style="color:#f92672">.....</span>
+
+
+ArrayList<span style="color:#f92672">&lt;</span> ArrayList<span style="color:#f92672">&lt;</span>Student<span style="color:#f92672">[]&gt;</span>  <span style="color:#f92672">&gt;</span>  jinanxiaoqu <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+jinanxiaoqu<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>qi30<span style="color:#f92672">);</span>
+<span style="color:#f92672">.....</span>
+</code></pre></div><h3 id="集合体系">集合体系：</h3>
+<p><strong>Collection:所有单列集合的顶层接口</strong></p>
+<p><strong>List : 实现了List接口的类 都有这样的特点： 可以存储重复元素 有索引 存取有序</strong></p>
+<p>ArrayList
+LinkedList</p>
+<p><strong>Set : 实现了Set接口的类 都有这样的特点： 不可以存储重复元素  没有索引 存取无序</strong></p>
+<p>HashSet
+TreeSet</p>
+<p><strong>Map : 所有双列集合的顶层集合。</strong></p>
+<p>HashMap
+TreeMap</p>
+<h2 id="collection">Collection(☆☆☆☆☆)</h2>
+<h3 id="共性方法">共性方法：</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">	<span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>E e<span style="color:#f92672">)</span>		添加元素
+  <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span>Object o<span style="color:#f92672">)</span>	    从集合中移除指定的元素
+  <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">removeif</span><span style="color:#f92672">(</span>Prodicate o<span style="color:#f92672">)</span>	根据条件进行删除
+</code></pre></div><h3 id="removeif的底层讲解">removeIf的底层讲解：</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Predicate</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;{</span>
+  <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">test</span><span style="color:#f92672">(</span>T t<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+<span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Collection</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">removeIf</span><span style="color:#f92672">(</span>Predicate<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> predicate<span style="color:#f92672">){</span>
+    Iterator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> it <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">iterator</span><span style="color:#f92672">();</span>
+    <span style="color:#66d9ef">boolean</span> b <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>it<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+      String next <span style="color:#f92672">=</span>  it<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
+      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>predicate<span style="color:#f92672">.</span><span style="color:#a6e22e">test</span><span style="color:#f92672">(</span>next<span style="color:#f92672">)){</span>
+        it<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">();</span>
+        b <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+      <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">return</span> b<span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">){</span>
+    Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> col <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+    col<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">);</span>
+    col<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abcd&#34;</span><span style="color:#f92672">);</span>
+    col<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ad&#34;</span><span style="color:#f92672">);</span>
+    col<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;aderfd&#34;</span><span style="color:#f92672">);</span>
+    col<span style="color:#f92672">.</span><span style="color:#a6e22e">removeIf</span><span style="color:#f92672">((</span>String s<span style="color:#f92672">)-&gt;{</span><span style="color:#66d9ef">return</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()==</span>3<span style="color:#f92672">;});</span>
+    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>col<span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">clear</span><span style="color:#f92672">()</span>			清空集合
+  <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">contains</span><span style="color:#f92672">(</span>Object o<span style="color:#f92672">)</span>	判断集合中是否存在指定的元素
+  <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">()</span>		判断集合是否为空
+  <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">size</span><span style="color:#f92672">()</span>			集合的长度<span style="color:#960050;background-color:#1e0010">，</span>也就是集合中元素的个数
+
+</code></pre></div><p>==遍历：==</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">基础班学过的ArrayList的遍历<span style="color:#960050;background-color:#1e0010">：</span>
+  ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> al <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+al<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;afsadfsad&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> al<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">();</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+  System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>al<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>i<span style="color:#f92672">));</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>==但是 Collection没有get方法 所以 Collection不能使用for循环遍历==</p>
+<p><strong>单列集合通用遍历方式：迭代器遍历</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> al <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+al<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">);</span>
+al<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;b&#34;</span><span style="color:#f92672">);</span>
+al<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">);</span>
+al<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">);</span>
+al<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;b&#34;</span><span style="color:#f92672">);</span>
+al<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;b&#34;</span><span style="color:#f92672">);</span>
+Iterator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> iterator <span style="color:#f92672">=</span> al<span style="color:#f92672">.</span><span style="color:#a6e22e">iterator</span><span style="color:#f92672">();</span>
+<span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>iterator<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">()){</span>
+  System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>iterator<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">());</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p><strong>错误演示1：</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> con <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+con<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">);</span>
+con<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;b&#34;</span><span style="color:#f92672">);</span>
+con<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;c&#34;</span><span style="color:#f92672">);</span>
+
+Iterator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> it <span style="color:#f92672">=</span> con<span style="color:#f92672">.</span><span style="color:#a6e22e">iterator</span><span style="color:#f92672">();</span>
+<span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>it<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+  String next <span style="color:#f92672">=</span>  it<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
+  System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>it<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">());</span>  <span style="color:#75715e">// b    
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">//运行出错  因为没有下一个元素
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+<span style="color:#75715e">// 结论：迭代器遍历中  while循环内 只能出现一个 next
+</span></code></pre></div><p>​			<strong>案例2：集合里面有很多的 &ldquo;a&rdquo; 元素， 把所有的 &ldquo;a&quot;元素都删除。</strong></p>
+<p>1：如果是ArrayList集合 删除所有的a 有4种方式</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> al <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+al<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;b&#34;</span><span style="color:#f92672">);</span>
+al<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">);</span>
+al<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">);</span>
+al<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;c&#34;</span><span style="color:#f92672">);</span>
+al<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">);</span>
+al<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">);</span>
+al<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;d&#34;</span><span style="color:#f92672">);</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//方式一
+</span><span style="color:#75715e"></span>					<span style="color:#75715e">//al.removeIf(s-&gt;&#34;a&#34;.equals(s));
+</span><span style="color:#75715e"></span>					<span style="color:#75715e">//System.out.println(al);
+</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//方式二
+</span><span style="color:#75715e"></span>					<span style="color:#75715e">//while (al.remove(&#34;a&#34;)){}
+</span><span style="color:#75715e"></span>					<span style="color:#75715e">//System.out.println(al);
+</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
+<span style="color:#75715e">//方式三
+</span><span style="color:#75715e"></span><span style="color:#75715e">/*for (int i = 0; i &lt; al.size(); i++) {
+</span><span style="color:#75715e">						if (&#34;a&#34;.equals(al.get(i))){
+</span><span style="color:#75715e">							al.remove(i);
+</span><span style="color:#75715e">							i--;
+</span><span style="color:#75715e">						}
+</span><span style="color:#75715e">					}*/</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//方式四
+</span><span style="color:#75715e"></span><span style="color:#75715e">/*for (int i = al.size() - 1; i &gt;= 0; i--) {
+</span><span style="color:#75715e">						if (&#34;a&#34;.equals(al.get(i))){
+</span><span style="color:#75715e">							al.remove(i);
+</span><span style="color:#75715e">						}
+</span><span style="color:#75715e">					}*/</span>
+</code></pre></div><p>​	2：如果是所有的单列集合都可以使用的方式：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> con <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+con<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;b&#34;</span><span style="color:#f92672">);</span>
+con<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">);</span>
+con<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">);</span>
+con<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;c&#34;</span><span style="color:#f92672">);</span>
+con<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">);</span>
+con<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">);</span>
+con<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;d&#34;</span><span style="color:#f92672">);</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//方式一
+</span><span style="color:#75715e">//con.removeIf(s-&gt;&#34;a&#34;.equals(s));
+</span><span style="color:#75715e">//System.out.println(con);
+</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//方式二
+</span><span style="color:#75715e">//while (con.remove(&#34;a&#34;)){}
+</span><span style="color:#75715e">//System.out.println(con);
+</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/*Iterator&lt;String&gt; it = con.iterator();
+</span><span style="color:#75715e">					//itit
+</span><span style="color:#75715e">					while (it.hasNext()) {
+</span><span style="color:#75715e">						String s =  it.next();
+</span><span style="color:#75715e">						if (&#34;a&#34;.equals(s)){
+</span><span style="color:#75715e">							con.remove(s);  //1 根据元素删除的 底层需要遍历的 效率不高。
+</span><span style="color:#75715e">							// 2：运行报错
+</span><span style="color:#75715e">							//Concurrent 并发 Modification 修改Exception
+</span><span style="color:#75715e">							// 并发修改异常
+</span><span style="color:#75715e">							// 同时修改异常
+</span><span style="color:#75715e">						}
+</span><span style="color:#75715e">					}
+</span><span style="color:#75715e">					System.out.println(con);*/</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
+<span style="color:#75715e">//方式三
+</span><span style="color:#75715e"></span>Iterator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> it <span style="color:#f92672">=</span> con<span style="color:#f92672">.</span><span style="color:#a6e22e">iterator</span><span style="color:#f92672">();</span>
+<span style="color:#75715e">//itit
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>it<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+  String s <span style="color:#f92672">=</span>  it<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
+  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>s<span style="color:#f92672">)){</span>
+    it<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">();</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>con<span style="color:#f92672">);</span>
+</code></pre></div><h3 id="增强for循环">增强for循环：</h3>
+<p>为了简化迭代器而出现的，底层就是使用的迭代器。</p>
+<p>格式：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> 
+				<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>元素的类型 变量名 <span style="color:#f92672">:</span> 集合<span style="color:#f92672">){</span>
+					<span style="color:#75715e">//使用变量名
+</span><span style="color:#75715e"></span>				<span style="color:#f92672">}</span>
+</code></pre></div><p>​</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">代码<span style="color:#960050;background-color:#1e0010">：</span>
+  Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> con <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+con<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">);</span>
+con<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;b&#34;</span><span style="color:#f92672">);</span>
+con<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;c&#34;</span><span style="color:#f92672">);</span>
+con<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;d&#34;</span><span style="color:#f92672">);</span>
+
+Iterator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> it <span style="color:#f92672">=</span> con<span style="color:#f92672">.</span><span style="color:#a6e22e">iterator</span><span style="color:#f92672">();</span>
+<span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>it<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+  String a <span style="color:#f92672">=</span> it<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
+  System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>a<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;--------------&#34;</span><span style="color:#f92672">);</span>
+</code></pre></div><p>用增强for 改进</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>String a <span style="color:#f92672">:</span> con<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>a<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p><strong>增强for和普通for的比较：</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>3<span style="color:#f92672">];</span>
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> a <span style="color:#f92672">:</span> arr<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  <span style="color:#75715e">// a不是索引 而是元素值
+</span><span style="color:#75715e"></span>  System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>a<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> arr<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>  <span style="color:#75715e">//i 是索引
+</span><span style="color:#75715e"></span>  System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">[</span>i<span style="color:#f92672">]);</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e">// 增强for中 是不会出现索引的 （底层毕竟是迭代器  迭代器没有索引）
+</span><span style="color:#75715e">// 普通for中 是有索引的
+</span></code></pre></div><p>增强for循环的目标： 什么内容可以使用增强for循环遍历呢
+所有实现了Iterable接口的类的 对象 都可以被增强for循环遍历</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo6</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">/*
+</span><span style="color:#75715e">						Iterator&lt;String&gt; it = con.iterator();
+</span><span style="color:#75715e">						while (it.hasNext()) {
+</span><span style="color:#75715e">							String a = it.next();
+</span><span style="color:#75715e">							System.out.println(a);
+</span><span style="color:#75715e">						}
+</span><span style="color:#75715e">						 */</span>
+
+    Student stu <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;张三&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;男&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>String s  <span style="color:#f92672">:</span> stu<span style="color:#f92672">){</span>  <span style="color:#75715e">// Iterator&lt;String&gt; it = stu.iterator() //null
+</span><span style="color:#75715e"></span>      System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Student</span> <span style="color:#66d9ef">implements</span> Iterable<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;{</span>  <span style="color:#75715e">// iterator 迭代   iter 简写形式  able 可以....的   Iterable  可以迭代的。
+</span><span style="color:#75715e"></span>  String name<span style="color:#f92672">;</span>
+  String sex<span style="color:#f92672">;</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Student</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span> String sex<span style="color:#f92672">){</span>
+    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sex</span> <span style="color:#f92672">=</span> sex<span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+
+  <span style="color:#a6e22e">@Override</span>
+  <span style="color:#66d9ef">public</span> Iterator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">iterator</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Iterator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;()</span> <span style="color:#f92672">{</span>
+      <span style="color:#a6e22e">@Override</span>
+      <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">hasNext</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+      <span style="color:#f92672">}</span>
+
+      <span style="color:#a6e22e">@Override</span>
+      <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">next</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> name<span style="color:#f92672">;</span>
+      <span style="color:#f92672">}</span>
+    <span style="color:#f92672">};</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+</code></pre></div><h3 id="list--">List (☆☆☆☆☆) ：</h3>
+<p>可以存储重复元素 有索引 存取有序</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">回顾基础班ArrayList的方法<span style="color:#960050;background-color:#1e0010">：</span>
+			增
+				<span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>E e<span style="color:#f92672">)</span>
+				<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index <span style="color:#f92672">,</span> E e<span style="color:#f92672">)</span>
+			删
+				<span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span>E e<span style="color:#f92672">);</span>
+				E <span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index<span style="color:#f92672">);</span>
+			改
+				E <span style="color:#a6e22e">set</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index <span style="color:#f92672">,</span> E e<span style="color:#f92672">)</span>
+			查<span style="color:#960050;background-color:#1e0010">：</span>
+				<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">size</span><span style="color:#f92672">()</span>
+				E <span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index <span style="color:#f92672">)</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">List 的特有方法<span style="color:#960050;background-color:#1e0010">：</span>
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index <span style="color:#f92672">,</span> E e<span style="color:#f92672">)</span>
+  E <span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index<span style="color:#f92672">);</span>
+E <span style="color:#a6e22e">set</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index <span style="color:#f92672">,</span> E e<span style="color:#f92672">)</span>
+  E <span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index <span style="color:#f92672">)</span>
+
+  因为他有这个 通过索引获取元素的 get方法  所以 List 体系的所有集合<span style="color:#960050;background-color:#1e0010">，</span> 多了 一种 通过普通for循环的遍历方式<span style="color:#960050;background-color:#1e0010">。</span>
+
+  ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> al <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+al<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">);</span>
+
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span>0<span style="color:#f92672">;</span>i<span style="color:#f92672">&lt;</span>al<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">()</span> <span style="color:#f92672">;</span>i<span style="color:#f92672">++</span> <span style="color:#f92672">){</span>
+  String s <span style="color:#f92672">=</span> al<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
+  System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="数据结构-数据在容器中排列方式">数据结构： 数据在容器中排列方式。</h4>
+<blockquote>
+<blockquote>
+<p>栈 ： 先进后出
+队列： 先进先出
+数组： 查询快 增删慢。
+链表 ： 查询慢 增删快。
+单向链表 ： 只能从前往后查   节约一些空间
+双向链表： 既可以往前查找 也可以往后去查 ， 浪费一些空间。
+数据的存储设计： 拿时间换空间， 拿空间换时间。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>数据结构设计的精髓 ：  时间和空间的转换。
+一个储藏室里面 存储产品：
+平铺： 浪费空间，但是查找速度特别快
+放架子： 平衡一点了 时间也比较快， 空间也能充分利用一点
+堆满： 空间利用满了， 查找速度特别慢了。</p>
+</blockquote>
+</blockquote>
+<p>举例：
+链表的 单向链表 和双向链表。</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>题目的思想 ：拿时间换空间， 拿空间换时间
+题： 有一个容器， 里面存储了1万个 连续的数 0-9999 (数的顺序是打乱的) ， 但是这些数组里面 其中一个数 是缺失的， 有一个数 是重复的。
+比如： 0 1 2 3 7 5 6 7 8 9  &ndash; 7 是重复的 4是缺失的。
+顺序乱的： 9 6 7 3 2 7 5 1 0 8    &ndash; 7 是重复的 4是缺失的。
+请你 用最快速的方法， 找到 那个缺失的数， 找到那个重复的数。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h4 id="list-的儿子">List 的儿子：</h4>
+<blockquote>
+<p>ArrayList ：底层是数组结构
+底层数组初始长度是10,
+每次扩容1.5倍</p>
+</blockquote>
+<blockquote>
+<p>LinkedList ：链表结构的方法
+特有方法：头和尾相关的方法
+因为 LinkedList 底层是双向链表。  操作里面的元素， 都要从头往后 或者从后往前找。</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addFirst</span><span style="color:#f92672">(</span>E e<span style="color:#f92672">)</span>	在该列表开头插入指定的元素
+						<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addLast</span><span style="color:#f92672">(</span>E e<span style="color:#f92672">)</span>	将指定的元素追加到此列表的末尾
+						<span style="color:#66d9ef">public</span> E <span style="color:#a6e22e">getFirst</span><span style="color:#f92672">()</span>		返回此列表中的第一个元素
+						<span style="color:#66d9ef">public</span> E <span style="color:#a6e22e">getLast</span><span style="color:#f92672">()</span>		返回此列表中的最后一个元素
+						<span style="color:#66d9ef">public</span> E <span style="color:#a6e22e">removeFirst</span><span style="color:#f92672">()</span>		从此列表中删除并返回第一个元素
+						<span style="color:#66d9ef">public</span> E <span style="color:#a6e22e">removeLast</span><span style="color:#f92672">()</span>		从此列表中删除并返回最后一个元素
+</code></pre></div><blockquote>
+<p>数据结构中 只有数组有索引， 双向链表是没有索引的， 也就是说 LinkedList的底层是没有索引的
+但是 LinkedList  是 List 接口的子类 那么他就具备 List 的那些方法啊。</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">List 的特有方法<span style="color:#960050;background-color:#1e0010">：</span>
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index <span style="color:#f92672">,</span> E e<span style="color:#f92672">)</span>
+  E <span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index<span style="color:#f92672">);</span>
+E <span style="color:#a6e22e">set</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index <span style="color:#f92672">,</span> E e<span style="color:#f92672">)</span>
+  E <span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index <span style="color:#f92672">)</span>
+  那些方法 都是通过索引来操作元素的<span style="color:#960050;background-color:#1e0010">，</span> 然而 LinkedList 底层却没有索引 岂不矛盾<span style="color:#960050;background-color:#1e0010">？？</span>
+</code></pre></div><p>我大概给你说一下  LinkedList 底层是怎么 模拟索引的。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> E <span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index <span style="color:#f92672">){</span>
+  <span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> <span style="color:#75715e">//计数器
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> size0 <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">();</span> <span style="color:#75715e">// size0 记录了 当前LinkedList集合有多少个元素。
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>index <span style="color:#f92672">&lt;</span> size0<span style="color:#f92672">/</span>2<span style="color:#f92672">){</span> <span style="color:#75715e">// 从前往后
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">){</span>
+      <span style="color:#75715e">//从前往后找的代码
+</span><span style="color:#75715e"></span>      <span style="color:#75715e">//每找一次
+</span><span style="color:#75715e"></span>      count<span style="color:#f92672">++;</span>
+      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>count <span style="color:#f92672">==</span> index<span style="color:#f92672">){</span>
+        <span style="color:#75715e">//找到了
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> 那个值 <span style="color:#f92672">;</span>
+      <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+  <span style="color:#f92672">}</span><span style="color:#66d9ef">else</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">){</span>
+      <span style="color:#75715e">// 从后往前找
+</span><span style="color:#75715e"></span>      <span style="color:#75715e">//每找一次
+</span><span style="color:#75715e"></span>      size0<span style="color:#f92672">--;</span>
+      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>size0<span style="color:#f92672">==</span>index<span style="color:#f92672">){</span>
+        <span style="color:#75715e">//找到了
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> 那个值<span style="color:#f92672">;</span>
+      <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+
+  <span style="color:#f92672">}</span>
+
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="linkedlist-的源码分析大致理解就可以了">LinkedList 的源码分析：大致理解就可以了</h4>
+<blockquote>
+<p>​				1：LinkedList 底层是用的双向链表
+​				2：LinkedList 存储进去的元素， 他给你把元素封装为了 Node 对象。（Node 对象中 封装三个属性 当前值 上一个元素的地址 下一个元素的地址值）
+​				3：LinkedList 只能从头往后 或者从后往前找  但是他却提供了一个 get(int index) 的方法。</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">LinkedList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> ll <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> LinkedList<span style="color:#f92672">&lt;&gt;();</span>
+ll<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">);</span>
+ll<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;b&#34;</span><span style="color:#f92672">);</span>
+ll<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;c&#34;</span><span style="color:#f92672">);</span>
+
+String str <span style="color:#f92672">=</span> ll<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>  <span style="color:#75715e">// 这岂不是也能通过索引获取元素吗？
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 为什么LinkedList 提供了一个get方法呢。  因为他实现了List接口 ， 而List接口中有一个get方法。
+</span><span style="color:#75715e">//  但是 LinkedList 的get方法底层 绝对不是通过索引拿的，
+</span><span style="color:#75715e">// 而是先去判断 你拿的位置是属于 链表的前半部分 还是后半部分。
+</span><span style="color:#75715e">// 如果属于前半部分 就会从第一个往后找， 如果属于后半部分 就会从最后一个往前找。
+</span><span style="color:#75715e"></span>
+
+</code></pre></div></article>
+    </section>
+
+    <footer class="ui attached segment dream-tags">
+      
+          <a class="ui label">暂无标签</a>
+      
+      <div
+        class="ui label"
+        style="float: right; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>保存为图片
+      </div>
+    </footer>
+
+    
+      <footer class="ui attached segment">
+        guo dong
+      </footer>
+    
+
+    
+    
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="/img/avatar.jpg">
+      
+    </div>
+
+    
+    <div class="ui medium header">Guo Dong 的博客<div class="sub header" style="margin-top: 0.5rem;">Motto</div>
+    </div>
+    
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="/posts">
+        <i class="archive icon" title="归档"></i>
+      </a>
+      
+      <a class="item" href="/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+      <a class="item" href="/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+    </div>
+  </section>
+
+  
+
+  
+
+  <section class="ui attached segment header-socials">
+    <nav class="ui secondary menu dream-menu dream-socials">
+  
+  
+    <div class="item">
+      <a href="mailto:guodong5490@gmail.com">
+        <i class=" mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</nav>
+
+  </section>
+
+  <section class="ui bottom attached center aligned segment">
+    
+      <p>© 2019 - 2020 Demon&#39;s Blog</p>
+    
+
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+    
+  </section>
+</article>
+
+  </div>
+</div>
+
+        </section>
+        <section class="back">
+          <div class="ui centered relaxed grid dream-grid dream-back">
+  
+  
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">社交链接</h3>
+      </div>
+      <div class="ui bottom attached segment">
+        <nav class="ui secondary menu dream-menu dream-socials">
+  
+  
+    <div class="item">
+      <a href="mailto:guodong5490@gmail.com">
+        <i class="large mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</nav>
+
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+      <footer class="ui segment">
+        guo dong
+      </footer>
+    
+  </section>
+
+  
+  
+</div>
+
+        </section>
+      </div>
+    </div>
+
+    <script>
+  window.darkNav =  true 
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

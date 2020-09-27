@@ -19,14 +19,14 @@
 
 <meta name="generator" content="Hugo 0.74.3" />
 
-<link rel="canonical" href="https://guodong.gitee.io/" />
+<link rel="canonical" href="https://demon-github1996.github.io/" />
 
 
 <meta property="og:title" content="Demon&#39;s Blog" />
 <meta property="og:description" content="中国 山东" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://guodong.gitee.io/" />
-<meta property="og:updated_time" content="2019-08-30T00:00:00+00:00" />
+<meta property="og:url" content="https://demon-github1996.github.io/" />
+<meta property="og:updated_time" content="2019-09-20T00:00:00+00:00" />
 
 
 
@@ -68,7 +68,7 @@
     <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
   </div>
   <div class="item">
-    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/guodong.gitee.io'"></i>
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/demon-github1996.github.io\/'"></i>
   </div>
   <div class="item">
     <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
@@ -162,20 +162,20 @@
     <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
     
       <article class="ui attached segment card dream-card">
-  <a class="image" href="https://guodong.gitee.io/posts/day09/">
+  <a class="image" href="https://demon-github1996.github.io/posts/day23%E5%A4%9A%E7%BA%BF%E7%A8%8B02/">
     
-      <img src="/img/default2.jpg" alt="Day09 集合" />
+      <img src="/img/default3.jpg" alt="22   多线程2" />
     
   </a>
 
   <div class="content">
     <h2 class="ui medium header">
-      <a href="https://guodong.gitee.io/posts/day09/">Day09 集合</a>
+      <a href="https://demon-github1996.github.io/posts/day23%E5%A4%9A%E7%BA%BF%E7%A8%8B02/">22   多线程2</a>
     </h2>
     <div class="meta">
       <p class="date">
         
-          星期五，八月 30 日，2019 年
+          星期五，九月 20 日，2019 年
         
       </p>
       <p class="author">
@@ -188,18 +188,16 @@
       </p>
     </div>
     <div class="description">
-      Day09集合 ArrayList (☆☆☆☆☆)用来存储数据的， 一个ArrayList对象 就是一个容器(可变长度) （集合）
-容器的概念： 1：变量 : 数据类型 变量名 = 值; 基本类型变量： 只能存储一个数据 int a =10; a = 20;
-引用类型变量：(类)
-class Student { int age ; String name; //double tall; //boolean sex;  public Student(int age ,String name){ this.age = age; this.name = name; } } Student stu = new Student(13,&#34;张三&#34;); // 引用类型的遍历 JavaBean对象， 存储多个内容， 也是固定的 而且这个内容的类型可以多变，随着 属性定的。 2：数组 ： 无限种 数据类型： 基本类型： 只有8种(jdk规定好的) ，不能自定义。 引用类型：
-数组：无限种int[] byte[] char[] .
+      多线程02 1.线程状态(重点) java中对线程的6种状态进行了描述
+public class Thread { public enum State { /* 新建 */ NEW , /* 可运行状态 */ RUNNABLE , /* 阻塞状态 */ BLOCKED , /* 无限等待状态 */ WAITING , /* 计时等待 */ TIMED_WAITING , /* 终止 */ TERMINATED; } // 获取当前线程的状态  public State getState() { return jdk.internal.misc.VM.toThreadState(threadStatus); } } 通过源码我们可以看到Java中的线程存在6种状态，每种线程状态的含义如下
+   线程状态 具体含义     NEW 一个尚未启动的线程的状态。也称之为初始状态、开始状态。线程刚被创建，但是并未启动。还没调用start方法。MyThread t = new MyThread()只有线程象，没有线程特征。   RUNNABLE 当我们调用线程对象的start方法，那么此时线程对象进入了RUNNABLE状态。那么此时才是真正的在JVM进程中创建了一个线程，线程一经启动并不是立即得到执行，线程的运行与否要听令与CPU的调度，那么我们把这个中间状态称之为可执行状态(RUNNABLE)也就是说它具备执行的资格，但是并没有真正的执行起来而是在等待CPU的度。   BLOCKED 当一个线程试图获取一个对象锁，而该对象锁被其他的线程持有，则该线程进入Blocked状态；当该线程持有锁时，该线程将变成Runnable状态。   WAITING 一个正在等待的线程的状态。也称之为等待状态。例如：因为wait()而等待的线程正在等待另一个线程去调用notify()或notifyAll()；   TIMED_WAITING 一个在限定时间内等待的线程的状态。也称之为限时等待状态。Thread.
     </div>
   </div>
 
   <div class="extra content">
     <a>
       <i class="clock icon"></i>
-      4 分钟阅读
+      6 分钟阅读
     </a>
   </div>
 </article>
@@ -210,20 +208,20 @@ class Student { int age ; String name; //double tall; //boolean sex;  public Stu
     <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
     
       <article class="ui attached segment card dream-card">
-  <a class="image" href="https://guodong.gitee.io/posts/day08/">
+  <a class="image" href="https://demon-github1996.github.io/posts/volitile%E4%B8%BA%E4%BB%80%E4%B9%88%E6%97%A0%E6%B3%95%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7/">
     
-      <img src="/img/default4.jpg" alt="Day08 Api" />
+      <img src="/img/default4.jpg" alt="23    volitile为什么无法保证原子性" />
     
   </a>
 
   <div class="content">
     <h2 class="ui medium header">
-      <a href="https://guodong.gitee.io/posts/day08/">Day08 Api</a>
+      <a href="https://demon-github1996.github.io/posts/volitile%E4%B8%BA%E4%BB%80%E4%B9%88%E6%97%A0%E6%B3%95%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7/">23    volitile为什么无法保证原子性</a>
     </h2>
     <div class="meta">
       <p class="date">
         
-          星期四，八月 29 日，2019 年
+          星期五，九月 20 日，2019 年
         
       </p>
       <p class="author">
@@ -236,17 +234,14 @@ class Student { int age ; String name; //double tall; //boolean sex;  public Stu
       </p>
     </div>
     <div class="description">
-      Day08 Api 面向对象： 什么是面向对象 类和对象 内存图 一个 两个 两一个指向一个的内存图 private this 构造方法
-面向对象：指挥对象做事情1：自己造一个 ： 自己创建类 2：自己家有一个 ： jre核心类库里面提供了很多的 类3：买来一个 ： 去其他的软件公司 购买这些代码。 jre核心类库： 之前学过的类：
-	Scanner ： Scanner sc = new Scanner(System.in);int a = sc.nextInt();​
- Random :Random r = new Random();int a = r.nextInt(100); API： 意思指的是 jre提供的这些类： 说明文档： 案例：生成一个随机数。（前提 你是小白 不知道Random这个类） 1：在 说明书中 去搜 “随机数”的英文 ， “随机数”因为就是random 。 这种不准确， 因为一个汉语 可以有多个英文单词对应着。 2：或者 去百度 “java生成随机数” 百度上就会告诉你 使用 Random类，但是你并不懂Random是什么，这时候你再去查说明书。
+      volitile为什么无法保证原子性 问题复现 1.按照volitile的特点,强制线程每次在使用成员变量的时候，都会看一下共享区域最新的值 2.看代码 2.1 在测试方法中我们开了100个线程去执行任务 public static void main(String[] args) { CustomRunnable task = new CustomRunnable(); for (int i = 0; i &lt; 100; i++) { new Thread(task).start(); } } 2.2 任务代码就是获取当前的count,然后count++ public class CustomRunnable implements Runnable { private volatile int count = 0; @Override public void run() { try { //注意,这里必须睡一下  Thread.sleep(2); } catch (InterruptedException e) { e.printStackTrace(); } count++; System.out.println(&#34;当前count的值为&#34; + count); } } 观察结果 正常情况下循环100次,那么count就应该是100,但是实际上没有一次执行的结果是大于等于100的,所以就验证了volitile是无法保证原子性的
     </div>
   </div>
 
   <div class="extra content">
     <a>
       <i class="clock icon"></i>
-      8 分钟阅读
+      1 分钟阅读
     </a>
   </div>
 </article>
@@ -257,20 +252,20 @@ class Student { int age ; String name; //double tall; //boolean sex;  public Stu
     <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
     
       <article class="ui attached segment card dream-card">
-  <a class="image" href="https://guodong.gitee.io/posts/day07/">
+  <a class="image" href="https://demon-github1996.github.io/posts/day22%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
     
-      <img src="/img/default2.jpg" alt="Day7  面向对象" />
+      <img src="/img/default4.jpg" alt="21   多线程1" />
     
   </a>
 
   <div class="content">
     <h2 class="ui medium header">
-      <a href="https://guodong.gitee.io/posts/day07/">Day7  面向对象</a>
+      <a href="https://demon-github1996.github.io/posts/day22%E5%A4%9A%E7%BA%BF%E7%A8%8B/">21   多线程1</a>
     </h2>
     <div class="meta">
       <p class="date">
         
-          星期三，八月 28 日，2019 年
+          星期四，九月 19 日，2019 年
         
       </p>
       <p class="author">
@@ -283,8 +278,160 @@ class Student { int age ; String name; //double tall; //boolean sex;  public Stu
       </p>
     </div>
     <div class="description">
-      面向对象 java的语法： java的组成： 注释 关键字 标识符 数据： 常量： 变量： 数据类型 基本： byte short int long&hellip;.. 引用: 数组： 数组的定义 使用 内存图 异常 遍历 求和 查找 评委打分 二维数组： 循环的嵌套 类 接口
-​	类型转换 ​	隐式 ​	强制 ​	符号 ​	基本符号 (){}[].&quot;&quot;''; ​	(): ​	强制类型 ​	运算 ​	结构语句 ​	方法 ​	​	运算符： ​	算术 ​	赋值 ​	比较 ​	逻辑 ​	三元 ​	位 逻辑语句： ​	顺序结构 ​	选择结构 ifswitch ​	循环结构 for while dowhile break continue 猜数字小游戏
+      多线程day01 1.基本概念 高并发和高并行
+并行：在同一时刻，有多个指令在多个CPU上同时执行
+并发：在同一时刻，有多个指令在单个CPU上交替执行
+进程和线程
+进程 是正在运行的程序
+1 独立性：进程是一个能独立运行的基本单位，同时也是系统分配资源和调度的独立单位
+2 动态性：进程的实质是程序的一次执行过程，进程是动态产生，动态消亡的
+3 并发性：任何进程都可以同其他进程一起并发执行
+线程：是进程中的单个顺序控制流，是一条执行路径
+一个进程如果只有一条执行路径，则称为单线程程序
+一个进程如果有多条执行路径，则称为多线程程序
+主线程和其他线程
+主线程 main
+2.实现多线程的方式 2.1创建类继承Thread类,重写run方法 public class CustomThread extends Thread { @Override public void run() { //方法体  } } Thread thread = new CustomThread() thread.start() 2.2创建接口实现Runnable接口,实现run方法 public class CustomRunnable implements Runnable { @Override public void run() { //方法体  } } //创建任务 Runnable task = new CustomRunnable(); //创建线程 Thread thread = new Thread(task) //开启线程执行任务 thread.
+    </div>
+  </div>
+
+  <div class="extra content">
+    <a>
+      <i class="clock icon"></i>
+      2 分钟阅读
+    </a>
+  </div>
+</article>
+
+    </div>
+  
+    
+    <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+      <article class="ui attached segment card dream-card">
+  <a class="image" href="https://demon-github1996.github.io/posts/day21_io%E6%B5%81%E6%80%BB%E7%BB%93/">
+    
+      <img src="/img/default2.jpg" alt="21  I/O总结" />
+    
+  </a>
+
+  <div class="content">
+    <h2 class="ui medium header">
+      <a href="https://demon-github1996.github.io/posts/day21_io%E6%B5%81%E6%80%BB%E7%BB%93/">21  I/O总结</a>
+    </h2>
+    <div class="meta">
+      <p class="date">
+        
+          星期三，九月 18 日，2019 年
+        
+      </p>
+      <p class="author">
+        @
+        
+          
+            Demon
+          
+        
+      </p>
+    </div>
+    <div class="description">
+      io总结 io流结构
+结论:
+​	输入流是读文件的输出流是写文件的1.字节流(附件复制优先使用) 1.1普通字节输入输出流 字节输入流
+//创建输入流 FileInputStream fis = new FileInputStream(&#34;C:\\io_homework\\hello.txt&#34;); //一次读一个字节数据 int byteValue = fis.read(); //一次读1024长度的内容,返回读取到数据的长度 byte[] bytes = new byte[1024]; int length = fis.read(bytes); //关闭输入流 fis.close(); 字节输出流
+//创建输出流 FileOutputStream fos = new FileOutputStream(&#34;C:\\io_homework\\world.txt&#34;); //将指定内容写入文件 fos.write(&#34;hello world&#34;.getBytes(&#34;utf-8&#34;)); //换行 fos.write(&#34;\r\n&#34;.getBytes()); //写指定个数个数据到文件 fos.write(&#34;hello world&#34;.getBytes(&#34;utf-8&#34;),0,5); //关流 fos.close(); 1.2缓冲字节输入输出流 缓冲字节输入流
+//创建字节缓冲输入流 BufferedInputStream bis = new BufferedInputStream(new FileInputStream(&#34;C:\\hello.txt&#34;)); //一次读一个字节数据 int byteValue = bis.read(); //一次读1024长度的内容,返回读取到数据的长度 byte[] bytes = new byte[1024]; int length = bis.
+    </div>
+  </div>
+
+  <div class="extra content">
+    <a>
+      <i class="clock icon"></i>
+      3 分钟阅读
+    </a>
+  </div>
+</article>
+
+    </div>
+  
+    
+    <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+      <article class="ui attached segment card dream-card">
+  <a class="image" href="https://demon-github1996.github.io/posts/day20io%E7%AC%AC%E4%B8%80%E5%A4%A9/">
+    
+      <img src="/img/default1.jpg" alt="20  I/O第一天" />
+    
+  </a>
+
+  <div class="content">
+    <h2 class="ui medium header">
+      <a href="https://demon-github1996.github.io/posts/day20io%E7%AC%AC%E4%B8%80%E5%A4%A9/">20  I/O第一天</a>
+    </h2>
+    <div class="meta">
+      <p class="date">
+        
+          星期二，九月 17 日，2019 年
+        
+      </p>
+      <p class="author">
+        @
+        
+          
+            Demon
+          
+        
+      </p>
+    </div>
+    <div class="description">
+      I/O第一天 File 1.file的创建方式(3种) //第一种 File f2 = new File(&#34;E:\\itcast&#34;,&#34;java.txt&#34;); f2.createNewFile(); //第二种 File f1 = new File(&#34;E:\\itcast\\java.txt&#34;); f1.createNewFile(); //第三种 File file3=new File(&#34;J:\\i&#34;);//得先有这个文件夹 File file4=new File(file3,&#34;a.txt&#34;); file4.createNewFile(); 2.file操作的相关api 创建空文件 File file = new File(&#34;path&#34;) file.creatNewfile(); 创建文件夹(根据层级创建) File file = new File(&#34;path\\a\\a\\a&#34;) file.mkdirs(); 文件删除(只能删除文件和空文件夹) File f = new File(&#34;path&#34;); f.delete(); 是否是文件 f.isFile(); 是否是文件夹 f.isDirectory(); 文件是否存在 f.exits(); 获取文件或文件夹名称 f.getName(); 获取文件的绝对磁盘路径 获取文件对象的创建路径 对文件夹进行列目录 f.listFile();//必须是文件夹 注意getPath()和getAbsolutePath()区别
+3.递归方式遍历每个文件夹和每个文件(必须掌握) package Demo; import java.io.File; import java.io.IOException; public class Demo2 { public static void main(String[] args) throws IOException { File file = new File(&#34;J:\\a&#34;); delete(file); } public static void delete(File f) { //遍历文件夹得到一个数组  File[] file = f.
+    </div>
+  </div>
+
+  <div class="extra content">
+    <a>
+      <i class="clock icon"></i>
+      2 分钟阅读
+    </a>
+  </div>
+</article>
+
+    </div>
+  
+    
+    <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+      <article class="ui attached segment card dream-card">
+  <a class="image" href="https://demon-github1996.github.io/posts/day19-%E9%9B%86%E5%90%88/">
+    
+      <img src="/img/default2.jpg" alt="19 集合4" />
+    
+  </a>
+
+  <div class="content">
+    <h2 class="ui medium header">
+      <a href="https://demon-github1996.github.io/posts/day19-%E9%9B%86%E5%90%88/">19 集合4</a>
+    </h2>
+    <div class="meta">
+      <p class="date">
+        
+          星期一，九月 16 日，2019 年
+        
+      </p>
+      <p class="author">
+        @
+        
+          
+            Demon
+          
+        
+      </p>
+    </div>
+    <div class="description">
+      19 集合 可变参数(☆☆☆)：jdk1.5出现的语法  格式： 修饰符 返回值类型 方法名(数据类型&hellip; 参数名){
+}  细节举例：
+class Demo { public static void main(String[] args){ show(); // 不传参 正确。  show(1,2); show(1,2,3); //show(5,6,&#34;abc&#34;); // 报错。  int[] arr = {1,2,3,4}; show(arr); // 直接传数组 正确  int[] arr1 = new int[]{1,2,3,4,5}; show(arr1); // 正确  show(new int[]{1,2,3,4,5}); // 正确  //show( {1,2,3,4,5} ); // 错误。  /* int[] arr2; arr2= new int[3]; // 正确 int[] arr3; arr3= new int[]{1,2,3}; //正确 int[] arr4; arr4= {1,2,3,4}; // 简略格式 是不能分开的。 */ } public static void show(int.
     </div>
   </div>
 
@@ -302,20 +449,20 @@ class Student { int age ; String name; //double tall; //boolean sex;  public Stu
     <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
     
       <article class="ui attached segment card dream-card">
-  <a class="image" href="https://guodong.gitee.io/posts/day06/">
+  <a class="image" href="https://demon-github1996.github.io/posts/day18-%E9%9B%86%E5%90%883/">
     
-      <img src="/img/default1.jpg" alt="Day06  Debug工具和进制" />
+      <img src="/img/default3.jpg" alt="18 集合3" />
     
   </a>
 
   <div class="content">
     <h2 class="ui medium header">
-      <a href="https://guodong.gitee.io/posts/day06/">Day06  Debug工具和进制</a>
+      <a href="https://demon-github1996.github.io/posts/day18-%E9%9B%86%E5%90%883/">18 集合3</a>
     </h2>
     <div class="meta">
       <p class="date">
         
-          星期二，八月 27 日，2019 年
+          ，九月 15 日，2019 年
         
       </p>
       <p class="author">
@@ -328,11 +475,155 @@ class Student { int age ; String name; //double tall; //boolean sex;  public Stu
       </p>
     </div>
     <div class="description">
-      Debug工具和进制 java的语法： 程序的基本组成 注释 关键字 标识符 数据 常量 变量 数据类型 基本 应用 数组 二维数组 类 接口 类型转换 隐式 强制 byte a = (byte)200;
-​	符号： ​	基本符号 ​	运算符 ​	算术 ​	赋值 ​	关系 ​	逻辑 ​	三元 ​	位 结构语句： ​	顺序 ​	选择 ifswitch ​	循环 forwhiledowhile break continue
-方法： 基本 参数 返回值 注意事项 重载 参数的传递 案例：引用类型的值传递
-jre核心类库提供的类： Scanner Random
-debug 工具 (☆☆☆☆☆) debug ： 详细查看程序的执行步骤 1：加断点 ， 一般 在你要查看的程序的第一行， 左侧点一下。 2：右键 debug 程序 （不再是run） 3：左下侧 是栈， 表示现在有多少个方法进栈了， 正在执行哪个方法的哪一行。 右下侧 是方法里面的变量值。 4：下一步 F7 即可 5： 如果查看程序 查看到中间，不想看后面的了， 停止程序。 按 ctrl + F2 （红色方框按钮）
+      18 集合3 数据结构-树结构(☆☆)：  树 二叉树 二叉查找树： 小的往左放 大的往右放 重复的不添加 二叉平衡树： 让二叉查找树 平衡。 2-3树 红黑树
+练习红黑树： 依次添加 10 6 8 3 1 4 7 红黑树规则 1.  Set (☆☆☆☆) TreeSet (☆☆☆☆)： 比较器排序 ： 调用TreeSet的有参构造 传入一个 Comparator 的子类对象 （第三方裁判） 他们里面compare方法 里面写了比较的规则
+ s1 -s2 升序 s2 -s1 降序
+ 自然排序 ： 元素去实现 Comparable 接口 重写 compareTo方法 ， 规则写在方法里面
+ this - s 升序
+s-this 降序
+ ==两种比较方式同时存在 底层优先使用比较器==
+HashSet (☆☆☆☆)： ==不可以存储重复元素， 存取无序 ，没有索引==
+    </div>
+  </div>
+
+  <div class="extra content">
+    <a>
+      <i class="clock icon"></i>
+      6 分钟阅读
+    </a>
+  </div>
+</article>
+
+    </div>
+  
+    
+    <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+      <article class="ui attached segment card dream-card">
+  <a class="image" href="https://demon-github1996.github.io/posts/day17-%E9%9B%86%E5%90%882/">
+    
+      <img src="/img/default3.jpg" alt="17 集合2" />
+    
+  </a>
+
+  <div class="content">
+    <h2 class="ui medium header">
+      <a href="https://demon-github1996.github.io/posts/day17-%E9%9B%86%E5%90%882/">17 集合2</a>
+    </h2>
+    <div class="meta">
+      <p class="date">
+        
+          星期六，九月 14 日，2019 年
+        
+      </p>
+      <p class="author">
+        @
+        
+          
+            Demon
+          
+        
+      </p>
+    </div>
+    <div class="description">
+      集合2 泛型 &lt;&gt; :(☆☆☆) jdk1.5的新特性 泛型 ： 泛指的 泛泛的 类型 。 泛指某一种类型。（必须是引用类型）
+ 明确时机： 1： 有时候，创建一个对象的时候， 明确泛型。 2： 有的时候， 调用一个方法的时候，明确泛型。 3： 有的时候， 创建一个类，然后类实现一个接口的时候，明确泛型。
+ 泛型好处： 1： 能让程序更精确 准确， 把一些 运行时的错误，在编写代码的时候 去避免掉。
+ArrayList&lt;String&gt; al = new ArrayList(); al.add(&#34;abc&#34;); al.add(&#34;abc&#34;); al.add(&#34;abc&#34;); //al.add(100); al.add(&#34;abc&#34;); al.add(&#34;abc&#34;); al.add(&#34;abc&#34;); al.add(&#34;abc&#34;); //al.add(true);  Iterator iterator = al.iterator(); while (iterator.hasNext()){ Object next = iterator.next(); String s = (String)next; if(s.equalsIgnoreCase(&#34;ABC&#34;)){ } } **2：提高程序的 可扩展性 兼容性。 **
+泛型类： 需求： 有一个用户，他想让你定义一个类，里面定义一个方法， 传入一个String类型的数，并把这个数打印出来。
+    </div>
+  </div>
+
+  <div class="extra content">
+    <a>
+      <i class="clock icon"></i>
+      6 分钟阅读
+    </a>
+  </div>
+</article>
+
+    </div>
+  
+    
+    <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+      <article class="ui attached segment card dream-card">
+  <a class="image" href="https://demon-github1996.github.io/posts/day16-%E9%9B%86%E5%90%88/">
+    
+      <img src="/img/default2.jpg" alt="16 集合" />
+    
+  </a>
+
+  <div class="content">
+    <h2 class="ui medium header">
+      <a href="https://demon-github1996.github.io/posts/day16-%E9%9B%86%E5%90%88/">16 集合</a>
+    </h2>
+    <div class="meta">
+      <p class="date">
+        
+          星期四，九月 12 日，2019 年
+        
+      </p>
+      <p class="author">
+        @
+        
+          
+            Demon
+          
+        
+      </p>
+    </div>
+    <div class="description">
+      集合 Java的所有容器： 1：变量 : 数据类型 变量名 = 值; 基本类型变量： 只能存储一个数据
+int a =10; a = 20; 引用类型变量：(类)
+class Student { int age ; String name; //double tall;  //boolean sex;  public Student(int age ,String name){ this.age = age; this.name = name; } } Student stu = new Student(13,&#34;张三&#34;); // 引用类型的变量 JavaBean对象， 存储多个内容， 也是固定的 而且这个内容的类型可以多变，随着 属性定的。  2：数组 ： 无限种
+数据类型： 基本类型： 只有8种(jdk规定好的) ，不能自定义。 引用类型： 数组：无限种
+int[] byte[] char[] ... 8种。 数组定义： 数据类型[] 数组名 = new 数据类型[长度]; String[] arr = new String[3]; arr[0] = &#34;abc&#34;; arr[1] = &#34;bcd&#34;; String s = &#34;efg&#34;; arr[2] = s; class Student { } Student[] stus = new Student[3]; Student stu = new Student(); stus[0] = stu; stus[1] = new Student(); int[][] arrr = new int[2][3]; int[][][] arrrr = new int[2][3][4]; 类 ：无限种String StringBuilder Scanner Student Phone Car.
+    </div>
+  </div>
+
+  <div class="extra content">
+    <a>
+      <i class="clock icon"></i>
+      6 分钟阅读
+    </a>
+  </div>
+</article>
+
+    </div>
+  
+    
+    <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+      <article class="ui attached segment card dream-card">
+  <a class="image" href="https://demon-github1996.github.io/posts/day15api/">
+    
+      <img src="/img/default3.jpg" alt="15 API2" />
+    
+  </a>
+
+  <div class="content">
+    <h2 class="ui medium header">
+      <a href="https://demon-github1996.github.io/posts/day15api/">15 API2</a>
+    </h2>
+    <div class="meta">
+      <p class="date">
+        
+          星期三，九月 11 日，2019 年
+        
+      </p>
+      <p class="author">
+        @
+        
+          
+            Demon
+          
+        
+      </p>
+    </div>
+    <div class="description">
+      API2: ==Date (☆☆☆☆☆) ：专门用来描述时间的类== 构造方法： Date d = new Date(); // d 代表的当前时间。  Date d1 = new Date(毫秒值); // d1代表的时间 是 时间原点+毫秒值 成员方法： Date d = new Date(); long lo = d.getTime(); // 获取当前时间毫秒值  Date d = new Date(); d.setTime(毫秒值); // 把d对象里面的时间 设置为 时间原点+毫秒值 ==SimpleDateFormat (☆☆☆☆☆)：== **Date &ndash;&gt; String : 把没有格式的时间 转换成一个有格式的表示时间的字符串， 没有格式&ndash;&gt;有格式 格式化&ndash; format **
+Date d = new Date(); // d没有格式 	SimpleDateFormat sdf = new SimpleDateFormat(&#34;yyyy-MM-dd&#34;); String time = sdf.
     </div>
   </div>
 
@@ -340,241 +631,6 @@ debug 工具 (☆☆☆☆☆) debug ： 详细查看程序的执行步骤 1：�
     <a>
       <i class="clock icon"></i>
       7 分钟阅读
-    </a>
-  </div>
-</article>
-
-    </div>
-  
-    
-    <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
-    
-      <article class="ui attached segment card dream-card">
-  <a class="image" href="https://guodong.gitee.io/posts/day05/">
-    
-      <img src="/img/default3.jpg" alt="Day05 方法" />
-    
-  </a>
-
-  <div class="content">
-    <h2 class="ui medium header">
-      <a href="https://guodong.gitee.io/posts/day05/">Day05 方法</a>
-    </h2>
-    <div class="meta">
-      <p class="date">
-        
-          星期六，八月 24 日，2019 年
-        
-      </p>
-      <p class="author">
-        @
-        
-          
-            Demon
-          
-        
-      </p>
-    </div>
-    <div class="description">
-      Day05 方法 回顾 java的语法： 程序的组成 注释 关键字 标识符 数据 常量 变量 数据类型 基本 引用： 数组 数组的定义格式 int[] arr = new int[3]; int[] arr = new int[]{4,5,7,7}; int[] arr = {6,7,8,9}; 数组的使用 int[] arr = {6,7,8,9}; System.out.println(arr[0]); arr[0] = 10;
-数组的内存图： 一个数组的内存图 int[] arr = {6,7,8,9}; System.out.println(arr); arr[0] = 10; System.out.println(arr); 两个数组的内存图 int[] arrA = new int[3]; int[] arrB = new int[3]; arrA[0] = 10; System.out.println(arrB[0]); //0  多个变量指向同一数组的内存图 int[] arrA = new int[3]; int[] arrB = arrA; arrA[0] = 10; System.
-    </div>
-  </div>
-
-  <div class="extra content">
-    <a>
-      <i class="clock icon"></i>
-      8 分钟阅读
-    </a>
-  </div>
-</article>
-
-    </div>
-  
-    
-    <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
-    
-      <article class="ui attached segment card dream-card">
-  <a class="image" href="https://guodong.gitee.io/posts/day04/">
-    
-      <img src="/img/default4.jpg" alt="Day04 IDEA 和数组" />
-    
-  </a>
-
-  <div class="content">
-    <h2 class="ui medium header">
-      <a href="https://guodong.gitee.io/posts/day04/">Day04 IDEA 和数组</a>
-    </h2>
-    <div class="meta">
-      <p class="date">
-        
-          星期五，八月 23 日，2019 年
-        
-      </p>
-      <p class="author">
-        @
-        
-          
-            Demon
-          
-        
-      </p>
-    </div>
-    <div class="description">
-      IDEA idea &ndash; 今后开发 全部使用idea 来开发。 idea版本： 2017版 最多支持到 jdk10 2018版 最多支持到 jdk11， jdk12不支持。 2019版 支持jdk12 jdk13 不支持jdk14 2020版 都支持。
- 管理java文件的目录结构：总目录， 以后 所有的idea产生的 所有的文件 基本上都会在这里面。 D:\develop\ideaProjects 项目目录模块目录包目录java文件 资料： ideaIU-2019.3.3.exe jetbrains-agent.jar 破解包 IDEA汉化包 激活教程视频
- idea的快捷键：psvm + 回车 快速生成main方法sout + 回车 快速生成输出语句Alt + 1 打开 \ 隐藏工程目录结构Alt + 4 打开 \ 隐藏控制台Ctrl + D 向下复制一行Ctrl + X 剪切当前行Ctrl + alt + L 格式化代码Alt+ enter 代码修正提示Ctrl + / 批量加入单行注释，再按一次就是取消Ctrl + shift + / 批量加入多行注释，再按一次就是取消Alt + shift + ↑ 上移当前行Alt + shift + ↓ 下移当前行true.
-    </div>
-  </div>
-
-  <div class="extra content">
-    <a>
-      <i class="clock icon"></i>
-      5 分钟阅读
-    </a>
-  </div>
-</article>
-
-    </div>
-  
-    
-    <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
-    
-      <article class="ui attached segment card dream-card">
-  <a class="image" href="https://guodong.gitee.io/posts/day03/">
-    
-      <img src="/img/default2.jpg" alt="Day03 循环" />
-    
-  </a>
-
-  <div class="content">
-    <h2 class="ui medium header">
-      <a href="https://guodong.gitee.io/posts/day03/">Day03 循环</a>
-    </h2>
-    <div class="meta">
-      <p class="date">
-        
-          星期四，八月 22 日，2019 年
-        
-      </p>
-      <p class="author">
-        @
-        
-          
-            Demon
-          
-        
-      </p>
-    </div>
-    <div class="description">
-      循环结构 结构语句： 顺序结构 选择结构 switch(☆☆☆) 格式：
-​switch (表达式 或者 变量){​case 常量值1:​语句1;​	break;​	case 常量值2:​	语句2;​	break;​	case 常量值3:​	语句3;​	break;​	case 常量值4:​	语句4;​	break;​	...​	default:​	语句n;​	break;​	​	}switch和if的第三种格式比较： 1：能用switch的地方是一定能够用if的第三种格式的， 但是 能用if的第三种格式的地方，是不一定能够使用switch去替换的。 if 可以对范围判断 也可以对值进行判断 switch只能对值进行判断。 2: 当对值进行判断的时候， switch的效率比if高很多。 文章链接：https://www.bilibili.com/read/cv5912019
-案例1：if和switch的替换 使用switch做
-int a = 10; switch (a){ case 7: System.
-    </div>
-  </div>
-
-  <div class="extra content">
-    <a>
-      <i class="clock icon"></i>
-      7 分钟阅读
-    </a>
-  </div>
-</article>
-
-    </div>
-  
-    
-    <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
-    
-      <article class="ui attached segment card dream-card">
-  <a class="image" href="https://guodong.gitee.io/posts/day02/">
-    
-      <img src="/img/default3.jpg" alt="Day2 运算符与逻辑语句" />
-    
-  </a>
-
-  <div class="content">
-    <h2 class="ui medium header">
-      <a href="https://guodong.gitee.io/posts/day02/">Day2 运算符与逻辑语句</a>
-    </h2>
-    <div class="meta">
-      <p class="date">
-        
-          星期三，八月 21 日，2019 年
-        
-      </p>
-      <p class="author">
-        @
-        
-          
-            Demon
-          
-        
-      </p>
-    </div>
-    <div class="description">
-      Day2 运算符与逻辑语句 昨日回顾： ​	java的介绍 ​	java是一门语言 ​	java的火 ​	jdk ​	jdk的下载和安装 ​	HelloWorld程序 ​	dos窗口 ​	环境变量 ​	HelloWorld编写编译和运行 ​	HelloWorld的详细的解释 ​	书写习惯 ​	notepad++ ​	java的基本语法 ​	程序的基本组成单位：
-//dfsakdjfhad class HelloWorld { public static void main(String[] args){ int a = 10; System.out.println(a); { int b =10; System.out.println(b); } } } ​	注释 ​	关键字 ​	标识符 ​	数据 ​	常量 10 ​	变量
-​	注释 ​	关键字 ​	标识符 ​	数据 ​	常量 10 ​	变量
-    </div>
-  </div>
-
-  <div class="extra content">
-    <a>
-      <i class="clock icon"></i>
-      9 分钟阅读
-    </a>
-  </div>
-</article>
-
-    </div>
-  
-    
-    <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
-    
-      <article class="ui attached segment card dream-card">
-  <a class="image" href="https://guodong.gitee.io/posts/day01/">
-    
-      <img src="/img/default2.jpg" alt="Day01 介绍java" />
-    
-  </a>
-
-  <div class="content">
-    <h2 class="ui medium header">
-      <a href="https://guodong.gitee.io/posts/day01/">Day01 介绍java</a>
-    </h2>
-    <div class="meta">
-      <p class="date">
-        
-          星期二，八月 20 日，2019 年
-        
-      </p>
-      <p class="author">
-        @
-        
-          
-            Demon
-          
-        
-      </p>
-    </div>
-    <div class="description">
-      介绍java： ​	java 是一门语言， 汉语也是一门语言，是人和人交流的语言， java是人和计算机交流的语言， c c# c++ Python php&hellip;. ​	1995年 高司令 创造的。
-java的三个方向： JavaSE ： 方向就是做 桌面应用的 PC端软件 QQ LOL WOW DNF CF &hellip;
-​	但是java做这种软件 效果非常的差 界面非常的丑。 所以java也就放弃了这个方向。 ​	但是 JavaSE 是学习其他 任何方向的基础 Android javaEE(服务器) 大数据
-JavaME ： 嵌入式驱动开发 遥控器驱动 &hellip;.
-​	Android 方向了。
-JavaEE ： 做服务器的。 大型web服务器
-​	淘宝 ​	京东 ​	&hellip;.
-java的火： ​	面向对象语言 ​	开源 ​	跨平台： ​	java的跨平台 是依赖 java虚拟机来跨平台的。 ​	跨平台的好处： 为开发人员 提高了开发效率 （本来开发3个qq，现在 开发一个qq就可以了。）
-    </div>
-  </div>
-
-  <div class="extra content">
-    <a>
-      <i class="clock icon"></i>
-      5 分钟阅读
     </a>
   </div>
 </article>
@@ -585,6 +641,16 @@ java的火： ​	面向对象语言 ​	开源 ​	跨平台： ​	java的跨�
   <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
     
 
+
+<article class="ui attached center aligned segment card dream-card">
+  <div class="content">
+    <div class="ui medium header">
+      <a href="/page/2/" title="下一页">
+        下一页
+      </a>
+    </div>
+  </div>
+</article>
 
 
   </div>

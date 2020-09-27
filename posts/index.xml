@@ -2,23 +2,213 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Demon&#39;s Blog</title>
-    <link>https://guodong.gitee.io/posts/</link>
+    <link>https://demon-github1996.github.io/posts/</link>
     <description>Recent content in Posts on Demon&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>guo dong</copyright>
-    <lastBuildDate>Fri, 30 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 20 Sep 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://guodong.gitee.io/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://demon-github1996.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Day09 集合</title>
-      <link>https://guodong.gitee.io/posts/day09/</link>
+      <title>22   多线程2</title>
+      <link>https://demon-github1996.github.io/posts/day23%E5%A4%9A%E7%BA%BF%E7%A8%8B02/</link>
+      <pubDate>Fri, 20 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day23%E5%A4%9A%E7%BA%BF%E7%A8%8B02/</guid>
+      <description>多线程02 1.线程状态(重点) java中对线程的6种状态进行了描述
+public class Thread { public enum State { /* 新建 */ NEW , /* 可运行状态 */ RUNNABLE , /* 阻塞状态 */ BLOCKED , /* 无限等待状态 */ WAITING , /* 计时等待 */ TIMED_WAITING , /* 终止 */ TERMINATED; } // 获取当前线程的状态  public State getState() { return jdk.internal.misc.VM.toThreadState(threadStatus); } } 通过源码我们可以看到Java中的线程存在6种状态，每种线程状态的含义如下
+   线程状态 具体含义     NEW 一个尚未启动的线程的状态。也称之为初始状态、开始状态。线程刚被创建，但是并未启动。还没调用start方法。MyThread t = new MyThread()只有线程象，没有线程特征。   RUNNABLE 当我们调用线程对象的start方法，那么此时线程对象进入了RUNNABLE状态。那么此时才是真正的在JVM进程中创建了一个线程，线程一经启动并不是立即得到执行，线程的运行与否要听令与CPU的调度，那么我们把这个中间状态称之为可执行状态(RUNNABLE)也就是说它具备执行的资格，但是并没有真正的执行起来而是在等待CPU的度。   BLOCKED 当一个线程试图获取一个对象锁，而该对象锁被其他的线程持有，则该线程进入Blocked状态；当该线程持有锁时，该线程将变成Runnable状态。   WAITING 一个正在等待的线程的状态。也称之为等待状态。例如：因为wait()而等待的线程正在等待另一个线程去调用notify()或notifyAll()；   TIMED_WAITING 一个在限定时间内等待的线程的状态。也称之为限时等待状态。Thread.</description>
+    </item>
+    
+    <item>
+      <title>23    volitile为什么无法保证原子性</title>
+      <link>https://demon-github1996.github.io/posts/volitile%E4%B8%BA%E4%BB%80%E4%B9%88%E6%97%A0%E6%B3%95%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7/</link>
+      <pubDate>Fri, 20 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/volitile%E4%B8%BA%E4%BB%80%E4%B9%88%E6%97%A0%E6%B3%95%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7/</guid>
+      <description>volitile为什么无法保证原子性 问题复现 1.按照volitile的特点,强制线程每次在使用成员变量的时候，都会看一下共享区域最新的值 2.看代码 2.1 在测试方法中我们开了100个线程去执行任务 public static void main(String[] args) { CustomRunnable task = new CustomRunnable(); for (int i = 0; i &amp;lt; 100; i++) { new Thread(task).start(); } } 2.2 任务代码就是获取当前的count,然后count++ public class CustomRunnable implements Runnable { private volatile int count = 0; @Override public void run() { try { //注意,这里必须睡一下  Thread.sleep(2); } catch (InterruptedException e) { e.printStackTrace(); } count++; System.out.println(&amp;#34;当前count的值为&amp;#34; + count); } } 观察结果 正常情况下循环100次,那么count就应该是100,但是实际上没有一次执行的结果是大于等于100的,所以就验证了volitile是无法保证原子性的</description>
+    </item>
+    
+    <item>
+      <title>21   多线程1</title>
+      <link>https://demon-github1996.github.io/posts/day22%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+      <pubDate>Thu, 19 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day22%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
+      <description>多线程day01 1.基本概念 高并发和高并行
+并行：在同一时刻，有多个指令在多个CPU上同时执行
+并发：在同一时刻，有多个指令在单个CPU上交替执行
+进程和线程
+进程 是正在运行的程序
+1 独立性：进程是一个能独立运行的基本单位，同时也是系统分配资源和调度的独立单位
+2 动态性：进程的实质是程序的一次执行过程，进程是动态产生，动态消亡的
+3 并发性：任何进程都可以同其他进程一起并发执行
+线程：是进程中的单个顺序控制流，是一条执行路径
+一个进程如果只有一条执行路径，则称为单线程程序
+一个进程如果有多条执行路径，则称为多线程程序
+主线程和其他线程
+主线程 main
+2.实现多线程的方式 2.1创建类继承Thread类,重写run方法 public class CustomThread extends Thread { @Override public void run() { //方法体  } } Thread thread = new CustomThread() thread.start() 2.2创建接口实现Runnable接口,实现run方法 public class CustomRunnable implements Runnable { @Override public void run() { //方法体  } } //创建任务 Runnable task = new CustomRunnable(); //创建线程 Thread thread = new Thread(task) //开启线程执行任务 thread.</description>
+    </item>
+    
+    <item>
+      <title>21  I/O总结</title>
+      <link>https://demon-github1996.github.io/posts/day21_io%E6%B5%81%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day21_io%E6%B5%81%E6%80%BB%E7%BB%93/</guid>
+      <description>io总结 io流结构
+结论:
+​	输入流是读文件的输出流是写文件的1.字节流(附件复制优先使用) 1.1普通字节输入输出流 字节输入流
+//创建输入流 FileInputStream fis = new FileInputStream(&amp;#34;C:\\io_homework\\hello.txt&amp;#34;); //一次读一个字节数据 int byteValue = fis.read(); //一次读1024长度的内容,返回读取到数据的长度 byte[] bytes = new byte[1024]; int length = fis.read(bytes); //关闭输入流 fis.close(); 字节输出流
+//创建输出流 FileOutputStream fos = new FileOutputStream(&amp;#34;C:\\io_homework\\world.txt&amp;#34;); //将指定内容写入文件 fos.write(&amp;#34;hello world&amp;#34;.getBytes(&amp;#34;utf-8&amp;#34;)); //换行 fos.write(&amp;#34;\r\n&amp;#34;.getBytes()); //写指定个数个数据到文件 fos.write(&amp;#34;hello world&amp;#34;.getBytes(&amp;#34;utf-8&amp;#34;),0,5); //关流 fos.close(); 1.2缓冲字节输入输出流 缓冲字节输入流
+//创建字节缓冲输入流 BufferedInputStream bis = new BufferedInputStream(new FileInputStream(&amp;#34;C:\\hello.txt&amp;#34;)); //一次读一个字节数据 int byteValue = bis.read(); //一次读1024长度的内容,返回读取到数据的长度 byte[] bytes = new byte[1024]; int length = bis.</description>
+    </item>
+    
+    <item>
+      <title>20  I/O第一天</title>
+      <link>https://demon-github1996.github.io/posts/day20io%E7%AC%AC%E4%B8%80%E5%A4%A9/</link>
+      <pubDate>Tue, 17 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day20io%E7%AC%AC%E4%B8%80%E5%A4%A9/</guid>
+      <description>I/O第一天 File 1.file的创建方式(3种) //第一种 File f2 = new File(&amp;#34;E:\\itcast&amp;#34;,&amp;#34;java.txt&amp;#34;); f2.createNewFile(); //第二种 File f1 = new File(&amp;#34;E:\\itcast\\java.txt&amp;#34;); f1.createNewFile(); //第三种 File file3=new File(&amp;#34;J:\\i&amp;#34;);//得先有这个文件夹 File file4=new File(file3,&amp;#34;a.txt&amp;#34;); file4.createNewFile(); 2.file操作的相关api 创建空文件 File file = new File(&amp;#34;path&amp;#34;) file.creatNewfile(); 创建文件夹(根据层级创建) File file = new File(&amp;#34;path\\a\\a\\a&amp;#34;) file.mkdirs(); 文件删除(只能删除文件和空文件夹) File f = new File(&amp;#34;path&amp;#34;); f.delete(); 是否是文件 f.isFile(); 是否是文件夹 f.isDirectory(); 文件是否存在 f.exits(); 获取文件或文件夹名称 f.getName(); 获取文件的绝对磁盘路径 获取文件对象的创建路径 对文件夹进行列目录 f.listFile();//必须是文件夹 注意getPath()和getAbsolutePath()区别
+3.递归方式遍历每个文件夹和每个文件(必须掌握) package Demo; import java.io.File; import java.io.IOException; public class Demo2 { public static void main(String[] args) throws IOException { File file = new File(&amp;#34;J:\\a&amp;#34;); delete(file); } public static void delete(File f) { //遍历文件夹得到一个数组  File[] file = f.</description>
+    </item>
+    
+    <item>
+      <title>19 集合4</title>
+      <link>https://demon-github1996.github.io/posts/day19-%E9%9B%86%E5%90%88/</link>
+      <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day19-%E9%9B%86%E5%90%88/</guid>
+      <description>19 集合 可变参数(☆☆☆)：jdk1.5出现的语法  格式： 修饰符 返回值类型 方法名(数据类型&amp;hellip; 参数名){
+}  细节举例：
+class Demo { public static void main(String[] args){ show(); // 不传参 正确。  show(1,2); show(1,2,3); //show(5,6,&amp;#34;abc&amp;#34;); // 报错。  int[] arr = {1,2,3,4}; show(arr); // 直接传数组 正确  int[] arr1 = new int[]{1,2,3,4,5}; show(arr1); // 正确  show(new int[]{1,2,3,4,5}); // 正确  //show( {1,2,3,4,5} ); // 错误。  /* int[] arr2; arr2= new int[3]; // 正确 int[] arr3; arr3= new int[]{1,2,3}; //正确 int[] arr4; arr4= {1,2,3,4}; // 简略格式 是不能分开的。 */ } public static void show(int.</description>
+    </item>
+    
+    <item>
+      <title>18 集合3</title>
+      <link>https://demon-github1996.github.io/posts/day18-%E9%9B%86%E5%90%883/</link>
+      <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day18-%E9%9B%86%E5%90%883/</guid>
+      <description>18 集合3 数据结构-树结构(☆☆)：  树 二叉树 二叉查找树： 小的往左放 大的往右放 重复的不添加 二叉平衡树： 让二叉查找树 平衡。 2-3树 红黑树
+练习红黑树： 依次添加 10 6 8 3 1 4 7 红黑树规则 1.  Set (☆☆☆☆) TreeSet (☆☆☆☆)： 比较器排序 ： 调用TreeSet的有参构造 传入一个 Comparator 的子类对象 （第三方裁判） 他们里面compare方法 里面写了比较的规则
+ s1 -s2 升序 s2 -s1 降序
+ 自然排序 ： 元素去实现 Comparable 接口 重写 compareTo方法 ， 规则写在方法里面
+ this - s 升序
+s-this 降序
+ ==两种比较方式同时存在 底层优先使用比较器==
+HashSet (☆☆☆☆)： ==不可以存储重复元素， 存取无序 ，没有索引==</description>
+    </item>
+    
+    <item>
+      <title>17 集合2</title>
+      <link>https://demon-github1996.github.io/posts/day17-%E9%9B%86%E5%90%882/</link>
+      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day17-%E9%9B%86%E5%90%882/</guid>
+      <description>集合2 泛型 &amp;lt;&amp;gt; :(☆☆☆) jdk1.5的新特性 泛型 ： 泛指的 泛泛的 类型 。 泛指某一种类型。（必须是引用类型）
+ 明确时机： 1： 有时候，创建一个对象的时候， 明确泛型。 2： 有的时候， 调用一个方法的时候，明确泛型。 3： 有的时候， 创建一个类，然后类实现一个接口的时候，明确泛型。
+ 泛型好处： 1： 能让程序更精确 准确， 把一些 运行时的错误，在编写代码的时候 去避免掉。
+ArrayList&amp;lt;String&amp;gt; al = new ArrayList(); al.add(&amp;#34;abc&amp;#34;); al.add(&amp;#34;abc&amp;#34;); al.add(&amp;#34;abc&amp;#34;); //al.add(100); al.add(&amp;#34;abc&amp;#34;); al.add(&amp;#34;abc&amp;#34;); al.add(&amp;#34;abc&amp;#34;); al.add(&amp;#34;abc&amp;#34;); //al.add(true);  Iterator iterator = al.iterator(); while (iterator.hasNext()){ Object next = iterator.next(); String s = (String)next; if(s.equalsIgnoreCase(&amp;#34;ABC&amp;#34;)){ } } **2：提高程序的 可扩展性 兼容性。 **
+泛型类： 需求： 有一个用户，他想让你定义一个类，里面定义一个方法， 传入一个String类型的数，并把这个数打印出来。</description>
+    </item>
+    
+    <item>
+      <title>16 集合</title>
+      <link>https://demon-github1996.github.io/posts/day16-%E9%9B%86%E5%90%88/</link>
+      <pubDate>Thu, 12 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day16-%E9%9B%86%E5%90%88/</guid>
+      <description>集合 Java的所有容器： 1：变量 : 数据类型 变量名 = 值; 基本类型变量： 只能存储一个数据
+int a =10; a = 20; 引用类型变量：(类)
+class Student { int age ; String name; //double tall;  //boolean sex;  public Student(int age ,String name){ this.age = age; this.name = name; } } Student stu = new Student(13,&amp;#34;张三&amp;#34;); // 引用类型的变量 JavaBean对象， 存储多个内容， 也是固定的 而且这个内容的类型可以多变，随着 属性定的。  2：数组 ： 无限种
+数据类型： 基本类型： 只有8种(jdk规定好的) ，不能自定义。 引用类型： 数组：无限种
+int[] byte[] char[] ... 8种。 数组定义： 数据类型[] 数组名 = new 数据类型[长度]; String[] arr = new String[3]; arr[0] = &amp;#34;abc&amp;#34;; arr[1] = &amp;#34;bcd&amp;#34;; String s = &amp;#34;efg&amp;#34;; arr[2] = s; class Student { } Student[] stus = new Student[3]; Student stu = new Student(); stus[0] = stu; stus[1] = new Student(); int[][] arrr = new int[2][3]; int[][][] arrrr = new int[2][3][4]; 类 ：无限种String StringBuilder Scanner Student Phone Car.</description>
+    </item>
+    
+    <item>
+      <title>15 API2</title>
+      <link>https://demon-github1996.github.io/posts/day15api/</link>
+      <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day15api/</guid>
+      <description>API2: ==Date (☆☆☆☆☆) ：专门用来描述时间的类== 构造方法： Date d = new Date(); // d 代表的当前时间。  Date d1 = new Date(毫秒值); // d1代表的时间 是 时间原点+毫秒值 成员方法： Date d = new Date(); long lo = d.getTime(); // 获取当前时间毫秒值  Date d = new Date(); d.setTime(毫秒值); // 把d对象里面的时间 设置为 时间原点+毫秒值 ==SimpleDateFormat (☆☆☆☆☆)：== **Date &amp;ndash;&amp;gt; String : 把没有格式的时间 转换成一个有格式的表示时间的字符串， 没有格式&amp;ndash;&amp;gt;有格式 格式化&amp;ndash; format **
+Date d = new Date(); // d没有格式 	SimpleDateFormat sdf = new SimpleDateFormat(&amp;#34;yyyy-MM-dd&amp;#34;); String time = sdf.</description>
+    </item>
+    
+    <item>
+      <title>14 API</title>
+      <link>https://demon-github1996.github.io/posts/day14-api/</link>
+      <pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day14-api/</guid>
+      <description>API Math(☆☆☆) 用来做数学运算的 ​	Math的这些方法 都是静态的。 Math的构造方法私有的。 Math是不能创建对象的
+public static int abs(int a)	返回参数的绝对值 absolute 绝对的 int abs = Math.abs(10); System.out.println(abs); public static double ceil(double a)	向上取整 double ceil = Math.ceil(10.1); System.out.println(ceil); public static double floor(double a)	向下取整 double floor = Math.floor(10.9); System.out.println(floor); public static int round(float a)	四舍五入 long round = Math.round(10.1); System.out.println(round); long round1 = Math.round(1.9); System.out.println(round1); public static int max(int a,int b)	返回两个int值中的较大值 int max = Math.max(10, 20); System.</description>
+    </item>
+    
+    <item>
+      <title>13  内部类(☆☆)</title>
+      <link>https://demon-github1996.github.io/posts/day13-%E5%86%85%E9%83%A8%E7%B1%BB/</link>
+      <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day13-%E5%86%85%E9%83%A8%E7%B1%BB/</guid>
+      <description>内部类(☆☆) 内部类(☆☆)： 访问特点： 内部类访问外部类的内容 直接可以访问的，包括私有的。 外部类要想访问内部类的内容， 必须创建内部类的对象 对象调用。
+public class Outer { private int age = 10; public class Inner { public int leg = 5; private int hehe = 20; //System.out.println(age); // 编译报错 除了定义变量类的语句 可以直接写在成员位置（成员变量） 其他所有的语句 比如 打印语句 if语句 for语句都要写在方法里面  public void show(){ System.out.println(age); // 正确 为什么可以访问 age 的private的作用范围 是 Outer内， show就是在outer内的。 System.out.println(leg); // 正确 就近原则。 } } public void show(){ System.out.println(age); // 正确 为什么可以访问 age 的private的作用范围 是 Outer内， show就是在outer内的。 	System.</description>
+    </item>
+    
+    <item>
+      <title>12  多态接口</title>
+      <link>https://demon-github1996.github.io/posts/day12-%E5%A4%9A%E6%80%81%E6%8E%A5%E5%8F%A3/</link>
+      <pubDate>Fri, 06 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day12-%E5%A4%9A%E6%80%81%E6%8E%A5%E5%8F%A3/</guid>
+      <description>多态接口   面向对象： 要求掌握：
+Student s = new Student(); s.show();
+private
+this
+构造方法 static 继承 抽象类
+  final(☆☆☆☆☆) ： ==修饰类： 被final的类 最终类， 意思是不能被继承。== final class Student { } class LittleStudent extends Student{ // 编译报错  } ==修饰方法： 被final修饰的方法 最终方法， 意思不能被重写了。== public class Student { public final void study(){ } } class LittleStudent extends Student{ public void study(){ // 编译报错。  } } ==修饰变量： 被final修饰的变量， 就是最终变量。 不能被重新赋值了。== 常量： 自面值常量：</description>
+    </item>
+    
+    <item>
+      <title>11 继承</title>
+      <link>https://demon-github1996.github.io/posts/day11-%E7%BB%A7%E6%89%BF/</link>
+      <pubDate>Thu, 05 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day11-%E7%BB%A7%E6%89%BF/</guid>
+      <description>继承 继承(☆☆☆☆☆)： 概念：子类继承父类
+**关键字 extends **
+class Person { // Person 是父类 基类 超类 public void show(){ System.out.println(&amp;#34;haha&amp;#34;); } } class Student extends Person { // Student 是子类 派生类  } class Demo { public static void main(String[] args){ Student s = new Student(); s.show(); // haha 可以调用Person的show方法 } } 好处和弊端： 好处：提高的代码的复用性
+class Person { public void show(){ System.out.println(&amp;#34;haha&amp;#34;); } } class Student extends Person { } class Teacher extends Person { } class Demo { public static void main(String[] args){ Student s = new Student(); s.</description>
+    </item>
+    
+    <item>
+      <title>10 分类思想和包</title>
+      <link>https://demon-github1996.github.io/posts/day10-%E5%88%86%E7%B1%BB%E6%80%9D%E6%83%B3%E5%92%8C%E5%8C%85/</link>
+      <pubDate>Sun, 01 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/day10-%E5%88%86%E7%B1%BB%E6%80%9D%E6%83%B3%E5%92%8C%E5%8C%85/</guid>
+      <description>分类思想和包 分类思想： 专人干专事儿 &amp;mdash; 不要把所有的代码 都写到一个类中。 把代码分出来 ， 分成专门的代码写在专门的类中。 按照什么分出代码呢， 按照功能划分。
+​	一个包下 ​	StudentController ​	StudentService ​	StudentDao ​	Student
+​	TeacherController ​	TeacherService ​	TeacherDao ​	Teacher ​	​	CourseController ​	CourseService ​	CourseDao ​	Course
+分包思想： 按照功能去划分包
+1包 专门用来管理 Controller StudentController TeacherController CourseController 2包 专门用来管理Service StudentService TeacherService CourseService
+​	3包 专门用来管理 Dao的 ​	StudentDao ​	TeacherDao ​	CourseDao ​	​	4包 专门用来管理 JavaBean类 ​	Student ​	Teacher ​	Course</description>
+    </item>
+    
+    <item>
+      <title>09集合</title>
+      <link>https://demon-github1996.github.io/posts/day09/</link>
       <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://guodong.gitee.io/posts/day09/</guid>
-      <description>Day09集合 ArrayList (☆☆☆☆☆)用来存储数据的， 一个ArrayList对象 就是一个容器(可变长度) （集合）
+      <guid>https://demon-github1996.github.io/posts/day09/</guid>
+      <description>#09集合
+ArrayList (☆☆☆☆☆)用来存储数据的， 一个ArrayList对象 就是一个容器(可变长度) （集合）
 容器的概念： 1：变量 : 数据类型 变量名 = 值; 基本类型变量： 只能存储一个数据 int a =10; a = 20;
 引用类型变量：(类)
 class Student { int age ; String name; //double tall; //boolean sex;  public Student(int age ,String name){ this.age = age; this.name = name; } } Student stu = new Student(13,&amp;#34;张三&amp;#34;); // 引用类型的遍历 JavaBean对象， 存储多个内容， 也是固定的 而且这个内容的类型可以多变，随着 属性定的。 2：数组 ： 无限种 数据类型： 基本类型： 只有8种(jdk规定好的) ，不能自定义。 引用类型：
@@ -26,11 +216,11 @@ class Student { int age ; String name; //double tall; //boolean sex;  public Stu
     </item>
     
     <item>
-      <title>Day08 Api</title>
-      <link>https://guodong.gitee.io/posts/day08/</link>
+      <title>08 Api</title>
+      <link>https://demon-github1996.github.io/posts/day08/</link>
       <pubDate>Thu, 29 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://guodong.gitee.io/posts/day08/</guid>
+      <guid>https://demon-github1996.github.io/posts/day08/</guid>
       <description>Day08 Api 面向对象： 什么是面向对象 类和对象 内存图 一个 两个 两一个指向一个的内存图 private this 构造方法
 面向对象：指挥对象做事情1：自己造一个 ： 自己创建类 2：自己家有一个 ： jre核心类库里面提供了很多的 类3：买来一个 ： 去其他的软件公司 购买这些代码。 jre核心类库： 之前学过的类：
 	Scanner ： Scanner sc = new Scanner(System.in);int a = sc.nextInt();​
@@ -38,21 +228,21 @@ class Student { int age ; String name; //double tall; //boolean sex;  public Stu
     </item>
     
     <item>
-      <title>Day7  面向对象</title>
-      <link>https://guodong.gitee.io/posts/day07/</link>
+      <title>07  面向对象</title>
+      <link>https://demon-github1996.github.io/posts/day07/</link>
       <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://guodong.gitee.io/posts/day07/</guid>
+      <guid>https://demon-github1996.github.io/posts/day07/</guid>
       <description>面向对象 java的语法： java的组成： 注释 关键字 标识符 数据： 常量： 变量： 数据类型 基本： byte short int long&amp;hellip;.. 引用: 数组： 数组的定义 使用 内存图 异常 遍历 求和 查找 评委打分 二维数组： 循环的嵌套 类 接口
 ​	类型转换 ​	隐式 ​	强制 ​	符号 ​	基本符号 (){}[].&amp;quot;&amp;quot;&#39;&#39;; ​	(): ​	强制类型 ​	运算 ​	结构语句 ​	方法 ​	​	运算符： ​	算术 ​	赋值 ​	比较 ​	逻辑 ​	三元 ​	位 逻辑语句： ​	顺序结构 ​	选择结构 ifswitch ​	循环结构 for while dowhile break continue 猜数字小游戏</description>
     </item>
     
     <item>
-      <title>Day06  Debug工具和进制</title>
-      <link>https://guodong.gitee.io/posts/day06/</link>
+      <title>06  Debug工具和进制</title>
+      <link>https://demon-github1996.github.io/posts/day06/</link>
       <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://guodong.gitee.io/posts/day06/</guid>
+      <guid>https://demon-github1996.github.io/posts/day06/</guid>
       <description>Debug工具和进制 java的语法： 程序的基本组成 注释 关键字 标识符 数据 常量 变量 数据类型 基本 应用 数组 二维数组 类 接口 类型转换 隐式 强制 byte a = (byte)200;
 ​	符号： ​	基本符号 ​	运算符 ​	算术 ​	赋值 ​	关系 ​	逻辑 ​	三元 ​	位 结构语句： ​	顺序 ​	选择 ifswitch ​	循环 forwhiledowhile break continue
 方法： 基本 参数 返回值 注意事项 重载 参数的传递 案例：引用类型的值传递
@@ -61,32 +251,32 @@ debug 工具 (☆☆☆☆☆) debug ： 详细查看程序的执行步骤 1：�
     </item>
     
     <item>
-      <title>Day05 方法</title>
-      <link>https://guodong.gitee.io/posts/day05/</link>
+      <title>05 方法</title>
+      <link>https://demon-github1996.github.io/posts/day05/</link>
       <pubDate>Sat, 24 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://guodong.gitee.io/posts/day05/</guid>
+      <guid>https://demon-github1996.github.io/posts/day05/</guid>
       <description>Day05 方法 回顾 java的语法： 程序的组成 注释 关键字 标识符 数据 常量 变量 数据类型 基本 引用： 数组 数组的定义格式 int[] arr = new int[3]; int[] arr = new int[]{4,5,7,7}; int[] arr = {6,7,8,9}; 数组的使用 int[] arr = {6,7,8,9}; System.out.println(arr[0]); arr[0] = 10;
 数组的内存图： 一个数组的内存图 int[] arr = {6,7,8,9}; System.out.println(arr); arr[0] = 10; System.out.println(arr); 两个数组的内存图 int[] arrA = new int[3]; int[] arrB = new int[3]; arrA[0] = 10; System.out.println(arrB[0]); //0  多个变量指向同一数组的内存图 int[] arrA = new int[3]; int[] arrB = arrA; arrA[0] = 10; System.</description>
     </item>
     
     <item>
-      <title>Day04 IDEA 和数组</title>
-      <link>https://guodong.gitee.io/posts/day04/</link>
+      <title>04 IDEA 和数组</title>
+      <link>https://demon-github1996.github.io/posts/day04/</link>
       <pubDate>Fri, 23 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://guodong.gitee.io/posts/day04/</guid>
+      <guid>https://demon-github1996.github.io/posts/day04/</guid>
       <description>IDEA idea &amp;ndash; 今后开发 全部使用idea 来开发。 idea版本： 2017版 最多支持到 jdk10 2018版 最多支持到 jdk11， jdk12不支持。 2019版 支持jdk12 jdk13 不支持jdk14 2020版 都支持。
  管理java文件的目录结构：总目录， 以后 所有的idea产生的 所有的文件 基本上都会在这里面。 D:\develop\ideaProjects 项目目录模块目录包目录java文件 资料： ideaIU-2019.3.3.exe jetbrains-agent.jar 破解包 IDEA汉化包 激活教程视频
  idea的快捷键：psvm + 回车 快速生成main方法sout + 回车 快速生成输出语句Alt + 1 打开 \ 隐藏工程目录结构Alt + 4 打开 \ 隐藏控制台Ctrl + D 向下复制一行Ctrl + X 剪切当前行Ctrl + alt + L 格式化代码Alt+ enter 代码修正提示Ctrl + / 批量加入单行注释，再按一次就是取消Ctrl + shift + / 批量加入多行注释，再按一次就是取消Alt + shift + ↑ 上移当前行Alt + shift + ↓ 下移当前行true.</description>
     </item>
     
     <item>
-      <title>Day03 循环</title>
-      <link>https://guodong.gitee.io/posts/day03/</link>
+      <title>03 循环</title>
+      <link>https://demon-github1996.github.io/posts/day03/</link>
       <pubDate>Thu, 22 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://guodong.gitee.io/posts/day03/</guid>
+      <guid>https://demon-github1996.github.io/posts/day03/</guid>
       <description>循环结构 结构语句： 顺序结构 选择结构 switch(☆☆☆) 格式：
 ​switch (表达式 或者 变量){​case 常量值1:​语句1;​	break;​	case 常量值2:​	语句2;​	break;​	case 常量值3:​	语句3;​	break;​	case 常量值4:​	语句4;​	break;​	...​	default:​	语句n;​	break;​	​	}switch和if的第三种格式比较： 1：能用switch的地方是一定能够用if的第三种格式的， 但是 能用if的第三种格式的地方，是不一定能够使用switch去替换的。 if 可以对范围判断 也可以对值进行判断 switch只能对值进行判断。 2: 当对值进行判断的时候， switch的效率比if高很多。 文章链接：https://www.bilibili.com/read/cv5912019
 案例1：if和switch的替换 使用switch做
@@ -94,22 +284,22 @@ int a = 10; switch (a){ case 7: System.</description>
     </item>
     
     <item>
-      <title>Day2 运算符与逻辑语句</title>
-      <link>https://guodong.gitee.io/posts/day02/</link>
+      <title>2 运算符与逻辑语句</title>
+      <link>https://demon-github1996.github.io/posts/day02/</link>
       <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://guodong.gitee.io/posts/day02/</guid>
+      <guid>https://demon-github1996.github.io/posts/day02/</guid>
       <description>Day2 运算符与逻辑语句 昨日回顾： ​	java的介绍 ​	java是一门语言 ​	java的火 ​	jdk ​	jdk的下载和安装 ​	HelloWorld程序 ​	dos窗口 ​	环境变量 ​	HelloWorld编写编译和运行 ​	HelloWorld的详细的解释 ​	书写习惯 ​	notepad++ ​	java的基本语法 ​	程序的基本组成单位：
 //dfsakdjfhad class HelloWorld { public static void main(String[] args){ int a = 10; System.out.println(a); { int b =10; System.out.println(b); } } } ​	注释 ​	关键字 ​	标识符 ​	数据 ​	常量 10 ​	变量
 ​	注释 ​	关键字 ​	标识符 ​	数据 ​	常量 10 ​	变量</description>
     </item>
     
     <item>
-      <title>Day01 介绍java</title>
-      <link>https://guodong.gitee.io/posts/day01/</link>
+      <title>1 介绍java</title>
+      <link>https://demon-github1996.github.io/posts/day01/</link>
       <pubDate>Tue, 20 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://guodong.gitee.io/posts/day01/</guid>
+      <guid>https://demon-github1996.github.io/posts/day01/</guid>
       <description>介绍java： ​	java 是一门语言， 汉语也是一门语言，是人和人交流的语言， java是人和计算机交流的语言， c c# c++ Python php&amp;hellip;. ​	1995年 高司令 创造的。
 java的三个方向： JavaSE ： 方向就是做 桌面应用的 PC端软件 QQ LOL WOW DNF CF &amp;hellip;
 ​	但是java做这种软件 效果非常的差 界面非常的丑。 所以java也就放弃了这个方向。 ​	但是 JavaSE 是学习其他 任何方向的基础 Android javaEE(服务器) 大数据
@@ -118,6 +308,36 @@ JavaME ： 嵌入式驱动开发 遥控器驱动 &amp;hellip;.
 JavaEE ： 做服务器的。 大型web服务器
 ​	淘宝 ​	京东 ​	&amp;hellip;.
 java的火： ​	面向对象语言 ​	开源 ​	跨平台： ​	java的跨平台 是依赖 java虚拟机来跨平台的。 ​	跨平台的好处： 为开发人员 提高了开发效率 （本来开发3个qq，现在 开发一个qq就可以了。）</description>
+    </item>
+    
+    <item>
+      <title>几个代码搞定本地hugo博客</title>
+      <link>https://demon-github1996.github.io/posts/%E5%87%A0%E4%B8%AA%E4%BB%A3%E7%A0%81%E6%90%9E%E5%AE%9Ahugo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Tue, 20 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://demon-github1996.github.io/posts/%E5%87%A0%E4%B8%AA%E4%BB%A3%E7%A0%81%E6%90%9E%E5%AE%9Ahugo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/</guid>
+      <description>部署hugo需要准备的文件 1 hugo 网址链接：https://www.gohugo.org/
+安装完成打开cmd
+这样hugo就是安装成功了
+2 GitBash 网址链接：https://gitforwindows.org/
+这样git就是安装成功了
+这两个怎么安装官网都有教程，在此就不作赘述了
+新建一个hugo博客 1.在任意硬盘根目录新建一个文件夹，打开gitbash进入这个文件夹 我的在f盘，就是cd f:/Blog
+2.下面新建一个博客站点 hugo new site +文件夹名
+出现下面的代码就是成功了，这时候打开你步骤1新建的文件夹
+看看里面有没有多了一个文件夹
+3.下载主题 打开https://themes.gohugo.io/
+随便选一个点进去
+往下翻页找到
+打开刚刚的GitBash 复制粘贴
+cd themes // 进入themes文件夹，这是主题文件夹，
+git clone https://github.com/Track3/hermit.git themes/hermit//用git clone命令下载主题
+等待下载完成
+完成啦！
+接下来
+每个主题都会有类似的教你怎么配置的 这个的意思是让你把theme’s exampleSite文件夹里面的config.toml复制到根目录就ok了
+最后的命令是hugo server
+ </description>
     </item>
     
   </channel>

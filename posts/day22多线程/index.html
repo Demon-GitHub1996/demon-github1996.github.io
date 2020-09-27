@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>21   多线程1 | Demon&#39;s Blog</title>
+
+    
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+
+
+<meta name="author" content="Demon" />
+<meta name="description" content="多线程day01 1.基本概念 高并发和高并行
+并行：在同一时刻，有多个指令在多个CPU上同时执行
+并发：在同一时刻，有多个指令在单个CPU上交替执行
+进程和线程
+进程 是正在运行的程序
+1 独立性：进程是一个能独立运行的基本单位，同时也是系统分配资源和调度的独立单位
+2 动态性：进程的实质是程序的一次执行过程，进程是动态产生，动态消亡的
+3 并发性：任何进程都可以同其他进程一起并发执行
+线程：是进程中的单个顺序控制流，是一条执行路径
+一个进程如果只有一条执行路径，则称为单线程程序
+一个进程如果有多条执行路径，则称为多线程程序
+主线程和其他线程
+主线程 main
+2.实现多线程的方式 2.1创建类继承Thread类,重写run方法 public class CustomThread extends Thread { @Override public void run() { //方法体  } } Thread thread = new CustomThread() thread.start() 2.2创建接口实现Runnable接口,实现run方法 public class CustomRunnable implements Runnable { @Override public void run() { //方法体  } } //创建任务 Runnable task = new CustomRunnable(); //创建线程 Thread thread = new Thread(task) //开启线程执行任务 thread." />
+
+
+
+<meta name="generator" content="Hugo 0.74.3" />
+
+<link rel="canonical" href="https://demon-github1996.github.io/posts/day22%E5%A4%9A%E7%BA%BF%E7%A8%8B/" />
+
+
+<meta property="og:title" content="21   多线程1" />
+<meta property="og:description" content="多线程day01 1.基本概念 高并发和高并行
+并行：在同一时刻，有多个指令在多个CPU上同时执行
+并发：在同一时刻，有多个指令在单个CPU上交替执行
+进程和线程
+进程 是正在运行的程序
+1 独立性：进程是一个能独立运行的基本单位，同时也是系统分配资源和调度的独立单位
+2 动态性：进程的实质是程序的一次执行过程，进程是动态产生，动态消亡的
+3 并发性：任何进程都可以同其他进程一起并发执行
+线程：是进程中的单个顺序控制流，是一条执行路径
+一个进程如果只有一条执行路径，则称为单线程程序
+一个进程如果有多条执行路径，则称为多线程程序
+主线程和其他线程
+主线程 main
+2.实现多线程的方式 2.1创建类继承Thread类,重写run方法 public class CustomThread extends Thread { @Override public void run() { //方法体  } } Thread thread = new CustomThread() thread.start() 2.2创建接口实现Runnable接口,实现run方法 public class CustomRunnable implements Runnable { @Override public void run() { //方法体  } } //创建任务 Runnable task = new CustomRunnable(); //创建线程 Thread thread = new Thread(task) //开启线程执行任务 thread." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://demon-github1996.github.io/posts/day22%E5%A4%9A%E7%BA%BF%E7%A8%8B/" />
+<meta property="article:published_time" content="2019-09-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-09-19T00:00:00+00:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="21   多线程1"/>
+<meta name="twitter:description" content="多线程day01 1.基本概念 高并发和高并行
+并行：在同一时刻，有多个指令在多个CPU上同时执行
+并发：在同一时刻，有多个指令在单个CPU上交替执行
+进程和线程
+进程 是正在运行的程序
+1 独立性：进程是一个能独立运行的基本单位，同时也是系统分配资源和调度的独立单位
+2 动态性：进程的实质是程序的一次执行过程，进程是动态产生，动态消亡的
+3 并发性：任何进程都可以同其他进程一起并发执行
+线程：是进程中的单个顺序控制流，是一条执行路径
+一个进程如果只有一条执行路径，则称为单线程程序
+一个进程如果有多条执行路径，则称为多线程程序
+主线程和其他线程
+主线程 main
+2.实现多线程的方式 2.1创建类继承Thread类,重写run方法 public class CustomThread extends Thread { @Override public void run() { //方法体  } } Thread thread = new CustomThread() thread.start() 2.2创建接口实现Runnable接口,实现run方法 public class CustomRunnable implements Runnable { @Override public void run() { //方法体  } } //创建任务 Runnable task = new CustomRunnable(); //创建线程 Thread thread = new Thread(task) //开启线程执行任务 thread."/>
+
+
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
+
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
+
+
+    
+<link rel="stylesheet" href="/css/github-markdown.css" />
+
+
+
+
+  </head>
+
+  
+  <body style="background: pink;">
+  
+    
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/demon-github1996.github.io\/'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single">
+
+    <section class="ui top attached segment" id="dream-save-post-as-img">
+      <header style="margin-top: 0 !important;">
+        <h1 class="ui large header">
+          21   多线程1
+          <div class="sub header">
+            @
+            
+              
+                Demon
+              
+            
+            · Thursday, Sep 19, 2019
+            · 2 分钟阅读
+            · 更新于 Sep 19, 2019
+          </div>
+        </h1>
+      </header>
+
+      
+        <img class="ui image" style="margin-top: 2rem;" src="" />
+      
+
+      <article style="margin-top: 2rem;"><h1 id="多线程day01">多线程day01</h1>
+<h2 id="1基本概念">1.基本概念</h2>
+<p>高并发和高并行</p>
+<p>并行：在同一时刻，有多个指令在多个CPU上同时执行</p>
+<p>并发：在同一时刻，有多个指令在单个CPU上交替执行</p>
+<p>进程和线程</p>
+<p>进程 是正在运行的程序</p>
+<p>1 独立性：进程是一个能独立运行的基本单位，同时也是系统分配资源和调度的独立单位</p>
+<p>2 动态性：进程的实质是程序的一次执行过程，进程是动态产生，动态消亡的</p>
+<p>3 并发性：任何进程都可以同其他进程一起并发执行</p>
+<p>线程：是进程中的单个顺序控制流，是一条执行路径</p>
+<p>一个进程如果只有一条执行路径，则称为单线程程序</p>
+<p>一个进程如果有多条执行路径，则称为多线程程序</p>
+<p>主线程和其他线程</p>
+<p>主线程 main</p>
+<h2 id="font-colorred2实现多线程的方式font"><!-- raw HTML omitted -->2.实现多线程的方式<!-- raw HTML omitted --></h2>
+<h3 id="21创建类继承thread类重写run方法">2.1创建类继承Thread类,重写run方法</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomThread</span> <span style="color:#66d9ef">extends</span> Thread <span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		 <span style="color:#75715e">//方法体
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+Thread thread <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CustomThread<span style="color:#f92672">()</span>
+thread<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">()</span>
+</code></pre></div><h3 id="22创建接口实现runnable接口实现run方法">2.2创建接口实现Runnable接口,实现run方法</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomRunnable</span> <span style="color:#66d9ef">implements</span> Runnable <span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">//方法体
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">//创建任务
+</span><span style="color:#75715e"></span>Runnable task <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CustomRunnable<span style="color:#f92672">();</span>
+<span style="color:#75715e">//创建线程
+</span><span style="color:#75715e"></span>Thread thread <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span>task<span style="color:#f92672">)</span>
+<span style="color:#75715e">//开启线程执行任务
+</span><span style="color:#75715e"></span>thread<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">()</span>
+</code></pre></div><h3 id="23创建接口实现callable接口实现call方法优先级最低">2.3创建接口实现Callable接口,实现call方法(优先级最低)</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomCallable</span> <span style="color:#66d9ef">implements</span> Callable<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">call</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+        <span style="color:#75715e">//方法体
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;执行后要返回的值&#34;</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e">//1.创建Callable对象
+</span><span style="color:#75715e"></span>Callable callable <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CustomCallable<span style="color:#f92672">();</span>
+<span style="color:#75715e">//2.创建FutureTask
+</span><span style="color:#75715e"></span>FutureTask<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> ft <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FutureTask<span style="color:#f92672">&lt;&gt;(</span>callable<span style="color:#f92672">);</span>
+<span style="color:#75715e">//3.创建线程
+</span><span style="color:#75715e"></span>Thread thread <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span>ft<span style="color:#f92672">);</span>
+<span style="color:#75715e">//4.开启线程
+</span><span style="color:#75715e"></span>thread<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">()</span>
+<span style="color:#75715e">//5.任务执行完后,使用FutureTask获取线程执行后返回的数据
+</span><span style="color:#75715e"></span>String s <span style="color:#f92672">=</span> ft<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span>
+</code></pre></div><h3 id="thread中run和start方法对比">Thread中run和start方法对比</h3>
+<blockquote>
+<p>只有调用start方法才能在对应的线程中执行run方法</p>
+<p>run()：封装线程执行的代码，直接调用，相当于普通方法的调用</p>
+<p>start()：启动线程；然后由JVM调用此线程的run()方法</p>
+</blockquote>
+<h2 id="font-colorred3线程相关apifont"><!-- raw HTML omitted -->3.线程相关api<!-- raw HTML omitted --></h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//1.设置线程的名称(2个)
+</span><span style="color:#75715e"></span>thread<span style="color:#f92672">.</span><span style="color:#a6e22e">setName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;String&#34;</span><span style="color:#f92672">);</span>
+Thread t<span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CustomThread<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;线程1&#34;</span><span style="color:#f92672">)</span>    
+<span style="color:#75715e">//2.获取线程名称
+</span><span style="color:#75715e"></span>  thread<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">();</span>
+
+<span style="color:#75715e">//3.获取当前的线程
+</span><span style="color:#75715e"></span>Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">();</span>
+<span style="color:#75715e">//4.线程休眠(单位是毫秒)
+</span><span style="color:#75715e"></span>Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">();</span>
+<span style="color:#75715e">//5.设置当前线程的优先级(1-10),默认是5,10的优先级最高
+</span><span style="color:#75715e"></span>thread<span style="color:#f92672">.</span><span style="color:#a6e22e">setPriority</span>
+<span style="color:#75715e">//6.设置线程为守护线程(最后一个非守护线程结束后,守护线程也会结束)
+</span><span style="color:#75715e"></span>  守护线程<span style="color:#960050;background-color:#1e0010">，</span>专门用于服务其他的线程<span style="color:#960050;background-color:#1e0010">，</span>如果其他的线程<span style="color:#960050;background-color:#1e0010">（</span>即用户自定义线程<span style="color:#960050;background-color:#1e0010">）</span>都执行完毕
+Thread t1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CustomThread<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;线程1&#34;</span><span style="color:#f92672">);</span>
+Thread t2<span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CustomThread<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;守护者&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">//设置t2线程为守护线程
+</span><span style="color:#75715e"></span>t2<span style="color:#f92672">.</span><span style="color:#a6e22e">setDaemon</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+t1<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+t2<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+  
+</code></pre></div><h2 id="font-colorred4线程安全问题font"><!-- raw HTML omitted -->4.线程安全问题<!-- raw HTML omitted --></h2>
+<p><!-- raw HTML omitted -->结论:多线程同时操作类中的全局成员变量时一定会导致线程安全问题<!-- raw HTML omitted --></p>
+<h3 id="41多窗口卖票">4.1多窗口卖票</h3>
+<p>问题代码</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Ticket</span> <span style="color:#66d9ef">implements</span> Runnable <span style="color:#f92672">{</span>
+    <span style="color:#75715e">//票的数量
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">/*	问题代码
+</span><span style="color:#75715e">     *	ticket全局成员变量可能被多个线程同时访问,所以一定会由线程安全问题
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> ticket <span style="color:#f92672">=</span> 100<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> startTime<span style="color:#f92672">;</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>ticket <span style="color:#f92672">&lt;=</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#75715e">//卖完了
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">long</span> endTime <span style="color:#f92672">=</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">currentTimeMillis</span><span style="color:#f92672">();</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>endTime <span style="color:#f92672">-</span> startTime<span style="color:#f92672">);</span>
+                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+            <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+                    Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>100<span style="color:#f92672">);</span>
+                <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                    e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+                <span style="color:#f92672">}</span>
+                ticket<span style="color:#f92672">--;</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;在卖票,还剩下&#34;</span> <span style="color:#f92672">+</span> ticket <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;张票&#34;</span><span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>重复票,负数票出现原因</p>
+<pre><code>多个线程同时执行
+</code></pre><h2 id="5如何解决线程安全问题">5.如何解决线程安全问题</h2>
+<h3 id="51同步代码块">5.1同步代码块</h3>
+<pre><code>synchronized(Object.class) { 
+	多条语句操作共享数据的代码 
+}
+</code></pre><h3 id="52同步方法">5.2同步方法</h3>
+<pre><code>修饰符 synchronized 返回值类型 方法名(方法参数) { 
+	方法体；
+}
+
+静态
+修饰符 static synchronized 返回值类型 方法名(方法参数) { 
+	方法体；
+}
+</code></pre><h3 id="53同步代码块和同步方法的所各自特点">5.3同步代码块和同步方法的所各自特点</h3>
+<pre><code>同步方法中,普通同步方法的锁对象是当前类的对象(this)
+静态同步方法的锁对象是当前类的class对象
+</code></pre><h3 id="54自己创建锁来进行管理reentrantlock">5.4自己创建锁来进行管理(ReentrantLock)</h3>
+<pre><code>public class Ticket implements Runnable {
+  //创建锁对象
+  private ReentrantLock lock = new ReentrantLock();
+  @Override
+  public void run() {
+		  try {
+			//把锁锁上,其他人进不来
+			lock.lock();
+			
+		  } catch (InterruptedException e) {
+			  e.printStackTrace();
+		  } finally {
+			//把锁打开,下个人进来
+			lock.unlock();
+		  }
+	  }
+  }
+}
+</code></pre><h2 id="6阻塞队列">6.阻塞队列</h2>
+<h3 id="61生产者消费者模型理解">6.1生产者消费者模型(理解)</h3>
+<p><img src="https://gitee.com/guo_dong123/images/raw/master/img/20200922135957.png" alt="生产者消费者模型"></p>
+<h3 id="62线程的等待唤醒机制">6.2线程的等待唤醒机制</h3>
+<p>线程的等待和唤醒必须借助于同一把锁</p>
+<pre><code>Object.class.wait();
+Object.class.notify();
+</code></pre><h3 id="63阻塞队列的使用">6.3阻塞队列的使用</h3>
+<p>阻塞队列</p>
+<ul>
+<li>常见BlockingQueue
+<ul>
+<li>ArrayBlockingQueue: 底层是数组,有界</li>
+<li>LinkedBlockingQueue: 底层是链表,无界.但不是真正的无界,最大为int的最大值</li>
+</ul>
+</li>
+</ul>
+<p>阻塞队列使用步骤</p>
+<p>初始化</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//阻塞队列初始化
+</span><span style="color:#75715e"></span>ArrayBlockingQueue<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> queue <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayBlockingQueue<span style="color:#f92672">&lt;&gt;(</span>10<span style="color:#f92672">);</span>
+</code></pre></div><p>生产者添加数据到队列</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">queue<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;汉堡包&#34;</span><span style="color:#f92672">);</span>
+</code></pre></div><p>消费者从队列中获取数据</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->注意,取不到数据就会挂在哪里等,什么时候取到什么时候执行<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">String data <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span><span style="color:#a6e22e">take</span><span style="color:#f92672">()</span>
+</code></pre></div></article>
+    </section>
+
+    <footer class="ui attached segment dream-tags">
+      
+          <a class="ui label">暂无标签</a>
+      
+      <div
+        class="ui label"
+        style="float: right; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>保存为图片
+      </div>
+    </footer>
+
+    
+      <footer class="ui attached segment">
+        guo dong
+      </footer>
+    
+
+    
+    
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="/img/avatar.jpg">
+      
+    </div>
+
+    
+    <div class="ui medium header">Guo Dong 的博客<div class="sub header" style="margin-top: 0.5rem;">Motto</div>
+    </div>
+    
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="/posts">
+        <i class="archive icon" title="归档"></i>
+      </a>
+      
+      <a class="item" href="/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+      <a class="item" href="/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+    </div>
+  </section>
+
+  
+
+  
+
+  <section class="ui attached segment header-socials">
+    <nav class="ui secondary menu dream-menu dream-socials">
+  
+  
+    <div class="item">
+      <a href="mailto:guodong5490@gmail.com">
+        <i class=" mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</nav>
+
+  </section>
+
+  <section class="ui bottom attached center aligned segment">
+    
+      <p>© 2019 - 2020 Demon&#39;s Blog</p>
+    
+
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+    
+  </section>
+</article>
+
+  </div>
+</div>
+
+        </section>
+        <section class="back">
+          <div class="ui centered relaxed grid dream-grid dream-back">
+  
+  
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">社交链接</h3>
+      </div>
+      <div class="ui bottom attached segment">
+        <nav class="ui secondary menu dream-menu dream-socials">
+  
+  
+    <div class="item">
+      <a href="mailto:guodong5490@gmail.com">
+        <i class="large mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</nav>
+
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+      <footer class="ui segment">
+        guo dong
+      </footer>
+    
+  </section>
+
+  
+  
+</div>
+
+        </section>
+      </div>
+    </div>
+
+    <script>
+  window.darkNav =  true 
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

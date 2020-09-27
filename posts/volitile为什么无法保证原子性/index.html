@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>23    volitile为什么无法保证原子性 | Demon&#39;s Blog</title>
+
+    
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+
+
+<meta name="author" content="Demon" />
+<meta name="description" content="volitile为什么无法保证原子性 问题复现 1.按照volitile的特点,强制线程每次在使用成员变量的时候，都会看一下共享区域最新的值 2.看代码 2.1 在测试方法中我们开了100个线程去执行任务 public static void main(String[] args) { CustomRunnable task = new CustomRunnable(); for (int i = 0; i &amp;lt; 100; i&#43;&#43;) { new Thread(task).start(); } } 2.2 任务代码就是获取当前的count,然后count&#43;&#43; public class CustomRunnable implements Runnable { private volatile int count = 0; @Override public void run() { try { //注意,这里必须睡一下  Thread.sleep(2); } catch (InterruptedException e) { e.printStackTrace(); } count&#43;&#43;; System.out.println(&amp;#34;当前count的值为&amp;#34; &#43; count); } } 观察结果 正常情况下循环100次,那么count就应该是100,但是实际上没有一次执行的结果是大于等于100的,所以就验证了volitile是无法保证原子性的" />
+
+
+
+<meta name="generator" content="Hugo 0.74.3" />
+
+<link rel="canonical" href="https://demon-github1996.github.io/posts/volitile%E4%B8%BA%E4%BB%80%E4%B9%88%E6%97%A0%E6%B3%95%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7/" />
+
+
+<meta property="og:title" content="23    volitile为什么无法保证原子性" />
+<meta property="og:description" content="volitile为什么无法保证原子性 问题复现 1.按照volitile的特点,强制线程每次在使用成员变量的时候，都会看一下共享区域最新的值 2.看代码 2.1 在测试方法中我们开了100个线程去执行任务 public static void main(String[] args) { CustomRunnable task = new CustomRunnable(); for (int i = 0; i &lt; 100; i&#43;&#43;) { new Thread(task).start(); } } 2.2 任务代码就是获取当前的count,然后count&#43;&#43; public class CustomRunnable implements Runnable { private volatile int count = 0; @Override public void run() { try { //注意,这里必须睡一下  Thread.sleep(2); } catch (InterruptedException e) { e.printStackTrace(); } count&#43;&#43;; System.out.println(&#34;当前count的值为&#34; &#43; count); } } 观察结果 正常情况下循环100次,那么count就应该是100,但是实际上没有一次执行的结果是大于等于100的,所以就验证了volitile是无法保证原子性的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://demon-github1996.github.io/posts/volitile%E4%B8%BA%E4%BB%80%E4%B9%88%E6%97%A0%E6%B3%95%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7/" />
+<meta property="article:published_time" content="2019-09-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-09-20T00:00:00+00:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="23    volitile为什么无法保证原子性"/>
+<meta name="twitter:description" content="volitile为什么无法保证原子性 问题复现 1.按照volitile的特点,强制线程每次在使用成员变量的时候，都会看一下共享区域最新的值 2.看代码 2.1 在测试方法中我们开了100个线程去执行任务 public static void main(String[] args) { CustomRunnable task = new CustomRunnable(); for (int i = 0; i &lt; 100; i&#43;&#43;) { new Thread(task).start(); } } 2.2 任务代码就是获取当前的count,然后count&#43;&#43; public class CustomRunnable implements Runnable { private volatile int count = 0; @Override public void run() { try { //注意,这里必须睡一下  Thread.sleep(2); } catch (InterruptedException e) { e.printStackTrace(); } count&#43;&#43;; System.out.println(&#34;当前count的值为&#34; &#43; count); } } 观察结果 正常情况下循环100次,那么count就应该是100,但是实际上没有一次执行的结果是大于等于100的,所以就验证了volitile是无法保证原子性的"/>
+
+
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
+
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
+
+
+    
+<link rel="stylesheet" href="/css/github-markdown.css" />
+
+
+
+
+  </head>
+
+  
+  <body style="background: pink;">
+  
+    
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/demon-github1996.github.io\/'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single">
+
+    <section class="ui top attached segment" id="dream-save-post-as-img">
+      <header style="margin-top: 0 !important;">
+        <h1 class="ui large header">
+          23    volitile为什么无法保证原子性
+          <div class="sub header">
+            @
+            
+              
+                Demon
+              
+            
+            · Friday, Sep 20, 2019
+            · 1 分钟阅读
+            · 更新于 Sep 20, 2019
+          </div>
+        </h1>
+      </header>
+
+      
+        <img class="ui image" style="margin-top: 2rem;" src="" />
+      
+
+      <article style="margin-top: 2rem;"><h1 id="volitile为什么无法保证原子性">volitile为什么无法保证原子性</h1>
+<h2 id="问题复现">问题复现</h2>
+<h3 id="1按照volitile的特点强制线程每次在使用成员变量的时候都会看一下共享区域最新的值">1.按照volitile的特点,强制线程每次在使用成员变量的时候，都会看一下共享区域最新的值</h3>
+<h3 id="2看代码">2.看代码</h3>
+<h4 id="21-在测试方法中我们开了100个线程去执行任务">2.1 在测试方法中我们开了100个线程去执行任务</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	CustomRunnable task <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CustomRunnable<span style="color:#f92672">();</span>
+	<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> 100<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span>task<span style="color:#f92672">).</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="22-任务代码就是获取当前的count然后count">2.2 任务代码就是获取当前的count,然后count++</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomRunnable</span> <span style="color:#66d9ef">implements</span> Runnable <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">volatile</span> <span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+        	<span style="color:#75715e">//注意,这里必须睡一下
+</span><span style="color:#75715e"></span>            Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>2<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span>
+        count<span style="color:#f92672">++;</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;当前count的值为&#34;</span> <span style="color:#f92672">+</span> count<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+</code></pre></div><h4 id="观察结果">观察结果</h4>
+<p><img src="https://gitee.com/guo_dong123/images/raw/master/img/20200922142108.jpg" alt="volitile原子性测试结果"></p>
+<p>正常情况下循环100次,那么count就应该是100,但是实际上没有一次执行的结果是大于等于100的,所以就验证了volitile是无法保证原子性的</p>
+<h2 id="问题分析">问题分析</h2>
+<p>起了100条线程并发地去执行count++这个操作  最后的结果i是大概率小于100，解释是：</p>
+<p>​      count++操作可以被拆分为三步：</p>
+<p>​             1，线程读取count的值</p>
+<p>​             2、count=count+1</p>
+<p>​             3、刷新count的值</p>
+<p>如果此刻count的值是15,此时有2个线程A和线程B<!-- raw HTML omitted --><!-- raw HTML omitted -->同时<!-- raw HTML omitted --><!-- raw HTML omitted -->从主存中读取了count的值(15),那么此时A线程对count进行了自增计算，然后B线程也对count进行自增计算，此时两条线程最后刷新回主存的count的值都是16（本来两条线程计算完应当是17）所以说volatile保证不了原子性。</p>
+<h2 id="结论">结论</h2>
+<p>count++ 不是一个原子性操作, 他在执行的过程中,有可能被其他线程打断</p>
+</article>
+    </section>
+
+    <footer class="ui attached segment dream-tags">
+      
+          <a class="ui label">暂无标签</a>
+      
+      <div
+        class="ui label"
+        style="float: right; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>保存为图片
+      </div>
+    </footer>
+
+    
+      <footer class="ui attached segment">
+        guo dong
+      </footer>
+    
+
+    
+    
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="/img/avatar.jpg">
+      
+    </div>
+
+    
+    <div class="ui medium header">Guo Dong 的博客<div class="sub header" style="margin-top: 0.5rem;">Motto</div>
+    </div>
+    
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="/posts">
+        <i class="archive icon" title="归档"></i>
+      </a>
+      
+      <a class="item" href="/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+      <a class="item" href="/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+    </div>
+  </section>
+
+  
+
+  
+
+  <section class="ui attached segment header-socials">
+    <nav class="ui secondary menu dream-menu dream-socials">
+  
+  
+    <div class="item">
+      <a href="mailto:guodong5490@gmail.com">
+        <i class=" mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</nav>
+
+  </section>
+
+  <section class="ui bottom attached center aligned segment">
+    
+      <p>© 2019 - 2020 Demon&#39;s Blog</p>
+    
+
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+    
+  </section>
+</article>
+
+  </div>
+</div>
+
+        </section>
+        <section class="back">
+          <div class="ui centered relaxed grid dream-grid dream-back">
+  
+  
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">社交链接</h3>
+      </div>
+      <div class="ui bottom attached segment">
+        <nav class="ui secondary menu dream-menu dream-socials">
+  
+  
+    <div class="item">
+      <a href="mailto:guodong5490@gmail.com">
+        <i class="large mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</nav>
+
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+      <footer class="ui segment">
+        guo dong
+      </footer>
+    
+  </section>
+
+  
+  
+</div>
+
+        </section>
+      </div>
+    </div>
+
+    <script>
+  window.darkNav =  true 
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>
